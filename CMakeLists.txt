@@ -123,6 +123,13 @@ set(hw_proto_srcs
 
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
+add_library(ClarifaiGrpc
+        ${hw_proto_srcs})
+target_include_directories(ClarifaiGrpc PUBLIC ".")
+target_link_libraries(ClarifaiGrpc
+        ${_REFLECTION}
+        ${_GRPC_GRPCPP}
+        ${_PROTOBUF_LIBPROTOBUF})
 
 enable_testing()
 
