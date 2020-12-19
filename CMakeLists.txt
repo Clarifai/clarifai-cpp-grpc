@@ -123,17 +123,6 @@ set(hw_proto_srcs
 
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
-foreach(_target
-  program)
-  add_executable(${_target} "${_target}.cpp"
-    ${hw_proto_srcs}
-    ${hw_grpc_srcs})
-  target_include_directories(${_target} PUBLIC ".")
-  target_link_libraries(${_target}
-    ${_REFLECTION}
-    ${_GRPC_GRPCPP}
-    ${_PROTOBUF_LIBPROTOBUF})
-endforeach()
 
 enable_testing()
 
