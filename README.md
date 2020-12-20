@@ -36,8 +36,7 @@ auto channel = grpc::CreateChannel("api.clarifai.com:443", grpc::SslCredentials(
 unique_ptr<V2::Stub> stub = V2::NewStub(channel);
 
 unique_ptr<grpc::ClientContext> context(new grpc::ClientContext);
-string api_key = getenv("CLARIFAI_API_KEY");
-context->AddMetadata("authorization", "Key " + api_key);
+context->AddMetadata("authorization", "Key YOUR_CLARIFAI_API_KEY_OR_PAT");
 ```
 
 Predict concepts in an image:
