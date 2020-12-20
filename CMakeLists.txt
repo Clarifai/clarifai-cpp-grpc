@@ -1,6 +1,4 @@
-cmake_minimum_required(VERSION 3.5.1)
-
-project(ClarifaiGrpc C CXX)
+cmake_minimum_required(VERSION 3.13)
 
 if(NOT MSVC)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -135,9 +133,7 @@ enable_testing()
 
 foreach(_target
         integration_tests)
-  add_executable(${_target} "tests/${_target}.cc"
-          ${hw_proto_srcs}
-          ${hw_grpc_srcs})
+  add_executable(${_target} "tests/${_target}.cc" ${hw_proto_srcs})
   add_test(${_target} ${_target})
   target_include_directories(${_target} PUBLIC ".")
   target_link_libraries(${_target}
