@@ -1,11 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
-if(NOT MSVC)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-else()
-  add_definitions(-D_WIN32_WINNT=0x600)
-endif()
-
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 message(STATUS "Using gRPC via add_subdirectory (FetchContent).")
 include(FetchContent)
