@@ -11,6 +11,8 @@ and natural language processing.
 * Sign up for a free account at: https://portal.clarifai.com/signup
 * Read the documentation at: https://docs.clarifai.com/
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Clarifai/clarifai-cpp-grpc)](https://github.com/Clarifai/clarifai-cpp-grpc/releases)
+
 # Installation
 
 Using CMake's `FetchContent` functionality:
