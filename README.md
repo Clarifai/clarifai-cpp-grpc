@@ -77,6 +77,9 @@ for (int i = 0; i < response_data.concepts_size(); i++) {
 ## Further documentation
 
 See the *API GUIDE* section in [the Clarifai documentation](https://docs.clarifai.com) to find out how to implement
-a specific functionality. There you can find code examples in programming languages other than C++, and since they all
-share the same structure (requests, responses, methods all have the same fields) it should be relatively
-straightforward to translate the provided code examples to C++.
+a specific functionality. The code examples are in programming languages other than C++, and since different languages
+differ only in syntax but share the structure (requests, responses, methods all have the same fields) it should be
+relatively straightforward to translate the code examples to C++.
+
+Also see, in the [example_usage](https://github.com/Clarifai/clarifai-cpp-grpc/tree/master/tests) subdirectory,
+an example project showing how to use the library.
