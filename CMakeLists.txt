@@ -6,7 +6,6 @@ else()
   add_definitions(-D_WIN32_WINNT=0x600)
 endif()
 
-find_package(Threads REQUIRED)
 
 message(STATUS "Using gRPC via add_subdirectory (FetchContent).")
 include(FetchContent)
