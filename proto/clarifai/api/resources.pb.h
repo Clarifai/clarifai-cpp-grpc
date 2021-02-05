@@ -53,7 +53,7 @@ struct TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[108]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[110]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -65,6 +65,9 @@ namespace api {
 class APIPostModelOutputsCollectorSource;
 class APIPostModelOutputsCollectorSourceDefaultTypeInternal;
 extern APIPostModelOutputsCollectorSourceDefaultTypeInternal _APIPostModelOutputsCollectorSource_default_instance_;
+class AiAssistParameters;
+class AiAssistParametersDefaultTypeInternal;
+extern AiAssistParametersDefaultTypeInternal _AiAssistParameters_default_instance_;
 class And;
 class AndDefaultTypeInternal;
 extern AndDefaultTypeInternal _And_default_instance_;
@@ -326,9 +329,6 @@ extern TaskDefaultTypeInternal _Task_default_instance_;
 class TaskAIAssistant;
 class TaskAIAssistantDefaultTypeInternal;
 extern TaskAIAssistantDefaultTypeInternal _TaskAIAssistant_default_instance_;
-class TaskAnnotationStatusCountPerUser;
-class TaskAnnotationStatusCountPerUserDefaultTypeInternal;
-extern TaskAnnotationStatusCountPerUserDefaultTypeInternal _TaskAnnotationStatusCountPerUser_default_instance_;
 class TaskInputSource;
 class TaskInputSourceDefaultTypeInternal;
 extern TaskInputSourceDefaultTypeInternal _TaskInputSource_default_instance_;
@@ -341,6 +341,9 @@ extern TaskReviewConsensusStrategyInfoDefaultTypeInternal _TaskReviewConsensusSt
 class TaskReviewManualStrategyInfo;
 class TaskReviewManualStrategyInfoDefaultTypeInternal;
 extern TaskReviewManualStrategyInfoDefaultTypeInternal _TaskReviewManualStrategyInfo_default_instance_;
+class TaskStatusCountPerUser;
+class TaskStatusCountPerUserDefaultTypeInternal;
+extern TaskStatusCountPerUserDefaultTypeInternal _TaskStatusCountPerUser_default_instance_;
 class TaskWorker;
 class TaskWorkerDefaultTypeInternal;
 extern TaskWorkerDefaultTypeInternal _TaskWorker_default_instance_;
@@ -356,6 +359,9 @@ extern TrackDefaultTypeInternal _Track_default_instance_;
 class Track_TrackInfo;
 class Track_TrackInfoDefaultTypeInternal;
 extern Track_TrackInfoDefaultTypeInternal _Track_TrackInfo_default_instance_;
+class TrackerMetrics;
+class TrackerMetricsDefaultTypeInternal;
+extern TrackerMetricsDefaultTypeInternal _TrackerMetrics_default_instance_;
 class TrainInfo;
 class TrainInfoDefaultTypeInternal;
 extern TrainInfoDefaultTypeInternal _TrainInfo_default_instance_;
@@ -390,6 +396,7 @@ extern WorkflowResultsSimilarityDefaultTypeInternal _WorkflowResultsSimilarity_d
 }  // namespace clarifai
 PROTOBUF_NAMESPACE_OPEN
 template<> ::clarifai::api::APIPostModelOutputsCollectorSource* Arena::CreateMaybeMessage<::clarifai::api::APIPostModelOutputsCollectorSource>(Arena*);
+template<> ::clarifai::api::AiAssistParameters* Arena::CreateMaybeMessage<::clarifai::api::AiAssistParameters>(Arena*);
 template<> ::clarifai::api::And* Arena::CreateMaybeMessage<::clarifai::api::And>(Arena*);
 template<> ::clarifai::api::Annotation* Arena::CreateMaybeMessage<::clarifai::api::Annotation>(Arena*);
 template<> ::clarifai::api::AnnotationSearchMetrics* Arena::CreateMaybeMessage<::clarifai::api::AnnotationSearchMetrics>(Arena*);
@@ -477,16 +484,17 @@ template<> ::clarifai::api::StatValueAggregateQuery* Arena::CreateMaybeMessage<:
 template<> ::clarifai::api::StatValueAggregateResult* Arena::CreateMaybeMessage<::clarifai::api::StatValueAggregateResult>(Arena*);
 template<> ::clarifai::api::Task* Arena::CreateMaybeMessage<::clarifai::api::Task>(Arena*);
 template<> ::clarifai::api::TaskAIAssistant* Arena::CreateMaybeMessage<::clarifai::api::TaskAIAssistant>(Arena*);
-template<> ::clarifai::api::TaskAnnotationStatusCountPerUser* Arena::CreateMaybeMessage<::clarifai::api::TaskAnnotationStatusCountPerUser>(Arena*);
 template<> ::clarifai::api::TaskInputSource* Arena::CreateMaybeMessage<::clarifai::api::TaskInputSource>(Arena*);
 template<> ::clarifai::api::TaskReview* Arena::CreateMaybeMessage<::clarifai::api::TaskReview>(Arena*);
 template<> ::clarifai::api::TaskReviewConsensusStrategyInfo* Arena::CreateMaybeMessage<::clarifai::api::TaskReviewConsensusStrategyInfo>(Arena*);
 template<> ::clarifai::api::TaskReviewManualStrategyInfo* Arena::CreateMaybeMessage<::clarifai::api::TaskReviewManualStrategyInfo>(Arena*);
+template<> ::clarifai::api::TaskStatusCountPerUser* Arena::CreateMaybeMessage<::clarifai::api::TaskStatusCountPerUser>(Arena*);
 template<> ::clarifai::api::TaskWorker* Arena::CreateMaybeMessage<::clarifai::api::TaskWorker>(Arena*);
 template<> ::clarifai::api::TaskWorkerPartitionedStrategyInfo* Arena::CreateMaybeMessage<::clarifai::api::TaskWorkerPartitionedStrategyInfo>(Arena*);
 template<> ::clarifai::api::Text* Arena::CreateMaybeMessage<::clarifai::api::Text>(Arena*);
 template<> ::clarifai::api::Track* Arena::CreateMaybeMessage<::clarifai::api::Track>(Arena*);
 template<> ::clarifai::api::Track_TrackInfo* Arena::CreateMaybeMessage<::clarifai::api::Track_TrackInfo>(Arena*);
+template<> ::clarifai::api::TrackerMetrics* Arena::CreateMaybeMessage<::clarifai::api::TrackerMetrics>(Arena*);
 template<> ::clarifai::api::TrainInfo* Arena::CreateMaybeMessage<::clarifai::api::TrainInfo>(Arena*);
 template<> ::clarifai::api::TrainStats* Arena::CreateMaybeMessage<::clarifai::api::TrainStats>(Arena*);
 template<> ::clarifai::api::User* Arena::CreateMaybeMessage<::clarifai::api::User>(Arena*);
@@ -829,6 +837,31 @@ inline bool UsageIntervalType_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<UsageIntervalType>(
     UsageIntervalType_descriptor(), name, value);
 }
+enum RoleType : int {
+  TEAM = 0,
+  ORG = 1,
+  RoleType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  RoleType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool RoleType_IsValid(int value);
+constexpr RoleType RoleType_MIN = TEAM;
+constexpr RoleType RoleType_MAX = ORG;
+constexpr int RoleType_ARRAYSIZE = RoleType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RoleType_descriptor();
+template<typename T>
+inline const std::string& RoleType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, RoleType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function RoleType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    RoleType_descriptor(), enum_t_value);
+}
+inline bool RoleType_Parse(
+    const std::string& name, RoleType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<RoleType>(
+    RoleType_descriptor(), name, value);
+}
 enum StatValueAggType : int {
   SUM = 0,
   AVG = 1,
@@ -997,6 +1030,7 @@ class Annotation :
     kEmbedModelVersionIdFieldNumber = 14,
     kUserIdFieldNumber = 15,
     kModelVersionIdFieldNumber = 16,
+    kTaskIdFieldNumber = 19,
     kDataFieldNumber = 3,
     kStatusFieldNumber = 7,
     kCreatedAtFieldNumber = 8,
@@ -1038,16 +1072,16 @@ class Annotation :
   std::string* _internal_mutable_input_id();
   public:
 
-  // string embed_model_version_id = 14;
-  void clear_embed_model_version_id();
-  const std::string& embed_model_version_id() const;
-  void set_embed_model_version_id(const std::string& value);
-  void set_embed_model_version_id(std::string&& value);
-  void set_embed_model_version_id(const char* value);
-  void set_embed_model_version_id(const char* value, size_t size);
-  std::string* mutable_embed_model_version_id();
-  std::string* release_embed_model_version_id();
-  void set_allocated_embed_model_version_id(std::string* embed_model_version_id);
+  // string embed_model_version_id = 14 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_embed_model_version_id();
+  PROTOBUF_DEPRECATED const std::string& embed_model_version_id() const;
+  PROTOBUF_DEPRECATED void set_embed_model_version_id(const std::string& value);
+  PROTOBUF_DEPRECATED void set_embed_model_version_id(std::string&& value);
+  PROTOBUF_DEPRECATED void set_embed_model_version_id(const char* value);
+  PROTOBUF_DEPRECATED void set_embed_model_version_id(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_embed_model_version_id();
+  PROTOBUF_DEPRECATED std::string* release_embed_model_version_id();
+  PROTOBUF_DEPRECATED void set_allocated_embed_model_version_id(std::string* embed_model_version_id);
   private:
   const std::string& _internal_embed_model_version_id() const;
   void _internal_set_embed_model_version_id(const std::string& value);
@@ -1084,6 +1118,22 @@ class Annotation :
   const std::string& _internal_model_version_id() const;
   void _internal_set_model_version_id(const std::string& value);
   std::string* _internal_mutable_model_version_id();
+  public:
+
+  // string task_id = 19;
+  void clear_task_id();
+  const std::string& task_id() const;
+  void set_task_id(const std::string& value);
+  void set_task_id(std::string&& value);
+  void set_task_id(const char* value);
+  void set_task_id(const char* value, size_t size);
+  std::string* mutable_task_id();
+  std::string* release_task_id();
+  void set_allocated_task_id(std::string* task_id);
+  private:
+  const std::string& _internal_task_id() const;
+  void _internal_set_task_id(const std::string& value);
+  std::string* _internal_mutable_task_id();
   public:
 
   // .clarifai.api.Data data = 3;
@@ -1204,6 +1254,7 @@ class Annotation :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr embed_model_version_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_version_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr task_id_;
   ::clarifai::api::Data* data_;
   ::clarifai::api::status::Status* status_;
   PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
@@ -2233,6 +2284,7 @@ class Audio :
   enum : int {
     kUrlFieldNumber = 1,
     kBase64FieldNumber = 2,
+    kHostedFieldNumber = 5,
     kAllowDuplicateUrlFieldNumber = 4,
   };
   // string url = 1;
@@ -2267,6 +2319,21 @@ class Audio :
   std::string* _internal_mutable_base64();
   public:
 
+  // .clarifai.api.HostedURL hosted = 5;
+  bool has_hosted() const;
+  private:
+  bool _internal_has_hosted() const;
+  public:
+  void clear_hosted();
+  const ::clarifai::api::HostedURL& hosted() const;
+  ::clarifai::api::HostedURL* release_hosted();
+  ::clarifai::api::HostedURL* mutable_hosted();
+  void set_allocated_hosted(::clarifai::api::HostedURL* hosted);
+  private:
+  const ::clarifai::api::HostedURL& _internal_hosted() const;
+  ::clarifai::api::HostedURL* _internal_mutable_hosted();
+  public:
+
   // bool allow_duplicate_url = 4;
   void clear_allow_duplicate_url();
   bool allow_duplicate_url() const;
@@ -2283,6 +2350,7 @@ class Audio :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr base64_;
+  ::clarifai::api::HostedURL* hosted_;
   bool allow_duplicate_url_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto;
@@ -2740,6 +2808,7 @@ class Cluster :
 
   enum : int {
     kHitsFieldNumber = 4,
+    kProjectionFieldNumber = 5,
     kIdFieldNumber = 1,
     kCountFieldNumber = 2,
     kScoreFieldNumber = 3,
@@ -2761,6 +2830,28 @@ class Cluster :
   ::clarifai::api::Hit* add_hits();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::Hit >&
       hits() const;
+
+  // repeated float projection = 5;
+  int projection_size() const;
+  private:
+  int _internal_projection_size() const;
+  public:
+  void clear_projection();
+  private:
+  float _internal_projection(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      _internal_projection() const;
+  void _internal_add_projection(float value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      _internal_mutable_projection();
+  public:
+  float projection(int index) const;
+  void set_projection(int index, float value);
+  void add_projection(float value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      projection() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      mutable_projection();
 
   // string id = 1;
   void clear_id();
@@ -2802,6 +2893,8 @@ class Cluster :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::Hit > hits_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > projection_;
+  mutable std::atomic<int> _projection_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::uint32 count_;
   float score_;
@@ -4322,6 +4415,7 @@ class ConceptQuery :
   enum : int {
     kNameFieldNumber = 1,
     kLanguageFieldNumber = 2,
+    kWorkflowIdFieldNumber = 3,
   };
   // string name = 1;
   void clear_name();
@@ -4355,6 +4449,22 @@ class ConceptQuery :
   std::string* _internal_mutable_language();
   public:
 
+  // string workflow_id = 3;
+  void clear_workflow_id();
+  const std::string& workflow_id() const;
+  void set_workflow_id(const std::string& value);
+  void set_workflow_id(std::string&& value);
+  void set_workflow_id(const char* value);
+  void set_workflow_id(const char* value, size_t size);
+  std::string* mutable_workflow_id();
+  std::string* release_workflow_id();
+  void set_allocated_workflow_id(std::string* workflow_id);
+  private:
+  const std::string& _internal_workflow_id() const;
+  void _internal_set_workflow_id(const std::string& value);
+  std::string* _internal_mutable_workflow_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:clarifai.api.ConceptQuery)
  private:
   class _Internal;
@@ -4362,6 +4472,7 @@ class ConceptQuery :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr language_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr workflow_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto;
 };
@@ -11144,6 +11255,7 @@ class ModelVersion :
 
   enum : int {
     kIdFieldNumber = 1,
+    kDescriptionFieldNumber = 11,
     kCreatedAtFieldNumber = 2,
     kStatusFieldNumber = 3,
     kMetricsFieldNumber = 5,
@@ -11165,6 +11277,22 @@ class ModelVersion :
   const std::string& _internal_id() const;
   void _internal_set_id(const std::string& value);
   std::string* _internal_mutable_id();
+  public:
+
+  // string description = 11;
+  void clear_description();
+  const std::string& description() const;
+  void set_description(const std::string& value);
+  void set_description(std::string&& value);
+  void set_description(const char* value);
+  void set_description(const char* value, size_t size);
+  std::string* mutable_description();
+  std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
   public:
 
   // .google.protobuf.Timestamp created_at = 2;
@@ -11251,6 +11379,7 @@ class ModelVersion :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
   PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
   ::clarifai::api::status::Status* status_;
   ::clarifai::api::EvalMetrics* metrics_;
@@ -13439,6 +13568,196 @@ class BinaryMetrics :
 };
 // -------------------------------------------------------------------
 
+class TrackerMetrics :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.TrackerMetrics) */ {
+ public:
+  TrackerMetrics();
+  virtual ~TrackerMetrics();
+
+  TrackerMetrics(const TrackerMetrics& from);
+  TrackerMetrics(TrackerMetrics&& from) noexcept
+    : TrackerMetrics() {
+    *this = ::std::move(from);
+  }
+
+  inline TrackerMetrics& operator=(const TrackerMetrics& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TrackerMetrics& operator=(TrackerMetrics&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TrackerMetrics& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TrackerMetrics* internal_default_instance() {
+    return reinterpret_cast<const TrackerMetrics*>(
+               &_TrackerMetrics_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    65;
+
+  friend void swap(TrackerMetrics& a, TrackerMetrics& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TrackerMetrics* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TrackerMetrics* New() const final {
+    return CreateMaybeMessage<TrackerMetrics>(nullptr);
+  }
+
+  TrackerMetrics* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TrackerMetrics>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TrackerMetrics& from);
+  void MergeFrom(const TrackerMetrics& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TrackerMetrics* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.TrackerMetrics";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAiidFieldNumber = 5,
+    kMotMotaFieldNumber = 1,
+    kMotNumSwitchesFieldNumber = 2,
+    kMorseFragFieldNumber = 3,
+    kAvgPrecisionFieldNumber = 4,
+    kUniqueSwitchRateFieldNumber = 6,
+  };
+  // string aiid = 5;
+  void clear_aiid();
+  const std::string& aiid() const;
+  void set_aiid(const std::string& value);
+  void set_aiid(std::string&& value);
+  void set_aiid(const char* value);
+  void set_aiid(const char* value, size_t size);
+  std::string* mutable_aiid();
+  std::string* release_aiid();
+  void set_allocated_aiid(std::string* aiid);
+  private:
+  const std::string& _internal_aiid() const;
+  void _internal_set_aiid(const std::string& value);
+  std::string* _internal_mutable_aiid();
+  public:
+
+  // float mot_mota = 1;
+  void clear_mot_mota();
+  float mot_mota() const;
+  void set_mot_mota(float value);
+  private:
+  float _internal_mot_mota() const;
+  void _internal_set_mot_mota(float value);
+  public:
+
+  // int32 mot_num_switches = 2;
+  void clear_mot_num_switches();
+  ::PROTOBUF_NAMESPACE_ID::int32 mot_num_switches() const;
+  void set_mot_num_switches(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_mot_num_switches() const;
+  void _internal_set_mot_num_switches(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // float morse_frag = 3;
+  void clear_morse_frag();
+  float morse_frag() const;
+  void set_morse_frag(float value);
+  private:
+  float _internal_morse_frag() const;
+  void _internal_set_morse_frag(float value);
+  public:
+
+  // float avg_precision = 4;
+  void clear_avg_precision();
+  float avg_precision() const;
+  void set_avg_precision(float value);
+  private:
+  float _internal_avg_precision() const;
+  void _internal_set_avg_precision(float value);
+  public:
+
+  // float unique_switch_rate = 6;
+  void clear_unique_switch_rate();
+  float unique_switch_rate() const;
+  void set_unique_switch_rate(float value);
+  private:
+  float _internal_unique_switch_rate() const;
+  void _internal_set_unique_switch_rate(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.TrackerMetrics)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr aiid_;
+  float mot_mota_;
+  ::PROTOBUF_NAMESPACE_ID::int32 mot_num_switches_;
+  float morse_frag_;
+  float avg_precision_;
+  float unique_switch_rate_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto;
+};
+// -------------------------------------------------------------------
+
 class EvalTestSetEntry :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.EvalTestSetEntry) */ {
  public:
@@ -13481,7 +13800,7 @@ class EvalTestSetEntry :
                &_EvalTestSetEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    66;
 
   friend void swap(EvalTestSetEntry& a, EvalTestSetEntry& b) {
     a.Swap(&b);
@@ -13691,7 +14010,7 @@ class LOPQEvalResult :
                &_LOPQEvalResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    67;
 
   friend void swap(LOPQEvalResult& a, LOPQEvalResult& b) {
     a.Swap(&b);
@@ -13874,7 +14193,7 @@ class MetricsSummary :
                &_MetricsSummary_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    68;
 
   friend void swap(MetricsSummary& a, MetricsSummary& b) {
     a.Swap(&b);
@@ -14121,7 +14440,7 @@ class EvalMetrics :
                &_EvalMetrics_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    69;
 
   friend void swap(EvalMetrics& a, EvalMetrics& b) {
     a.Swap(&b);
@@ -14189,6 +14508,7 @@ class EvalMetrics :
     kTestSetFieldNumber = 7,
     kMetricsByAreaFieldNumber = 8,
     kMetricsByClassFieldNumber = 9,
+    kTrackerMetricsFieldNumber = 11,
     kIdFieldNumber = 10,
     kStatusFieldNumber = 1,
     kSummaryFieldNumber = 2,
@@ -14267,6 +14587,24 @@ class EvalMetrics :
   ::clarifai::api::BinaryMetrics* add_metrics_by_class();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::BinaryMetrics >&
       metrics_by_class() const;
+
+  // repeated .clarifai.api.TrackerMetrics tracker_metrics = 11;
+  int tracker_metrics_size() const;
+  private:
+  int _internal_tracker_metrics_size() const;
+  public:
+  void clear_tracker_metrics();
+  ::clarifai::api::TrackerMetrics* mutable_tracker_metrics(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::TrackerMetrics >*
+      mutable_tracker_metrics();
+  private:
+  const ::clarifai::api::TrackerMetrics& _internal_tracker_metrics(int index) const;
+  ::clarifai::api::TrackerMetrics* _internal_add_tracker_metrics();
+  public:
+  const ::clarifai::api::TrackerMetrics& tracker_metrics(int index) const;
+  ::clarifai::api::TrackerMetrics* add_tracker_metrics();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::TrackerMetrics >&
+      tracker_metrics() const;
 
   // string id = 10;
   void clear_id();
@@ -14368,6 +14706,7 @@ class EvalMetrics :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::EvalTestSetEntry > test_set_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::BinaryMetrics > metrics_by_area_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::BinaryMetrics > metrics_by_class_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::TrackerMetrics > tracker_metrics_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::clarifai::api::status::Status* status_;
   ::clarifai::api::MetricsSummary* summary_;
@@ -14421,7 +14760,7 @@ class FieldsValue :
                &_FieldsValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    70;
 
   friend void swap(FieldsValue& a, FieldsValue& b) {
     a.Swap(&b);
@@ -14615,7 +14954,7 @@ class Output :
                &_Output_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    71;
 
   friend void swap(Output& a, Output& b) {
     a.Swap(&b);
@@ -14835,7 +15174,7 @@ class ScopeDeps :
                &_ScopeDeps_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    72;
 
   friend void swap(ScopeDeps& a, ScopeDeps& b) {
     a.Swap(&b);
@@ -14996,7 +15335,7 @@ class EndpointDeps :
                &_EndpointDeps_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    73;
 
   friend void swap(EndpointDeps& a, EndpointDeps& b) {
     a.Swap(&b);
@@ -15157,7 +15496,7 @@ class Hit :
                &_Hit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    74;
 
   friend void swap(Hit& a, Hit& b) {
     a.Swap(&b);
@@ -15319,7 +15658,7 @@ class And :
                &_And_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    75;
 
   friend void swap(And& a, And& b) {
     a.Swap(&b);
@@ -15498,7 +15837,7 @@ class Query :
                &_Query_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    76;
 
   friend void swap(Query& a, Query& b) {
     a.Swap(&b);
@@ -15693,7 +16032,7 @@ class Search :
                &_Search_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    77;
 
   friend void swap(Search& a, Search& b) {
     a.Swap(&b);
@@ -15990,7 +16329,7 @@ class Filter :
                &_Filter_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    78;
 
   friend void swap(Filter& a, Filter& b) {
     a.Swap(&b);
@@ -16152,7 +16491,7 @@ class Rank :
                &_Rank_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    79;
 
   friend void swap(Rank& a, Rank& b) {
     a.Swap(&b);
@@ -16297,7 +16636,7 @@ class AnnotationSearchMetrics :
                &_AnnotationSearchMetrics_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    80;
 
   friend void swap(AnnotationSearchMetrics& a, AnnotationSearchMetrics& b) {
     a.Swap(&b);
@@ -16493,7 +16832,7 @@ class Text :
                &_Text_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    80;
+    81;
 
   friend void swap(Text& a, Text& b) {
     a.Swap(&b);
@@ -16674,7 +17013,7 @@ class User :
                &_User_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    81;
+    82;
 
   friend void swap(User& a, User& b) {
     a.Swap(&b);
@@ -17037,7 +17376,7 @@ class EmailAddress :
                &_EmailAddress_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    82;
+    83;
 
   friend void swap(EmailAddress& a, EmailAddress& b) {
     a.Swap(&b);
@@ -17194,7 +17533,7 @@ class Password :
                &_Password_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    83;
+    84;
 
   friend void swap(Password& a, Password& b) {
     a.Swap(&b);
@@ -17329,7 +17668,7 @@ class PasswordViolations :
                &_PasswordViolations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    84;
+    85;
 
   friend void swap(PasswordViolations& a, PasswordViolations& b) {
     a.Swap(&b);
@@ -17600,7 +17939,7 @@ class Video :
                &_Video_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    85;
+    86;
 
   friend void swap(Video& a, Video& b) {
     a.Swap(&b);
@@ -17799,7 +18138,7 @@ class Workflow :
                &_Workflow_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    86;
+    87;
 
   friend void swap(Workflow& a, Workflow& b) {
     a.Swap(&b);
@@ -17867,6 +18206,7 @@ class Workflow :
     kIdFieldNumber = 1,
     kAppIdFieldNumber = 2,
     kCreatedAtFieldNumber = 3,
+    kMetadataFieldNumber = 5,
   };
   // repeated .clarifai.api.WorkflowNode nodes = 4;
   int nodes_size() const;
@@ -17933,6 +18273,21 @@ class Workflow :
   PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_created_at();
   public:
 
+  // .google.protobuf.Struct metadata = 5;
+  bool has_metadata() const;
+  private:
+  bool _internal_has_metadata() const;
+  public:
+  void clear_metadata();
+  const PROTOBUF_NAMESPACE_ID::Struct& metadata() const;
+  PROTOBUF_NAMESPACE_ID::Struct* release_metadata();
+  PROTOBUF_NAMESPACE_ID::Struct* mutable_metadata();
+  void set_allocated_metadata(PROTOBUF_NAMESPACE_ID::Struct* metadata);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Struct& _internal_metadata() const;
+  PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_metadata();
+  public:
+
   // @@protoc_insertion_point(class_scope:clarifai.api.Workflow)
  private:
   class _Internal;
@@ -17942,6 +18297,7 @@ class Workflow :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr app_id_;
   PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
+  PROTOBUF_NAMESPACE_ID::Struct* metadata_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto;
 };
@@ -17989,7 +18345,7 @@ class WorkflowNode :
                &_WorkflowNode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    87;
+    88;
 
   friend void swap(WorkflowNode& a, WorkflowNode& b) {
     a.Swap(&b);
@@ -18172,7 +18528,7 @@ class NodeInput :
                &_NodeInput_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    88;
+    89;
 
   friend void swap(NodeInput& a, NodeInput& b) {
     a.Swap(&b);
@@ -18307,7 +18663,7 @@ class WorkflowResult :
                &_WorkflowResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    89;
+    90;
 
   friend void swap(WorkflowResult& a, WorkflowResult& b) {
     a.Swap(&b);
@@ -18541,7 +18897,7 @@ class AppDuplication :
                &_AppDuplication_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    90;
+    91;
 
   friend void swap(AppDuplication& a, AppDuplication& b) {
     a.Swap(&b);
@@ -18780,7 +19136,7 @@ class AppDuplicationFilters :
                &_AppDuplicationFilters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    91;
+    92;
 
   friend void swap(AppDuplicationFilters& a, AppDuplicationFilters& b) {
     a.Swap(&b);
@@ -18952,7 +19308,7 @@ class Task :
                &_Task_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    92;
+    93;
 
   friend void swap(Task& a, Task& b) {
     a.Swap(&b);
@@ -19061,6 +19417,7 @@ class Task :
     kAiAssistantFieldNumber = 10,
     kReviewFieldNumber = 11,
     kStatusFieldNumber = 12,
+    kAiAssistParamsFieldNumber = 14,
     kTypeFieldNumber = 4,
     kSampleMsFieldNumber = 9,
   };
@@ -19241,6 +19598,21 @@ class Task :
   ::clarifai::api::status::Status* _internal_mutable_status();
   public:
 
+  // .clarifai.api.AiAssistParameters ai_assist_params = 14;
+  bool has_ai_assist_params() const;
+  private:
+  bool _internal_has_ai_assist_params() const;
+  public:
+  void clear_ai_assist_params();
+  const ::clarifai::api::AiAssistParameters& ai_assist_params() const;
+  ::clarifai::api::AiAssistParameters* release_ai_assist_params();
+  ::clarifai::api::AiAssistParameters* mutable_ai_assist_params();
+  void set_allocated_ai_assist_params(::clarifai::api::AiAssistParameters* ai_assist_params);
+  private:
+  const ::clarifai::api::AiAssistParameters& _internal_ai_assist_params() const;
+  ::clarifai::api::AiAssistParameters* _internal_mutable_ai_assist_params();
+  public:
+
   // .clarifai.api.Task.TaskType type = 4;
   void clear_type();
   ::clarifai::api::Task_TaskType type() const;
@@ -19275,8 +19647,174 @@ class Task :
   ::clarifai::api::TaskAIAssistant* ai_assistant_;
   ::clarifai::api::TaskReview* review_;
   ::clarifai::api::status::Status* status_;
+  ::clarifai::api::AiAssistParameters* ai_assist_params_;
   int type_;
   ::PROTOBUF_NAMESPACE_ID::uint32 sample_ms_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AiAssistParameters :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.AiAssistParameters) */ {
+ public:
+  AiAssistParameters();
+  virtual ~AiAssistParameters();
+
+  AiAssistParameters(const AiAssistParameters& from);
+  AiAssistParameters(AiAssistParameters&& from) noexcept
+    : AiAssistParameters() {
+    *this = ::std::move(from);
+  }
+
+  inline AiAssistParameters& operator=(const AiAssistParameters& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AiAssistParameters& operator=(AiAssistParameters&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AiAssistParameters& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AiAssistParameters* internal_default_instance() {
+    return reinterpret_cast<const AiAssistParameters*>(
+               &_AiAssistParameters_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    94;
+
+  friend void swap(AiAssistParameters& a, AiAssistParameters& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AiAssistParameters* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AiAssistParameters* New() const final {
+    return CreateMaybeMessage<AiAssistParameters>(nullptr);
+  }
+
+  AiAssistParameters* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AiAssistParameters>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AiAssistParameters& from);
+  void MergeFrom(const AiAssistParameters& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AiAssistParameters* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.AiAssistParameters";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kConceptRelationIdsFieldNumber = 3,
+    kMinThresholdFieldNumber = 1,
+    kMaxThresholdFieldNumber = 2,
+  };
+  // repeated string concept_relation_ids = 3;
+  int concept_relation_ids_size() const;
+  private:
+  int _internal_concept_relation_ids_size() const;
+  public:
+  void clear_concept_relation_ids();
+  const std::string& concept_relation_ids(int index) const;
+  std::string* mutable_concept_relation_ids(int index);
+  void set_concept_relation_ids(int index, const std::string& value);
+  void set_concept_relation_ids(int index, std::string&& value);
+  void set_concept_relation_ids(int index, const char* value);
+  void set_concept_relation_ids(int index, const char* value, size_t size);
+  std::string* add_concept_relation_ids();
+  void add_concept_relation_ids(const std::string& value);
+  void add_concept_relation_ids(std::string&& value);
+  void add_concept_relation_ids(const char* value);
+  void add_concept_relation_ids(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& concept_relation_ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_concept_relation_ids();
+  private:
+  const std::string& _internal_concept_relation_ids(int index) const;
+  std::string* _internal_add_concept_relation_ids();
+  public:
+
+  // float min_threshold = 1;
+  void clear_min_threshold();
+  float min_threshold() const;
+  void set_min_threshold(float value);
+  private:
+  float _internal_min_threshold() const;
+  void _internal_set_min_threshold(float value);
+  public:
+
+  // float max_threshold = 2;
+  void clear_max_threshold();
+  float max_threshold() const;
+  void set_max_threshold(float value);
+  private:
+  float _internal_max_threshold() const;
+  void _internal_set_max_threshold(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.AiAssistParameters)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> concept_relation_ids_;
+  float min_threshold_;
+  float max_threshold_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto;
 };
@@ -19329,7 +19867,7 @@ class TaskWorker :
                &_TaskWorker_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    93;
+    95;
 
   friend void swap(TaskWorker& a, TaskWorker& b) {
     a.Swap(&b);
@@ -19543,7 +20081,7 @@ class TaskWorkerPartitionedStrategyInfo :
                &_TaskWorkerPartitionedStrategyInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    94;
+    96;
 
   friend void swap(TaskWorkerPartitionedStrategyInfo& a, TaskWorkerPartitionedStrategyInfo& b) {
     a.Swap(&b);
@@ -19731,7 +20269,7 @@ class TaskInputSource :
                &_TaskInputSource_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    95;
+    97;
 
   friend void swap(TaskInputSource& a, TaskInputSource& b) {
     a.Swap(&b);
@@ -19915,7 +20453,7 @@ class TaskReview :
                &_TaskReview_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    96;
+    98;
 
   friend void swap(TaskReview& a, TaskReview& b) {
     a.Swap(&b);
@@ -20149,7 +20687,7 @@ class TaskReviewManualStrategyInfo :
                &_TaskReviewManualStrategyInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    97;
+    99;
 
   friend void swap(TaskReviewManualStrategyInfo& a, TaskReviewManualStrategyInfo& b) {
     a.Swap(&b);
@@ -20277,7 +20815,7 @@ class TaskReviewConsensusStrategyInfo :
                &_TaskReviewConsensusStrategyInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    98;
+    100;
 
   friend void swap(TaskReviewConsensusStrategyInfo& a, TaskReviewConsensusStrategyInfo& b) {
     a.Swap(&b);
@@ -20405,7 +20943,7 @@ class TaskAIAssistant :
                &_TaskAIAssistant_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    99;
+    101;
 
   friend void swap(TaskAIAssistant& a, TaskAIAssistant& b) {
     a.Swap(&b);
@@ -20498,23 +21036,23 @@ class TaskAIAssistant :
 };
 // -------------------------------------------------------------------
 
-class TaskAnnotationStatusCountPerUser :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.TaskAnnotationStatusCountPerUser) */ {
+class TaskStatusCountPerUser :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.TaskStatusCountPerUser) */ {
  public:
-  TaskAnnotationStatusCountPerUser();
-  virtual ~TaskAnnotationStatusCountPerUser();
+  TaskStatusCountPerUser();
+  virtual ~TaskStatusCountPerUser();
 
-  TaskAnnotationStatusCountPerUser(const TaskAnnotationStatusCountPerUser& from);
-  TaskAnnotationStatusCountPerUser(TaskAnnotationStatusCountPerUser&& from) noexcept
-    : TaskAnnotationStatusCountPerUser() {
+  TaskStatusCountPerUser(const TaskStatusCountPerUser& from);
+  TaskStatusCountPerUser(TaskStatusCountPerUser&& from) noexcept
+    : TaskStatusCountPerUser() {
     *this = ::std::move(from);
   }
 
-  inline TaskAnnotationStatusCountPerUser& operator=(const TaskAnnotationStatusCountPerUser& from) {
+  inline TaskStatusCountPerUser& operator=(const TaskStatusCountPerUser& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TaskAnnotationStatusCountPerUser& operator=(TaskAnnotationStatusCountPerUser&& from) noexcept {
+  inline TaskStatusCountPerUser& operator=(TaskStatusCountPerUser&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -20532,37 +21070,37 @@ class TaskAnnotationStatusCountPerUser :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const TaskAnnotationStatusCountPerUser& default_instance();
+  static const TaskStatusCountPerUser& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TaskAnnotationStatusCountPerUser* internal_default_instance() {
-    return reinterpret_cast<const TaskAnnotationStatusCountPerUser*>(
-               &_TaskAnnotationStatusCountPerUser_default_instance_);
+  static inline const TaskStatusCountPerUser* internal_default_instance() {
+    return reinterpret_cast<const TaskStatusCountPerUser*>(
+               &_TaskStatusCountPerUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    100;
+    102;
 
-  friend void swap(TaskAnnotationStatusCountPerUser& a, TaskAnnotationStatusCountPerUser& b) {
+  friend void swap(TaskStatusCountPerUser& a, TaskStatusCountPerUser& b) {
     a.Swap(&b);
   }
-  inline void Swap(TaskAnnotationStatusCountPerUser* other) {
+  inline void Swap(TaskStatusCountPerUser* other) {
     if (other == this) return;
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  inline TaskAnnotationStatusCountPerUser* New() const final {
-    return CreateMaybeMessage<TaskAnnotationStatusCountPerUser>(nullptr);
+  inline TaskStatusCountPerUser* New() const final {
+    return CreateMaybeMessage<TaskStatusCountPerUser>(nullptr);
   }
 
-  TaskAnnotationStatusCountPerUser* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TaskAnnotationStatusCountPerUser>(arena);
+  TaskStatusCountPerUser* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TaskStatusCountPerUser>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TaskAnnotationStatusCountPerUser& from);
-  void MergeFrom(const TaskAnnotationStatusCountPerUser& from);
+  void CopyFrom(const TaskStatusCountPerUser& from);
+  void MergeFrom(const TaskStatusCountPerUser& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -20576,10 +21114,10 @@ class TaskAnnotationStatusCountPerUser :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(TaskAnnotationStatusCountPerUser* other);
+  void InternalSwap(TaskStatusCountPerUser* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "clarifai.api.TaskAnnotationStatusCountPerUser";
+    return "clarifai.api.TaskStatusCountPerUser";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -20672,7 +21210,7 @@ class TaskAnnotationStatusCountPerUser :
   void _internal_set_awaiting_consensus_review(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:clarifai.api.TaskAnnotationStatusCountPerUser)
+  // @@protoc_insertion_point(class_scope:clarifai.api.TaskStatusCountPerUser)
  private:
   class _Internal;
 
@@ -20730,7 +21268,7 @@ class Collector :
                &_Collector_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    101;
+    103;
 
   friend void swap(Collector& a, Collector& b) {
     a.Swap(&b);
@@ -20970,7 +21508,7 @@ class CollectorSource :
                &_CollectorSource_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    102;
+    104;
 
   friend void swap(CollectorSource& a, CollectorSource& b) {
     a.Swap(&b);
@@ -21104,7 +21642,7 @@ class APIPostModelOutputsCollectorSource :
                &_APIPostModelOutputsCollectorSource_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    103;
+    105;
 
   friend void swap(APIPostModelOutputsCollectorSource& a, APIPostModelOutputsCollectorSource& b) {
     a.Swap(&b);
@@ -21311,7 +21849,7 @@ class StatValue :
                &_StatValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    104;
+    106;
 
   friend void swap(StatValue& a, StatValue& b) {
     a.Swap(&b);
@@ -21482,7 +22020,7 @@ class StatValueAggregateResult :
                &_StatValueAggregateResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    105;
+    107;
 
   friend void swap(StatValueAggregateResult& a, StatValueAggregateResult& b) {
     a.Swap(&b);
@@ -21636,7 +22174,7 @@ class StatValueAggregate :
                &_StatValueAggregate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    106;
+    108;
 
   friend void swap(StatValueAggregate& a, StatValueAggregate& b) {
     a.Swap(&b);
@@ -21818,7 +22356,7 @@ class StatValueAggregateQuery :
                &_StatValueAggregateQuery_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    107;
+    109;
 
   friend void swap(StatValueAggregateQuery& a, StatValueAggregateQuery& b) {
     a.Swap(&b);
@@ -22365,7 +22903,7 @@ inline void Annotation::set_allocated_model_version_id(std::string* model_versio
   // @@protoc_insertion_point(field_set_allocated:clarifai.api.Annotation.model_version_id)
 }
 
-// string embed_model_version_id = 14;
+// string embed_model_version_id = 14 [deprecated = true];
 inline void Annotation::clear_embed_model_version_id() {
   embed_model_version_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -22682,6 +23220,66 @@ inline void Annotation::set_allocated_consensus_info(PROTOBUF_NAMESPACE_ID::Stru
   }
   consensus_info_ = consensus_info;
   // @@protoc_insertion_point(field_set_allocated:clarifai.api.Annotation.consensus_info)
+}
+
+// string task_id = 19;
+inline void Annotation::clear_task_id() {
+  task_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& Annotation::task_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.Annotation.task_id)
+  return _internal_task_id();
+}
+inline void Annotation::set_task_id(const std::string& value) {
+  _internal_set_task_id(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.Annotation.task_id)
+}
+inline std::string* Annotation::mutable_task_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.Annotation.task_id)
+  return _internal_mutable_task_id();
+}
+inline const std::string& Annotation::_internal_task_id() const {
+  return task_id_.GetNoArena();
+}
+inline void Annotation::_internal_set_task_id(const std::string& value) {
+  
+  task_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void Annotation::set_task_id(std::string&& value) {
+  
+  task_id_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.Annotation.task_id)
+}
+inline void Annotation::set_task_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  task_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.Annotation.task_id)
+}
+inline void Annotation::set_task_id(const char* value, size_t size) {
+  
+  task_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.Annotation.task_id)
+}
+inline std::string* Annotation::_internal_mutable_task_id() {
+  
+  return task_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* Annotation::release_task_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.Annotation.task_id)
+  
+  return task_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void Annotation::set_allocated_task_id(std::string* task_id) {
+  if (task_id != nullptr) {
+    
+  } else {
+    
+  }
+  task_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), task_id);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.Annotation.task_id)
 }
 
 // -------------------------------------------------------------------
@@ -24230,6 +24828,66 @@ inline void Audio::set_allow_duplicate_url(bool value) {
   // @@protoc_insertion_point(field_set:clarifai.api.Audio.allow_duplicate_url)
 }
 
+// .clarifai.api.HostedURL hosted = 5;
+inline bool Audio::_internal_has_hosted() const {
+  return this != internal_default_instance() && hosted_ != nullptr;
+}
+inline bool Audio::has_hosted() const {
+  return _internal_has_hosted();
+}
+inline void Audio::clear_hosted() {
+  if (GetArenaNoVirtual() == nullptr && hosted_ != nullptr) {
+    delete hosted_;
+  }
+  hosted_ = nullptr;
+}
+inline const ::clarifai::api::HostedURL& Audio::_internal_hosted() const {
+  const ::clarifai::api::HostedURL* p = hosted_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::HostedURL*>(
+      &::clarifai::api::_HostedURL_default_instance_);
+}
+inline const ::clarifai::api::HostedURL& Audio::hosted() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.Audio.hosted)
+  return _internal_hosted();
+}
+inline ::clarifai::api::HostedURL* Audio::release_hosted() {
+  // @@protoc_insertion_point(field_release:clarifai.api.Audio.hosted)
+  
+  ::clarifai::api::HostedURL* temp = hosted_;
+  hosted_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::HostedURL* Audio::_internal_mutable_hosted() {
+  
+  if (hosted_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::HostedURL>(GetArenaNoVirtual());
+    hosted_ = p;
+  }
+  return hosted_;
+}
+inline ::clarifai::api::HostedURL* Audio::mutable_hosted() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.Audio.hosted)
+  return _internal_mutable_hosted();
+}
+inline void Audio::set_allocated_hosted(::clarifai::api::HostedURL* hosted) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete hosted_;
+  }
+  if (hosted) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      hosted = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, hosted, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  hosted_ = hosted;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.Audio.hosted)
+}
+
 // -------------------------------------------------------------------
 
 // Track_TrackInfo
@@ -24709,6 +25367,53 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::Hit >&
 Cluster::hits() const {
   // @@protoc_insertion_point(field_list:clarifai.api.Cluster.hits)
   return hits_;
+}
+
+// repeated float projection = 5;
+inline int Cluster::_internal_projection_size() const {
+  return projection_.size();
+}
+inline int Cluster::projection_size() const {
+  return _internal_projection_size();
+}
+inline void Cluster::clear_projection() {
+  projection_.Clear();
+}
+inline float Cluster::_internal_projection(int index) const {
+  return projection_.Get(index);
+}
+inline float Cluster::projection(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.Cluster.projection)
+  return _internal_projection(index);
+}
+inline void Cluster::set_projection(int index, float value) {
+  projection_.Set(index, value);
+  // @@protoc_insertion_point(field_set:clarifai.api.Cluster.projection)
+}
+inline void Cluster::_internal_add_projection(float value) {
+  projection_.Add(value);
+}
+inline void Cluster::add_projection(float value) {
+  _internal_add_projection(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.Cluster.projection)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+Cluster::_internal_projection() const {
+  return projection_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+Cluster::projection() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.Cluster.projection)
+  return _internal_projection();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+Cluster::_internal_mutable_projection() {
+  return &projection_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+Cluster::mutable_projection() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.Cluster.projection)
+  return _internal_mutable_projection();
 }
 
 // -------------------------------------------------------------------
@@ -26380,6 +27085,66 @@ inline void ConceptQuery::set_allocated_language(std::string* language) {
   }
   language_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), language);
   // @@protoc_insertion_point(field_set_allocated:clarifai.api.ConceptQuery.language)
+}
+
+// string workflow_id = 3;
+inline void ConceptQuery::clear_workflow_id() {
+  workflow_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& ConceptQuery::workflow_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ConceptQuery.workflow_id)
+  return _internal_workflow_id();
+}
+inline void ConceptQuery::set_workflow_id(const std::string& value) {
+  _internal_set_workflow_id(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.ConceptQuery.workflow_id)
+}
+inline std::string* ConceptQuery::mutable_workflow_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ConceptQuery.workflow_id)
+  return _internal_mutable_workflow_id();
+}
+inline const std::string& ConceptQuery::_internal_workflow_id() const {
+  return workflow_id_.GetNoArena();
+}
+inline void ConceptQuery::_internal_set_workflow_id(const std::string& value) {
+  
+  workflow_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void ConceptQuery::set_workflow_id(std::string&& value) {
+  
+  workflow_id_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.ConceptQuery.workflow_id)
+}
+inline void ConceptQuery::set_workflow_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  workflow_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ConceptQuery.workflow_id)
+}
+inline void ConceptQuery::set_workflow_id(const char* value, size_t size) {
+  
+  workflow_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ConceptQuery.workflow_id)
+}
+inline std::string* ConceptQuery::_internal_mutable_workflow_id() {
+  
+  return workflow_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* ConceptQuery::release_workflow_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.ConceptQuery.workflow_id)
+  
+  return workflow_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void ConceptQuery::set_allocated_workflow_id(std::string* workflow_id) {
+  if (workflow_id != nullptr) {
+    
+  } else {
+    
+  }
+  workflow_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), workflow_id);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.ConceptQuery.workflow_id)
 }
 
 // -------------------------------------------------------------------
@@ -34496,6 +35261,66 @@ inline void ModelVersion::set_allocated_completed_at(PROTOBUF_NAMESPACE_ID::Time
   // @@protoc_insertion_point(field_set_allocated:clarifai.api.ModelVersion.completed_at)
 }
 
+// string description = 11;
+inline void ModelVersion::clear_description() {
+  description_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& ModelVersion::description() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ModelVersion.description)
+  return _internal_description();
+}
+inline void ModelVersion::set_description(const std::string& value) {
+  _internal_set_description(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.ModelVersion.description)
+}
+inline std::string* ModelVersion::mutable_description() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ModelVersion.description)
+  return _internal_mutable_description();
+}
+inline const std::string& ModelVersion::_internal_description() const {
+  return description_.GetNoArena();
+}
+inline void ModelVersion::_internal_set_description(const std::string& value) {
+  
+  description_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void ModelVersion::set_description(std::string&& value) {
+  
+  description_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.ModelVersion.description)
+}
+inline void ModelVersion::set_description(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  description_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ModelVersion.description)
+}
+inline void ModelVersion::set_description(const char* value, size_t size) {
+  
+  description_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ModelVersion.description)
+}
+inline std::string* ModelVersion::_internal_mutable_description() {
+  
+  return description_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* ModelVersion::release_description() {
+  // @@protoc_insertion_point(field_release:clarifai.api.ModelVersion.description)
+  
+  return description_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void ModelVersion::set_allocated_description(std::string* description) {
+  if (description != nullptr) {
+    
+  } else {
+    
+  }
+  description_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), description);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.ModelVersion.description)
+}
+
 // -------------------------------------------------------------------
 
 // PretrainedModelConfig
@@ -36436,6 +37261,170 @@ inline void BinaryMetrics::set_iou(float value) {
 
 // -------------------------------------------------------------------
 
+// TrackerMetrics
+
+// float mot_mota = 1;
+inline void TrackerMetrics::clear_mot_mota() {
+  mot_mota_ = 0;
+}
+inline float TrackerMetrics::_internal_mot_mota() const {
+  return mot_mota_;
+}
+inline float TrackerMetrics::mot_mota() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TrackerMetrics.mot_mota)
+  return _internal_mot_mota();
+}
+inline void TrackerMetrics::_internal_set_mot_mota(float value) {
+  
+  mot_mota_ = value;
+}
+inline void TrackerMetrics::set_mot_mota(float value) {
+  _internal_set_mot_mota(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.TrackerMetrics.mot_mota)
+}
+
+// int32 mot_num_switches = 2;
+inline void TrackerMetrics::clear_mot_num_switches() {
+  mot_num_switches_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrackerMetrics::_internal_mot_num_switches() const {
+  return mot_num_switches_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrackerMetrics::mot_num_switches() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TrackerMetrics.mot_num_switches)
+  return _internal_mot_num_switches();
+}
+inline void TrackerMetrics::_internal_set_mot_num_switches(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  mot_num_switches_ = value;
+}
+inline void TrackerMetrics::set_mot_num_switches(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_mot_num_switches(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.TrackerMetrics.mot_num_switches)
+}
+
+// float morse_frag = 3;
+inline void TrackerMetrics::clear_morse_frag() {
+  morse_frag_ = 0;
+}
+inline float TrackerMetrics::_internal_morse_frag() const {
+  return morse_frag_;
+}
+inline float TrackerMetrics::morse_frag() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TrackerMetrics.morse_frag)
+  return _internal_morse_frag();
+}
+inline void TrackerMetrics::_internal_set_morse_frag(float value) {
+  
+  morse_frag_ = value;
+}
+inline void TrackerMetrics::set_morse_frag(float value) {
+  _internal_set_morse_frag(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.TrackerMetrics.morse_frag)
+}
+
+// float avg_precision = 4;
+inline void TrackerMetrics::clear_avg_precision() {
+  avg_precision_ = 0;
+}
+inline float TrackerMetrics::_internal_avg_precision() const {
+  return avg_precision_;
+}
+inline float TrackerMetrics::avg_precision() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TrackerMetrics.avg_precision)
+  return _internal_avg_precision();
+}
+inline void TrackerMetrics::_internal_set_avg_precision(float value) {
+  
+  avg_precision_ = value;
+}
+inline void TrackerMetrics::set_avg_precision(float value) {
+  _internal_set_avg_precision(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.TrackerMetrics.avg_precision)
+}
+
+// string aiid = 5;
+inline void TrackerMetrics::clear_aiid() {
+  aiid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TrackerMetrics::aiid() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TrackerMetrics.aiid)
+  return _internal_aiid();
+}
+inline void TrackerMetrics::set_aiid(const std::string& value) {
+  _internal_set_aiid(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.TrackerMetrics.aiid)
+}
+inline std::string* TrackerMetrics::mutable_aiid() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.TrackerMetrics.aiid)
+  return _internal_mutable_aiid();
+}
+inline const std::string& TrackerMetrics::_internal_aiid() const {
+  return aiid_.GetNoArena();
+}
+inline void TrackerMetrics::_internal_set_aiid(const std::string& value) {
+  
+  aiid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TrackerMetrics::set_aiid(std::string&& value) {
+  
+  aiid_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.TrackerMetrics.aiid)
+}
+inline void TrackerMetrics::set_aiid(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  aiid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.TrackerMetrics.aiid)
+}
+inline void TrackerMetrics::set_aiid(const char* value, size_t size) {
+  
+  aiid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.TrackerMetrics.aiid)
+}
+inline std::string* TrackerMetrics::_internal_mutable_aiid() {
+  
+  return aiid_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TrackerMetrics::release_aiid() {
+  // @@protoc_insertion_point(field_release:clarifai.api.TrackerMetrics.aiid)
+  
+  return aiid_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TrackerMetrics::set_allocated_aiid(std::string* aiid) {
+  if (aiid != nullptr) {
+    
+  } else {
+    
+  }
+  aiid_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), aiid);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.TrackerMetrics.aiid)
+}
+
+// float unique_switch_rate = 6;
+inline void TrackerMetrics::clear_unique_switch_rate() {
+  unique_switch_rate_ = 0;
+}
+inline float TrackerMetrics::_internal_unique_switch_rate() const {
+  return unique_switch_rate_;
+}
+inline float TrackerMetrics::unique_switch_rate() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TrackerMetrics.unique_switch_rate)
+  return _internal_unique_switch_rate();
+}
+inline void TrackerMetrics::_internal_set_unique_switch_rate(float value) {
+  
+  unique_switch_rate_ = value;
+}
+inline void TrackerMetrics::set_unique_switch_rate(float value) {
+  _internal_set_unique_switch_rate(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.TrackerMetrics.unique_switch_rate)
+}
+
+// -------------------------------------------------------------------
+
 // EvalTestSetEntry
 
 // string id = 1;
@@ -37575,6 +38564,45 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::BinaryM
 EvalMetrics::metrics_by_class() const {
   // @@protoc_insertion_point(field_list:clarifai.api.EvalMetrics.metrics_by_class)
   return metrics_by_class_;
+}
+
+// repeated .clarifai.api.TrackerMetrics tracker_metrics = 11;
+inline int EvalMetrics::_internal_tracker_metrics_size() const {
+  return tracker_metrics_.size();
+}
+inline int EvalMetrics::tracker_metrics_size() const {
+  return _internal_tracker_metrics_size();
+}
+inline void EvalMetrics::clear_tracker_metrics() {
+  tracker_metrics_.Clear();
+}
+inline ::clarifai::api::TrackerMetrics* EvalMetrics::mutable_tracker_metrics(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.EvalMetrics.tracker_metrics)
+  return tracker_metrics_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::TrackerMetrics >*
+EvalMetrics::mutable_tracker_metrics() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.EvalMetrics.tracker_metrics)
+  return &tracker_metrics_;
+}
+inline const ::clarifai::api::TrackerMetrics& EvalMetrics::_internal_tracker_metrics(int index) const {
+  return tracker_metrics_.Get(index);
+}
+inline const ::clarifai::api::TrackerMetrics& EvalMetrics::tracker_metrics(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.EvalMetrics.tracker_metrics)
+  return _internal_tracker_metrics(index);
+}
+inline ::clarifai::api::TrackerMetrics* EvalMetrics::_internal_add_tracker_metrics() {
+  return tracker_metrics_.Add();
+}
+inline ::clarifai::api::TrackerMetrics* EvalMetrics::add_tracker_metrics() {
+  // @@protoc_insertion_point(field_add:clarifai.api.EvalMetrics.tracker_metrics)
+  return _internal_add_tracker_metrics();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::TrackerMetrics >&
+EvalMetrics::tracker_metrics() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.EvalMetrics.tracker_metrics)
+  return tracker_metrics_;
 }
 
 // -------------------------------------------------------------------
@@ -41816,6 +42844,61 @@ Workflow::nodes() const {
   return nodes_;
 }
 
+// .google.protobuf.Struct metadata = 5;
+inline bool Workflow::_internal_has_metadata() const {
+  return this != internal_default_instance() && metadata_ != nullptr;
+}
+inline bool Workflow::has_metadata() const {
+  return _internal_has_metadata();
+}
+inline const PROTOBUF_NAMESPACE_ID::Struct& Workflow::_internal_metadata() const {
+  const PROTOBUF_NAMESPACE_ID::Struct* p = metadata_;
+  return p != nullptr ? *p : *reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Struct*>(
+      &PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Struct& Workflow::metadata() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.Workflow.metadata)
+  return _internal_metadata();
+}
+inline PROTOBUF_NAMESPACE_ID::Struct* Workflow::release_metadata() {
+  // @@protoc_insertion_point(field_release:clarifai.api.Workflow.metadata)
+  
+  PROTOBUF_NAMESPACE_ID::Struct* temp = metadata_;
+  metadata_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Struct* Workflow::_internal_mutable_metadata() {
+  
+  if (metadata_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Struct>(GetArenaNoVirtual());
+    metadata_ = p;
+  }
+  return metadata_;
+}
+inline PROTOBUF_NAMESPACE_ID::Struct* Workflow::mutable_metadata() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.Workflow.metadata)
+  return _internal_mutable_metadata();
+}
+inline void Workflow::set_allocated_metadata(PROTOBUF_NAMESPACE_ID::Struct* metadata) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
+  }
+  if (metadata) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata)->GetArena();
+    if (message_arena != submessage_arena) {
+      metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, metadata, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  metadata_ = metadata;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.Workflow.metadata)
+}
+
 // -------------------------------------------------------------------
 
 // WorkflowNode
@@ -43629,6 +44712,184 @@ inline void Task::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:clarifai.api.Task.name)
 }
 
+// .clarifai.api.AiAssistParameters ai_assist_params = 14;
+inline bool Task::_internal_has_ai_assist_params() const {
+  return this != internal_default_instance() && ai_assist_params_ != nullptr;
+}
+inline bool Task::has_ai_assist_params() const {
+  return _internal_has_ai_assist_params();
+}
+inline void Task::clear_ai_assist_params() {
+  if (GetArenaNoVirtual() == nullptr && ai_assist_params_ != nullptr) {
+    delete ai_assist_params_;
+  }
+  ai_assist_params_ = nullptr;
+}
+inline const ::clarifai::api::AiAssistParameters& Task::_internal_ai_assist_params() const {
+  const ::clarifai::api::AiAssistParameters* p = ai_assist_params_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::AiAssistParameters*>(
+      &::clarifai::api::_AiAssistParameters_default_instance_);
+}
+inline const ::clarifai::api::AiAssistParameters& Task::ai_assist_params() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.Task.ai_assist_params)
+  return _internal_ai_assist_params();
+}
+inline ::clarifai::api::AiAssistParameters* Task::release_ai_assist_params() {
+  // @@protoc_insertion_point(field_release:clarifai.api.Task.ai_assist_params)
+  
+  ::clarifai::api::AiAssistParameters* temp = ai_assist_params_;
+  ai_assist_params_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::AiAssistParameters* Task::_internal_mutable_ai_assist_params() {
+  
+  if (ai_assist_params_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::AiAssistParameters>(GetArenaNoVirtual());
+    ai_assist_params_ = p;
+  }
+  return ai_assist_params_;
+}
+inline ::clarifai::api::AiAssistParameters* Task::mutable_ai_assist_params() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.Task.ai_assist_params)
+  return _internal_mutable_ai_assist_params();
+}
+inline void Task::set_allocated_ai_assist_params(::clarifai::api::AiAssistParameters* ai_assist_params) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete ai_assist_params_;
+  }
+  if (ai_assist_params) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      ai_assist_params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ai_assist_params, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ai_assist_params_ = ai_assist_params;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.Task.ai_assist_params)
+}
+
+// -------------------------------------------------------------------
+
+// AiAssistParameters
+
+// float min_threshold = 1;
+inline void AiAssistParameters::clear_min_threshold() {
+  min_threshold_ = 0;
+}
+inline float AiAssistParameters::_internal_min_threshold() const {
+  return min_threshold_;
+}
+inline float AiAssistParameters::min_threshold() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.AiAssistParameters.min_threshold)
+  return _internal_min_threshold();
+}
+inline void AiAssistParameters::_internal_set_min_threshold(float value) {
+  
+  min_threshold_ = value;
+}
+inline void AiAssistParameters::set_min_threshold(float value) {
+  _internal_set_min_threshold(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.AiAssistParameters.min_threshold)
+}
+
+// float max_threshold = 2;
+inline void AiAssistParameters::clear_max_threshold() {
+  max_threshold_ = 0;
+}
+inline float AiAssistParameters::_internal_max_threshold() const {
+  return max_threshold_;
+}
+inline float AiAssistParameters::max_threshold() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.AiAssistParameters.max_threshold)
+  return _internal_max_threshold();
+}
+inline void AiAssistParameters::_internal_set_max_threshold(float value) {
+  
+  max_threshold_ = value;
+}
+inline void AiAssistParameters::set_max_threshold(float value) {
+  _internal_set_max_threshold(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.AiAssistParameters.max_threshold)
+}
+
+// repeated string concept_relation_ids = 3;
+inline int AiAssistParameters::_internal_concept_relation_ids_size() const {
+  return concept_relation_ids_.size();
+}
+inline int AiAssistParameters::concept_relation_ids_size() const {
+  return _internal_concept_relation_ids_size();
+}
+inline void AiAssistParameters::clear_concept_relation_ids() {
+  concept_relation_ids_.Clear();
+}
+inline std::string* AiAssistParameters::add_concept_relation_ids() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.AiAssistParameters.concept_relation_ids)
+  return _internal_add_concept_relation_ids();
+}
+inline const std::string& AiAssistParameters::_internal_concept_relation_ids(int index) const {
+  return concept_relation_ids_.Get(index);
+}
+inline const std::string& AiAssistParameters::concept_relation_ids(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.AiAssistParameters.concept_relation_ids)
+  return _internal_concept_relation_ids(index);
+}
+inline std::string* AiAssistParameters::mutable_concept_relation_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.AiAssistParameters.concept_relation_ids)
+  return concept_relation_ids_.Mutable(index);
+}
+inline void AiAssistParameters::set_concept_relation_ids(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.AiAssistParameters.concept_relation_ids)
+  concept_relation_ids_.Mutable(index)->assign(value);
+}
+inline void AiAssistParameters::set_concept_relation_ids(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.AiAssistParameters.concept_relation_ids)
+  concept_relation_ids_.Mutable(index)->assign(std::move(value));
+}
+inline void AiAssistParameters::set_concept_relation_ids(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  concept_relation_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.AiAssistParameters.concept_relation_ids)
+}
+inline void AiAssistParameters::set_concept_relation_ids(int index, const char* value, size_t size) {
+  concept_relation_ids_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.AiAssistParameters.concept_relation_ids)
+}
+inline std::string* AiAssistParameters::_internal_add_concept_relation_ids() {
+  return concept_relation_ids_.Add();
+}
+inline void AiAssistParameters::add_concept_relation_ids(const std::string& value) {
+  concept_relation_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.AiAssistParameters.concept_relation_ids)
+}
+inline void AiAssistParameters::add_concept_relation_ids(std::string&& value) {
+  concept_relation_ids_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.AiAssistParameters.concept_relation_ids)
+}
+inline void AiAssistParameters::add_concept_relation_ids(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  concept_relation_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.AiAssistParameters.concept_relation_ids)
+}
+inline void AiAssistParameters::add_concept_relation_ids(const char* value, size_t size) {
+  concept_relation_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.AiAssistParameters.concept_relation_ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+AiAssistParameters::concept_relation_ids() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.AiAssistParameters.concept_relation_ids)
+  return concept_relation_ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+AiAssistParameters::mutable_concept_relation_ids() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.AiAssistParameters.concept_relation_ids)
+  return &concept_relation_ids_;
+}
+
 // -------------------------------------------------------------------
 
 // TaskWorker
@@ -44290,166 +45551,166 @@ inline void TaskAIAssistant::set_allocated_workflow_id(std::string* workflow_id)
 
 // -------------------------------------------------------------------
 
-// TaskAnnotationStatusCountPerUser
+// TaskStatusCountPerUser
 
 // string user_id = 1;
-inline void TaskAnnotationStatusCountPerUser::clear_user_id() {
+inline void TaskStatusCountPerUser::clear_user_id() {
   user_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline const std::string& TaskAnnotationStatusCountPerUser::user_id() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TaskAnnotationStatusCountPerUser.user_id)
+inline const std::string& TaskStatusCountPerUser::user_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TaskStatusCountPerUser.user_id)
   return _internal_user_id();
 }
-inline void TaskAnnotationStatusCountPerUser::set_user_id(const std::string& value) {
+inline void TaskStatusCountPerUser::set_user_id(const std::string& value) {
   _internal_set_user_id(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TaskAnnotationStatusCountPerUser.user_id)
+  // @@protoc_insertion_point(field_set:clarifai.api.TaskStatusCountPerUser.user_id)
 }
-inline std::string* TaskAnnotationStatusCountPerUser::mutable_user_id() {
-  // @@protoc_insertion_point(field_mutable:clarifai.api.TaskAnnotationStatusCountPerUser.user_id)
+inline std::string* TaskStatusCountPerUser::mutable_user_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.TaskStatusCountPerUser.user_id)
   return _internal_mutable_user_id();
 }
-inline const std::string& TaskAnnotationStatusCountPerUser::_internal_user_id() const {
+inline const std::string& TaskStatusCountPerUser::_internal_user_id() const {
   return user_id_.GetNoArena();
 }
-inline void TaskAnnotationStatusCountPerUser::_internal_set_user_id(const std::string& value) {
+inline void TaskStatusCountPerUser::_internal_set_user_id(const std::string& value) {
   
   user_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
-inline void TaskAnnotationStatusCountPerUser::set_user_id(std::string&& value) {
+inline void TaskStatusCountPerUser::set_user_id(std::string&& value) {
   
   user_id_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.TaskAnnotationStatusCountPerUser.user_id)
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.TaskStatusCountPerUser.user_id)
 }
-inline void TaskAnnotationStatusCountPerUser::set_user_id(const char* value) {
+inline void TaskStatusCountPerUser::set_user_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   user_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:clarifai.api.TaskAnnotationStatusCountPerUser.user_id)
+  // @@protoc_insertion_point(field_set_char:clarifai.api.TaskStatusCountPerUser.user_id)
 }
-inline void TaskAnnotationStatusCountPerUser::set_user_id(const char* value, size_t size) {
+inline void TaskStatusCountPerUser::set_user_id(const char* value, size_t size) {
   
   user_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:clarifai.api.TaskAnnotationStatusCountPerUser.user_id)
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.TaskStatusCountPerUser.user_id)
 }
-inline std::string* TaskAnnotationStatusCountPerUser::_internal_mutable_user_id() {
+inline std::string* TaskStatusCountPerUser::_internal_mutable_user_id() {
   
   return user_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline std::string* TaskAnnotationStatusCountPerUser::release_user_id() {
-  // @@protoc_insertion_point(field_release:clarifai.api.TaskAnnotationStatusCountPerUser.user_id)
+inline std::string* TaskStatusCountPerUser::release_user_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.TaskStatusCountPerUser.user_id)
   
   return user_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline void TaskAnnotationStatusCountPerUser::set_allocated_user_id(std::string* user_id) {
+inline void TaskStatusCountPerUser::set_allocated_user_id(std::string* user_id) {
   if (user_id != nullptr) {
     
   } else {
     
   }
   user_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), user_id);
-  // @@protoc_insertion_point(field_set_allocated:clarifai.api.TaskAnnotationStatusCountPerUser.user_id)
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.TaskStatusCountPerUser.user_id)
 }
 
 // uint32 pending = 2 [(.clarifai.api.utils.cl_show_if_empty) = true];
-inline void TaskAnnotationStatusCountPerUser::clear_pending() {
+inline void TaskStatusCountPerUser::clear_pending() {
   pending_ = 0u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::_internal_pending() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::_internal_pending() const {
   return pending_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::pending() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TaskAnnotationStatusCountPerUser.pending)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::pending() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TaskStatusCountPerUser.pending)
   return _internal_pending();
 }
-inline void TaskAnnotationStatusCountPerUser::_internal_set_pending(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::_internal_set_pending(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   
   pending_ = value;
 }
-inline void TaskAnnotationStatusCountPerUser::set_pending(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::set_pending(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_pending(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TaskAnnotationStatusCountPerUser.pending)
+  // @@protoc_insertion_point(field_set:clarifai.api.TaskStatusCountPerUser.pending)
 }
 
 // uint32 awaiting_review = 3 [(.clarifai.api.utils.cl_show_if_empty) = true];
-inline void TaskAnnotationStatusCountPerUser::clear_awaiting_review() {
+inline void TaskStatusCountPerUser::clear_awaiting_review() {
   awaiting_review_ = 0u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::_internal_awaiting_review() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::_internal_awaiting_review() const {
   return awaiting_review_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::awaiting_review() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TaskAnnotationStatusCountPerUser.awaiting_review)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::awaiting_review() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TaskStatusCountPerUser.awaiting_review)
   return _internal_awaiting_review();
 }
-inline void TaskAnnotationStatusCountPerUser::_internal_set_awaiting_review(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::_internal_set_awaiting_review(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   
   awaiting_review_ = value;
 }
-inline void TaskAnnotationStatusCountPerUser::set_awaiting_review(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::set_awaiting_review(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_awaiting_review(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TaskAnnotationStatusCountPerUser.awaiting_review)
+  // @@protoc_insertion_point(field_set:clarifai.api.TaskStatusCountPerUser.awaiting_review)
 }
 
 // uint32 success = 4 [(.clarifai.api.utils.cl_show_if_empty) = true];
-inline void TaskAnnotationStatusCountPerUser::clear_success() {
+inline void TaskStatusCountPerUser::clear_success() {
   success_ = 0u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::_internal_success() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::_internal_success() const {
   return success_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::success() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TaskAnnotationStatusCountPerUser.success)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::success() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TaskStatusCountPerUser.success)
   return _internal_success();
 }
-inline void TaskAnnotationStatusCountPerUser::_internal_set_success(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::_internal_set_success(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   
   success_ = value;
 }
-inline void TaskAnnotationStatusCountPerUser::set_success(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::set_success(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TaskAnnotationStatusCountPerUser.success)
+  // @@protoc_insertion_point(field_set:clarifai.api.TaskStatusCountPerUser.success)
 }
 
 // uint32 review_denied = 5 [(.clarifai.api.utils.cl_show_if_empty) = true];
-inline void TaskAnnotationStatusCountPerUser::clear_review_denied() {
+inline void TaskStatusCountPerUser::clear_review_denied() {
   review_denied_ = 0u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::_internal_review_denied() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::_internal_review_denied() const {
   return review_denied_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::review_denied() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TaskAnnotationStatusCountPerUser.review_denied)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::review_denied() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TaskStatusCountPerUser.review_denied)
   return _internal_review_denied();
 }
-inline void TaskAnnotationStatusCountPerUser::_internal_set_review_denied(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::_internal_set_review_denied(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   
   review_denied_ = value;
 }
-inline void TaskAnnotationStatusCountPerUser::set_review_denied(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::set_review_denied(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_review_denied(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TaskAnnotationStatusCountPerUser.review_denied)
+  // @@protoc_insertion_point(field_set:clarifai.api.TaskStatusCountPerUser.review_denied)
 }
 
 // uint32 awaiting_consensus_review = 6 [(.clarifai.api.utils.cl_show_if_empty) = true];
-inline void TaskAnnotationStatusCountPerUser::clear_awaiting_consensus_review() {
+inline void TaskStatusCountPerUser::clear_awaiting_consensus_review() {
   awaiting_consensus_review_ = 0u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::_internal_awaiting_consensus_review() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::_internal_awaiting_consensus_review() const {
   return awaiting_consensus_review_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskAnnotationStatusCountPerUser::awaiting_consensus_review() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TaskAnnotationStatusCountPerUser.awaiting_consensus_review)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TaskStatusCountPerUser::awaiting_consensus_review() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.TaskStatusCountPerUser.awaiting_consensus_review)
   return _internal_awaiting_consensus_review();
 }
-inline void TaskAnnotationStatusCountPerUser::_internal_set_awaiting_consensus_review(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::_internal_set_awaiting_consensus_review(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   
   awaiting_consensus_review_ = value;
 }
-inline void TaskAnnotationStatusCountPerUser::set_awaiting_consensus_review(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TaskStatusCountPerUser::set_awaiting_consensus_review(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_awaiting_consensus_review(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TaskAnnotationStatusCountPerUser.awaiting_consensus_review)
+  // @@protoc_insertion_point(field_set:clarifai.api.TaskStatusCountPerUser.awaiting_consensus_review)
 }
 
 // -------------------------------------------------------------------
@@ -46181,6 +47442,10 @@ inline void StatValueAggregateQuery::set_allocated_end_time(PROTOBUF_NAMESPACE_I
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -46248,6 +47513,11 @@ template <> struct is_proto_enum< ::clarifai::api::UsageIntervalType> : ::std::t
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::clarifai::api::UsageIntervalType>() {
   return ::clarifai::api::UsageIntervalType_descriptor();
+}
+template <> struct is_proto_enum< ::clarifai::api::RoleType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::clarifai::api::RoleType>() {
+  return ::clarifai::api::RoleType_descriptor();
 }
 template <> struct is_proto_enum< ::clarifai::api::StatValueAggType> : ::std::true_type {};
 template <>

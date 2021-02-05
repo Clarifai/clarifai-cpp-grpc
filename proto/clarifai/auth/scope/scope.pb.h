@@ -96,6 +96,9 @@ enum S : int {
   Workflows_Get = 19,
   Workflows_Patch PROTOBUF_DEPRECATED_ENUM = 20,
   Workflows_Delete = 21,
+  WorkflowMetrics_Get = 96,
+  WorkflowMetrics_Add = 97,
+  WorkflowMetrics_Delete = 98,
   TSNEVisualizations_Add PROTOBUF_DEPRECATED_ENUM = 24,
   TSNEVisualizations_Get PROTOBUF_DEPRECATED_ENUM = 25,
   Annotations_Add = 37,
@@ -127,12 +130,15 @@ enum S : int {
   LabelOrders_Add = 68,
   LabelOrders_Delete = 69,
   UserFeatureConfigs_Get = 71,
+  FindDuplicateAnnotationsJobs_Add = 102,
+  FindDuplicateAnnotationsJobs_Get = 103,
+  FindDuplicateAnnotationsJobs_Delete = 104,
   S_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   S_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool S_IsValid(int value);
 constexpr S S_MIN = undef;
-constexpr S S_MAX = UserFeatureConfigs_Get;
+constexpr S S_MAX = FindDuplicateAnnotationsJobs_Delete;
 constexpr int S_ARRAYSIZE = S_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* S_descriptor();

@@ -44,6 +44,36 @@ class V2 final {
    public:
     virtual ~StubInterface() {}
     // //////////////////////////////////////
+    // Concept Relationships
+    // //////////////////////////////////////
+    //
+    // List concept relations between concepts in the platform.
+    // MUST be above ListConcepts so that if concept_id is empty this will still match
+    // /concepts/relations to list all the concept relations in the app.
+    virtual ::grpc::Status ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>> AsyncListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>>(AsyncListConceptRelationsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>> PrepareAsyncListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>>(PrepareAsyncListConceptRelationsRaw(context, request, cq));
+    }
+    // Post concept relations to create relations between concepts in the platform.
+    virtual ::grpc::Status PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>> AsyncPostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>>(AsyncPostConceptRelationsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>> PrepareAsyncPostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>>(PrepareAsyncPostConceptRelationsRaw(context, request, cq));
+    }
+    // Post concept relations to create relations between concepts in the platform.
+    virtual ::grpc::Status DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> AsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(AsyncDeleteConceptRelationsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteConceptRelationsRaw(context, request, cq));
+    }
+    // //////////////////////////////////////
     // Concepts
     // //////////////////////////////////////
     //
@@ -137,34 +167,6 @@ class V2 final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>>(PrepareAsyncPatchConceptLanguagesRaw(context, request, cq));
     }
     // //////////////////////////////////////
-    // Concept Relationships
-    // //////////////////////////////////////
-    //
-    // List concept relations between concepts in the platform.
-    virtual ::grpc::Status ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>> AsyncListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>>(AsyncListConceptRelationsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>> PrepareAsyncListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>>(PrepareAsyncListConceptRelationsRaw(context, request, cq));
-    }
-    // Post concept relations to create relations between concepts in the platform.
-    virtual ::grpc::Status PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>> AsyncPostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>>(AsyncPostConceptRelationsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>> PrepareAsyncPostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>>(PrepareAsyncPostConceptRelationsRaw(context, request, cq));
-    }
-    // Post concept relations to create relations between concepts in the platform.
-    virtual ::grpc::Status DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> AsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(AsyncDeleteConceptRelationsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteConceptRelationsRaw(context, request, cq));
-    }
-    // //////////////////////////////////////
     // Knowledge Graph
     // //////////////////////////////////////
     //
@@ -229,12 +231,12 @@ class V2 final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiAnnotationResponse>>(PrepareAsyncPatchAnnotationsRaw(context, request, cq));
     }
     // Patch annotations status by worker id and task id.
-    virtual ::grpc::Status PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> AsyncPatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(AsyncPatchAnnotationsStatusRaw(context, request, cq));
+    virtual ::grpc::Status PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::clarifai::api::PatchAnnotationsStatusResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PatchAnnotationsStatusResponse>> AsyncPatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PatchAnnotationsStatusResponse>>(AsyncPatchAnnotationsStatusRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncPatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncPatchAnnotationsStatusRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PatchAnnotationsStatusResponse>> PrepareAsyncPatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PatchAnnotationsStatusResponse>>(PrepareAsyncPatchAnnotationsStatusRaw(context, request, cq));
     }
     // Delete a single annotation.
     virtual ::grpc::Status DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
@@ -264,7 +266,7 @@ class V2 final {
     // Inputs
     // //////////////////////////////////////
     //
-    // Patch one or more inputs.
+    // Get input count per status.
     virtual ::grpc::Status GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::clarifai::api::SingleInputCountResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleInputCountResponse>> AsyncGetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleInputCountResponse>>(AsyncGetInputCountRaw(context, request, cq));
@@ -279,6 +281,14 @@ class V2 final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputResponse>> PrepareAsyncStreamInputs(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputResponse>>(PrepareAsyncStreamInputsRaw(context, request, cq));
+    }
+    // Get a specific input from an app.
+    virtual ::grpc::Status GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::clarifai::api::MultiInputAnnotationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputAnnotationResponse>> AsyncGetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputAnnotationResponse>>(AsyncGetInputSamplesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputAnnotationResponse>> PrepareAsyncGetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputAnnotationResponse>>(PrepareAsyncGetInputSamplesRaw(context, request, cq));
     }
     // Get a specific input from an app.
     virtual ::grpc::Status GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::clarifai::api::SingleInputResponse* response) = 0;
@@ -362,6 +372,7 @@ class V2 final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelTypeResponse>>(PrepareAsyncGetModelTypeRaw(context, request, cq));
     }
     // List all the model types available in the platform.
+    // This MUST be above ListModels so that the /models/types endpoint takes precedence.
     virtual ::grpc::Status ListModelTypes(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest& request, ::clarifai::api::MultiModelTypeResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelTypeResponse>> AsyncListModelTypes(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelTypeResponse>>(AsyncListModelTypesRaw(context, request, cq));
@@ -573,8 +584,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PostWorkflowResultsSimilarityResponse>> PrepareAsyncPostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PostWorkflowResultsSimilarityResponse>>(PrepareAsyncPostWorkflowResultsSimilarityRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    //
     // //////////////////////////////////////
     // API Keys
     // //////////////////////////////////////
@@ -899,13 +908,21 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiTaskResponse>> PrepareAsyncPostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiTaskResponse>>(PrepareAsyncPostTasksRaw(context, request, cq));
     }
-    // Task annotation counts
-    virtual ::grpc::Status GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskAnnotationsCountResponse>> AsyncGetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskAnnotationsCountResponse>>(AsyncGetTaskAnnotationsCountRaw(context, request, cq));
+    // Task annotation count
+    virtual ::grpc::Status GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::clarifai::api::SingleTaskCountResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>> AsyncGetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>>(AsyncGetTaskAnnotationCountRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskAnnotationsCountResponse>> PrepareAsyncGetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskAnnotationsCountResponse>>(PrepareAsyncGetTaskAnnotationsCountRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>> PrepareAsyncGetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>>(PrepareAsyncGetTaskAnnotationCountRaw(context, request, cq));
+    }
+    // Task Input count
+    virtual ::grpc::Status GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::clarifai::api::SingleTaskCountResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>> AsyncGetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>>(AsyncGetTaskInputCountRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>> PrepareAsyncGetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>>(PrepareAsyncGetTaskInputCountRaw(context, request, cq));
     }
     // Get a specific task from an app.
     virtual ::grpc::Status GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::clarifai::api::SingleTaskResponse* response) = 0;
@@ -1010,6 +1027,51 @@ class V2 final {
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
+      // //////////////////////////////////////
+      // Concept Relationships
+      // //////////////////////////////////////
+      //
+      // List concept relations between concepts in the platform.
+      // MUST be above ListConcepts so that if concept_id is empty this will still match
+      // /concepts/relations to list all the concept relations in the app.
+      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Post concept relations to create relations between concepts in the platform.
+      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Post concept relations to create relations between concepts in the platform.
+      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // //////////////////////////////////////
       // Concepts
       // //////////////////////////////////////
@@ -1154,49 +1216,6 @@ class V2 final {
       virtual void PatchConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // //////////////////////////////////////
-      // Concept Relationships
-      // //////////////////////////////////////
-      //
-      // List concept relations between concepts in the platform.
-      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      // Post concept relations to create relations between concepts in the platform.
-      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      // Post concept relations to create relations between concepts in the platform.
-      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      // //////////////////////////////////////
       // Knowledge Graph
       // //////////////////////////////////////
       //
@@ -1296,17 +1315,17 @@ class V2 final {
       virtual void PatchAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // Patch annotations status by worker id and task id.
-      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // Delete a single annotation.
       virtual void DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -1351,7 +1370,7 @@ class V2 final {
       // Inputs
       // //////////////////////////////////////
       //
-      // Patch one or more inputs.
+      // Get input count per status.
       virtual void GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest* request, ::clarifai::api::SingleInputCountResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleInputCountResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1376,6 +1395,19 @@ class V2 final {
       virtual void StreamInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void StreamInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Get a specific input from an app.
+      virtual void GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetInputSamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputAnnotationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetInputSamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetInputSamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // Get a specific input from an app.
       virtual void GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest* request, ::clarifai::api::SingleInputResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -1504,6 +1536,7 @@ class V2 final {
       virtual void GetModelType(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelTypeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // List all the model types available in the platform.
+      // This MUST be above ListModels so that the /models/types endpoint takes precedence.
       virtual void ListModelTypes(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest* request, ::clarifai::api::MultiModelTypeResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListModelTypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelTypeResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1835,8 +1868,6 @@ class V2 final {
       #else
       virtual void PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
       // //////////////////////////////////////
       // API Keys
       // //////////////////////////////////////
@@ -2336,18 +2367,31 @@ class V2 final {
       #else
       virtual void PostTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // Task annotation counts
-      virtual void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, std::function<void(::grpc::Status)>) = 0;
+      // Task annotation count
+      virtual void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Task Input count
+      virtual void GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTaskInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetTaskInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetTaskInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // Get a specific task from an app.
       virtual void GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest* request, ::clarifai::api::SingleTaskResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2513,6 +2557,12 @@ class V2 final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>* AsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>* PrepareAsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>* AsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>* PrepareAsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* AsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptCountResponse>* AsyncGetConceptCountsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptCountResponse>* PrepareAsyncGetConceptCountsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleConceptResponse>* AsyncGetConceptRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -2533,12 +2583,6 @@ class V2 final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>* PrepareAsyncPostConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>* AsyncPatchConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>* PrepareAsyncPatchConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>* AsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>* PrepareAsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>* AsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptRelationResponse>* PrepareAsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* AsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiKnowledgeGraphResponse>* AsyncListKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiKnowledgeGraphResponse>* PrepareAsyncListKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiKnowledgeGraphResponse>* AsyncPostKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -2553,8 +2597,8 @@ class V2 final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiAnnotationResponse>* PrepareAsyncPostAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiAnnotationResponse>* AsyncPatchAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiAnnotationResponse>* PrepareAsyncPatchAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* AsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* PrepareAsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PatchAnnotationsStatusResponse>* AsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PatchAnnotationsStatusResponse>* PrepareAsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* AsyncDeleteAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* AsyncDeleteAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -2565,6 +2609,8 @@ class V2 final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleInputCountResponse>* PrepareAsyncGetInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputResponse>* AsyncStreamInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputResponse>* PrepareAsyncStreamInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputAnnotationResponse>* AsyncGetInputSamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputAnnotationResponse>* PrepareAsyncGetInputSamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleInputResponse>* AsyncGetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleInputResponse>* PrepareAsyncGetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputResponse>* AsyncListInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -2701,8 +2747,10 @@ class V2 final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleAppDuplicationResponse>* PrepareAsyncGetAppDuplicationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiTaskResponse>* AsyncPostTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiTaskResponse>* PrepareAsyncPostTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskAnnotationsCountResponse>* AsyncGetTaskAnnotationsCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskAnnotationsCountResponse>* PrepareAsyncGetTaskAnnotationsCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>* AsyncGetTaskAnnotationCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>* PrepareAsyncGetTaskAnnotationCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>* AsyncGetTaskInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskCountResponse>* PrepareAsyncGetTaskInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskResponse>* AsyncGetTaskRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleTaskResponse>* PrepareAsyncGetTaskRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiTaskResponse>* AsyncListTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -2729,6 +2777,27 @@ class V2 final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    ::grpc::Status ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>> AsyncListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>>(AsyncListConceptRelationsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>> PrepareAsyncListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>>(PrepareAsyncListConceptRelationsRaw(context, request, cq));
+    }
+    ::grpc::Status PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>> AsyncPostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>>(AsyncPostConceptRelationsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>> PrepareAsyncPostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>>(PrepareAsyncPostConceptRelationsRaw(context, request, cq));
+    }
+    ::grpc::Status DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::clarifai::api::status::BaseResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> AsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(AsyncDeleteConceptRelationsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteConceptRelationsRaw(context, request, cq));
+    }
     ::grpc::Status GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::clarifai::api::MultiConceptCountResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptCountResponse>> AsyncGetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptCountResponse>>(AsyncGetConceptCountsRaw(context, request, cq));
@@ -2799,27 +2868,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>> PrepareAsyncPatchConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>>(PrepareAsyncPatchConceptLanguagesRaw(context, request, cq));
     }
-    ::grpc::Status ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>> AsyncListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>>(AsyncListConceptRelationsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>> PrepareAsyncListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>>(PrepareAsyncListConceptRelationsRaw(context, request, cq));
-    }
-    ::grpc::Status PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>> AsyncPostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>>(AsyncPostConceptRelationsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>> PrepareAsyncPostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>>(PrepareAsyncPostConceptRelationsRaw(context, request, cq));
-    }
-    ::grpc::Status DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::clarifai::api::status::BaseResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> AsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(AsyncDeleteConceptRelationsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteConceptRelationsRaw(context, request, cq));
-    }
     ::grpc::Status ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::clarifai::api::MultiKnowledgeGraphResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>> AsyncListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>>(AsyncListKnowledgeGraphsRaw(context, request, cq));
@@ -2869,12 +2917,12 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>> PrepareAsyncPatchAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>>(PrepareAsyncPatchAnnotationsRaw(context, request, cq));
     }
-    ::grpc::Status PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::clarifai::api::status::BaseResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> AsyncPatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(AsyncPatchAnnotationsStatusRaw(context, request, cq));
+    ::grpc::Status PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::clarifai::api::PatchAnnotationsStatusResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>> AsyncPatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>>(AsyncPatchAnnotationsStatusRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> PrepareAsyncPatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(PrepareAsyncPatchAnnotationsStatusRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>> PrepareAsyncPatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>>(PrepareAsyncPatchAnnotationsStatusRaw(context, request, cq));
     }
     ::grpc::Status DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::clarifai::api::status::BaseResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> AsyncDeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::grpc::CompletionQueue* cq) {
@@ -2910,6 +2958,13 @@ class V2 final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>> PrepareAsyncStreamInputs(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>>(PrepareAsyncStreamInputsRaw(context, request, cq));
+    }
+    ::grpc::Status GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::clarifai::api::MultiInputAnnotationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>> AsyncGetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>>(AsyncGetInputSamplesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>> PrepareAsyncGetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>>(PrepareAsyncGetInputSamplesRaw(context, request, cq));
     }
     ::grpc::Status GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::clarifai::api::SingleInputResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputResponse>> AsyncGetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::grpc::CompletionQueue* cq) {
@@ -3387,12 +3442,19 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>> PrepareAsyncPostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>>(PrepareAsyncPostTasksRaw(context, request, cq));
     }
-    ::grpc::Status GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskAnnotationsCountResponse>> AsyncGetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskAnnotationsCountResponse>>(AsyncGetTaskAnnotationsCountRaw(context, request, cq));
+    ::grpc::Status GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::clarifai::api::SingleTaskCountResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>> AsyncGetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>>(AsyncGetTaskAnnotationCountRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskAnnotationsCountResponse>> PrepareAsyncGetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskAnnotationsCountResponse>>(PrepareAsyncGetTaskAnnotationsCountRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>> PrepareAsyncGetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>>(PrepareAsyncGetTaskAnnotationCountRaw(context, request, cq));
+    }
+    ::grpc::Status GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::clarifai::api::SingleTaskCountResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>> AsyncGetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>>(AsyncGetTaskInputCountRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>> PrepareAsyncGetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>>(PrepareAsyncGetTaskInputCountRaw(context, request, cq));
     }
     ::grpc::Status GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::clarifai::api::SingleTaskResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskResponse>> AsyncGetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::grpc::CompletionQueue* cq) {
@@ -3474,6 +3536,42 @@ class V2 final {
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
+      void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) override;
+      void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response, std::function<void(::grpc::Status)>) override;
       void GetConceptCounts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptCountResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -3594,42 +3692,6 @@ class V2 final {
       #else
       void PatchConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) override;
-      void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) override;
-      void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)>) override;
       void ListKnowledgeGraphs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -3714,17 +3776,17 @@ class V2 final {
       #else
       void PatchAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
-      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
+      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, std::function<void(::grpc::Status)>) override;
+      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       void DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
       void DeleteAnnotation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
@@ -3785,6 +3847,18 @@ class V2 final {
       void StreamInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void StreamInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetInputSamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputAnnotationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetInputSamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetInputSamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       void GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest* request, ::clarifai::api::SingleInputResponse* response, std::function<void(::grpc::Status)>) override;
       void GetInput(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleInputResponse* response, std::function<void(::grpc::Status)>) override;
@@ -4602,17 +4676,29 @@ class V2 final {
       #else
       void PostTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetTaskAnnotationsCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetTaskAnnotationCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetTaskInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetTaskInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetTaskInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       void GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest* request, ::clarifai::api::SingleTaskResponse* response, std::function<void(::grpc::Status)>) override;
       void GetTask(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskResponse* response, std::function<void(::grpc::Status)>) override;
@@ -4757,6 +4843,12 @@ class V2 final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* AsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* PrepareAsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* AsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* PrepareAsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* AsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptCountResponse>* AsyncGetConceptCountsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptCountResponse>* PrepareAsyncGetConceptCountsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleConceptResponse>* AsyncGetConceptRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -4777,12 +4869,6 @@ class V2 final {
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* PrepareAsyncPostConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* AsyncPatchConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* PrepareAsyncPatchConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* AsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* PrepareAsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* AsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* PrepareAsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* AsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* AsyncListKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* PrepareAsyncListKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* AsyncPostKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -4797,8 +4883,8 @@ class V2 final {
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* PrepareAsyncPostAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* AsyncPatchAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* PrepareAsyncPatchAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* AsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* PrepareAsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>* AsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>* PrepareAsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* AsyncDeleteAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* AsyncDeleteAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -4809,6 +4895,8 @@ class V2 final {
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputCountResponse>* PrepareAsyncGetInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* AsyncStreamInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* PrepareAsyncStreamInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>* AsyncGetInputSamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>* PrepareAsyncGetInputSamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputResponse>* AsyncGetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputResponse>* PrepareAsyncGetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* AsyncListInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -4945,8 +5033,10 @@ class V2 final {
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppDuplicationResponse>* PrepareAsyncGetAppDuplicationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* AsyncPostTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* PrepareAsyncPostTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskAnnotationsCountResponse>* AsyncGetTaskAnnotationsCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskAnnotationsCountResponse>* PrepareAsyncGetTaskAnnotationsCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* AsyncGetTaskAnnotationCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* PrepareAsyncGetTaskAnnotationCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* AsyncGetTaskInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* PrepareAsyncGetTaskInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskResponse>* AsyncGetTaskRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskResponse>* PrepareAsyncGetTaskRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* AsyncListTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -4969,6 +5059,9 @@ class V2 final {
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueResponse>* PrepareAsyncPostStatValuesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueAggregateResponse>* AsyncPostStatValuesAggregateRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueAggregateResponse>* PrepareAsyncPostStatValuesAggregateRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_ListConceptRelations_;
+    const ::grpc::internal::RpcMethod rpcmethod_PostConceptRelations_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteConceptRelations_;
     const ::grpc::internal::RpcMethod rpcmethod_GetConceptCounts_;
     const ::grpc::internal::RpcMethod rpcmethod_GetConcept_;
     const ::grpc::internal::RpcMethod rpcmethod_ListConcepts_;
@@ -4979,9 +5072,6 @@ class V2 final {
     const ::grpc::internal::RpcMethod rpcmethod_ListConceptLanguages_;
     const ::grpc::internal::RpcMethod rpcmethod_PostConceptLanguages_;
     const ::grpc::internal::RpcMethod rpcmethod_PatchConceptLanguages_;
-    const ::grpc::internal::RpcMethod rpcmethod_ListConceptRelations_;
-    const ::grpc::internal::RpcMethod rpcmethod_PostConceptRelations_;
-    const ::grpc::internal::RpcMethod rpcmethod_DeleteConceptRelations_;
     const ::grpc::internal::RpcMethod rpcmethod_ListKnowledgeGraphs_;
     const ::grpc::internal::RpcMethod rpcmethod_PostKnowledgeGraphs_;
     const ::grpc::internal::RpcMethod rpcmethod_PostConceptMappingJobs_;
@@ -4995,6 +5085,7 @@ class V2 final {
     const ::grpc::internal::RpcMethod rpcmethod_PostAnnotationsSearches_;
     const ::grpc::internal::RpcMethod rpcmethod_GetInputCount_;
     const ::grpc::internal::RpcMethod rpcmethod_StreamInputs_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetInputSamples_;
     const ::grpc::internal::RpcMethod rpcmethod_GetInput_;
     const ::grpc::internal::RpcMethod rpcmethod_ListInputs_;
     const ::grpc::internal::RpcMethod rpcmethod_PostInputs_;
@@ -5063,7 +5154,8 @@ class V2 final {
     const ::grpc::internal::RpcMethod rpcmethod_ListAppDuplications_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAppDuplication_;
     const ::grpc::internal::RpcMethod rpcmethod_PostTasks_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetTaskAnnotationsCount_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetTaskAnnotationCount_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetTaskInputCount_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTask_;
     const ::grpc::internal::RpcMethod rpcmethod_ListTasks_;
     const ::grpc::internal::RpcMethod rpcmethod_PatchTasks_;
@@ -5082,6 +5174,18 @@ class V2 final {
    public:
     Service();
     virtual ~Service();
+    // //////////////////////////////////////
+    // Concept Relationships
+    // //////////////////////////////////////
+    //
+    // List concept relations between concepts in the platform.
+    // MUST be above ListConcepts so that if concept_id is empty this will still match
+    // /concepts/relations to list all the concept relations in the app.
+    virtual ::grpc::Status ListConceptRelations(::grpc::ServerContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response);
+    // Post concept relations to create relations between concepts in the platform.
+    virtual ::grpc::Status PostConceptRelations(::grpc::ServerContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response);
+    // Post concept relations to create relations between concepts in the platform.
+    virtual ::grpc::Status DeleteConceptRelations(::grpc::ServerContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response);
     // //////////////////////////////////////
     // Concepts
     // //////////////////////////////////////
@@ -5116,16 +5220,6 @@ class V2 final {
     // for the languages.
     virtual ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* context, const ::clarifai::api::PatchConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response);
     // //////////////////////////////////////
-    // Concept Relationships
-    // //////////////////////////////////////
-    //
-    // List concept relations between concepts in the platform.
-    virtual ::grpc::Status ListConceptRelations(::grpc::ServerContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response);
-    // Post concept relations to create relations between concepts in the platform.
-    virtual ::grpc::Status PostConceptRelations(::grpc::ServerContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response);
-    // Post concept relations to create relations between concepts in the platform.
-    virtual ::grpc::Status DeleteConceptRelations(::grpc::ServerContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response);
-    // //////////////////////////////////////
     // Knowledge Graph
     // //////////////////////////////////////
     //
@@ -5148,7 +5242,7 @@ class V2 final {
     // Patch one or more annotations.
     virtual ::grpc::Status PatchAnnotations(::grpc::ServerContext* context, const ::clarifai::api::PatchAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response);
     // Patch annotations status by worker id and task id.
-    virtual ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::status::BaseResponse* response);
+    virtual ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response);
     // Delete a single annotation.
     virtual ::grpc::Status DeleteAnnotation(::grpc::ServerContext* context, const ::clarifai::api::DeleteAnnotationRequest* request, ::clarifai::api::status::BaseResponse* response);
     // Delete multiple annotations in one request.
@@ -5159,10 +5253,12 @@ class V2 final {
     // Inputs
     // //////////////////////////////////////
     //
-    // Patch one or more inputs.
+    // Get input count per status.
     virtual ::grpc::Status GetInputCount(::grpc::ServerContext* context, const ::clarifai::api::GetInputCountRequest* request, ::clarifai::api::SingleInputCountResponse* response);
     // Streams all the inputs starting from oldest assets.
     virtual ::grpc::Status StreamInputs(::grpc::ServerContext* context, const ::clarifai::api::StreamInputsRequest* request, ::clarifai::api::MultiInputResponse* response);
+    // Get a specific input from an app.
+    virtual ::grpc::Status GetInputSamples(::grpc::ServerContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response);
     // Get a specific input from an app.
     virtual ::grpc::Status GetInput(::grpc::ServerContext* context, const ::clarifai::api::GetInputRequest* request, ::clarifai::api::SingleInputResponse* response);
     // List all the inputs.
@@ -5191,6 +5287,7 @@ class V2 final {
     // Get a specific model type.
     virtual ::grpc::Status GetModelType(::grpc::ServerContext* context, const ::clarifai::api::GetModelTypeRequest* request, ::clarifai::api::SingleModelTypeResponse* response);
     // List all the model types available in the platform.
+    // This MUST be above ListModels so that the /models/types endpoint takes precedence.
     virtual ::grpc::Status ListModelTypes(::grpc::ServerContext* context, const ::clarifai::api::ListModelTypesRequest* request, ::clarifai::api::MultiModelTypeResponse* response);
     // Get a specific model from an app.
     virtual ::grpc::Status GetModel(::grpc::ServerContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response);
@@ -5258,8 +5355,6 @@ class V2 final {
     // Compare embeddings distances using a workflow
     //
     virtual ::grpc::Status PostWorkflowResultsSimilarity(::grpc::ServerContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response);
-    // //////////////////////////////////////
-    //
     // //////////////////////////////////////
     // API Keys
     // //////////////////////////////////////
@@ -5374,8 +5469,10 @@ class V2 final {
     //
     // Add tasks to an app.
     virtual ::grpc::Status PostTasks(::grpc::ServerContext* context, const ::clarifai::api::PostTasksRequest* request, ::clarifai::api::MultiTaskResponse* response);
-    // Task annotation counts
-    virtual ::grpc::Status GetTaskAnnotationsCount(::grpc::ServerContext* context, const ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response);
+    // Task annotation count
+    virtual ::grpc::Status GetTaskAnnotationCount(::grpc::ServerContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response);
+    // Task Input count
+    virtual ::grpc::Status GetTaskInputCount(::grpc::ServerContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response);
     // Get a specific task from an app.
     virtual ::grpc::Status GetTask(::grpc::ServerContext* context, const ::clarifai::api::GetTaskRequest* request, ::clarifai::api::SingleTaskResponse* response);
     // List tasks from an app.
@@ -5412,212 +5509,12 @@ class V2 final {
     virtual ::grpc::Status PostStatValuesAggregate(::grpc::ServerContext* context, const ::clarifai::api::PostStatValuesAggregateRequest* request, ::clarifai::api::MultiStatValueAggregateResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetConceptCounts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetConceptCounts() {
-      ::grpc::Service::MarkMethodAsync(0);
-    }
-    ~WithAsyncMethod_GetConceptCounts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetConceptCounts(::grpc::ServerContext* context, ::clarifai::api::GetConceptCountsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptCountResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetConcept : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetConcept() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_GetConcept() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetConcept(::grpc::ServerContext* context, ::clarifai::api::GetConceptRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_ListConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_ListConcepts() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_ListConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestListConcepts(::grpc::ServerContext* context, ::clarifai::api::ListConceptsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_PostConceptsSearches : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_PostConceptsSearches() {
-      ::grpc::Service::MarkMethodAsync(3);
-    }
-    ~WithAsyncMethod_PostConceptsSearches() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPostConceptsSearches(::grpc::ServerContext* context, ::clarifai::api::PostConceptsSearchesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_PostConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_PostConcepts() {
-      ::grpc::Service::MarkMethodAsync(4);
-    }
-    ~WithAsyncMethod_PostConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPostConcepts(::grpc::ServerContext* context, ::clarifai::api::PostConceptsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_PatchConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_PatchConcepts() {
-      ::grpc::Service::MarkMethodAsync(5);
-    }
-    ~WithAsyncMethod_PatchConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPatchConcepts(::grpc::ServerContext* context, ::clarifai::api::PatchConceptsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetConceptLanguage : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetConceptLanguage() {
-      ::grpc::Service::MarkMethodAsync(6);
-    }
-    ~WithAsyncMethod_GetConceptLanguage() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetConceptLanguage(::grpc::ServerContext* context, ::clarifai::api::GetConceptLanguageRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleConceptLanguageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_ListConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_ListConceptLanguages() {
-      ::grpc::Service::MarkMethodAsync(7);
-    }
-    ~WithAsyncMethod_ListConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestListConceptLanguages(::grpc::ServerContext* context, ::clarifai::api::ListConceptLanguagesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptLanguageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_PostConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_PostConceptLanguages() {
-      ::grpc::Service::MarkMethodAsync(8);
-    }
-    ~WithAsyncMethod_PostConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPostConceptLanguages(::grpc::ServerContext* context, ::clarifai::api::PostConceptLanguagesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptLanguageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_PatchConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_PatchConceptLanguages() {
-      ::grpc::Service::MarkMethodAsync(9);
-    }
-    ~WithAsyncMethod_PatchConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPatchConceptLanguages(::grpc::ServerContext* context, ::clarifai::api::PatchConceptLanguagesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptLanguageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithAsyncMethod_ListConceptRelations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListConceptRelations() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(0);
     }
     ~WithAsyncMethod_ListConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5628,7 +5525,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListConceptRelations(::grpc::ServerContext* context, ::clarifai::api::ListConceptRelationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptRelationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5637,7 +5534,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostConceptRelations() {
-      ::grpc::Service::MarkMethodAsync(11);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_PostConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5648,7 +5545,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostConceptRelations(::grpc::ServerContext* context, ::clarifai::api::PostConceptRelationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptRelationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5657,7 +5554,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteConceptRelations() {
-      ::grpc::Service::MarkMethodAsync(12);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_DeleteConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5668,6 +5565,206 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteConceptRelations(::grpc::ServerContext* context, ::clarifai::api::DeleteConceptRelationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetConceptCounts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetConceptCounts() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_GetConceptCounts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetConceptCounts(::grpc::ServerContext* context, ::clarifai::api::GetConceptCountsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptCountResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetConcept : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetConcept() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_GetConcept() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetConcept(::grpc::ServerContext* context, ::clarifai::api::GetConceptRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListConcepts() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_ListConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListConcepts(::grpc::ServerContext* context, ::clarifai::api::ListConceptsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PostConceptsSearches : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PostConceptsSearches() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_PostConceptsSearches() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPostConceptsSearches(::grpc::ServerContext* context, ::clarifai::api::PostConceptsSearchesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PostConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PostConcepts() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_PostConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPostConcepts(::grpc::ServerContext* context, ::clarifai::api::PostConceptsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PatchConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PatchConcepts() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_PatchConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPatchConcepts(::grpc::ServerContext* context, ::clarifai::api::PatchConceptsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetConceptLanguage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetConceptLanguage() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_GetConceptLanguage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetConceptLanguage(::grpc::ServerContext* context, ::clarifai::api::GetConceptLanguageRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleConceptLanguageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListConceptLanguages() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_ListConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListConceptLanguages(::grpc::ServerContext* context, ::clarifai::api::ListConceptLanguagesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptLanguageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PostConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PostConceptLanguages() {
+      ::grpc::Service::MarkMethodAsync(11);
+    }
+    ~WithAsyncMethod_PostConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPostConceptLanguages(::grpc::ServerContext* context, ::clarifai::api::PostConceptLanguagesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptLanguageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PatchConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PatchConceptLanguages() {
+      ::grpc::Service::MarkMethodAsync(12);
+    }
+    ~WithAsyncMethod_PatchConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPatchConceptLanguages(::grpc::ServerContext* context, ::clarifai::api::PatchConceptLanguagesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiConceptLanguageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -5823,11 +5920,11 @@ class V2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::PatchAnnotationsStatusResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPatchAnnotationsStatus(::grpc::ServerContext* context, ::clarifai::api::PatchAnnotationsStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPatchAnnotationsStatus(::grpc::ServerContext* context, ::clarifai::api::PatchAnnotationsStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::PatchAnnotationsStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -5932,12 +6029,32 @@ class V2 final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetInputSamples : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetInputSamples() {
+      ::grpc::Service::MarkMethodAsync(26);
+    }
+    ~WithAsyncMethod_GetInputSamples() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInputSamples(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetInputSamplesRequest* /*request*/, ::clarifai::api::MultiInputAnnotationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetInputSamples(::grpc::ServerContext* context, ::clarifai::api::GetInputSamplesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiInputAnnotationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_GetInput : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetInput() {
-      ::grpc::Service::MarkMethodAsync(26);
+      ::grpc::Service::MarkMethodAsync(27);
     }
     ~WithAsyncMethod_GetInput() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5948,7 +6065,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetInput(::grpc::ServerContext* context, ::clarifai::api::GetInputRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleInputResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5957,7 +6074,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListInputs() {
-      ::grpc::Service::MarkMethodAsync(27);
+      ::grpc::Service::MarkMethodAsync(28);
     }
     ~WithAsyncMethod_ListInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5968,7 +6085,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListInputs(::grpc::ServerContext* context, ::clarifai::api::ListInputsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiInputResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5977,7 +6094,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostInputs() {
-      ::grpc::Service::MarkMethodAsync(28);
+      ::grpc::Service::MarkMethodAsync(29);
     }
     ~WithAsyncMethod_PostInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5988,7 +6105,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostInputs(::grpc::ServerContext* context, ::clarifai::api::PostInputsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiInputResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5997,7 +6114,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchInputs() {
-      ::grpc::Service::MarkMethodAsync(29);
+      ::grpc::Service::MarkMethodAsync(30);
     }
     ~WithAsyncMethod_PatchInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6008,7 +6125,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchInputs(::grpc::ServerContext* context, ::clarifai::api::PatchInputsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiInputResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6017,7 +6134,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteInput() {
-      ::grpc::Service::MarkMethodAsync(30);
+      ::grpc::Service::MarkMethodAsync(31);
     }
     ~WithAsyncMethod_DeleteInput() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6028,7 +6145,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteInput(::grpc::ServerContext* context, ::clarifai::api::DeleteInputRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6037,7 +6154,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteInputs() {
-      ::grpc::Service::MarkMethodAsync(31);
+      ::grpc::Service::MarkMethodAsync(32);
     }
     ~WithAsyncMethod_DeleteInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6048,7 +6165,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteInputs(::grpc::ServerContext* context, ::clarifai::api::DeleteInputsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6057,7 +6174,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostInputsSearches() {
-      ::grpc::Service::MarkMethodAsync(32);
+      ::grpc::Service::MarkMethodAsync(33);
     }
     ~WithAsyncMethod_PostInputsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6068,7 +6185,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostInputsSearches(::grpc::ServerContext* context, ::clarifai::api::PostInputsSearchesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiSearchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6077,7 +6194,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostModelOutputs() {
-      ::grpc::Service::MarkMethodAsync(33);
+      ::grpc::Service::MarkMethodAsync(34);
     }
     ~WithAsyncMethod_PostModelOutputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6088,7 +6205,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModelOutputs(::grpc::ServerContext* context, ::clarifai::api::PostModelOutputsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiOutputResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6097,7 +6214,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetModelType() {
-      ::grpc::Service::MarkMethodAsync(34);
+      ::grpc::Service::MarkMethodAsync(35);
     }
     ~WithAsyncMethod_GetModelType() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6108,7 +6225,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModelType(::grpc::ServerContext* context, ::clarifai::api::GetModelTypeRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleModelTypeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6117,7 +6234,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListModelTypes() {
-      ::grpc::Service::MarkMethodAsync(35);
+      ::grpc::Service::MarkMethodAsync(36);
     }
     ~WithAsyncMethod_ListModelTypes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6128,7 +6245,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModelTypes(::grpc::ServerContext* context, ::clarifai::api::ListModelTypesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiModelTypeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6137,7 +6254,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetModel() {
-      ::grpc::Service::MarkMethodAsync(36);
+      ::grpc::Service::MarkMethodAsync(37);
     }
     ~WithAsyncMethod_GetModel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6148,7 +6265,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModel(::grpc::ServerContext* context, ::clarifai::api::GetModelRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleModelResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6157,7 +6274,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetModelOutputInfo() {
-      ::grpc::Service::MarkMethodAsync(37);
+      ::grpc::Service::MarkMethodAsync(38);
     }
     ~WithAsyncMethod_GetModelOutputInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6168,7 +6285,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModelOutputInfo(::grpc::ServerContext* context, ::clarifai::api::GetModelRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleModelResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6177,7 +6294,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListModels() {
-      ::grpc::Service::MarkMethodAsync(38);
+      ::grpc::Service::MarkMethodAsync(39);
     }
     ~WithAsyncMethod_ListModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6188,7 +6305,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModels(::grpc::ServerContext* context, ::clarifai::api::ListModelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiModelResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6197,7 +6314,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostModelsSearches() {
-      ::grpc::Service::MarkMethodAsync(39);
+      ::grpc::Service::MarkMethodAsync(40);
     }
     ~WithAsyncMethod_PostModelsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6208,7 +6325,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModelsSearches(::grpc::ServerContext* context, ::clarifai::api::PostModelsSearchesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiModelResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6217,7 +6334,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostModels() {
-      ::grpc::Service::MarkMethodAsync(40);
+      ::grpc::Service::MarkMethodAsync(41);
     }
     ~WithAsyncMethod_PostModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6228,7 +6345,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModels(::grpc::ServerContext* context, ::clarifai::api::PostModelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleModelResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6237,7 +6354,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchModels() {
-      ::grpc::Service::MarkMethodAsync(41);
+      ::grpc::Service::MarkMethodAsync(42);
     }
     ~WithAsyncMethod_PatchModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6248,7 +6365,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchModels(::grpc::ServerContext* context, ::clarifai::api::PatchModelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiModelResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6257,7 +6374,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteModel() {
-      ::grpc::Service::MarkMethodAsync(42);
+      ::grpc::Service::MarkMethodAsync(43);
     }
     ~WithAsyncMethod_DeleteModel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6268,7 +6385,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteModel(::grpc::ServerContext* context, ::clarifai::api::DeleteModelRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6277,7 +6394,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteModels() {
-      ::grpc::Service::MarkMethodAsync(43);
+      ::grpc::Service::MarkMethodAsync(44);
     }
     ~WithAsyncMethod_DeleteModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6288,7 +6405,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteModels(::grpc::ServerContext* context, ::clarifai::api::DeleteModelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6297,7 +6414,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListModelInputs() {
-      ::grpc::Service::MarkMethodAsync(44);
+      ::grpc::Service::MarkMethodAsync(45);
     }
     ~WithAsyncMethod_ListModelInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6308,7 +6425,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModelInputs(::grpc::ServerContext* context, ::clarifai::api::ListModelInputsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiInputResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6317,7 +6434,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetModelVersion() {
-      ::grpc::Service::MarkMethodAsync(45);
+      ::grpc::Service::MarkMethodAsync(46);
     }
     ~WithAsyncMethod_GetModelVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6328,7 +6445,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModelVersion(::grpc::ServerContext* context, ::clarifai::api::GetModelVersionRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleModelVersionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6337,7 +6454,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListModelVersions() {
-      ::grpc::Service::MarkMethodAsync(46);
+      ::grpc::Service::MarkMethodAsync(47);
     }
     ~WithAsyncMethod_ListModelVersions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6348,7 +6465,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModelVersions(::grpc::ServerContext* context, ::clarifai::api::ListModelVersionsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiModelVersionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6357,7 +6474,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostModelVersions() {
-      ::grpc::Service::MarkMethodAsync(47);
+      ::grpc::Service::MarkMethodAsync(48);
     }
     ~WithAsyncMethod_PostModelVersions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6368,7 +6485,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModelVersions(::grpc::ServerContext* context, ::clarifai::api::PostModelVersionsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleModelResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6377,7 +6494,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteModelVersion() {
-      ::grpc::Service::MarkMethodAsync(48);
+      ::grpc::Service::MarkMethodAsync(49);
     }
     ~WithAsyncMethod_DeleteModelVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6388,7 +6505,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteModelVersion(::grpc::ServerContext* context, ::clarifai::api::DeleteModelVersionRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6397,7 +6514,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetModelVersionMetrics() {
-      ::grpc::Service::MarkMethodAsync(49);
+      ::grpc::Service::MarkMethodAsync(50);
     }
     ~WithAsyncMethod_GetModelVersionMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6408,7 +6525,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModelVersionMetrics(::grpc::ServerContext* context, ::clarifai::api::GetModelVersionMetricsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleModelVersionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6417,7 +6534,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostModelVersionMetrics() {
-      ::grpc::Service::MarkMethodAsync(50);
+      ::grpc::Service::MarkMethodAsync(51);
     }
     ~WithAsyncMethod_PostModelVersionMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6428,7 +6545,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModelVersionMetrics(::grpc::ServerContext* context, ::clarifai::api::PostModelVersionMetricsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleModelVersionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6437,7 +6554,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetWorkflow() {
-      ::grpc::Service::MarkMethodAsync(51);
+      ::grpc::Service::MarkMethodAsync(52);
     }
     ~WithAsyncMethod_GetWorkflow() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6448,7 +6565,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetWorkflow(::grpc::ServerContext* context, ::clarifai::api::GetWorkflowRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleWorkflowResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6457,7 +6574,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListWorkflows() {
-      ::grpc::Service::MarkMethodAsync(52);
+      ::grpc::Service::MarkMethodAsync(53);
     }
     ~WithAsyncMethod_ListWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6468,7 +6585,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListWorkflows(::grpc::ServerContext* context, ::clarifai::api::ListWorkflowsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiWorkflowResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6477,7 +6594,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostWorkflows() {
-      ::grpc::Service::MarkMethodAsync(53);
+      ::grpc::Service::MarkMethodAsync(54);
     }
     ~WithAsyncMethod_PostWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6488,7 +6605,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostWorkflows(::grpc::ServerContext* context, ::clarifai::api::PostWorkflowsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiWorkflowResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(54, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6497,7 +6614,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchWorkflows() {
-      ::grpc::Service::MarkMethodAsync(54);
+      ::grpc::Service::MarkMethodAsync(55);
     }
     ~WithAsyncMethod_PatchWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6508,7 +6625,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchWorkflows(::grpc::ServerContext* context, ::clarifai::api::PatchWorkflowsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiWorkflowResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(54, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(55, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6517,7 +6634,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteWorkflow() {
-      ::grpc::Service::MarkMethodAsync(55);
+      ::grpc::Service::MarkMethodAsync(56);
     }
     ~WithAsyncMethod_DeleteWorkflow() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6528,7 +6645,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteWorkflow(::grpc::ServerContext* context, ::clarifai::api::DeleteWorkflowRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(55, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(56, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6537,7 +6654,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteWorkflows() {
-      ::grpc::Service::MarkMethodAsync(56);
+      ::grpc::Service::MarkMethodAsync(57);
     }
     ~WithAsyncMethod_DeleteWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6548,7 +6665,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteWorkflows(::grpc::ServerContext* context, ::clarifai::api::DeleteWorkflowsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(56, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(57, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6557,7 +6674,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostWorkflowResults() {
-      ::grpc::Service::MarkMethodAsync(57);
+      ::grpc::Service::MarkMethodAsync(58);
     }
     ~WithAsyncMethod_PostWorkflowResults() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6568,7 +6685,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostWorkflowResults(::grpc::ServerContext* context, ::clarifai::api::PostWorkflowResultsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::PostWorkflowResultsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(57, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(58, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6577,7 +6694,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostWorkflowResultsSimilarity() {
-      ::grpc::Service::MarkMethodAsync(58);
+      ::grpc::Service::MarkMethodAsync(59);
     }
     ~WithAsyncMethod_PostWorkflowResultsSimilarity() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6588,7 +6705,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostWorkflowResultsSimilarity(::grpc::ServerContext* context, ::clarifai::api::PostWorkflowResultsSimilarityRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::PostWorkflowResultsSimilarityResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(58, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(59, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6597,7 +6714,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetKey() {
-      ::grpc::Service::MarkMethodAsync(59);
+      ::grpc::Service::MarkMethodAsync(60);
     }
     ~WithAsyncMethod_GetKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6608,7 +6725,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKey(::grpc::ServerContext* context, ::clarifai::api::GetKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(59, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(60, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6617,7 +6734,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListKeys() {
-      ::grpc::Service::MarkMethodAsync(60);
+      ::grpc::Service::MarkMethodAsync(61);
     }
     ~WithAsyncMethod_ListKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6628,7 +6745,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListKeys(::grpc::ServerContext* context, ::clarifai::api::ListKeysRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(60, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(61, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6637,7 +6754,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListAppKeys() {
-      ::grpc::Service::MarkMethodAsync(61);
+      ::grpc::Service::MarkMethodAsync(62);
     }
     ~WithAsyncMethod_ListAppKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6648,7 +6765,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListAppKeys(::grpc::ServerContext* context, ::clarifai::api::ListAppKeysRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(61, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(62, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6657,7 +6774,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodAsync(62);
+      ::grpc::Service::MarkMethodAsync(63);
     }
     ~WithAsyncMethod_DeleteKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6668,7 +6785,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteKey(::grpc::ServerContext* context, ::clarifai::api::DeleteKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(62, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(63, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6677,7 +6794,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostKeys() {
-      ::grpc::Service::MarkMethodAsync(63);
+      ::grpc::Service::MarkMethodAsync(64);
     }
     ~WithAsyncMethod_PostKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6688,7 +6805,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostKeys(::grpc::ServerContext* context, ::clarifai::api::PostKeysRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(63, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(64, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6697,7 +6814,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchKeys() {
-      ::grpc::Service::MarkMethodAsync(64);
+      ::grpc::Service::MarkMethodAsync(65);
     }
     ~WithAsyncMethod_PatchKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6708,7 +6825,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchKeys(::grpc::ServerContext* context, ::clarifai::api::PatchKeysRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(64, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(65, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6717,7 +6834,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_MyScopes() {
-      ::grpc::Service::MarkMethodAsync(65);
+      ::grpc::Service::MarkMethodAsync(66);
     }
     ~WithAsyncMethod_MyScopes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6728,7 +6845,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMyScopes(::grpc::ServerContext* context, ::clarifai::api::MyScopesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiScopeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(65, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(66, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6737,7 +6854,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListScopes() {
-      ::grpc::Service::MarkMethodAsync(66);
+      ::grpc::Service::MarkMethodAsync(67);
     }
     ~WithAsyncMethod_ListScopes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6748,7 +6865,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListScopes(::grpc::ServerContext* context, ::clarifai::api::ListScopesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiScopeDepsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(66, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(67, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6757,7 +6874,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetApp() {
-      ::grpc::Service::MarkMethodAsync(67);
+      ::grpc::Service::MarkMethodAsync(68);
     }
     ~WithAsyncMethod_GetApp() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6768,7 +6885,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetApp(::grpc::ServerContext* context, ::clarifai::api::GetAppRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleAppResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(67, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(68, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6777,7 +6894,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListApps() {
-      ::grpc::Service::MarkMethodAsync(68);
+      ::grpc::Service::MarkMethodAsync(69);
     }
     ~WithAsyncMethod_ListApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6788,7 +6905,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListApps(::grpc::ServerContext* context, ::clarifai::api::ListAppsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAppResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(68, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(69, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6797,7 +6914,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteApp() {
-      ::grpc::Service::MarkMethodAsync(69);
+      ::grpc::Service::MarkMethodAsync(70);
     }
     ~WithAsyncMethod_DeleteApp() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6808,7 +6925,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteApp(::grpc::ServerContext* context, ::clarifai::api::DeleteAppRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(69, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(70, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6817,7 +6934,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostApps() {
-      ::grpc::Service::MarkMethodAsync(70);
+      ::grpc::Service::MarkMethodAsync(71);
     }
     ~WithAsyncMethod_PostApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6828,7 +6945,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostApps(::grpc::ServerContext* context, ::clarifai::api::PostAppsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAppResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(70, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(71, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6837,7 +6954,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchApps() {
-      ::grpc::Service::MarkMethodAsync(71);
+      ::grpc::Service::MarkMethodAsync(72);
     }
     ~WithAsyncMethod_PatchApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6848,7 +6965,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchApps(::grpc::ServerContext* context, ::clarifai::api::PatchAppsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAppResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(71, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(72, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6857,7 +6974,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostAppsSearches() {
-      ::grpc::Service::MarkMethodAsync(72);
+      ::grpc::Service::MarkMethodAsync(73);
     }
     ~WithAsyncMethod_PostAppsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6868,7 +6985,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostAppsSearches(::grpc::ServerContext* context, ::clarifai::api::PostAppsSearchesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAppResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(72, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(73, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6877,7 +6994,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostValidatePassword() {
-      ::grpc::Service::MarkMethodAsync(73);
+      ::grpc::Service::MarkMethodAsync(74);
     }
     ~WithAsyncMethod_PostValidatePassword() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6888,7 +7005,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostValidatePassword(::grpc::ServerContext* context, ::clarifai::api::PostValidatePasswordRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SinglePasswordValidationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(73, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(74, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6897,7 +7014,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSearch() {
-      ::grpc::Service::MarkMethodAsync(74);
+      ::grpc::Service::MarkMethodAsync(75);
     }
     ~WithAsyncMethod_GetSearch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6908,7 +7025,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSearch(::grpc::ServerContext* context, ::clarifai::api::GetSearchRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleSearchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(74, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(75, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6917,7 +7034,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListSearches() {
-      ::grpc::Service::MarkMethodAsync(75);
+      ::grpc::Service::MarkMethodAsync(76);
     }
     ~WithAsyncMethod_ListSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6928,7 +7045,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListSearches(::grpc::ServerContext* context, ::clarifai::api::ListSearchesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiSearchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(75, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(76, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6937,7 +7054,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostSearches() {
-      ::grpc::Service::MarkMethodAsync(76);
+      ::grpc::Service::MarkMethodAsync(77);
     }
     ~WithAsyncMethod_PostSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6948,7 +7065,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostSearches(::grpc::ServerContext* context, ::clarifai::api::PostSearchesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiSearchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(76, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(77, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6957,7 +7074,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostSearchesByID() {
-      ::grpc::Service::MarkMethodAsync(77);
+      ::grpc::Service::MarkMethodAsync(78);
     }
     ~WithAsyncMethod_PostSearchesByID() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6968,7 +7085,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostSearchesByID(::grpc::ServerContext* context, ::clarifai::api::PostSearchesByIDRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiSearchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(77, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(78, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6977,7 +7094,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodAsync(78);
+      ::grpc::Service::MarkMethodAsync(79);
     }
     ~WithAsyncMethod_PostAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -6988,7 +7105,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostAnnotationSearchMetrics(::grpc::ServerContext* context, ::clarifai::api::PostAnnotationSearchMetricsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(78, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(79, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6997,7 +7114,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodAsync(79);
+      ::grpc::Service::MarkMethodAsync(80);
     }
     ~WithAsyncMethod_GetAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7008,7 +7125,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetAnnotationSearchMetrics(::grpc::ServerContext* context, ::clarifai::api::GetAnnotationSearchMetricsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(79, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(80, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7017,7 +7134,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodAsync(80);
+      ::grpc::Service::MarkMethodAsync(81);
     }
     ~WithAsyncMethod_ListAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7028,7 +7145,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListAnnotationSearchMetrics(::grpc::ServerContext* context, ::clarifai::api::ListAnnotationSearchMetricsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(80, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(81, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7037,7 +7154,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodAsync(81);
+      ::grpc::Service::MarkMethodAsync(82);
     }
     ~WithAsyncMethod_DeleteAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7048,7 +7165,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteAnnotationSearchMetrics(::grpc::ServerContext* context, ::clarifai::api::DeleteAnnotationSearchMetricsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(81, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7057,7 +7174,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteSearch() {
-      ::grpc::Service::MarkMethodAsync(82);
+      ::grpc::Service::MarkMethodAsync(83);
     }
     ~WithAsyncMethod_DeleteSearch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7068,7 +7185,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteSearch(::grpc::ServerContext* context, ::clarifai::api::DeleteSearchRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7077,7 +7194,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListStatusCodes() {
-      ::grpc::Service::MarkMethodAsync(83);
+      ::grpc::Service::MarkMethodAsync(84);
     }
     ~WithAsyncMethod_ListStatusCodes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7088,7 +7205,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListStatusCodes(::grpc::ServerContext* context, ::clarifai::api::ListStatusCodesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiStatusCodeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7097,7 +7214,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetStatusCode() {
-      ::grpc::Service::MarkMethodAsync(84);
+      ::grpc::Service::MarkMethodAsync(85);
     }
     ~WithAsyncMethod_GetStatusCode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7108,7 +7225,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatusCode(::grpc::ServerContext* context, ::clarifai::api::GetStatusCodeRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleStatusCodeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(85, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7117,7 +7234,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListCollaborators() {
-      ::grpc::Service::MarkMethodAsync(85);
+      ::grpc::Service::MarkMethodAsync(86);
     }
     ~WithAsyncMethod_ListCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7128,7 +7245,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListCollaborators(::grpc::ServerContext* context, ::clarifai::api::ListCollaboratorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollaboratorsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(85, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(86, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7137,7 +7254,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostCollaborators() {
-      ::grpc::Service::MarkMethodAsync(86);
+      ::grpc::Service::MarkMethodAsync(87);
     }
     ~WithAsyncMethod_PostCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7148,7 +7265,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostCollaborators(::grpc::ServerContext* context, ::clarifai::api::PostCollaboratorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollaboratorsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(86, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(87, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7157,7 +7274,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchCollaborators() {
-      ::grpc::Service::MarkMethodAsync(87);
+      ::grpc::Service::MarkMethodAsync(88);
     }
     ~WithAsyncMethod_PatchCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7168,7 +7285,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchCollaborators(::grpc::ServerContext* context, ::clarifai::api::PatchCollaboratorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollaboratorsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(87, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(88, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7177,7 +7294,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteCollaborators() {
-      ::grpc::Service::MarkMethodAsync(88);
+      ::grpc::Service::MarkMethodAsync(89);
     }
     ~WithAsyncMethod_DeleteCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7188,7 +7305,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteCollaborators(::grpc::ServerContext* context, ::clarifai::api::DeleteCollaboratorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(88, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(89, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7197,7 +7314,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListCollaborations() {
-      ::grpc::Service::MarkMethodAsync(89);
+      ::grpc::Service::MarkMethodAsync(90);
     }
     ~WithAsyncMethod_ListCollaborations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7208,7 +7325,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListCollaborations(::grpc::ServerContext* context, ::clarifai::api::ListCollaborationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollaborationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(89, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(90, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7217,7 +7334,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostAppDuplications() {
-      ::grpc::Service::MarkMethodAsync(90);
+      ::grpc::Service::MarkMethodAsync(91);
     }
     ~WithAsyncMethod_PostAppDuplications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7228,7 +7345,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostAppDuplications(::grpc::ServerContext* context, ::clarifai::api::PostAppDuplicationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAppDuplicationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(90, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7237,7 +7354,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListAppDuplications() {
-      ::grpc::Service::MarkMethodAsync(91);
+      ::grpc::Service::MarkMethodAsync(92);
     }
     ~WithAsyncMethod_ListAppDuplications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7248,7 +7365,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListAppDuplications(::grpc::ServerContext* context, ::clarifai::api::ListAppDuplicationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiAppDuplicationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7257,7 +7374,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetAppDuplication() {
-      ::grpc::Service::MarkMethodAsync(92);
+      ::grpc::Service::MarkMethodAsync(93);
     }
     ~WithAsyncMethod_GetAppDuplication() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7268,7 +7385,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetAppDuplication(::grpc::ServerContext* context, ::clarifai::api::GetAppDuplicationRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleAppDuplicationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7277,7 +7394,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostTasks() {
-      ::grpc::Service::MarkMethodAsync(93);
+      ::grpc::Service::MarkMethodAsync(94);
     }
     ~WithAsyncMethod_PostTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7288,27 +7405,47 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostTasks(::grpc::ServerContext* context, ::clarifai::api::PostTasksRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiTaskResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetTaskAnnotationsCount : public BaseClass {
+  class WithAsyncMethod_GetTaskAnnotationCount : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetTaskAnnotationsCount() {
-      ::grpc::Service::MarkMethodAsync(94);
+    WithAsyncMethod_GetTaskAnnotationCount() {
+      ::grpc::Service::MarkMethodAsync(95);
     }
-    ~WithAsyncMethod_GetTaskAnnotationsCount() override {
+    ~WithAsyncMethod_GetTaskAnnotationCount() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTaskAnnotationsCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskAnnotationsCountRequest* /*request*/, ::clarifai::api::SingleTaskAnnotationsCountResponse* /*response*/) override {
+    ::grpc::Status GetTaskAnnotationCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetTaskAnnotationsCount(::grpc::ServerContext* context, ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleTaskAnnotationsCountResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestGetTaskAnnotationCount(::grpc::ServerContext* context, ::clarifai::api::GetTaskCountRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleTaskCountResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetTaskInputCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetTaskInputCount() {
+      ::grpc::Service::MarkMethodAsync(96);
+    }
+    ~WithAsyncMethod_GetTaskInputCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTaskInputCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTaskInputCount(::grpc::ServerContext* context, ::clarifai::api::GetTaskCountRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleTaskCountResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(96, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7317,7 +7454,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetTask() {
-      ::grpc::Service::MarkMethodAsync(95);
+      ::grpc::Service::MarkMethodAsync(97);
     }
     ~WithAsyncMethod_GetTask() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7328,7 +7465,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetTask(::grpc::ServerContext* context, ::clarifai::api::GetTaskRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleTaskResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(97, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7337,7 +7474,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListTasks() {
-      ::grpc::Service::MarkMethodAsync(96);
+      ::grpc::Service::MarkMethodAsync(98);
     }
     ~WithAsyncMethod_ListTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7348,7 +7485,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListTasks(::grpc::ServerContext* context, ::clarifai::api::ListTasksRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiTaskResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(96, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(98, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7357,7 +7494,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchTasks() {
-      ::grpc::Service::MarkMethodAsync(97);
+      ::grpc::Service::MarkMethodAsync(99);
     }
     ~WithAsyncMethod_PatchTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7368,7 +7505,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchTasks(::grpc::ServerContext* context, ::clarifai::api::PatchTasksRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiTaskResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(97, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(99, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7377,7 +7514,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteTasks() {
-      ::grpc::Service::MarkMethodAsync(98);
+      ::grpc::Service::MarkMethodAsync(100);
     }
     ~WithAsyncMethod_DeleteTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7388,7 +7525,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteTasks(::grpc::ServerContext* context, ::clarifai::api::DeleteTasksRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(98, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(100, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7397,7 +7534,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostCollectors() {
-      ::grpc::Service::MarkMethodAsync(99);
+      ::grpc::Service::MarkMethodAsync(101);
     }
     ~WithAsyncMethod_PostCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7408,7 +7545,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostCollectors(::grpc::ServerContext* context, ::clarifai::api::PostCollectorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(99, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(101, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7417,7 +7554,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetCollector() {
-      ::grpc::Service::MarkMethodAsync(100);
+      ::grpc::Service::MarkMethodAsync(102);
     }
     ~WithAsyncMethod_GetCollector() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7428,7 +7565,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollector(::grpc::ServerContext* context, ::clarifai::api::GetCollectorRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleCollectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(100, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(102, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7437,7 +7574,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListCollectors() {
-      ::grpc::Service::MarkMethodAsync(101);
+      ::grpc::Service::MarkMethodAsync(103);
     }
     ~WithAsyncMethod_ListCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7448,7 +7585,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListCollectors(::grpc::ServerContext* context, ::clarifai::api::ListCollectorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(101, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(103, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7457,7 +7594,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchCollectors() {
-      ::grpc::Service::MarkMethodAsync(102);
+      ::grpc::Service::MarkMethodAsync(104);
     }
     ~WithAsyncMethod_PatchCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7468,7 +7605,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchCollectors(::grpc::ServerContext* context, ::clarifai::api::PatchCollectorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(102, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(104, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7477,7 +7614,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteCollectors() {
-      ::grpc::Service::MarkMethodAsync(103);
+      ::grpc::Service::MarkMethodAsync(105);
     }
     ~WithAsyncMethod_DeleteCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7488,7 +7625,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteCollectors(::grpc::ServerContext* context, ::clarifai::api::DeleteCollectorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(103, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(105, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7497,7 +7634,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostStatValues() {
-      ::grpc::Service::MarkMethodAsync(104);
+      ::grpc::Service::MarkMethodAsync(106);
     }
     ~WithAsyncMethod_PostStatValues() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7508,7 +7645,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostStatValues(::grpc::ServerContext* context, ::clarifai::api::PostStatValuesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiStatValueResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(104, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(106, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -7517,7 +7654,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostStatValuesAggregate() {
-      ::grpc::Service::MarkMethodAsync(105);
+      ::grpc::Service::MarkMethodAsync(107);
     }
     ~WithAsyncMethod_PostStatValuesAggregate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -7528,480 +7665,10 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostStatValuesAggregate(::grpc::ServerContext* context, ::clarifai::api::PostStatValuesAggregateRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiStatValueAggregateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(105, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(107, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetConceptCounts<WithAsyncMethod_GetConcept<WithAsyncMethod_ListConcepts<WithAsyncMethod_PostConceptsSearches<WithAsyncMethod_PostConcepts<WithAsyncMethod_PatchConcepts<WithAsyncMethod_GetConceptLanguage<WithAsyncMethod_ListConceptLanguages<WithAsyncMethod_PostConceptLanguages<WithAsyncMethod_PatchConceptLanguages<WithAsyncMethod_ListConceptRelations<WithAsyncMethod_PostConceptRelations<WithAsyncMethod_DeleteConceptRelations<WithAsyncMethod_ListKnowledgeGraphs<WithAsyncMethod_PostKnowledgeGraphs<WithAsyncMethod_PostConceptMappingJobs<WithAsyncMethod_GetAnnotation<WithAsyncMethod_ListAnnotations<WithAsyncMethod_PostAnnotations<WithAsyncMethod_PatchAnnotations<WithAsyncMethod_PatchAnnotationsStatus<WithAsyncMethod_DeleteAnnotation<WithAsyncMethod_DeleteAnnotations<WithAsyncMethod_PostAnnotationsSearches<WithAsyncMethod_GetInputCount<WithAsyncMethod_StreamInputs<WithAsyncMethod_GetInput<WithAsyncMethod_ListInputs<WithAsyncMethod_PostInputs<WithAsyncMethod_PatchInputs<WithAsyncMethod_DeleteInput<WithAsyncMethod_DeleteInputs<WithAsyncMethod_PostInputsSearches<WithAsyncMethod_PostModelOutputs<WithAsyncMethod_GetModelType<WithAsyncMethod_ListModelTypes<WithAsyncMethod_GetModel<WithAsyncMethod_GetModelOutputInfo<WithAsyncMethod_ListModels<WithAsyncMethod_PostModelsSearches<WithAsyncMethod_PostModels<WithAsyncMethod_PatchModels<WithAsyncMethod_DeleteModel<WithAsyncMethod_DeleteModels<WithAsyncMethod_ListModelInputs<WithAsyncMethod_GetModelVersion<WithAsyncMethod_ListModelVersions<WithAsyncMethod_PostModelVersions<WithAsyncMethod_DeleteModelVersion<WithAsyncMethod_GetModelVersionMetrics<WithAsyncMethod_PostModelVersionMetrics<WithAsyncMethod_GetWorkflow<WithAsyncMethod_ListWorkflows<WithAsyncMethod_PostWorkflows<WithAsyncMethod_PatchWorkflows<WithAsyncMethod_DeleteWorkflow<WithAsyncMethod_DeleteWorkflows<WithAsyncMethod_PostWorkflowResults<WithAsyncMethod_PostWorkflowResultsSimilarity<WithAsyncMethod_GetKey<WithAsyncMethod_ListKeys<WithAsyncMethod_ListAppKeys<WithAsyncMethod_DeleteKey<WithAsyncMethod_PostKeys<WithAsyncMethod_PatchKeys<WithAsyncMethod_MyScopes<WithAsyncMethod_ListScopes<WithAsyncMethod_GetApp<WithAsyncMethod_ListApps<WithAsyncMethod_DeleteApp<WithAsyncMethod_PostApps<WithAsyncMethod_PatchApps<WithAsyncMethod_PostAppsSearches<WithAsyncMethod_PostValidatePassword<WithAsyncMethod_GetSearch<WithAsyncMethod_ListSearches<WithAsyncMethod_PostSearches<WithAsyncMethod_PostSearchesByID<WithAsyncMethod_PostAnnotationSearchMetrics<WithAsyncMethod_GetAnnotationSearchMetrics<WithAsyncMethod_ListAnnotationSearchMetrics<WithAsyncMethod_DeleteAnnotationSearchMetrics<WithAsyncMethod_DeleteSearch<WithAsyncMethod_ListStatusCodes<WithAsyncMethod_GetStatusCode<WithAsyncMethod_ListCollaborators<WithAsyncMethod_PostCollaborators<WithAsyncMethod_PatchCollaborators<WithAsyncMethod_DeleteCollaborators<WithAsyncMethod_ListCollaborations<WithAsyncMethod_PostAppDuplications<WithAsyncMethod_ListAppDuplications<WithAsyncMethod_GetAppDuplication<WithAsyncMethod_PostTasks<WithAsyncMethod_GetTaskAnnotationsCount<WithAsyncMethod_GetTask<WithAsyncMethod_ListTasks<WithAsyncMethod_PatchTasks<WithAsyncMethod_DeleteTasks<WithAsyncMethod_PostCollectors<WithAsyncMethod_GetCollector<WithAsyncMethod_ListCollectors<WithAsyncMethod_PatchCollectors<WithAsyncMethod_DeleteCollectors<WithAsyncMethod_PostStatValues<WithAsyncMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetConceptCounts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_GetConceptCounts() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response) { return this->GetConceptCounts(context, request, response); }));}
-    void SetMessageAllocatorFor_GetConceptCounts(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_GetConceptCounts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetConceptCounts(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetConceptCounts(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetConcept : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_GetConcept() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::GetConceptRequest* request, ::clarifai::api::SingleConceptResponse* response) { return this->GetConcept(context, request, response); }));}
-    void SetMessageAllocatorFor_GetConcept(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_GetConcept() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetConcept(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetConcept(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_ListConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_ListConcepts() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::ListConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response) { return this->ListConcepts(context, request, response); }));}
-    void SetMessageAllocatorFor_ListConcepts(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_ListConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* ListConcepts(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* ListConcepts(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_PostConceptsSearches : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_PostConceptsSearches() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::PostConceptsSearchesRequest* request, ::clarifai::api::MultiConceptResponse* response) { return this->PostConceptsSearches(context, request, response); }));}
-    void SetMessageAllocatorFor_PostConceptsSearches(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_PostConceptsSearches() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PostConceptsSearches(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PostConceptsSearches(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_PostConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_PostConcepts() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::PostConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response) { return this->PostConcepts(context, request, response); }));}
-    void SetMessageAllocatorFor_PostConcepts(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_PostConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PostConcepts(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PostConcepts(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_PatchConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_PatchConcepts() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::PatchConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response) { return this->PatchConcepts(context, request, response); }));}
-    void SetMessageAllocatorFor_PatchConcepts(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_PatchConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PatchConcepts(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PatchConcepts(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetConceptLanguage : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_GetConceptLanguage() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::GetConceptLanguageRequest* request, ::clarifai::api::SingleConceptLanguageResponse* response) { return this->GetConceptLanguage(context, request, response); }));}
-    void SetMessageAllocatorFor_GetConceptLanguage(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_GetConceptLanguage() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetConceptLanguage(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetConceptLanguage(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_ListConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_ListConceptLanguages() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::ListConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response) { return this->ListConceptLanguages(context, request, response); }));}
-    void SetMessageAllocatorFor_ListConceptLanguages(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_ListConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* ListConceptLanguages(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* ListConceptLanguages(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_PostConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_PostConceptLanguages() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(8,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::PostConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response) { return this->PostConceptLanguages(context, request, response); }));}
-    void SetMessageAllocatorFor_PostConceptLanguages(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_PostConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PostConceptLanguages(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PostConceptLanguages(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithCallbackMethod_PatchConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithCallbackMethod_PatchConceptLanguages() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(9,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::clarifai::api::PatchConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response) { return this->PatchConceptLanguages(context, request, response); }));}
-    void SetMessageAllocatorFor_PatchConceptLanguages(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~ExperimentalWithCallbackMethod_PatchConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PatchConceptLanguages(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PatchConceptLanguages(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
-    #endif
-      { return nullptr; }
-  };
+  typedef WithAsyncMethod_ListConceptRelations<WithAsyncMethod_PostConceptRelations<WithAsyncMethod_DeleteConceptRelations<WithAsyncMethod_GetConceptCounts<WithAsyncMethod_GetConcept<WithAsyncMethod_ListConcepts<WithAsyncMethod_PostConceptsSearches<WithAsyncMethod_PostConcepts<WithAsyncMethod_PatchConcepts<WithAsyncMethod_GetConceptLanguage<WithAsyncMethod_ListConceptLanguages<WithAsyncMethod_PostConceptLanguages<WithAsyncMethod_PatchConceptLanguages<WithAsyncMethod_ListKnowledgeGraphs<WithAsyncMethod_PostKnowledgeGraphs<WithAsyncMethod_PostConceptMappingJobs<WithAsyncMethod_GetAnnotation<WithAsyncMethod_ListAnnotations<WithAsyncMethod_PostAnnotations<WithAsyncMethod_PatchAnnotations<WithAsyncMethod_PatchAnnotationsStatus<WithAsyncMethod_DeleteAnnotation<WithAsyncMethod_DeleteAnnotations<WithAsyncMethod_PostAnnotationsSearches<WithAsyncMethod_GetInputCount<WithAsyncMethod_StreamInputs<WithAsyncMethod_GetInputSamples<WithAsyncMethod_GetInput<WithAsyncMethod_ListInputs<WithAsyncMethod_PostInputs<WithAsyncMethod_PatchInputs<WithAsyncMethod_DeleteInput<WithAsyncMethod_DeleteInputs<WithAsyncMethod_PostInputsSearches<WithAsyncMethod_PostModelOutputs<WithAsyncMethod_GetModelType<WithAsyncMethod_ListModelTypes<WithAsyncMethod_GetModel<WithAsyncMethod_GetModelOutputInfo<WithAsyncMethod_ListModels<WithAsyncMethod_PostModelsSearches<WithAsyncMethod_PostModels<WithAsyncMethod_PatchModels<WithAsyncMethod_DeleteModel<WithAsyncMethod_DeleteModels<WithAsyncMethod_ListModelInputs<WithAsyncMethod_GetModelVersion<WithAsyncMethod_ListModelVersions<WithAsyncMethod_PostModelVersions<WithAsyncMethod_DeleteModelVersion<WithAsyncMethod_GetModelVersionMetrics<WithAsyncMethod_PostModelVersionMetrics<WithAsyncMethod_GetWorkflow<WithAsyncMethod_ListWorkflows<WithAsyncMethod_PostWorkflows<WithAsyncMethod_PatchWorkflows<WithAsyncMethod_DeleteWorkflow<WithAsyncMethod_DeleteWorkflows<WithAsyncMethod_PostWorkflowResults<WithAsyncMethod_PostWorkflowResultsSimilarity<WithAsyncMethod_GetKey<WithAsyncMethod_ListKeys<WithAsyncMethod_ListAppKeys<WithAsyncMethod_DeleteKey<WithAsyncMethod_PostKeys<WithAsyncMethod_PatchKeys<WithAsyncMethod_MyScopes<WithAsyncMethod_ListScopes<WithAsyncMethod_GetApp<WithAsyncMethod_ListApps<WithAsyncMethod_DeleteApp<WithAsyncMethod_PostApps<WithAsyncMethod_PatchApps<WithAsyncMethod_PostAppsSearches<WithAsyncMethod_PostValidatePassword<WithAsyncMethod_GetSearch<WithAsyncMethod_ListSearches<WithAsyncMethod_PostSearches<WithAsyncMethod_PostSearchesByID<WithAsyncMethod_PostAnnotationSearchMetrics<WithAsyncMethod_GetAnnotationSearchMetrics<WithAsyncMethod_ListAnnotationSearchMetrics<WithAsyncMethod_DeleteAnnotationSearchMetrics<WithAsyncMethod_DeleteSearch<WithAsyncMethod_ListStatusCodes<WithAsyncMethod_GetStatusCode<WithAsyncMethod_ListCollaborators<WithAsyncMethod_PostCollaborators<WithAsyncMethod_PatchCollaborators<WithAsyncMethod_DeleteCollaborators<WithAsyncMethod_ListCollaborations<WithAsyncMethod_PostAppDuplications<WithAsyncMethod_ListAppDuplications<WithAsyncMethod_GetAppDuplication<WithAsyncMethod_PostTasks<WithAsyncMethod_GetTaskAnnotationCount<WithAsyncMethod_GetTaskInputCount<WithAsyncMethod_GetTask<WithAsyncMethod_ListTasks<WithAsyncMethod_PatchTasks<WithAsyncMethod_DeleteTasks<WithAsyncMethod_PostCollectors<WithAsyncMethod_GetCollector<WithAsyncMethod_ListCollectors<WithAsyncMethod_PatchCollectors<WithAsyncMethod_DeleteCollectors<WithAsyncMethod_PostStatValues<WithAsyncMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_ListConceptRelations : public BaseClass {
    private:
@@ -8013,7 +7680,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(10,
+        MarkMethodCallback(0,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -8025,9 +7692,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListConceptRelations(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -8060,7 +7727,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(11,
+        MarkMethodCallback(1,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -8072,9 +7739,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostConceptRelations(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -8107,7 +7774,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(12,
+        MarkMethodCallback(2,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteConceptRelationsRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -8119,9 +7786,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteConceptRelations(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteConceptRelationsRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(12);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteConceptRelationsRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -8140,6 +7807,476 @@ class V2 final {
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* DeleteConceptRelations(
       ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::DeleteConceptRelationsRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetConceptCounts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetConceptCounts() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response) { return this->GetConceptCounts(context, request, response); }));}
+    void SetMessageAllocatorFor_GetConceptCounts(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_GetConceptCounts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetConceptCounts(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetConceptCounts(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetConcept : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetConcept() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::GetConceptRequest* request, ::clarifai::api::SingleConceptResponse* response) { return this->GetConcept(context, request, response); }));}
+    void SetMessageAllocatorFor_GetConcept(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_GetConcept() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetConcept(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetConcept(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_ListConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_ListConcepts() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::ListConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response) { return this->ListConcepts(context, request, response); }));}
+    void SetMessageAllocatorFor_ListConcepts(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_ListConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListConcepts(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListConcepts(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_PostConceptsSearches : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_PostConceptsSearches() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::PostConceptsSearchesRequest* request, ::clarifai::api::MultiConceptResponse* response) { return this->PostConceptsSearches(context, request, response); }));}
+    void SetMessageAllocatorFor_PostConceptsSearches(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_PostConceptsSearches() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PostConceptsSearches(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PostConceptsSearches(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_PostConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_PostConcepts() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::PostConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response) { return this->PostConcepts(context, request, response); }));}
+    void SetMessageAllocatorFor_PostConcepts(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_PostConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PostConcepts(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PostConcepts(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_PatchConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_PatchConcepts() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::PatchConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response) { return this->PatchConcepts(context, request, response); }));}
+    void SetMessageAllocatorFor_PatchConcepts(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_PatchConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PatchConcepts(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PatchConcepts(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetConceptLanguage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetConceptLanguage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::GetConceptLanguageRequest* request, ::clarifai::api::SingleConceptLanguageResponse* response) { return this->GetConceptLanguage(context, request, response); }));}
+    void SetMessageAllocatorFor_GetConceptLanguage(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_GetConceptLanguage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetConceptLanguage(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetConceptLanguage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_ListConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_ListConceptLanguages() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::ListConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response) { return this->ListConceptLanguages(context, request, response); }));}
+    void SetMessageAllocatorFor_ListConceptLanguages(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_ListConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListConceptLanguages(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListConceptLanguages(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_PostConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_PostConceptLanguages() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(11,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::PostConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response) { return this->PostConceptLanguages(context, request, response); }));}
+    void SetMessageAllocatorFor_PostConceptLanguages(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(11);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_PostConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PostConceptLanguages(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PostConceptLanguages(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_PatchConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_PatchConceptLanguages() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(12,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::PatchConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response) { return this->PatchConceptLanguages(context, request, response); }));}
+    void SetMessageAllocatorFor_PatchConceptLanguages(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(12);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_PatchConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PatchConceptLanguages(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PatchConceptLanguages(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -8484,38 +8621,38 @@ class V2 final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(20,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::status::BaseResponse>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::PatchAnnotationsStatusResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::status::BaseResponse* response) { return this->PatchAnnotationsStatus(context, request, response); }));}
+                     context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response) { return this->PatchAnnotationsStatus(context, request, response); }));}
     void SetMessageAllocatorFor_PatchAnnotationsStatus(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::status::BaseResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::PatchAnnotationsStatusResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(20);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(20);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::status::BaseResponse>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::PatchAnnotationsStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_PatchAnnotationsStatus() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::PatchAnnotationsStatusResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* PatchAnnotationsStatus(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/)
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::PatchAnnotationsStatusResponse* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* PatchAnnotationsStatus(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/)
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::PatchAnnotationsStatusResponse* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -8755,6 +8892,53 @@ class V2 final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetInputSamples : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetInputSamples() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(26,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetInputSamplesRequest, ::clarifai::api::MultiInputAnnotationResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response) { return this->GetInputSamples(context, request, response); }));}
+    void SetMessageAllocatorFor_GetInputSamples(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetInputSamplesRequest, ::clarifai::api::MultiInputAnnotationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(26);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(26);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetInputSamplesRequest, ::clarifai::api::MultiInputAnnotationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_GetInputSamples() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInputSamples(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetInputSamplesRequest* /*request*/, ::clarifai::api::MultiInputAnnotationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetInputSamples(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetInputSamplesRequest* /*request*/, ::clarifai::api::MultiInputAnnotationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetInputSamples(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetInputSamplesRequest* /*request*/, ::clarifai::api::MultiInputAnnotationResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class ExperimentalWithCallbackMethod_GetInput : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -8765,7 +8949,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(26,
+        MarkMethodCallback(27,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetInputRequest, ::clarifai::api::SingleInputResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -8777,9 +8961,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetInput(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetInputRequest, ::clarifai::api::SingleInputResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(26);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(27);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(26);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(27);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetInputRequest, ::clarifai::api::SingleInputResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -8812,7 +8996,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(27,
+        MarkMethodCallback(28,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListInputsRequest, ::clarifai::api::MultiInputResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -8824,9 +9008,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListInputs(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListInputsRequest, ::clarifai::api::MultiInputResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(27);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(28);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(27);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(28);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListInputsRequest, ::clarifai::api::MultiInputResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -8859,7 +9043,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(28,
+        MarkMethodCallback(29,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostInputsRequest, ::clarifai::api::MultiInputResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -8871,9 +9055,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostInputs(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostInputsRequest, ::clarifai::api::MultiInputResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(28);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(28);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(29);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostInputsRequest, ::clarifai::api::MultiInputResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -8906,7 +9090,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(29,
+        MarkMethodCallback(30,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchInputsRequest, ::clarifai::api::MultiInputResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -8918,9 +9102,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchInputs(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchInputsRequest, ::clarifai::api::MultiInputResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(29);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(30);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchInputsRequest, ::clarifai::api::MultiInputResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -8953,7 +9137,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(30,
+        MarkMethodCallback(31,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteInputRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -8965,9 +9149,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteInput(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteInputRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(30);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(31);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteInputRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9000,7 +9184,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(31,
+        MarkMethodCallback(32,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteInputsRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9012,9 +9196,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteInputs(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteInputsRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(31);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(32);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteInputsRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9047,7 +9231,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(32,
+        MarkMethodCallback(33,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostInputsSearchesRequest, ::clarifai::api::MultiSearchResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9059,9 +9243,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostInputsSearches(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostInputsSearchesRequest, ::clarifai::api::MultiSearchResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(32);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(33);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostInputsSearchesRequest, ::clarifai::api::MultiSearchResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9094,7 +9278,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(33,
+        MarkMethodCallback(34,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelOutputsRequest, ::clarifai::api::MultiOutputResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9106,9 +9290,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostModelOutputs(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostModelOutputsRequest, ::clarifai::api::MultiOutputResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(33);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(34);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelOutputsRequest, ::clarifai::api::MultiOutputResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9141,7 +9325,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(34,
+        MarkMethodCallback(35,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelTypeRequest, ::clarifai::api::SingleModelTypeResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9153,9 +9337,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetModelType(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetModelTypeRequest, ::clarifai::api::SingleModelTypeResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(34);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(35);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelTypeRequest, ::clarifai::api::SingleModelTypeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9188,7 +9372,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(35,
+        MarkMethodCallback(36,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListModelTypesRequest, ::clarifai::api::MultiModelTypeResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9200,9 +9384,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListModelTypes(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListModelTypesRequest, ::clarifai::api::MultiModelTypeResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(35);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(36);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListModelTypesRequest, ::clarifai::api::MultiModelTypeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9235,7 +9419,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(36,
+        MarkMethodCallback(37,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9247,9 +9431,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetModel(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(37);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(36);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(37);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9282,7 +9466,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(37,
+        MarkMethodCallback(38,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9294,9 +9478,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetModelOutputInfo(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(37);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(38);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(37);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(38);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9329,7 +9513,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(38,
+        MarkMethodCallback(39,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListModelsRequest, ::clarifai::api::MultiModelResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9341,9 +9525,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListModels(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListModelsRequest, ::clarifai::api::MultiModelResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(38);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(39);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(38);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(39);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListModelsRequest, ::clarifai::api::MultiModelResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9376,7 +9560,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(39,
+        MarkMethodCallback(40,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelsSearchesRequest, ::clarifai::api::MultiModelResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9388,9 +9572,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostModelsSearches(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostModelsSearchesRequest, ::clarifai::api::MultiModelResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(39);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(39);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(40);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelsSearchesRequest, ::clarifai::api::MultiModelResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9423,7 +9607,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(40,
+        MarkMethodCallback(41,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelsRequest, ::clarifai::api::SingleModelResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9435,9 +9619,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostModels(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostModelsRequest, ::clarifai::api::SingleModelResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(40);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(41);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelsRequest, ::clarifai::api::SingleModelResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9470,7 +9654,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(41,
+        MarkMethodCallback(42,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchModelsRequest, ::clarifai::api::MultiModelResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9482,9 +9666,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchModels(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchModelsRequest, ::clarifai::api::MultiModelResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(42);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(41);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(42);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchModelsRequest, ::clarifai::api::MultiModelResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9517,7 +9701,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(42,
+        MarkMethodCallback(43,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteModelRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9529,9 +9713,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteModel(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteModelRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(42);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(42);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(43);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteModelRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9564,7 +9748,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(43,
+        MarkMethodCallback(44,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteModelsRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9576,9 +9760,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteModels(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteModelsRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(43);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(44);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteModelsRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9611,7 +9795,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(44,
+        MarkMethodCallback(45,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListModelInputsRequest, ::clarifai::api::MultiInputResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9623,9 +9807,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListModelInputs(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListModelInputsRequest, ::clarifai::api::MultiInputResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(44);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(45);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListModelInputsRequest, ::clarifai::api::MultiInputResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9658,7 +9842,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(45,
+        MarkMethodCallback(46,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelVersionRequest, ::clarifai::api::SingleModelVersionResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9670,9 +9854,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetModelVersion(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetModelVersionRequest, ::clarifai::api::SingleModelVersionResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(46);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(45);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(46);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelVersionRequest, ::clarifai::api::SingleModelVersionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9705,7 +9889,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(46,
+        MarkMethodCallback(47,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9717,9 +9901,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListModelVersions(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(46);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(46);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(47);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9752,7 +9936,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(47,
+        MarkMethodCallback(48,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelVersionsRequest, ::clarifai::api::SingleModelResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9764,9 +9948,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostModelVersions(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostModelVersionsRequest, ::clarifai::api::SingleModelResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(48);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(47);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(48);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelVersionsRequest, ::clarifai::api::SingleModelResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9799,7 +9983,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(48,
+        MarkMethodCallback(49,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9811,9 +9995,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteModelVersion(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(48);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(49);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(48);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(49);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9846,7 +10030,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(49,
+        MarkMethodCallback(50,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9858,9 +10042,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetModelVersionMetrics(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(49);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(50);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(49);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(50);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9893,7 +10077,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(50,
+        MarkMethodCallback(51,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9905,9 +10089,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostModelVersionMetrics(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(50);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(51);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(50);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(51);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9940,7 +10124,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(51,
+        MarkMethodCallback(52,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9952,9 +10136,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetWorkflow(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(51);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(52);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(51);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(52);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -9987,7 +10171,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(52,
+        MarkMethodCallback(53,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -9999,9 +10183,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListWorkflows(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(52);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(53);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(52);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(53);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10034,7 +10218,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(53,
+        MarkMethodCallback(54,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10046,9 +10230,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostWorkflows(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(53);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(54);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(53);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(54);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10081,7 +10265,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(54,
+        MarkMethodCallback(55,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10093,9 +10277,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchWorkflows(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(54);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(55);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(54);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(55);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10128,7 +10312,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(55,
+        MarkMethodCallback(56,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10140,9 +10324,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteWorkflow(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(55);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(56);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(55);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(56);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10175,7 +10359,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(56,
+        MarkMethodCallback(57,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10187,9 +10371,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteWorkflows(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(56);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(57);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(56);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(57);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10222,7 +10406,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(57,
+        MarkMethodCallback(58,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10234,9 +10418,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostWorkflowResults(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(57);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(58);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(57);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(58);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10269,7 +10453,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(58,
+        MarkMethodCallback(59,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10281,9 +10465,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostWorkflowResultsSimilarity(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(58);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(59);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(58);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(59);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10316,7 +10500,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(59,
+        MarkMethodCallback(60,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10328,9 +10512,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetKey(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(59);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(60);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(59);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(60);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10363,7 +10547,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(60,
+        MarkMethodCallback(61,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10375,9 +10559,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListKeys(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(60);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(61);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(60);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(61);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10410,7 +10594,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(61,
+        MarkMethodCallback(62,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10422,9 +10606,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListAppKeys(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(61);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(62);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(61);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(62);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10457,7 +10641,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(62,
+        MarkMethodCallback(63,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10469,9 +10653,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteKey(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(62);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(63);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(62);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(63);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10504,7 +10688,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(63,
+        MarkMethodCallback(64,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10516,9 +10700,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostKeys(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(63);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(64);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(63);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(64);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10551,7 +10735,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(64,
+        MarkMethodCallback(65,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10563,9 +10747,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchKeys(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(64);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(65);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(64);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(65);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10598,7 +10782,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(65,
+        MarkMethodCallback(66,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10610,9 +10794,9 @@ class V2 final {
     void SetMessageAllocatorFor_MyScopes(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(65);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(66);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(65);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(66);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10645,7 +10829,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(66,
+        MarkMethodCallback(67,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10657,9 +10841,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListScopes(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(66);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(67);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(66);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(67);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10692,7 +10876,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(67,
+        MarkMethodCallback(68,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10704,9 +10888,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetApp(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(67);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(68);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(67);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(68);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10739,7 +10923,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(68,
+        MarkMethodCallback(69,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10751,9 +10935,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListApps(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(68);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(69);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(68);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(69);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10786,7 +10970,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(69,
+        MarkMethodCallback(70,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10798,9 +10982,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteApp(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(69);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(70);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(69);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(70);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10833,7 +11017,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(70,
+        MarkMethodCallback(71,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10845,9 +11029,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostApps(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(70);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(71);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(70);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(71);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10880,7 +11064,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(71,
+        MarkMethodCallback(72,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10892,9 +11076,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchApps(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(71);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(72);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(71);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(72);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10927,7 +11111,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(72,
+        MarkMethodCallback(73,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10939,9 +11123,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostAppsSearches(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(72);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(73);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(72);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(73);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -10974,7 +11158,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(73,
+        MarkMethodCallback(74,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -10986,9 +11170,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostValidatePassword(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(73);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(74);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(73);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(74);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11021,7 +11205,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(74,
+        MarkMethodCallback(75,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11033,9 +11217,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetSearch(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(74);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(75);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(74);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(75);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11068,7 +11252,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(75,
+        MarkMethodCallback(76,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11080,9 +11264,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListSearches(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(75);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(76);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(75);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(76);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11115,7 +11299,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(76,
+        MarkMethodCallback(77,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11127,9 +11311,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostSearches(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(76);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(77);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(76);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(77);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11162,7 +11346,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(77,
+        MarkMethodCallback(78,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11174,9 +11358,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostSearchesByID(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(77);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(78);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(77);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(78);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11209,7 +11393,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(78,
+        MarkMethodCallback(79,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11221,9 +11405,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostAnnotationSearchMetrics(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(78);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(79);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(78);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(79);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11256,7 +11440,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(79,
+        MarkMethodCallback(80,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11268,9 +11452,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetAnnotationSearchMetrics(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(79);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(80);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(79);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(80);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11303,7 +11487,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(80,
+        MarkMethodCallback(81,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11315,9 +11499,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListAnnotationSearchMetrics(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(80);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(81);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(80);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(81);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11350,7 +11534,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(81,
+        MarkMethodCallback(82,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11362,9 +11546,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteAnnotationSearchMetrics(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(81);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(82);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(81);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(82);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11397,7 +11581,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(82,
+        MarkMethodCallback(83,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11409,9 +11593,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteSearch(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(82);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(83);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(82);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(83);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11444,7 +11628,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(83,
+        MarkMethodCallback(84,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11456,9 +11640,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListStatusCodes(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(83);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(84);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(83);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(84);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11491,7 +11675,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(84,
+        MarkMethodCallback(85,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11503,9 +11687,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetStatusCode(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(84);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(85);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(84);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(85);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11538,7 +11722,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(85,
+        MarkMethodCallback(86,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11550,9 +11734,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListCollaborators(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(85);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(86);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(85);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(86);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11585,7 +11769,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(86,
+        MarkMethodCallback(87,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11597,9 +11781,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostCollaborators(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(86);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(87);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(86);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(87);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11632,7 +11816,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(87,
+        MarkMethodCallback(88,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11644,9 +11828,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchCollaborators(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(87);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(88);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(87);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(88);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11679,7 +11863,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(88,
+        MarkMethodCallback(89,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11691,9 +11875,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteCollaborators(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(88);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(89);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(88);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(89);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11726,7 +11910,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(89,
+        MarkMethodCallback(90,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11738,9 +11922,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListCollaborations(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(89);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(90);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(89);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(90);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11773,7 +11957,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(90,
+        MarkMethodCallback(91,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11785,9 +11969,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostAppDuplications(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(90);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(91);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(90);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(91);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11820,7 +12004,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(91,
+        MarkMethodCallback(92,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11832,9 +12016,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListAppDuplications(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(91);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(92);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(91);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(92);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11867,7 +12051,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(92,
+        MarkMethodCallback(93,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11879,9 +12063,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetAppDuplication(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(92);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(93);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(92);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(93);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11914,7 +12098,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(93,
+        MarkMethodCallback(94,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -11926,9 +12110,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostTasks(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(93);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(94);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(93);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(94);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -11951,49 +12135,96 @@ class V2 final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetTaskAnnotationsCount : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetTaskAnnotationCount : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetTaskAnnotationsCount() {
+    ExperimentalWithCallbackMethod_GetTaskAnnotationCount() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(94,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetTaskAnnotationsCountRequest, ::clarifai::api::SingleTaskAnnotationsCountResponse>(
+        MarkMethodCallback(95,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::clarifai::api::GetTaskAnnotationsCountRequest* request, ::clarifai::api::SingleTaskAnnotationsCountResponse* response) { return this->GetTaskAnnotationsCount(context, request, response); }));}
-    void SetMessageAllocatorFor_GetTaskAnnotationsCount(
-        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetTaskAnnotationsCountRequest, ::clarifai::api::SingleTaskAnnotationsCountResponse>* allocator) {
+                     context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response) { return this->GetTaskAnnotationCount(context, request, response); }));}
+    void SetMessageAllocatorFor_GetTaskAnnotationCount(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(94);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(95);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(94);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(95);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetTaskAnnotationsCountRequest, ::clarifai::api::SingleTaskAnnotationsCountResponse>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetTaskAnnotationsCount() override {
+    ~ExperimentalWithCallbackMethod_GetTaskAnnotationCount() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTaskAnnotationsCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskAnnotationsCountRequest* /*request*/, ::clarifai::api::SingleTaskAnnotationsCountResponse* /*response*/) override {
+    ::grpc::Status GetTaskAnnotationCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetTaskAnnotationsCount(
-      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetTaskAnnotationsCountRequest* /*request*/, ::clarifai::api::SingleTaskAnnotationsCountResponse* /*response*/)
+    virtual ::grpc::ServerUnaryReactor* GetTaskAnnotationCount(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetTaskAnnotationsCount(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetTaskAnnotationsCountRequest* /*request*/, ::clarifai::api::SingleTaskAnnotationsCountResponse* /*response*/)
+    virtual ::grpc::experimental::ServerUnaryReactor* GetTaskAnnotationCount(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetTaskInputCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetTaskInputCount() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(96,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response) { return this->GetTaskInputCount(context, request, response); }));}
+    void SetMessageAllocatorFor_GetTaskInputCount(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(96);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(96);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_GetTaskInputCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTaskInputCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetTaskInputCount(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetTaskInputCount(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -12008,7 +12239,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(95,
+        MarkMethodCallback(97,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12020,9 +12251,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetTask(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(95);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(97);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(95);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(97);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12055,7 +12286,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(96,
+        MarkMethodCallback(98,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12067,9 +12298,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListTasks(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(96);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(98);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(96);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(98);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12102,7 +12333,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(97,
+        MarkMethodCallback(99,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12114,9 +12345,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchTasks(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(97);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(99);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(97);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(99);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12149,7 +12380,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(98,
+        MarkMethodCallback(100,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12161,9 +12392,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteTasks(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(98);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(100);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(98);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(100);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12196,7 +12427,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(99,
+        MarkMethodCallback(101,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12208,9 +12439,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostCollectors(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(99);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(101);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(99);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(101);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12243,7 +12474,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(100,
+        MarkMethodCallback(102,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12255,9 +12486,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetCollector(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(100);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(102);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(100);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(102);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12290,7 +12521,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(101,
+        MarkMethodCallback(103,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12302,9 +12533,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListCollectors(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(101);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(103);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(101);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(103);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12337,7 +12568,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(102,
+        MarkMethodCallback(104,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12349,9 +12580,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchCollectors(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(102);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(104);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(102);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(104);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12384,7 +12615,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(103,
+        MarkMethodCallback(105,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12396,9 +12627,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteCollectors(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(103);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(105);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(103);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(105);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12431,7 +12662,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(104,
+        MarkMethodCallback(106,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12443,9 +12674,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostStatValues(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(104);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(106);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(104);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(106);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12478,7 +12709,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(105,
+        MarkMethodCallback(107,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -12490,9 +12721,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostStatValuesAggregate(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(105);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(107);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(105);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(107);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -12515,187 +12746,17 @@ class V2 final {
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetConceptCounts<ExperimentalWithCallbackMethod_GetConcept<ExperimentalWithCallbackMethod_ListConcepts<ExperimentalWithCallbackMethod_PostConceptsSearches<ExperimentalWithCallbackMethod_PostConcepts<ExperimentalWithCallbackMethod_PatchConcepts<ExperimentalWithCallbackMethod_GetConceptLanguage<ExperimentalWithCallbackMethod_ListConceptLanguages<ExperimentalWithCallbackMethod_PostConceptLanguages<ExperimentalWithCallbackMethod_PatchConceptLanguages<ExperimentalWithCallbackMethod_ListConceptRelations<ExperimentalWithCallbackMethod_PostConceptRelations<ExperimentalWithCallbackMethod_DeleteConceptRelations<ExperimentalWithCallbackMethod_ListKnowledgeGraphs<ExperimentalWithCallbackMethod_PostKnowledgeGraphs<ExperimentalWithCallbackMethod_PostConceptMappingJobs<ExperimentalWithCallbackMethod_GetAnnotation<ExperimentalWithCallbackMethod_ListAnnotations<ExperimentalWithCallbackMethod_PostAnnotations<ExperimentalWithCallbackMethod_PatchAnnotations<ExperimentalWithCallbackMethod_PatchAnnotationsStatus<ExperimentalWithCallbackMethod_DeleteAnnotation<ExperimentalWithCallbackMethod_DeleteAnnotations<ExperimentalWithCallbackMethod_PostAnnotationsSearches<ExperimentalWithCallbackMethod_GetInputCount<ExperimentalWithCallbackMethod_StreamInputs<ExperimentalWithCallbackMethod_GetInput<ExperimentalWithCallbackMethod_ListInputs<ExperimentalWithCallbackMethod_PostInputs<ExperimentalWithCallbackMethod_PatchInputs<ExperimentalWithCallbackMethod_DeleteInput<ExperimentalWithCallbackMethod_DeleteInputs<ExperimentalWithCallbackMethod_PostInputsSearches<ExperimentalWithCallbackMethod_PostModelOutputs<ExperimentalWithCallbackMethod_GetModelType<ExperimentalWithCallbackMethod_ListModelTypes<ExperimentalWithCallbackMethod_GetModel<ExperimentalWithCallbackMethod_GetModelOutputInfo<ExperimentalWithCallbackMethod_ListModels<ExperimentalWithCallbackMethod_PostModelsSearches<ExperimentalWithCallbackMethod_PostModels<ExperimentalWithCallbackMethod_PatchModels<ExperimentalWithCallbackMethod_DeleteModel<ExperimentalWithCallbackMethod_DeleteModels<ExperimentalWithCallbackMethod_ListModelInputs<ExperimentalWithCallbackMethod_GetModelVersion<ExperimentalWithCallbackMethod_ListModelVersions<ExperimentalWithCallbackMethod_PostModelVersions<ExperimentalWithCallbackMethod_DeleteModelVersion<ExperimentalWithCallbackMethod_GetModelVersionMetrics<ExperimentalWithCallbackMethod_PostModelVersionMetrics<ExperimentalWithCallbackMethod_GetWorkflow<ExperimentalWithCallbackMethod_ListWorkflows<ExperimentalWithCallbackMethod_PostWorkflows<ExperimentalWithCallbackMethod_PatchWorkflows<ExperimentalWithCallbackMethod_DeleteWorkflow<ExperimentalWithCallbackMethod_DeleteWorkflows<ExperimentalWithCallbackMethod_PostWorkflowResults<ExperimentalWithCallbackMethod_PostWorkflowResultsSimilarity<ExperimentalWithCallbackMethod_GetKey<ExperimentalWithCallbackMethod_ListKeys<ExperimentalWithCallbackMethod_ListAppKeys<ExperimentalWithCallbackMethod_DeleteKey<ExperimentalWithCallbackMethod_PostKeys<ExperimentalWithCallbackMethod_PatchKeys<ExperimentalWithCallbackMethod_MyScopes<ExperimentalWithCallbackMethod_ListScopes<ExperimentalWithCallbackMethod_GetApp<ExperimentalWithCallbackMethod_ListApps<ExperimentalWithCallbackMethod_DeleteApp<ExperimentalWithCallbackMethod_PostApps<ExperimentalWithCallbackMethod_PatchApps<ExperimentalWithCallbackMethod_PostAppsSearches<ExperimentalWithCallbackMethod_PostValidatePassword<ExperimentalWithCallbackMethod_GetSearch<ExperimentalWithCallbackMethod_ListSearches<ExperimentalWithCallbackMethod_PostSearches<ExperimentalWithCallbackMethod_PostSearchesByID<ExperimentalWithCallbackMethod_PostAnnotationSearchMetrics<ExperimentalWithCallbackMethod_GetAnnotationSearchMetrics<ExperimentalWithCallbackMethod_ListAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteSearch<ExperimentalWithCallbackMethod_ListStatusCodes<ExperimentalWithCallbackMethod_GetStatusCode<ExperimentalWithCallbackMethod_ListCollaborators<ExperimentalWithCallbackMethod_PostCollaborators<ExperimentalWithCallbackMethod_PatchCollaborators<ExperimentalWithCallbackMethod_DeleteCollaborators<ExperimentalWithCallbackMethod_ListCollaborations<ExperimentalWithCallbackMethod_PostAppDuplications<ExperimentalWithCallbackMethod_ListAppDuplications<ExperimentalWithCallbackMethod_GetAppDuplication<ExperimentalWithCallbackMethod_PostTasks<ExperimentalWithCallbackMethod_GetTaskAnnotationsCount<ExperimentalWithCallbackMethod_GetTask<ExperimentalWithCallbackMethod_ListTasks<ExperimentalWithCallbackMethod_PatchTasks<ExperimentalWithCallbackMethod_DeleteTasks<ExperimentalWithCallbackMethod_PostCollectors<ExperimentalWithCallbackMethod_GetCollector<ExperimentalWithCallbackMethod_ListCollectors<ExperimentalWithCallbackMethod_PatchCollectors<ExperimentalWithCallbackMethod_DeleteCollectors<ExperimentalWithCallbackMethod_PostStatValues<ExperimentalWithCallbackMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_ListConceptRelations<ExperimentalWithCallbackMethod_PostConceptRelations<ExperimentalWithCallbackMethod_DeleteConceptRelations<ExperimentalWithCallbackMethod_GetConceptCounts<ExperimentalWithCallbackMethod_GetConcept<ExperimentalWithCallbackMethod_ListConcepts<ExperimentalWithCallbackMethod_PostConceptsSearches<ExperimentalWithCallbackMethod_PostConcepts<ExperimentalWithCallbackMethod_PatchConcepts<ExperimentalWithCallbackMethod_GetConceptLanguage<ExperimentalWithCallbackMethod_ListConceptLanguages<ExperimentalWithCallbackMethod_PostConceptLanguages<ExperimentalWithCallbackMethod_PatchConceptLanguages<ExperimentalWithCallbackMethod_ListKnowledgeGraphs<ExperimentalWithCallbackMethod_PostKnowledgeGraphs<ExperimentalWithCallbackMethod_PostConceptMappingJobs<ExperimentalWithCallbackMethod_GetAnnotation<ExperimentalWithCallbackMethod_ListAnnotations<ExperimentalWithCallbackMethod_PostAnnotations<ExperimentalWithCallbackMethod_PatchAnnotations<ExperimentalWithCallbackMethod_PatchAnnotationsStatus<ExperimentalWithCallbackMethod_DeleteAnnotation<ExperimentalWithCallbackMethod_DeleteAnnotations<ExperimentalWithCallbackMethod_PostAnnotationsSearches<ExperimentalWithCallbackMethod_GetInputCount<ExperimentalWithCallbackMethod_StreamInputs<ExperimentalWithCallbackMethod_GetInputSamples<ExperimentalWithCallbackMethod_GetInput<ExperimentalWithCallbackMethod_ListInputs<ExperimentalWithCallbackMethod_PostInputs<ExperimentalWithCallbackMethod_PatchInputs<ExperimentalWithCallbackMethod_DeleteInput<ExperimentalWithCallbackMethod_DeleteInputs<ExperimentalWithCallbackMethod_PostInputsSearches<ExperimentalWithCallbackMethod_PostModelOutputs<ExperimentalWithCallbackMethod_GetModelType<ExperimentalWithCallbackMethod_ListModelTypes<ExperimentalWithCallbackMethod_GetModel<ExperimentalWithCallbackMethod_GetModelOutputInfo<ExperimentalWithCallbackMethod_ListModels<ExperimentalWithCallbackMethod_PostModelsSearches<ExperimentalWithCallbackMethod_PostModels<ExperimentalWithCallbackMethod_PatchModels<ExperimentalWithCallbackMethod_DeleteModel<ExperimentalWithCallbackMethod_DeleteModels<ExperimentalWithCallbackMethod_ListModelInputs<ExperimentalWithCallbackMethod_GetModelVersion<ExperimentalWithCallbackMethod_ListModelVersions<ExperimentalWithCallbackMethod_PostModelVersions<ExperimentalWithCallbackMethod_DeleteModelVersion<ExperimentalWithCallbackMethod_GetModelVersionMetrics<ExperimentalWithCallbackMethod_PostModelVersionMetrics<ExperimentalWithCallbackMethod_GetWorkflow<ExperimentalWithCallbackMethod_ListWorkflows<ExperimentalWithCallbackMethod_PostWorkflows<ExperimentalWithCallbackMethod_PatchWorkflows<ExperimentalWithCallbackMethod_DeleteWorkflow<ExperimentalWithCallbackMethod_DeleteWorkflows<ExperimentalWithCallbackMethod_PostWorkflowResults<ExperimentalWithCallbackMethod_PostWorkflowResultsSimilarity<ExperimentalWithCallbackMethod_GetKey<ExperimentalWithCallbackMethod_ListKeys<ExperimentalWithCallbackMethod_ListAppKeys<ExperimentalWithCallbackMethod_DeleteKey<ExperimentalWithCallbackMethod_PostKeys<ExperimentalWithCallbackMethod_PatchKeys<ExperimentalWithCallbackMethod_MyScopes<ExperimentalWithCallbackMethod_ListScopes<ExperimentalWithCallbackMethod_GetApp<ExperimentalWithCallbackMethod_ListApps<ExperimentalWithCallbackMethod_DeleteApp<ExperimentalWithCallbackMethod_PostApps<ExperimentalWithCallbackMethod_PatchApps<ExperimentalWithCallbackMethod_PostAppsSearches<ExperimentalWithCallbackMethod_PostValidatePassword<ExperimentalWithCallbackMethod_GetSearch<ExperimentalWithCallbackMethod_ListSearches<ExperimentalWithCallbackMethod_PostSearches<ExperimentalWithCallbackMethod_PostSearchesByID<ExperimentalWithCallbackMethod_PostAnnotationSearchMetrics<ExperimentalWithCallbackMethod_GetAnnotationSearchMetrics<ExperimentalWithCallbackMethod_ListAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteSearch<ExperimentalWithCallbackMethod_ListStatusCodes<ExperimentalWithCallbackMethod_GetStatusCode<ExperimentalWithCallbackMethod_ListCollaborators<ExperimentalWithCallbackMethod_PostCollaborators<ExperimentalWithCallbackMethod_PatchCollaborators<ExperimentalWithCallbackMethod_DeleteCollaborators<ExperimentalWithCallbackMethod_ListCollaborations<ExperimentalWithCallbackMethod_PostAppDuplications<ExperimentalWithCallbackMethod_ListAppDuplications<ExperimentalWithCallbackMethod_GetAppDuplication<ExperimentalWithCallbackMethod_PostTasks<ExperimentalWithCallbackMethod_GetTaskAnnotationCount<ExperimentalWithCallbackMethod_GetTaskInputCount<ExperimentalWithCallbackMethod_GetTask<ExperimentalWithCallbackMethod_ListTasks<ExperimentalWithCallbackMethod_PatchTasks<ExperimentalWithCallbackMethod_DeleteTasks<ExperimentalWithCallbackMethod_PostCollectors<ExperimentalWithCallbackMethod_GetCollector<ExperimentalWithCallbackMethod_ListCollectors<ExperimentalWithCallbackMethod_PatchCollectors<ExperimentalWithCallbackMethod_DeleteCollectors<ExperimentalWithCallbackMethod_PostStatValues<ExperimentalWithCallbackMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_GetConceptCounts<ExperimentalWithCallbackMethod_GetConcept<ExperimentalWithCallbackMethod_ListConcepts<ExperimentalWithCallbackMethod_PostConceptsSearches<ExperimentalWithCallbackMethod_PostConcepts<ExperimentalWithCallbackMethod_PatchConcepts<ExperimentalWithCallbackMethod_GetConceptLanguage<ExperimentalWithCallbackMethod_ListConceptLanguages<ExperimentalWithCallbackMethod_PostConceptLanguages<ExperimentalWithCallbackMethod_PatchConceptLanguages<ExperimentalWithCallbackMethod_ListConceptRelations<ExperimentalWithCallbackMethod_PostConceptRelations<ExperimentalWithCallbackMethod_DeleteConceptRelations<ExperimentalWithCallbackMethod_ListKnowledgeGraphs<ExperimentalWithCallbackMethod_PostKnowledgeGraphs<ExperimentalWithCallbackMethod_PostConceptMappingJobs<ExperimentalWithCallbackMethod_GetAnnotation<ExperimentalWithCallbackMethod_ListAnnotations<ExperimentalWithCallbackMethod_PostAnnotations<ExperimentalWithCallbackMethod_PatchAnnotations<ExperimentalWithCallbackMethod_PatchAnnotationsStatus<ExperimentalWithCallbackMethod_DeleteAnnotation<ExperimentalWithCallbackMethod_DeleteAnnotations<ExperimentalWithCallbackMethod_PostAnnotationsSearches<ExperimentalWithCallbackMethod_GetInputCount<ExperimentalWithCallbackMethod_StreamInputs<ExperimentalWithCallbackMethod_GetInput<ExperimentalWithCallbackMethod_ListInputs<ExperimentalWithCallbackMethod_PostInputs<ExperimentalWithCallbackMethod_PatchInputs<ExperimentalWithCallbackMethod_DeleteInput<ExperimentalWithCallbackMethod_DeleteInputs<ExperimentalWithCallbackMethod_PostInputsSearches<ExperimentalWithCallbackMethod_PostModelOutputs<ExperimentalWithCallbackMethod_GetModelType<ExperimentalWithCallbackMethod_ListModelTypes<ExperimentalWithCallbackMethod_GetModel<ExperimentalWithCallbackMethod_GetModelOutputInfo<ExperimentalWithCallbackMethod_ListModels<ExperimentalWithCallbackMethod_PostModelsSearches<ExperimentalWithCallbackMethod_PostModels<ExperimentalWithCallbackMethod_PatchModels<ExperimentalWithCallbackMethod_DeleteModel<ExperimentalWithCallbackMethod_DeleteModels<ExperimentalWithCallbackMethod_ListModelInputs<ExperimentalWithCallbackMethod_GetModelVersion<ExperimentalWithCallbackMethod_ListModelVersions<ExperimentalWithCallbackMethod_PostModelVersions<ExperimentalWithCallbackMethod_DeleteModelVersion<ExperimentalWithCallbackMethod_GetModelVersionMetrics<ExperimentalWithCallbackMethod_PostModelVersionMetrics<ExperimentalWithCallbackMethod_GetWorkflow<ExperimentalWithCallbackMethod_ListWorkflows<ExperimentalWithCallbackMethod_PostWorkflows<ExperimentalWithCallbackMethod_PatchWorkflows<ExperimentalWithCallbackMethod_DeleteWorkflow<ExperimentalWithCallbackMethod_DeleteWorkflows<ExperimentalWithCallbackMethod_PostWorkflowResults<ExperimentalWithCallbackMethod_PostWorkflowResultsSimilarity<ExperimentalWithCallbackMethod_GetKey<ExperimentalWithCallbackMethod_ListKeys<ExperimentalWithCallbackMethod_ListAppKeys<ExperimentalWithCallbackMethod_DeleteKey<ExperimentalWithCallbackMethod_PostKeys<ExperimentalWithCallbackMethod_PatchKeys<ExperimentalWithCallbackMethod_MyScopes<ExperimentalWithCallbackMethod_ListScopes<ExperimentalWithCallbackMethod_GetApp<ExperimentalWithCallbackMethod_ListApps<ExperimentalWithCallbackMethod_DeleteApp<ExperimentalWithCallbackMethod_PostApps<ExperimentalWithCallbackMethod_PatchApps<ExperimentalWithCallbackMethod_PostAppsSearches<ExperimentalWithCallbackMethod_PostValidatePassword<ExperimentalWithCallbackMethod_GetSearch<ExperimentalWithCallbackMethod_ListSearches<ExperimentalWithCallbackMethod_PostSearches<ExperimentalWithCallbackMethod_PostSearchesByID<ExperimentalWithCallbackMethod_PostAnnotationSearchMetrics<ExperimentalWithCallbackMethod_GetAnnotationSearchMetrics<ExperimentalWithCallbackMethod_ListAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteSearch<ExperimentalWithCallbackMethod_ListStatusCodes<ExperimentalWithCallbackMethod_GetStatusCode<ExperimentalWithCallbackMethod_ListCollaborators<ExperimentalWithCallbackMethod_PostCollaborators<ExperimentalWithCallbackMethod_PatchCollaborators<ExperimentalWithCallbackMethod_DeleteCollaborators<ExperimentalWithCallbackMethod_ListCollaborations<ExperimentalWithCallbackMethod_PostAppDuplications<ExperimentalWithCallbackMethod_ListAppDuplications<ExperimentalWithCallbackMethod_GetAppDuplication<ExperimentalWithCallbackMethod_PostTasks<ExperimentalWithCallbackMethod_GetTaskAnnotationsCount<ExperimentalWithCallbackMethod_GetTask<ExperimentalWithCallbackMethod_ListTasks<ExperimentalWithCallbackMethod_PatchTasks<ExperimentalWithCallbackMethod_DeleteTasks<ExperimentalWithCallbackMethod_PostCollectors<ExperimentalWithCallbackMethod_GetCollector<ExperimentalWithCallbackMethod_ListCollectors<ExperimentalWithCallbackMethod_PatchCollectors<ExperimentalWithCallbackMethod_DeleteCollectors<ExperimentalWithCallbackMethod_PostStatValues<ExperimentalWithCallbackMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
-  template <class BaseClass>
-  class WithGenericMethod_GetConceptCounts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetConceptCounts() {
-      ::grpc::Service::MarkMethodGeneric(0);
-    }
-    ~WithGenericMethod_GetConceptCounts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetConcept : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetConcept() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_GetConcept() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_ListConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_ListConcepts() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_ListConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_PostConceptsSearches : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_PostConceptsSearches() {
-      ::grpc::Service::MarkMethodGeneric(3);
-    }
-    ~WithGenericMethod_PostConceptsSearches() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_PostConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_PostConcepts() {
-      ::grpc::Service::MarkMethodGeneric(4);
-    }
-    ~WithGenericMethod_PostConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_PatchConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_PatchConcepts() {
-      ::grpc::Service::MarkMethodGeneric(5);
-    }
-    ~WithGenericMethod_PatchConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetConceptLanguage : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetConceptLanguage() {
-      ::grpc::Service::MarkMethodGeneric(6);
-    }
-    ~WithGenericMethod_GetConceptLanguage() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_ListConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_ListConceptLanguages() {
-      ::grpc::Service::MarkMethodGeneric(7);
-    }
-    ~WithGenericMethod_ListConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_PostConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_PostConceptLanguages() {
-      ::grpc::Service::MarkMethodGeneric(8);
-    }
-    ~WithGenericMethod_PostConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_PatchConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_PatchConceptLanguages() {
-      ::grpc::Service::MarkMethodGeneric(9);
-    }
-    ~WithGenericMethod_PatchConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
+  typedef ExperimentalWithCallbackMethod_ListConceptRelations<ExperimentalWithCallbackMethod_PostConceptRelations<ExperimentalWithCallbackMethod_DeleteConceptRelations<ExperimentalWithCallbackMethod_GetConceptCounts<ExperimentalWithCallbackMethod_GetConcept<ExperimentalWithCallbackMethod_ListConcepts<ExperimentalWithCallbackMethod_PostConceptsSearches<ExperimentalWithCallbackMethod_PostConcepts<ExperimentalWithCallbackMethod_PatchConcepts<ExperimentalWithCallbackMethod_GetConceptLanguage<ExperimentalWithCallbackMethod_ListConceptLanguages<ExperimentalWithCallbackMethod_PostConceptLanguages<ExperimentalWithCallbackMethod_PatchConceptLanguages<ExperimentalWithCallbackMethod_ListKnowledgeGraphs<ExperimentalWithCallbackMethod_PostKnowledgeGraphs<ExperimentalWithCallbackMethod_PostConceptMappingJobs<ExperimentalWithCallbackMethod_GetAnnotation<ExperimentalWithCallbackMethod_ListAnnotations<ExperimentalWithCallbackMethod_PostAnnotations<ExperimentalWithCallbackMethod_PatchAnnotations<ExperimentalWithCallbackMethod_PatchAnnotationsStatus<ExperimentalWithCallbackMethod_DeleteAnnotation<ExperimentalWithCallbackMethod_DeleteAnnotations<ExperimentalWithCallbackMethod_PostAnnotationsSearches<ExperimentalWithCallbackMethod_GetInputCount<ExperimentalWithCallbackMethod_StreamInputs<ExperimentalWithCallbackMethod_GetInputSamples<ExperimentalWithCallbackMethod_GetInput<ExperimentalWithCallbackMethod_ListInputs<ExperimentalWithCallbackMethod_PostInputs<ExperimentalWithCallbackMethod_PatchInputs<ExperimentalWithCallbackMethod_DeleteInput<ExperimentalWithCallbackMethod_DeleteInputs<ExperimentalWithCallbackMethod_PostInputsSearches<ExperimentalWithCallbackMethod_PostModelOutputs<ExperimentalWithCallbackMethod_GetModelType<ExperimentalWithCallbackMethod_ListModelTypes<ExperimentalWithCallbackMethod_GetModel<ExperimentalWithCallbackMethod_GetModelOutputInfo<ExperimentalWithCallbackMethod_ListModels<ExperimentalWithCallbackMethod_PostModelsSearches<ExperimentalWithCallbackMethod_PostModels<ExperimentalWithCallbackMethod_PatchModels<ExperimentalWithCallbackMethod_DeleteModel<ExperimentalWithCallbackMethod_DeleteModels<ExperimentalWithCallbackMethod_ListModelInputs<ExperimentalWithCallbackMethod_GetModelVersion<ExperimentalWithCallbackMethod_ListModelVersions<ExperimentalWithCallbackMethod_PostModelVersions<ExperimentalWithCallbackMethod_DeleteModelVersion<ExperimentalWithCallbackMethod_GetModelVersionMetrics<ExperimentalWithCallbackMethod_PostModelVersionMetrics<ExperimentalWithCallbackMethod_GetWorkflow<ExperimentalWithCallbackMethod_ListWorkflows<ExperimentalWithCallbackMethod_PostWorkflows<ExperimentalWithCallbackMethod_PatchWorkflows<ExperimentalWithCallbackMethod_DeleteWorkflow<ExperimentalWithCallbackMethod_DeleteWorkflows<ExperimentalWithCallbackMethod_PostWorkflowResults<ExperimentalWithCallbackMethod_PostWorkflowResultsSimilarity<ExperimentalWithCallbackMethod_GetKey<ExperimentalWithCallbackMethod_ListKeys<ExperimentalWithCallbackMethod_ListAppKeys<ExperimentalWithCallbackMethod_DeleteKey<ExperimentalWithCallbackMethod_PostKeys<ExperimentalWithCallbackMethod_PatchKeys<ExperimentalWithCallbackMethod_MyScopes<ExperimentalWithCallbackMethod_ListScopes<ExperimentalWithCallbackMethod_GetApp<ExperimentalWithCallbackMethod_ListApps<ExperimentalWithCallbackMethod_DeleteApp<ExperimentalWithCallbackMethod_PostApps<ExperimentalWithCallbackMethod_PatchApps<ExperimentalWithCallbackMethod_PostAppsSearches<ExperimentalWithCallbackMethod_PostValidatePassword<ExperimentalWithCallbackMethod_GetSearch<ExperimentalWithCallbackMethod_ListSearches<ExperimentalWithCallbackMethod_PostSearches<ExperimentalWithCallbackMethod_PostSearchesByID<ExperimentalWithCallbackMethod_PostAnnotationSearchMetrics<ExperimentalWithCallbackMethod_GetAnnotationSearchMetrics<ExperimentalWithCallbackMethod_ListAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteSearch<ExperimentalWithCallbackMethod_ListStatusCodes<ExperimentalWithCallbackMethod_GetStatusCode<ExperimentalWithCallbackMethod_ListCollaborators<ExperimentalWithCallbackMethod_PostCollaborators<ExperimentalWithCallbackMethod_PatchCollaborators<ExperimentalWithCallbackMethod_DeleteCollaborators<ExperimentalWithCallbackMethod_ListCollaborations<ExperimentalWithCallbackMethod_PostAppDuplications<ExperimentalWithCallbackMethod_ListAppDuplications<ExperimentalWithCallbackMethod_GetAppDuplication<ExperimentalWithCallbackMethod_PostTasks<ExperimentalWithCallbackMethod_GetTaskAnnotationCount<ExperimentalWithCallbackMethod_GetTaskInputCount<ExperimentalWithCallbackMethod_GetTask<ExperimentalWithCallbackMethod_ListTasks<ExperimentalWithCallbackMethod_PatchTasks<ExperimentalWithCallbackMethod_DeleteTasks<ExperimentalWithCallbackMethod_PostCollectors<ExperimentalWithCallbackMethod_GetCollector<ExperimentalWithCallbackMethod_ListCollectors<ExperimentalWithCallbackMethod_PatchCollectors<ExperimentalWithCallbackMethod_DeleteCollectors<ExperimentalWithCallbackMethod_PostStatValues<ExperimentalWithCallbackMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_ListConceptRelations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListConceptRelations() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(0);
     }
     ~WithGenericMethod_ListConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12712,7 +12773,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostConceptRelations() {
-      ::grpc::Service::MarkMethodGeneric(11);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_PostConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12729,13 +12790,183 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteConceptRelations() {
-      ::grpc::Service::MarkMethodGeneric(12);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_DeleteConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status DeleteConceptRelations(::grpc::ServerContext* /*context*/, const ::clarifai::api::DeleteConceptRelationsRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetConceptCounts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetConceptCounts() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_GetConceptCounts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetConcept : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetConcept() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_GetConcept() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListConcepts() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_ListConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_PostConceptsSearches : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PostConceptsSearches() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_PostConceptsSearches() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_PostConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PostConcepts() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_PostConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_PatchConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PatchConcepts() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_PatchConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetConceptLanguage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetConceptLanguage() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_GetConceptLanguage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListConceptLanguages() {
+      ::grpc::Service::MarkMethodGeneric(10);
+    }
+    ~WithGenericMethod_ListConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_PostConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PostConceptLanguages() {
+      ::grpc::Service::MarkMethodGeneric(11);
+    }
+    ~WithGenericMethod_PostConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_PatchConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PatchConceptLanguages() {
+      ::grpc::Service::MarkMethodGeneric(12);
+    }
+    ~WithGenericMethod_PatchConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -12871,7 +13102,7 @@ class V2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::PatchAnnotationsStatusResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -12962,12 +13193,29 @@ class V2 final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetInputSamples : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetInputSamples() {
+      ::grpc::Service::MarkMethodGeneric(26);
+    }
+    ~WithGenericMethod_GetInputSamples() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInputSamples(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetInputSamplesRequest* /*request*/, ::clarifai::api::MultiInputAnnotationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetInput : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetInput() {
-      ::grpc::Service::MarkMethodGeneric(26);
+      ::grpc::Service::MarkMethodGeneric(27);
     }
     ~WithGenericMethod_GetInput() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12984,7 +13232,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListInputs() {
-      ::grpc::Service::MarkMethodGeneric(27);
+      ::grpc::Service::MarkMethodGeneric(28);
     }
     ~WithGenericMethod_ListInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13001,7 +13249,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostInputs() {
-      ::grpc::Service::MarkMethodGeneric(28);
+      ::grpc::Service::MarkMethodGeneric(29);
     }
     ~WithGenericMethod_PostInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13018,7 +13266,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchInputs() {
-      ::grpc::Service::MarkMethodGeneric(29);
+      ::grpc::Service::MarkMethodGeneric(30);
     }
     ~WithGenericMethod_PatchInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13035,7 +13283,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteInput() {
-      ::grpc::Service::MarkMethodGeneric(30);
+      ::grpc::Service::MarkMethodGeneric(31);
     }
     ~WithGenericMethod_DeleteInput() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13052,7 +13300,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteInputs() {
-      ::grpc::Service::MarkMethodGeneric(31);
+      ::grpc::Service::MarkMethodGeneric(32);
     }
     ~WithGenericMethod_DeleteInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13069,7 +13317,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostInputsSearches() {
-      ::grpc::Service::MarkMethodGeneric(32);
+      ::grpc::Service::MarkMethodGeneric(33);
     }
     ~WithGenericMethod_PostInputsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13086,7 +13334,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostModelOutputs() {
-      ::grpc::Service::MarkMethodGeneric(33);
+      ::grpc::Service::MarkMethodGeneric(34);
     }
     ~WithGenericMethod_PostModelOutputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13103,7 +13351,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetModelType() {
-      ::grpc::Service::MarkMethodGeneric(34);
+      ::grpc::Service::MarkMethodGeneric(35);
     }
     ~WithGenericMethod_GetModelType() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13120,7 +13368,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListModelTypes() {
-      ::grpc::Service::MarkMethodGeneric(35);
+      ::grpc::Service::MarkMethodGeneric(36);
     }
     ~WithGenericMethod_ListModelTypes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13137,7 +13385,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetModel() {
-      ::grpc::Service::MarkMethodGeneric(36);
+      ::grpc::Service::MarkMethodGeneric(37);
     }
     ~WithGenericMethod_GetModel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13154,7 +13402,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetModelOutputInfo() {
-      ::grpc::Service::MarkMethodGeneric(37);
+      ::grpc::Service::MarkMethodGeneric(38);
     }
     ~WithGenericMethod_GetModelOutputInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13171,7 +13419,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListModels() {
-      ::grpc::Service::MarkMethodGeneric(38);
+      ::grpc::Service::MarkMethodGeneric(39);
     }
     ~WithGenericMethod_ListModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13188,7 +13436,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostModelsSearches() {
-      ::grpc::Service::MarkMethodGeneric(39);
+      ::grpc::Service::MarkMethodGeneric(40);
     }
     ~WithGenericMethod_PostModelsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13205,7 +13453,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostModels() {
-      ::grpc::Service::MarkMethodGeneric(40);
+      ::grpc::Service::MarkMethodGeneric(41);
     }
     ~WithGenericMethod_PostModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13222,7 +13470,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchModels() {
-      ::grpc::Service::MarkMethodGeneric(41);
+      ::grpc::Service::MarkMethodGeneric(42);
     }
     ~WithGenericMethod_PatchModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13239,7 +13487,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteModel() {
-      ::grpc::Service::MarkMethodGeneric(42);
+      ::grpc::Service::MarkMethodGeneric(43);
     }
     ~WithGenericMethod_DeleteModel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13256,7 +13504,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteModels() {
-      ::grpc::Service::MarkMethodGeneric(43);
+      ::grpc::Service::MarkMethodGeneric(44);
     }
     ~WithGenericMethod_DeleteModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13273,7 +13521,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListModelInputs() {
-      ::grpc::Service::MarkMethodGeneric(44);
+      ::grpc::Service::MarkMethodGeneric(45);
     }
     ~WithGenericMethod_ListModelInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13290,7 +13538,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetModelVersion() {
-      ::grpc::Service::MarkMethodGeneric(45);
+      ::grpc::Service::MarkMethodGeneric(46);
     }
     ~WithGenericMethod_GetModelVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13307,7 +13555,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListModelVersions() {
-      ::grpc::Service::MarkMethodGeneric(46);
+      ::grpc::Service::MarkMethodGeneric(47);
     }
     ~WithGenericMethod_ListModelVersions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13324,7 +13572,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostModelVersions() {
-      ::grpc::Service::MarkMethodGeneric(47);
+      ::grpc::Service::MarkMethodGeneric(48);
     }
     ~WithGenericMethod_PostModelVersions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13341,7 +13589,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteModelVersion() {
-      ::grpc::Service::MarkMethodGeneric(48);
+      ::grpc::Service::MarkMethodGeneric(49);
     }
     ~WithGenericMethod_DeleteModelVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13358,7 +13606,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetModelVersionMetrics() {
-      ::grpc::Service::MarkMethodGeneric(49);
+      ::grpc::Service::MarkMethodGeneric(50);
     }
     ~WithGenericMethod_GetModelVersionMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13375,7 +13623,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostModelVersionMetrics() {
-      ::grpc::Service::MarkMethodGeneric(50);
+      ::grpc::Service::MarkMethodGeneric(51);
     }
     ~WithGenericMethod_PostModelVersionMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13392,7 +13640,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetWorkflow() {
-      ::grpc::Service::MarkMethodGeneric(51);
+      ::grpc::Service::MarkMethodGeneric(52);
     }
     ~WithGenericMethod_GetWorkflow() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13409,7 +13657,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListWorkflows() {
-      ::grpc::Service::MarkMethodGeneric(52);
+      ::grpc::Service::MarkMethodGeneric(53);
     }
     ~WithGenericMethod_ListWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13426,7 +13674,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostWorkflows() {
-      ::grpc::Service::MarkMethodGeneric(53);
+      ::grpc::Service::MarkMethodGeneric(54);
     }
     ~WithGenericMethod_PostWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13443,7 +13691,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchWorkflows() {
-      ::grpc::Service::MarkMethodGeneric(54);
+      ::grpc::Service::MarkMethodGeneric(55);
     }
     ~WithGenericMethod_PatchWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13460,7 +13708,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteWorkflow() {
-      ::grpc::Service::MarkMethodGeneric(55);
+      ::grpc::Service::MarkMethodGeneric(56);
     }
     ~WithGenericMethod_DeleteWorkflow() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13477,7 +13725,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteWorkflows() {
-      ::grpc::Service::MarkMethodGeneric(56);
+      ::grpc::Service::MarkMethodGeneric(57);
     }
     ~WithGenericMethod_DeleteWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13494,7 +13742,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostWorkflowResults() {
-      ::grpc::Service::MarkMethodGeneric(57);
+      ::grpc::Service::MarkMethodGeneric(58);
     }
     ~WithGenericMethod_PostWorkflowResults() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13511,7 +13759,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostWorkflowResultsSimilarity() {
-      ::grpc::Service::MarkMethodGeneric(58);
+      ::grpc::Service::MarkMethodGeneric(59);
     }
     ~WithGenericMethod_PostWorkflowResultsSimilarity() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13528,7 +13776,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetKey() {
-      ::grpc::Service::MarkMethodGeneric(59);
+      ::grpc::Service::MarkMethodGeneric(60);
     }
     ~WithGenericMethod_GetKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13545,7 +13793,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListKeys() {
-      ::grpc::Service::MarkMethodGeneric(60);
+      ::grpc::Service::MarkMethodGeneric(61);
     }
     ~WithGenericMethod_ListKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13562,7 +13810,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListAppKeys() {
-      ::grpc::Service::MarkMethodGeneric(61);
+      ::grpc::Service::MarkMethodGeneric(62);
     }
     ~WithGenericMethod_ListAppKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13579,7 +13827,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodGeneric(62);
+      ::grpc::Service::MarkMethodGeneric(63);
     }
     ~WithGenericMethod_DeleteKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13596,7 +13844,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostKeys() {
-      ::grpc::Service::MarkMethodGeneric(63);
+      ::grpc::Service::MarkMethodGeneric(64);
     }
     ~WithGenericMethod_PostKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13613,7 +13861,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchKeys() {
-      ::grpc::Service::MarkMethodGeneric(64);
+      ::grpc::Service::MarkMethodGeneric(65);
     }
     ~WithGenericMethod_PatchKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13630,7 +13878,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_MyScopes() {
-      ::grpc::Service::MarkMethodGeneric(65);
+      ::grpc::Service::MarkMethodGeneric(66);
     }
     ~WithGenericMethod_MyScopes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13647,7 +13895,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListScopes() {
-      ::grpc::Service::MarkMethodGeneric(66);
+      ::grpc::Service::MarkMethodGeneric(67);
     }
     ~WithGenericMethod_ListScopes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13664,7 +13912,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetApp() {
-      ::grpc::Service::MarkMethodGeneric(67);
+      ::grpc::Service::MarkMethodGeneric(68);
     }
     ~WithGenericMethod_GetApp() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13681,7 +13929,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListApps() {
-      ::grpc::Service::MarkMethodGeneric(68);
+      ::grpc::Service::MarkMethodGeneric(69);
     }
     ~WithGenericMethod_ListApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13698,7 +13946,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteApp() {
-      ::grpc::Service::MarkMethodGeneric(69);
+      ::grpc::Service::MarkMethodGeneric(70);
     }
     ~WithGenericMethod_DeleteApp() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13715,7 +13963,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostApps() {
-      ::grpc::Service::MarkMethodGeneric(70);
+      ::grpc::Service::MarkMethodGeneric(71);
     }
     ~WithGenericMethod_PostApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13732,7 +13980,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchApps() {
-      ::grpc::Service::MarkMethodGeneric(71);
+      ::grpc::Service::MarkMethodGeneric(72);
     }
     ~WithGenericMethod_PatchApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13749,7 +13997,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostAppsSearches() {
-      ::grpc::Service::MarkMethodGeneric(72);
+      ::grpc::Service::MarkMethodGeneric(73);
     }
     ~WithGenericMethod_PostAppsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13766,7 +14014,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostValidatePassword() {
-      ::grpc::Service::MarkMethodGeneric(73);
+      ::grpc::Service::MarkMethodGeneric(74);
     }
     ~WithGenericMethod_PostValidatePassword() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13783,7 +14031,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSearch() {
-      ::grpc::Service::MarkMethodGeneric(74);
+      ::grpc::Service::MarkMethodGeneric(75);
     }
     ~WithGenericMethod_GetSearch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13800,7 +14048,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListSearches() {
-      ::grpc::Service::MarkMethodGeneric(75);
+      ::grpc::Service::MarkMethodGeneric(76);
     }
     ~WithGenericMethod_ListSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13817,7 +14065,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostSearches() {
-      ::grpc::Service::MarkMethodGeneric(76);
+      ::grpc::Service::MarkMethodGeneric(77);
     }
     ~WithGenericMethod_PostSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13834,7 +14082,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostSearchesByID() {
-      ::grpc::Service::MarkMethodGeneric(77);
+      ::grpc::Service::MarkMethodGeneric(78);
     }
     ~WithGenericMethod_PostSearchesByID() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13851,7 +14099,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodGeneric(78);
+      ::grpc::Service::MarkMethodGeneric(79);
     }
     ~WithGenericMethod_PostAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13868,7 +14116,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodGeneric(79);
+      ::grpc::Service::MarkMethodGeneric(80);
     }
     ~WithGenericMethod_GetAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13885,7 +14133,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodGeneric(80);
+      ::grpc::Service::MarkMethodGeneric(81);
     }
     ~WithGenericMethod_ListAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13902,7 +14150,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodGeneric(81);
+      ::grpc::Service::MarkMethodGeneric(82);
     }
     ~WithGenericMethod_DeleteAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13919,7 +14167,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteSearch() {
-      ::grpc::Service::MarkMethodGeneric(82);
+      ::grpc::Service::MarkMethodGeneric(83);
     }
     ~WithGenericMethod_DeleteSearch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13936,7 +14184,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListStatusCodes() {
-      ::grpc::Service::MarkMethodGeneric(83);
+      ::grpc::Service::MarkMethodGeneric(84);
     }
     ~WithGenericMethod_ListStatusCodes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13953,7 +14201,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetStatusCode() {
-      ::grpc::Service::MarkMethodGeneric(84);
+      ::grpc::Service::MarkMethodGeneric(85);
     }
     ~WithGenericMethod_GetStatusCode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13970,7 +14218,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListCollaborators() {
-      ::grpc::Service::MarkMethodGeneric(85);
+      ::grpc::Service::MarkMethodGeneric(86);
     }
     ~WithGenericMethod_ListCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -13987,7 +14235,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostCollaborators() {
-      ::grpc::Service::MarkMethodGeneric(86);
+      ::grpc::Service::MarkMethodGeneric(87);
     }
     ~WithGenericMethod_PostCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14004,7 +14252,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchCollaborators() {
-      ::grpc::Service::MarkMethodGeneric(87);
+      ::grpc::Service::MarkMethodGeneric(88);
     }
     ~WithGenericMethod_PatchCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14021,7 +14269,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteCollaborators() {
-      ::grpc::Service::MarkMethodGeneric(88);
+      ::grpc::Service::MarkMethodGeneric(89);
     }
     ~WithGenericMethod_DeleteCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14038,7 +14286,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListCollaborations() {
-      ::grpc::Service::MarkMethodGeneric(89);
+      ::grpc::Service::MarkMethodGeneric(90);
     }
     ~WithGenericMethod_ListCollaborations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14055,7 +14303,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostAppDuplications() {
-      ::grpc::Service::MarkMethodGeneric(90);
+      ::grpc::Service::MarkMethodGeneric(91);
     }
     ~WithGenericMethod_PostAppDuplications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14072,7 +14320,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListAppDuplications() {
-      ::grpc::Service::MarkMethodGeneric(91);
+      ::grpc::Service::MarkMethodGeneric(92);
     }
     ~WithGenericMethod_ListAppDuplications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14089,7 +14337,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetAppDuplication() {
-      ::grpc::Service::MarkMethodGeneric(92);
+      ::grpc::Service::MarkMethodGeneric(93);
     }
     ~WithGenericMethod_GetAppDuplication() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14106,7 +14354,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostTasks() {
-      ::grpc::Service::MarkMethodGeneric(93);
+      ::grpc::Service::MarkMethodGeneric(94);
     }
     ~WithGenericMethod_PostTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14118,18 +14366,35 @@ class V2 final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetTaskAnnotationsCount : public BaseClass {
+  class WithGenericMethod_GetTaskAnnotationCount : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetTaskAnnotationsCount() {
-      ::grpc::Service::MarkMethodGeneric(94);
+    WithGenericMethod_GetTaskAnnotationCount() {
+      ::grpc::Service::MarkMethodGeneric(95);
     }
-    ~WithGenericMethod_GetTaskAnnotationsCount() override {
+    ~WithGenericMethod_GetTaskAnnotationCount() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTaskAnnotationsCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskAnnotationsCountRequest* /*request*/, ::clarifai::api::SingleTaskAnnotationsCountResponse* /*response*/) override {
+    ::grpc::Status GetTaskAnnotationCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetTaskInputCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetTaskInputCount() {
+      ::grpc::Service::MarkMethodGeneric(96);
+    }
+    ~WithGenericMethod_GetTaskInputCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTaskInputCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -14140,7 +14405,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetTask() {
-      ::grpc::Service::MarkMethodGeneric(95);
+      ::grpc::Service::MarkMethodGeneric(97);
     }
     ~WithGenericMethod_GetTask() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14157,7 +14422,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListTasks() {
-      ::grpc::Service::MarkMethodGeneric(96);
+      ::grpc::Service::MarkMethodGeneric(98);
     }
     ~WithGenericMethod_ListTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14174,7 +14439,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchTasks() {
-      ::grpc::Service::MarkMethodGeneric(97);
+      ::grpc::Service::MarkMethodGeneric(99);
     }
     ~WithGenericMethod_PatchTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14191,7 +14456,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteTasks() {
-      ::grpc::Service::MarkMethodGeneric(98);
+      ::grpc::Service::MarkMethodGeneric(100);
     }
     ~WithGenericMethod_DeleteTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14208,7 +14473,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostCollectors() {
-      ::grpc::Service::MarkMethodGeneric(99);
+      ::grpc::Service::MarkMethodGeneric(101);
     }
     ~WithGenericMethod_PostCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14225,7 +14490,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetCollector() {
-      ::grpc::Service::MarkMethodGeneric(100);
+      ::grpc::Service::MarkMethodGeneric(102);
     }
     ~WithGenericMethod_GetCollector() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14242,7 +14507,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListCollectors() {
-      ::grpc::Service::MarkMethodGeneric(101);
+      ::grpc::Service::MarkMethodGeneric(103);
     }
     ~WithGenericMethod_ListCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14259,7 +14524,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchCollectors() {
-      ::grpc::Service::MarkMethodGeneric(102);
+      ::grpc::Service::MarkMethodGeneric(104);
     }
     ~WithGenericMethod_PatchCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14276,7 +14541,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteCollectors() {
-      ::grpc::Service::MarkMethodGeneric(103);
+      ::grpc::Service::MarkMethodGeneric(105);
     }
     ~WithGenericMethod_DeleteCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14293,7 +14558,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostStatValues() {
-      ::grpc::Service::MarkMethodGeneric(104);
+      ::grpc::Service::MarkMethodGeneric(106);
     }
     ~WithGenericMethod_PostStatValues() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14310,7 +14575,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostStatValuesAggregate() {
-      ::grpc::Service::MarkMethodGeneric(105);
+      ::grpc::Service::MarkMethodGeneric(107);
     }
     ~WithGenericMethod_PostStatValuesAggregate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14322,212 +14587,12 @@ class V2 final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetConceptCounts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetConceptCounts() {
-      ::grpc::Service::MarkMethodRaw(0);
-    }
-    ~WithRawMethod_GetConceptCounts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetConceptCounts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetConcept : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetConcept() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_GetConcept() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetConcept(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_ListConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_ListConcepts() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_ListConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestListConcepts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_PostConceptsSearches : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_PostConceptsSearches() {
-      ::grpc::Service::MarkMethodRaw(3);
-    }
-    ~WithRawMethod_PostConceptsSearches() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPostConceptsSearches(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_PostConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_PostConcepts() {
-      ::grpc::Service::MarkMethodRaw(4);
-    }
-    ~WithRawMethod_PostConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPostConcepts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_PatchConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_PatchConcepts() {
-      ::grpc::Service::MarkMethodRaw(5);
-    }
-    ~WithRawMethod_PatchConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPatchConcepts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetConceptLanguage : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetConceptLanguage() {
-      ::grpc::Service::MarkMethodRaw(6);
-    }
-    ~WithRawMethod_GetConceptLanguage() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetConceptLanguage(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_ListConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_ListConceptLanguages() {
-      ::grpc::Service::MarkMethodRaw(7);
-    }
-    ~WithRawMethod_ListConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestListConceptLanguages(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_PostConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_PostConceptLanguages() {
-      ::grpc::Service::MarkMethodRaw(8);
-    }
-    ~WithRawMethod_PostConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPostConceptLanguages(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_PatchConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_PatchConceptLanguages() {
-      ::grpc::Service::MarkMethodRaw(9);
-    }
-    ~WithRawMethod_PatchConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestPatchConceptLanguages(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_ListConceptRelations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListConceptRelations() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(0);
     }
     ~WithRawMethod_ListConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14538,7 +14603,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListConceptRelations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14547,7 +14612,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostConceptRelations() {
-      ::grpc::Service::MarkMethodRaw(11);
+      ::grpc::Service::MarkMethodRaw(1);
     }
     ~WithRawMethod_PostConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14558,7 +14623,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostConceptRelations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14567,7 +14632,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteConceptRelations() {
-      ::grpc::Service::MarkMethodRaw(12);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_DeleteConceptRelations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14578,6 +14643,206 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteConceptRelations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetConceptCounts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetConceptCounts() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_GetConceptCounts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetConceptCounts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetConcept : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetConcept() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_GetConcept() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetConcept(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListConcepts() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_ListConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListConcepts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_PostConceptsSearches : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PostConceptsSearches() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_PostConceptsSearches() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPostConceptsSearches(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_PostConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PostConcepts() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_PostConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPostConcepts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_PatchConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PatchConcepts() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_PatchConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPatchConcepts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetConceptLanguage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetConceptLanguage() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_GetConceptLanguage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetConceptLanguage(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListConceptLanguages() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_ListConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListConceptLanguages(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_PostConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PostConceptLanguages() {
+      ::grpc::Service::MarkMethodRaw(11);
+    }
+    ~WithRawMethod_PostConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPostConceptLanguages(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_PatchConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PatchConceptLanguages() {
+      ::grpc::Service::MarkMethodRaw(12);
+    }
+    ~WithRawMethod_PatchConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPatchConceptLanguages(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -14733,7 +14998,7 @@ class V2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::PatchAnnotationsStatusResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -14842,12 +15107,32 @@ class V2 final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetInputSamples : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetInputSamples() {
+      ::grpc::Service::MarkMethodRaw(26);
+    }
+    ~WithRawMethod_GetInputSamples() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInputSamples(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetInputSamplesRequest* /*request*/, ::clarifai::api::MultiInputAnnotationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetInputSamples(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetInput : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetInput() {
-      ::grpc::Service::MarkMethodRaw(26);
+      ::grpc::Service::MarkMethodRaw(27);
     }
     ~WithRawMethod_GetInput() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14858,7 +15143,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetInput(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14867,7 +15152,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListInputs() {
-      ::grpc::Service::MarkMethodRaw(27);
+      ::grpc::Service::MarkMethodRaw(28);
     }
     ~WithRawMethod_ListInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14878,7 +15163,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListInputs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14887,7 +15172,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostInputs() {
-      ::grpc::Service::MarkMethodRaw(28);
+      ::grpc::Service::MarkMethodRaw(29);
     }
     ~WithRawMethod_PostInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14898,7 +15183,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostInputs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14907,7 +15192,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchInputs() {
-      ::grpc::Service::MarkMethodRaw(29);
+      ::grpc::Service::MarkMethodRaw(30);
     }
     ~WithRawMethod_PatchInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14918,7 +15203,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchInputs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14927,7 +15212,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteInput() {
-      ::grpc::Service::MarkMethodRaw(30);
+      ::grpc::Service::MarkMethodRaw(31);
     }
     ~WithRawMethod_DeleteInput() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14938,7 +15223,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteInput(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14947,7 +15232,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteInputs() {
-      ::grpc::Service::MarkMethodRaw(31);
+      ::grpc::Service::MarkMethodRaw(32);
     }
     ~WithRawMethod_DeleteInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14958,7 +15243,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteInputs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14967,7 +15252,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostInputsSearches() {
-      ::grpc::Service::MarkMethodRaw(32);
+      ::grpc::Service::MarkMethodRaw(33);
     }
     ~WithRawMethod_PostInputsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14978,7 +15263,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostInputsSearches(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14987,7 +15272,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostModelOutputs() {
-      ::grpc::Service::MarkMethodRaw(33);
+      ::grpc::Service::MarkMethodRaw(34);
     }
     ~WithRawMethod_PostModelOutputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -14998,7 +15283,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModelOutputs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15007,7 +15292,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetModelType() {
-      ::grpc::Service::MarkMethodRaw(34);
+      ::grpc::Service::MarkMethodRaw(35);
     }
     ~WithRawMethod_GetModelType() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15018,7 +15303,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModelType(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15027,7 +15312,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListModelTypes() {
-      ::grpc::Service::MarkMethodRaw(35);
+      ::grpc::Service::MarkMethodRaw(36);
     }
     ~WithRawMethod_ListModelTypes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15038,7 +15323,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModelTypes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15047,7 +15332,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetModel() {
-      ::grpc::Service::MarkMethodRaw(36);
+      ::grpc::Service::MarkMethodRaw(37);
     }
     ~WithRawMethod_GetModel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15058,7 +15343,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModel(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15067,7 +15352,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetModelOutputInfo() {
-      ::grpc::Service::MarkMethodRaw(37);
+      ::grpc::Service::MarkMethodRaw(38);
     }
     ~WithRawMethod_GetModelOutputInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15078,7 +15363,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModelOutputInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15087,7 +15372,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListModels() {
-      ::grpc::Service::MarkMethodRaw(38);
+      ::grpc::Service::MarkMethodRaw(39);
     }
     ~WithRawMethod_ListModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15098,7 +15383,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15107,7 +15392,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostModelsSearches() {
-      ::grpc::Service::MarkMethodRaw(39);
+      ::grpc::Service::MarkMethodRaw(40);
     }
     ~WithRawMethod_PostModelsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15118,7 +15403,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModelsSearches(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15127,7 +15412,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostModels() {
-      ::grpc::Service::MarkMethodRaw(40);
+      ::grpc::Service::MarkMethodRaw(41);
     }
     ~WithRawMethod_PostModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15138,7 +15423,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15147,7 +15432,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchModels() {
-      ::grpc::Service::MarkMethodRaw(41);
+      ::grpc::Service::MarkMethodRaw(42);
     }
     ~WithRawMethod_PatchModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15158,7 +15443,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchModels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15167,7 +15452,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteModel() {
-      ::grpc::Service::MarkMethodRaw(42);
+      ::grpc::Service::MarkMethodRaw(43);
     }
     ~WithRawMethod_DeleteModel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15178,7 +15463,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteModel(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15187,7 +15472,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteModels() {
-      ::grpc::Service::MarkMethodRaw(43);
+      ::grpc::Service::MarkMethodRaw(44);
     }
     ~WithRawMethod_DeleteModels() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15198,7 +15483,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteModels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15207,7 +15492,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListModelInputs() {
-      ::grpc::Service::MarkMethodRaw(44);
+      ::grpc::Service::MarkMethodRaw(45);
     }
     ~WithRawMethod_ListModelInputs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15218,7 +15503,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModelInputs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15227,7 +15512,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetModelVersion() {
-      ::grpc::Service::MarkMethodRaw(45);
+      ::grpc::Service::MarkMethodRaw(46);
     }
     ~WithRawMethod_GetModelVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15238,7 +15523,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModelVersion(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15247,7 +15532,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListModelVersions() {
-      ::grpc::Service::MarkMethodRaw(46);
+      ::grpc::Service::MarkMethodRaw(47);
     }
     ~WithRawMethod_ListModelVersions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15258,7 +15543,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModelVersions(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15267,7 +15552,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostModelVersions() {
-      ::grpc::Service::MarkMethodRaw(47);
+      ::grpc::Service::MarkMethodRaw(48);
     }
     ~WithRawMethod_PostModelVersions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15278,7 +15563,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModelVersions(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15287,7 +15572,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteModelVersion() {
-      ::grpc::Service::MarkMethodRaw(48);
+      ::grpc::Service::MarkMethodRaw(49);
     }
     ~WithRawMethod_DeleteModelVersion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15298,7 +15583,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteModelVersion(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15307,7 +15592,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetModelVersionMetrics() {
-      ::grpc::Service::MarkMethodRaw(49);
+      ::grpc::Service::MarkMethodRaw(50);
     }
     ~WithRawMethod_GetModelVersionMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15318,7 +15603,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModelVersionMetrics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15327,7 +15612,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostModelVersionMetrics() {
-      ::grpc::Service::MarkMethodRaw(50);
+      ::grpc::Service::MarkMethodRaw(51);
     }
     ~WithRawMethod_PostModelVersionMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15338,7 +15623,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostModelVersionMetrics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15347,7 +15632,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetWorkflow() {
-      ::grpc::Service::MarkMethodRaw(51);
+      ::grpc::Service::MarkMethodRaw(52);
     }
     ~WithRawMethod_GetWorkflow() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15358,7 +15643,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetWorkflow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15367,7 +15652,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListWorkflows() {
-      ::grpc::Service::MarkMethodRaw(52);
+      ::grpc::Service::MarkMethodRaw(53);
     }
     ~WithRawMethod_ListWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15378,7 +15663,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListWorkflows(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15387,7 +15672,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostWorkflows() {
-      ::grpc::Service::MarkMethodRaw(53);
+      ::grpc::Service::MarkMethodRaw(54);
     }
     ~WithRawMethod_PostWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15398,7 +15683,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostWorkflows(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(54, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15407,7 +15692,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchWorkflows() {
-      ::grpc::Service::MarkMethodRaw(54);
+      ::grpc::Service::MarkMethodRaw(55);
     }
     ~WithRawMethod_PatchWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15418,7 +15703,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchWorkflows(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(54, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(55, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15427,7 +15712,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteWorkflow() {
-      ::grpc::Service::MarkMethodRaw(55);
+      ::grpc::Service::MarkMethodRaw(56);
     }
     ~WithRawMethod_DeleteWorkflow() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15438,7 +15723,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteWorkflow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(55, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(56, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15447,7 +15732,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteWorkflows() {
-      ::grpc::Service::MarkMethodRaw(56);
+      ::grpc::Service::MarkMethodRaw(57);
     }
     ~WithRawMethod_DeleteWorkflows() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15458,7 +15743,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteWorkflows(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(56, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(57, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15467,7 +15752,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostWorkflowResults() {
-      ::grpc::Service::MarkMethodRaw(57);
+      ::grpc::Service::MarkMethodRaw(58);
     }
     ~WithRawMethod_PostWorkflowResults() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15478,7 +15763,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostWorkflowResults(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(57, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(58, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15487,7 +15772,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostWorkflowResultsSimilarity() {
-      ::grpc::Service::MarkMethodRaw(58);
+      ::grpc::Service::MarkMethodRaw(59);
     }
     ~WithRawMethod_PostWorkflowResultsSimilarity() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15498,7 +15783,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostWorkflowResultsSimilarity(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(58, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(59, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15507,7 +15792,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetKey() {
-      ::grpc::Service::MarkMethodRaw(59);
+      ::grpc::Service::MarkMethodRaw(60);
     }
     ~WithRawMethod_GetKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15518,7 +15803,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(59, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(60, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15527,7 +15812,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListKeys() {
-      ::grpc::Service::MarkMethodRaw(60);
+      ::grpc::Service::MarkMethodRaw(61);
     }
     ~WithRawMethod_ListKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15538,7 +15823,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListKeys(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(60, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(61, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15547,7 +15832,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListAppKeys() {
-      ::grpc::Service::MarkMethodRaw(61);
+      ::grpc::Service::MarkMethodRaw(62);
     }
     ~WithRawMethod_ListAppKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15558,7 +15843,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListAppKeys(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(61, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(62, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15567,7 +15852,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodRaw(62);
+      ::grpc::Service::MarkMethodRaw(63);
     }
     ~WithRawMethod_DeleteKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15578,7 +15863,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(62, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(63, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15587,7 +15872,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostKeys() {
-      ::grpc::Service::MarkMethodRaw(63);
+      ::grpc::Service::MarkMethodRaw(64);
     }
     ~WithRawMethod_PostKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15598,7 +15883,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostKeys(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(63, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(64, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15607,7 +15892,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchKeys() {
-      ::grpc::Service::MarkMethodRaw(64);
+      ::grpc::Service::MarkMethodRaw(65);
     }
     ~WithRawMethod_PatchKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15618,7 +15903,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchKeys(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(64, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(65, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15627,7 +15912,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_MyScopes() {
-      ::grpc::Service::MarkMethodRaw(65);
+      ::grpc::Service::MarkMethodRaw(66);
     }
     ~WithRawMethod_MyScopes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15638,7 +15923,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMyScopes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(65, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(66, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15647,7 +15932,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListScopes() {
-      ::grpc::Service::MarkMethodRaw(66);
+      ::grpc::Service::MarkMethodRaw(67);
     }
     ~WithRawMethod_ListScopes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15658,7 +15943,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListScopes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(66, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(67, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15667,7 +15952,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetApp() {
-      ::grpc::Service::MarkMethodRaw(67);
+      ::grpc::Service::MarkMethodRaw(68);
     }
     ~WithRawMethod_GetApp() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15678,7 +15963,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetApp(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(67, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(68, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15687,7 +15972,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListApps() {
-      ::grpc::Service::MarkMethodRaw(68);
+      ::grpc::Service::MarkMethodRaw(69);
     }
     ~WithRawMethod_ListApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15698,7 +15983,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListApps(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(68, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(69, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15707,7 +15992,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteApp() {
-      ::grpc::Service::MarkMethodRaw(69);
+      ::grpc::Service::MarkMethodRaw(70);
     }
     ~WithRawMethod_DeleteApp() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15718,7 +16003,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteApp(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(69, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(70, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15727,7 +16012,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostApps() {
-      ::grpc::Service::MarkMethodRaw(70);
+      ::grpc::Service::MarkMethodRaw(71);
     }
     ~WithRawMethod_PostApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15738,7 +16023,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostApps(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(70, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(71, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15747,7 +16032,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchApps() {
-      ::grpc::Service::MarkMethodRaw(71);
+      ::grpc::Service::MarkMethodRaw(72);
     }
     ~WithRawMethod_PatchApps() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15758,7 +16043,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchApps(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(71, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(72, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15767,7 +16052,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostAppsSearches() {
-      ::grpc::Service::MarkMethodRaw(72);
+      ::grpc::Service::MarkMethodRaw(73);
     }
     ~WithRawMethod_PostAppsSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15778,7 +16063,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostAppsSearches(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(72, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(73, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15787,7 +16072,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostValidatePassword() {
-      ::grpc::Service::MarkMethodRaw(73);
+      ::grpc::Service::MarkMethodRaw(74);
     }
     ~WithRawMethod_PostValidatePassword() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15798,7 +16083,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostValidatePassword(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(73, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(74, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15807,7 +16092,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSearch() {
-      ::grpc::Service::MarkMethodRaw(74);
+      ::grpc::Service::MarkMethodRaw(75);
     }
     ~WithRawMethod_GetSearch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15818,7 +16103,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSearch(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(74, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(75, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15827,7 +16112,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListSearches() {
-      ::grpc::Service::MarkMethodRaw(75);
+      ::grpc::Service::MarkMethodRaw(76);
     }
     ~WithRawMethod_ListSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15838,7 +16123,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListSearches(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(75, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(76, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15847,7 +16132,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostSearches() {
-      ::grpc::Service::MarkMethodRaw(76);
+      ::grpc::Service::MarkMethodRaw(77);
     }
     ~WithRawMethod_PostSearches() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15858,7 +16143,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostSearches(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(76, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(77, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15867,7 +16152,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostSearchesByID() {
-      ::grpc::Service::MarkMethodRaw(77);
+      ::grpc::Service::MarkMethodRaw(78);
     }
     ~WithRawMethod_PostSearchesByID() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15878,7 +16163,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostSearchesByID(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(77, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(78, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15887,7 +16172,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodRaw(78);
+      ::grpc::Service::MarkMethodRaw(79);
     }
     ~WithRawMethod_PostAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15898,7 +16183,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostAnnotationSearchMetrics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(78, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(79, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15907,7 +16192,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodRaw(79);
+      ::grpc::Service::MarkMethodRaw(80);
     }
     ~WithRawMethod_GetAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15918,7 +16203,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetAnnotationSearchMetrics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(79, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(80, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15927,7 +16212,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodRaw(80);
+      ::grpc::Service::MarkMethodRaw(81);
     }
     ~WithRawMethod_ListAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15938,7 +16223,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListAnnotationSearchMetrics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(80, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(81, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15947,7 +16232,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodRaw(81);
+      ::grpc::Service::MarkMethodRaw(82);
     }
     ~WithRawMethod_DeleteAnnotationSearchMetrics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15958,7 +16243,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteAnnotationSearchMetrics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(81, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15967,7 +16252,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteSearch() {
-      ::grpc::Service::MarkMethodRaw(82);
+      ::grpc::Service::MarkMethodRaw(83);
     }
     ~WithRawMethod_DeleteSearch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15978,7 +16263,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteSearch(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -15987,7 +16272,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListStatusCodes() {
-      ::grpc::Service::MarkMethodRaw(83);
+      ::grpc::Service::MarkMethodRaw(84);
     }
     ~WithRawMethod_ListStatusCodes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -15998,7 +16283,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListStatusCodes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16007,7 +16292,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetStatusCode() {
-      ::grpc::Service::MarkMethodRaw(84);
+      ::grpc::Service::MarkMethodRaw(85);
     }
     ~WithRawMethod_GetStatusCode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16018,7 +16303,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatusCode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(85, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16027,7 +16312,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListCollaborators() {
-      ::grpc::Service::MarkMethodRaw(85);
+      ::grpc::Service::MarkMethodRaw(86);
     }
     ~WithRawMethod_ListCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16038,7 +16323,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListCollaborators(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(85, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(86, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16047,7 +16332,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostCollaborators() {
-      ::grpc::Service::MarkMethodRaw(86);
+      ::grpc::Service::MarkMethodRaw(87);
     }
     ~WithRawMethod_PostCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16058,7 +16343,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostCollaborators(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(86, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(87, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16067,7 +16352,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchCollaborators() {
-      ::grpc::Service::MarkMethodRaw(87);
+      ::grpc::Service::MarkMethodRaw(88);
     }
     ~WithRawMethod_PatchCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16078,7 +16363,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchCollaborators(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(87, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(88, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16087,7 +16372,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteCollaborators() {
-      ::grpc::Service::MarkMethodRaw(88);
+      ::grpc::Service::MarkMethodRaw(89);
     }
     ~WithRawMethod_DeleteCollaborators() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16098,7 +16383,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteCollaborators(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(88, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(89, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16107,7 +16392,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListCollaborations() {
-      ::grpc::Service::MarkMethodRaw(89);
+      ::grpc::Service::MarkMethodRaw(90);
     }
     ~WithRawMethod_ListCollaborations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16118,7 +16403,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListCollaborations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(89, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(90, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16127,7 +16412,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostAppDuplications() {
-      ::grpc::Service::MarkMethodRaw(90);
+      ::grpc::Service::MarkMethodRaw(91);
     }
     ~WithRawMethod_PostAppDuplications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16138,7 +16423,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostAppDuplications(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(90, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16147,7 +16432,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListAppDuplications() {
-      ::grpc::Service::MarkMethodRaw(91);
+      ::grpc::Service::MarkMethodRaw(92);
     }
     ~WithRawMethod_ListAppDuplications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16158,7 +16443,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListAppDuplications(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16167,7 +16452,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetAppDuplication() {
-      ::grpc::Service::MarkMethodRaw(92);
+      ::grpc::Service::MarkMethodRaw(93);
     }
     ~WithRawMethod_GetAppDuplication() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16178,7 +16463,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetAppDuplication(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16187,7 +16472,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostTasks() {
-      ::grpc::Service::MarkMethodRaw(93);
+      ::grpc::Service::MarkMethodRaw(94);
     }
     ~WithRawMethod_PostTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16198,27 +16483,47 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostTasks(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetTaskAnnotationsCount : public BaseClass {
+  class WithRawMethod_GetTaskAnnotationCount : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetTaskAnnotationsCount() {
-      ::grpc::Service::MarkMethodRaw(94);
+    WithRawMethod_GetTaskAnnotationCount() {
+      ::grpc::Service::MarkMethodRaw(95);
     }
-    ~WithRawMethod_GetTaskAnnotationsCount() override {
+    ~WithRawMethod_GetTaskAnnotationCount() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTaskAnnotationsCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskAnnotationsCountRequest* /*request*/, ::clarifai::api::SingleTaskAnnotationsCountResponse* /*response*/) override {
+    ::grpc::Status GetTaskAnnotationCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetTaskAnnotationsCount(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestGetTaskAnnotationCount(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetTaskInputCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetTaskInputCount() {
+      ::grpc::Service::MarkMethodRaw(96);
+    }
+    ~WithRawMethod_GetTaskInputCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTaskInputCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTaskInputCount(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(96, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16227,7 +16532,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetTask() {
-      ::grpc::Service::MarkMethodRaw(95);
+      ::grpc::Service::MarkMethodRaw(97);
     }
     ~WithRawMethod_GetTask() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16238,7 +16543,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetTask(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(97, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16247,7 +16552,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListTasks() {
-      ::grpc::Service::MarkMethodRaw(96);
+      ::grpc::Service::MarkMethodRaw(98);
     }
     ~WithRawMethod_ListTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16258,7 +16563,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListTasks(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(96, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(98, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16267,7 +16572,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchTasks() {
-      ::grpc::Service::MarkMethodRaw(97);
+      ::grpc::Service::MarkMethodRaw(99);
     }
     ~WithRawMethod_PatchTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16278,7 +16583,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchTasks(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(97, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(99, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16287,7 +16592,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteTasks() {
-      ::grpc::Service::MarkMethodRaw(98);
+      ::grpc::Service::MarkMethodRaw(100);
     }
     ~WithRawMethod_DeleteTasks() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16298,7 +16603,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteTasks(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(98, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(100, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16307,7 +16612,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostCollectors() {
-      ::grpc::Service::MarkMethodRaw(99);
+      ::grpc::Service::MarkMethodRaw(101);
     }
     ~WithRawMethod_PostCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16318,7 +16623,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostCollectors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(99, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(101, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16327,7 +16632,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetCollector() {
-      ::grpc::Service::MarkMethodRaw(100);
+      ::grpc::Service::MarkMethodRaw(102);
     }
     ~WithRawMethod_GetCollector() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16338,7 +16643,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollector(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(100, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(102, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16347,7 +16652,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListCollectors() {
-      ::grpc::Service::MarkMethodRaw(101);
+      ::grpc::Service::MarkMethodRaw(103);
     }
     ~WithRawMethod_ListCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16358,7 +16663,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListCollectors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(101, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(103, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16367,7 +16672,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchCollectors() {
-      ::grpc::Service::MarkMethodRaw(102);
+      ::grpc::Service::MarkMethodRaw(104);
     }
     ~WithRawMethod_PatchCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16378,7 +16683,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchCollectors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(102, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(104, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16387,7 +16692,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteCollectors() {
-      ::grpc::Service::MarkMethodRaw(103);
+      ::grpc::Service::MarkMethodRaw(105);
     }
     ~WithRawMethod_DeleteCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16398,7 +16703,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteCollectors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(103, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(105, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16407,7 +16712,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostStatValues() {
-      ::grpc::Service::MarkMethodRaw(104);
+      ::grpc::Service::MarkMethodRaw(106);
     }
     ~WithRawMethod_PostStatValues() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16418,7 +16723,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostStatValues(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(104, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(106, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -16427,7 +16732,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostStatValuesAggregate() {
-      ::grpc::Service::MarkMethodRaw(105);
+      ::grpc::Service::MarkMethodRaw(107);
     }
     ~WithRawMethod_PostStatValuesAggregate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16438,388 +16743,8 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostStatValuesAggregate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(105, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(107, context, request, response, new_call_cq, notification_cq, tag);
     }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetConceptCounts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_GetConceptCounts() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetConceptCounts(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_GetConceptCounts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetConceptCounts(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetConceptCounts(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetConcept : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_GetConcept() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetConcept(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_GetConcept() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetConcept(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetConcept(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_ListConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_ListConcepts() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListConcepts(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_ListConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* ListConcepts(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* ListConcepts(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_PostConceptsSearches : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_PostConceptsSearches() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PostConceptsSearches(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_PostConceptsSearches() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PostConceptsSearches(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PostConceptsSearches(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_PostConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_PostConcepts() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PostConcepts(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_PostConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PostConcepts(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PostConcepts(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_PatchConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_PatchConcepts() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PatchConcepts(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_PatchConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PatchConcepts(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PatchConcepts(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetConceptLanguage : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_GetConceptLanguage() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetConceptLanguage(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_GetConceptLanguage() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetConceptLanguage(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetConceptLanguage(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_ListConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_ListConceptLanguages() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListConceptLanguages(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_ListConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* ListConceptLanguages(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* ListConceptLanguages(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_PostConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_PostConceptLanguages() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(8,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PostConceptLanguages(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_PostConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PostConceptLanguages(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PostConceptLanguages(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_PatchConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    ExperimentalWithRawCallbackMethod_PatchConceptLanguages() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(9,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PatchConceptLanguages(context, request, response); }));
-    }
-    ~ExperimentalWithRawCallbackMethod_PatchConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* PatchConceptLanguages(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* PatchConceptLanguages(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
   };
   template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_ListConceptRelations : public BaseClass {
@@ -16832,7 +16757,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(10,
+        MarkMethodRawCallback(0,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -16870,7 +16795,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(11,
+        MarkMethodRawCallback(1,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -16908,7 +16833,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(12,
+        MarkMethodRawCallback(2,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -16931,6 +16856,386 @@ class V2 final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* DeleteConceptRelations(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetConceptCounts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetConceptCounts() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetConceptCounts(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetConceptCounts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetConceptCounts(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetConceptCounts(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetConcept : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetConcept() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetConcept(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetConcept() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetConcept(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetConcept(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_ListConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_ListConcepts() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListConcepts(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_ListConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListConcepts(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListConcepts(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_PostConceptsSearches : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_PostConceptsSearches() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PostConceptsSearches(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_PostConceptsSearches() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PostConceptsSearches(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PostConceptsSearches(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_PostConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_PostConcepts() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PostConcepts(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_PostConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PostConcepts(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PostConcepts(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_PatchConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_PatchConcepts() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PatchConcepts(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_PatchConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PatchConcepts(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PatchConcepts(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetConceptLanguage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetConceptLanguage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetConceptLanguage(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetConceptLanguage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetConceptLanguage(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetConceptLanguage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_ListConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_ListConceptLanguages() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListConceptLanguages(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_ListConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListConceptLanguages(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListConceptLanguages(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_PostConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_PostConceptLanguages() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(11,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PostConceptLanguages(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_PostConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PostConceptLanguages(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PostConceptLanguages(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_PatchConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_PatchConceptLanguages() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(12,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PatchConceptLanguages(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_PatchConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PatchConceptLanguages(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PatchConceptLanguages(
       ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #endif
       { return nullptr; }
@@ -17226,7 +17531,7 @@ class V2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::PatchAnnotationsStatusResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -17430,6 +17735,44 @@ class V2 final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetInputSamples : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetInputSamples() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(26,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetInputSamples(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetInputSamples() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInputSamples(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetInputSamplesRequest* /*request*/, ::clarifai::api::MultiInputAnnotationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetInputSamples(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetInputSamples(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_GetInput : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -17440,7 +17783,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(26,
+        MarkMethodRawCallback(27,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17478,7 +17821,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(27,
+        MarkMethodRawCallback(28,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17516,7 +17859,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(28,
+        MarkMethodRawCallback(29,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17554,7 +17897,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(29,
+        MarkMethodRawCallback(30,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17592,7 +17935,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(30,
+        MarkMethodRawCallback(31,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17630,7 +17973,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(31,
+        MarkMethodRawCallback(32,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17668,7 +18011,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(32,
+        MarkMethodRawCallback(33,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17706,7 +18049,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(33,
+        MarkMethodRawCallback(34,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17744,7 +18087,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(34,
+        MarkMethodRawCallback(35,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17782,7 +18125,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(35,
+        MarkMethodRawCallback(36,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17820,7 +18163,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(36,
+        MarkMethodRawCallback(37,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17858,7 +18201,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(37,
+        MarkMethodRawCallback(38,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17896,7 +18239,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(38,
+        MarkMethodRawCallback(39,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17934,7 +18277,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(39,
+        MarkMethodRawCallback(40,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -17972,7 +18315,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(40,
+        MarkMethodRawCallback(41,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18010,7 +18353,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(41,
+        MarkMethodRawCallback(42,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18048,7 +18391,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(42,
+        MarkMethodRawCallback(43,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18086,7 +18429,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(43,
+        MarkMethodRawCallback(44,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18124,7 +18467,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(44,
+        MarkMethodRawCallback(45,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18162,7 +18505,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(45,
+        MarkMethodRawCallback(46,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18200,7 +18543,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(46,
+        MarkMethodRawCallback(47,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18238,7 +18581,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(47,
+        MarkMethodRawCallback(48,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18276,7 +18619,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(48,
+        MarkMethodRawCallback(49,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18314,7 +18657,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(49,
+        MarkMethodRawCallback(50,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18352,7 +18695,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(50,
+        MarkMethodRawCallback(51,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18390,7 +18733,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(51,
+        MarkMethodRawCallback(52,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18428,7 +18771,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(52,
+        MarkMethodRawCallback(53,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18466,7 +18809,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(53,
+        MarkMethodRawCallback(54,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18504,7 +18847,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(54,
+        MarkMethodRawCallback(55,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18542,7 +18885,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(55,
+        MarkMethodRawCallback(56,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18580,7 +18923,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(56,
+        MarkMethodRawCallback(57,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18618,7 +18961,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(57,
+        MarkMethodRawCallback(58,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18656,7 +18999,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(58,
+        MarkMethodRawCallback(59,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18694,7 +19037,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(59,
+        MarkMethodRawCallback(60,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18732,7 +19075,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(60,
+        MarkMethodRawCallback(61,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18770,7 +19113,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(61,
+        MarkMethodRawCallback(62,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18808,7 +19151,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(62,
+        MarkMethodRawCallback(63,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18846,7 +19189,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(63,
+        MarkMethodRawCallback(64,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18884,7 +19227,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(64,
+        MarkMethodRawCallback(65,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18922,7 +19265,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(65,
+        MarkMethodRawCallback(66,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18960,7 +19303,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(66,
+        MarkMethodRawCallback(67,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -18998,7 +19341,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(67,
+        MarkMethodRawCallback(68,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19036,7 +19379,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(68,
+        MarkMethodRawCallback(69,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19074,7 +19417,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(69,
+        MarkMethodRawCallback(70,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19112,7 +19455,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(70,
+        MarkMethodRawCallback(71,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19150,7 +19493,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(71,
+        MarkMethodRawCallback(72,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19188,7 +19531,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(72,
+        MarkMethodRawCallback(73,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19226,7 +19569,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(73,
+        MarkMethodRawCallback(74,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19264,7 +19607,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(74,
+        MarkMethodRawCallback(75,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19302,7 +19645,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(75,
+        MarkMethodRawCallback(76,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19340,7 +19683,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(76,
+        MarkMethodRawCallback(77,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19378,7 +19721,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(77,
+        MarkMethodRawCallback(78,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19416,7 +19759,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(78,
+        MarkMethodRawCallback(79,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19454,7 +19797,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(79,
+        MarkMethodRawCallback(80,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19492,7 +19835,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(80,
+        MarkMethodRawCallback(81,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19530,7 +19873,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(81,
+        MarkMethodRawCallback(82,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19568,7 +19911,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(82,
+        MarkMethodRawCallback(83,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19606,7 +19949,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(83,
+        MarkMethodRawCallback(84,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19644,7 +19987,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(84,
+        MarkMethodRawCallback(85,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19682,7 +20025,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(85,
+        MarkMethodRawCallback(86,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19720,7 +20063,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(86,
+        MarkMethodRawCallback(87,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19758,7 +20101,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(87,
+        MarkMethodRawCallback(88,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19796,7 +20139,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(88,
+        MarkMethodRawCallback(89,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19834,7 +20177,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(89,
+        MarkMethodRawCallback(90,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19872,7 +20215,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(90,
+        MarkMethodRawCallback(91,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19910,7 +20253,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(91,
+        MarkMethodRawCallback(92,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19948,7 +20291,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(92,
+        MarkMethodRawCallback(93,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -19986,7 +20329,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(93,
+        MarkMethodRawCallback(94,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20014,17 +20357,17 @@ class V2 final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetTaskAnnotationsCount : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetTaskAnnotationCount : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetTaskAnnotationsCount() {
+    ExperimentalWithRawCallbackMethod_GetTaskAnnotationCount() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(94,
+        MarkMethodRawCallback(95,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20032,21 +20375,59 @@ class V2 final {
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTaskAnnotationsCount(context, request, response); }));
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTaskAnnotationCount(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetTaskAnnotationsCount() override {
+    ~ExperimentalWithRawCallbackMethod_GetTaskAnnotationCount() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTaskAnnotationsCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskAnnotationsCountRequest* /*request*/, ::clarifai::api::SingleTaskAnnotationsCountResponse* /*response*/) override {
+    ::grpc::Status GetTaskAnnotationCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetTaskAnnotationsCount(
+    virtual ::grpc::ServerUnaryReactor* GetTaskAnnotationCount(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetTaskAnnotationsCount(
+    virtual ::grpc::experimental::ServerUnaryReactor* GetTaskAnnotationCount(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetTaskInputCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetTaskInputCount() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(96,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTaskInputCount(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetTaskInputCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTaskInputCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetTaskInputCount(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetTaskInputCount(
       ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #endif
       { return nullptr; }
@@ -20062,7 +20443,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(95,
+        MarkMethodRawCallback(97,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20100,7 +20481,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(96,
+        MarkMethodRawCallback(98,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20138,7 +20519,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(97,
+        MarkMethodRawCallback(99,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20176,7 +20557,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(98,
+        MarkMethodRawCallback(100,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20214,7 +20595,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(99,
+        MarkMethodRawCallback(101,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20252,7 +20633,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(100,
+        MarkMethodRawCallback(102,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20290,7 +20671,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(101,
+        MarkMethodRawCallback(103,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20328,7 +20709,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(102,
+        MarkMethodRawCallback(104,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20366,7 +20747,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(103,
+        MarkMethodRawCallback(105,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20404,7 +20785,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(104,
+        MarkMethodRawCallback(106,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20442,7 +20823,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(105,
+        MarkMethodRawCallback(107,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -20470,212 +20851,12 @@ class V2 final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetConceptCounts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetConceptCounts() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>(std::bind(&WithStreamedUnaryMethod_GetConceptCounts<BaseClass>::StreamedGetConceptCounts, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_GetConceptCounts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetConceptCounts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetConceptCountsRequest,::clarifai::api::MultiConceptCountResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetConcept : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetConcept() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>(std::bind(&WithStreamedUnaryMethod_GetConcept<BaseClass>::StreamedGetConcept, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_GetConcept() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetConcept(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetConceptRequest,::clarifai::api::SingleConceptResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_ListConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_ListConcepts() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>(std::bind(&WithStreamedUnaryMethod_ListConcepts<BaseClass>::StreamedListConcepts, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_ListConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedListConcepts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::ListConceptsRequest,::clarifai::api::MultiConceptResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_PostConceptsSearches : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_PostConceptsSearches() {
-      ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>(std::bind(&WithStreamedUnaryMethod_PostConceptsSearches<BaseClass>::StreamedPostConceptsSearches, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_PostConceptsSearches() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPostConceptsSearches(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostConceptsSearchesRequest,::clarifai::api::MultiConceptResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_PostConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_PostConcepts() {
-      ::grpc::Service::MarkMethodStreamed(4,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>(std::bind(&WithStreamedUnaryMethod_PostConcepts<BaseClass>::StreamedPostConcepts, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_PostConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPostConcepts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostConceptsRequest,::clarifai::api::MultiConceptResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_PatchConcepts : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_PatchConcepts() {
-      ::grpc::Service::MarkMethodStreamed(5,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>(std::bind(&WithStreamedUnaryMethod_PatchConcepts<BaseClass>::StreamedPatchConcepts, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_PatchConcepts() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPatchConcepts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PatchConceptsRequest,::clarifai::api::MultiConceptResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetConceptLanguage : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetConceptLanguage() {
-      ::grpc::Service::MarkMethodStreamed(6,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>(std::bind(&WithStreamedUnaryMethod_GetConceptLanguage<BaseClass>::StreamedGetConceptLanguage, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_GetConceptLanguage() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetConceptLanguage(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetConceptLanguageRequest,::clarifai::api::SingleConceptLanguageResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_ListConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_ListConceptLanguages() {
-      ::grpc::Service::MarkMethodStreamed(7,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(std::bind(&WithStreamedUnaryMethod_ListConceptLanguages<BaseClass>::StreamedListConceptLanguages, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_ListConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedListConceptLanguages(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::ListConceptLanguagesRequest,::clarifai::api::MultiConceptLanguageResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_PostConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_PostConceptLanguages() {
-      ::grpc::Service::MarkMethodStreamed(8,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(std::bind(&WithStreamedUnaryMethod_PostConceptLanguages<BaseClass>::StreamedPostConceptLanguages, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_PostConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPostConceptLanguages(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostConceptLanguagesRequest,::clarifai::api::MultiConceptLanguageResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_PatchConceptLanguages : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_PatchConceptLanguages() {
-      ::grpc::Service::MarkMethodStreamed(9,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(std::bind(&WithStreamedUnaryMethod_PatchConceptLanguages<BaseClass>::StreamedPatchConceptLanguages, this, std::placeholders::_1, std::placeholders::_2)));
-    }
-    ~WithStreamedUnaryMethod_PatchConceptLanguages() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPatchConceptLanguages(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PatchConceptLanguagesRequest,::clarifai::api::MultiConceptLanguageResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_ListConceptRelations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListConceptRelations() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>(std::bind(&WithStreamedUnaryMethod_ListConceptRelations<BaseClass>::StreamedListConceptRelations, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListConceptRelations() override {
@@ -20695,7 +20876,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostConceptRelations() {
-      ::grpc::Service::MarkMethodStreamed(11,
+      ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>(std::bind(&WithStreamedUnaryMethod_PostConceptRelations<BaseClass>::StreamedPostConceptRelations, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostConceptRelations() override {
@@ -20715,7 +20896,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteConceptRelations() {
-      ::grpc::Service::MarkMethodStreamed(12,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteConceptRelationsRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteConceptRelations<BaseClass>::StreamedDeleteConceptRelations, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteConceptRelations() override {
@@ -20728,6 +20909,206 @@ class V2 final {
     }
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDeleteConceptRelations(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::DeleteConceptRelationsRequest,::clarifai::api::status::BaseResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetConceptCounts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetConceptCounts() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>(std::bind(&WithStreamedUnaryMethod_GetConceptCounts<BaseClass>::StreamedGetConceptCounts, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetConceptCounts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetConceptCounts(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptCountsRequest* /*request*/, ::clarifai::api::MultiConceptCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetConceptCounts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetConceptCountsRequest,::clarifai::api::MultiConceptCountResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetConcept : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetConcept() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>(std::bind(&WithStreamedUnaryMethod_GetConcept<BaseClass>::StreamedGetConcept, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetConcept() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetConcept(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptRequest* /*request*/, ::clarifai::api::SingleConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetConcept(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetConceptRequest,::clarifai::api::SingleConceptResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListConcepts() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>(std::bind(&WithStreamedUnaryMethod_ListConcepts<BaseClass>::StreamedListConcepts, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_ListConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListConcepts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::ListConceptsRequest,::clarifai::api::MultiConceptResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_PostConceptsSearches : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PostConceptsSearches() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>(std::bind(&WithStreamedUnaryMethod_PostConceptsSearches<BaseClass>::StreamedPostConceptsSearches, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_PostConceptsSearches() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PostConceptsSearches(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsSearchesRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPostConceptsSearches(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostConceptsSearchesRequest,::clarifai::api::MultiConceptResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_PostConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PostConcepts() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>(std::bind(&WithStreamedUnaryMethod_PostConcepts<BaseClass>::StreamedPostConcepts, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_PostConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PostConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPostConcepts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostConceptsRequest,::clarifai::api::MultiConceptResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_PatchConcepts : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PatchConcepts() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>(std::bind(&WithStreamedUnaryMethod_PatchConcepts<BaseClass>::StreamedPatchConcepts, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_PatchConcepts() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PatchConcepts(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptsRequest* /*request*/, ::clarifai::api::MultiConceptResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPatchConcepts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PatchConceptsRequest,::clarifai::api::MultiConceptResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetConceptLanguage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetConceptLanguage() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>(std::bind(&WithStreamedUnaryMethod_GetConceptLanguage<BaseClass>::StreamedGetConceptLanguage, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetConceptLanguage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetConceptLanguage(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetConceptLanguageRequest* /*request*/, ::clarifai::api::SingleConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetConceptLanguage(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetConceptLanguageRequest,::clarifai::api::SingleConceptLanguageResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListConceptLanguages() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(std::bind(&WithStreamedUnaryMethod_ListConceptLanguages<BaseClass>::StreamedListConceptLanguages, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_ListConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListConceptLanguages(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::ListConceptLanguagesRequest,::clarifai::api::MultiConceptLanguageResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_PostConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PostConceptLanguages() {
+      ::grpc::Service::MarkMethodStreamed(11,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(std::bind(&WithStreamedUnaryMethod_PostConceptLanguages<BaseClass>::StreamedPostConceptLanguages, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_PostConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PostConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPostConceptLanguages(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostConceptLanguagesRequest,::clarifai::api::MultiConceptLanguageResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_PatchConceptLanguages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PatchConceptLanguages() {
+      ::grpc::Service::MarkMethodStreamed(12,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(std::bind(&WithStreamedUnaryMethod_PatchConceptLanguages<BaseClass>::StreamedPatchConceptLanguages, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_PatchConceptLanguages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchConceptLanguagesRequest* /*request*/, ::clarifai::api::MultiConceptLanguageResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPatchConceptLanguages(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PatchConceptLanguagesRequest,::clarifai::api::MultiConceptLanguageResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_ListKnowledgeGraphs : public BaseClass {
@@ -20876,18 +21257,18 @@ class V2 final {
    public:
     WithStreamedUnaryMethod_PatchAnnotationsStatus() {
       ::grpc::Service::MarkMethodStreamed(20,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_PatchAnnotationsStatus<BaseClass>::StreamedPatchAnnotationsStatus, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::PatchAnnotationsStatusResponse>(std::bind(&WithStreamedUnaryMethod_PatchAnnotationsStatus<BaseClass>::StreamedPatchAnnotationsStatus, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchAnnotationsStatus() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+    ::grpc::Status PatchAnnotationsStatus(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchAnnotationsStatusRequest* /*request*/, ::clarifai::api::PatchAnnotationsStatusResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPatchAnnotationsStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PatchAnnotationsStatusRequest,::clarifai::api::status::BaseResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedPatchAnnotationsStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PatchAnnotationsStatusRequest,::clarifai::api::PatchAnnotationsStatusResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_DeleteAnnotation : public BaseClass {
@@ -20990,12 +21371,32 @@ class V2 final {
     virtual ::grpc::Status StreamedStreamInputs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::StreamInputsRequest,::clarifai::api::MultiInputResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetInputSamples : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetInputSamples() {
+      ::grpc::Service::MarkMethodStreamed(26,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetInputSamplesRequest, ::clarifai::api::MultiInputAnnotationResponse>(std::bind(&WithStreamedUnaryMethod_GetInputSamples<BaseClass>::StreamedGetInputSamples, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetInputSamples() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetInputSamples(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetInputSamplesRequest* /*request*/, ::clarifai::api::MultiInputAnnotationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetInputSamples(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetInputSamplesRequest,::clarifai::api::MultiInputAnnotationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetInput : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetInput() {
-      ::grpc::Service::MarkMethodStreamed(26,
+      ::grpc::Service::MarkMethodStreamed(27,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetInputRequest, ::clarifai::api::SingleInputResponse>(std::bind(&WithStreamedUnaryMethod_GetInput<BaseClass>::StreamedGetInput, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetInput() override {
@@ -21015,7 +21416,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListInputs() {
-      ::grpc::Service::MarkMethodStreamed(27,
+      ::grpc::Service::MarkMethodStreamed(28,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListInputsRequest, ::clarifai::api::MultiInputResponse>(std::bind(&WithStreamedUnaryMethod_ListInputs<BaseClass>::StreamedListInputs, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListInputs() override {
@@ -21035,7 +21436,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostInputs() {
-      ::grpc::Service::MarkMethodStreamed(28,
+      ::grpc::Service::MarkMethodStreamed(29,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostInputsRequest, ::clarifai::api::MultiInputResponse>(std::bind(&WithStreamedUnaryMethod_PostInputs<BaseClass>::StreamedPostInputs, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostInputs() override {
@@ -21055,7 +21456,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchInputs() {
-      ::grpc::Service::MarkMethodStreamed(29,
+      ::grpc::Service::MarkMethodStreamed(30,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchInputsRequest, ::clarifai::api::MultiInputResponse>(std::bind(&WithStreamedUnaryMethod_PatchInputs<BaseClass>::StreamedPatchInputs, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchInputs() override {
@@ -21075,7 +21476,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteInput() {
-      ::grpc::Service::MarkMethodStreamed(30,
+      ::grpc::Service::MarkMethodStreamed(31,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteInputRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteInput<BaseClass>::StreamedDeleteInput, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteInput() override {
@@ -21095,7 +21496,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteInputs() {
-      ::grpc::Service::MarkMethodStreamed(31,
+      ::grpc::Service::MarkMethodStreamed(32,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteInputsRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteInputs<BaseClass>::StreamedDeleteInputs, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteInputs() override {
@@ -21115,7 +21516,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostInputsSearches() {
-      ::grpc::Service::MarkMethodStreamed(32,
+      ::grpc::Service::MarkMethodStreamed(33,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostInputsSearchesRequest, ::clarifai::api::MultiSearchResponse>(std::bind(&WithStreamedUnaryMethod_PostInputsSearches<BaseClass>::StreamedPostInputsSearches, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostInputsSearches() override {
@@ -21135,7 +21536,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostModelOutputs() {
-      ::grpc::Service::MarkMethodStreamed(33,
+      ::grpc::Service::MarkMethodStreamed(34,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostModelOutputsRequest, ::clarifai::api::MultiOutputResponse>(std::bind(&WithStreamedUnaryMethod_PostModelOutputs<BaseClass>::StreamedPostModelOutputs, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostModelOutputs() override {
@@ -21155,7 +21556,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetModelType() {
-      ::grpc::Service::MarkMethodStreamed(34,
+      ::grpc::Service::MarkMethodStreamed(35,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetModelTypeRequest, ::clarifai::api::SingleModelTypeResponse>(std::bind(&WithStreamedUnaryMethod_GetModelType<BaseClass>::StreamedGetModelType, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetModelType() override {
@@ -21175,7 +21576,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListModelTypes() {
-      ::grpc::Service::MarkMethodStreamed(35,
+      ::grpc::Service::MarkMethodStreamed(36,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListModelTypesRequest, ::clarifai::api::MultiModelTypeResponse>(std::bind(&WithStreamedUnaryMethod_ListModelTypes<BaseClass>::StreamedListModelTypes, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListModelTypes() override {
@@ -21195,7 +21596,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetModel() {
-      ::grpc::Service::MarkMethodStreamed(36,
+      ::grpc::Service::MarkMethodStreamed(37,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>(std::bind(&WithStreamedUnaryMethod_GetModel<BaseClass>::StreamedGetModel, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetModel() override {
@@ -21215,7 +21616,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetModelOutputInfo() {
-      ::grpc::Service::MarkMethodStreamed(37,
+      ::grpc::Service::MarkMethodStreamed(38,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>(std::bind(&WithStreamedUnaryMethod_GetModelOutputInfo<BaseClass>::StreamedGetModelOutputInfo, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetModelOutputInfo() override {
@@ -21235,7 +21636,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListModels() {
-      ::grpc::Service::MarkMethodStreamed(38,
+      ::grpc::Service::MarkMethodStreamed(39,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListModelsRequest, ::clarifai::api::MultiModelResponse>(std::bind(&WithStreamedUnaryMethod_ListModels<BaseClass>::StreamedListModels, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListModels() override {
@@ -21255,7 +21656,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostModelsSearches() {
-      ::grpc::Service::MarkMethodStreamed(39,
+      ::grpc::Service::MarkMethodStreamed(40,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostModelsSearchesRequest, ::clarifai::api::MultiModelResponse>(std::bind(&WithStreamedUnaryMethod_PostModelsSearches<BaseClass>::StreamedPostModelsSearches, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostModelsSearches() override {
@@ -21275,7 +21676,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostModels() {
-      ::grpc::Service::MarkMethodStreamed(40,
+      ::grpc::Service::MarkMethodStreamed(41,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostModelsRequest, ::clarifai::api::SingleModelResponse>(std::bind(&WithStreamedUnaryMethod_PostModels<BaseClass>::StreamedPostModels, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostModels() override {
@@ -21295,7 +21696,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchModels() {
-      ::grpc::Service::MarkMethodStreamed(41,
+      ::grpc::Service::MarkMethodStreamed(42,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchModelsRequest, ::clarifai::api::MultiModelResponse>(std::bind(&WithStreamedUnaryMethod_PatchModels<BaseClass>::StreamedPatchModels, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchModels() override {
@@ -21315,7 +21716,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteModel() {
-      ::grpc::Service::MarkMethodStreamed(42,
+      ::grpc::Service::MarkMethodStreamed(43,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteModelRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteModel<BaseClass>::StreamedDeleteModel, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteModel() override {
@@ -21335,7 +21736,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteModels() {
-      ::grpc::Service::MarkMethodStreamed(43,
+      ::grpc::Service::MarkMethodStreamed(44,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteModelsRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteModels<BaseClass>::StreamedDeleteModels, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteModels() override {
@@ -21355,7 +21756,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListModelInputs() {
-      ::grpc::Service::MarkMethodStreamed(44,
+      ::grpc::Service::MarkMethodStreamed(45,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListModelInputsRequest, ::clarifai::api::MultiInputResponse>(std::bind(&WithStreamedUnaryMethod_ListModelInputs<BaseClass>::StreamedListModelInputs, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListModelInputs() override {
@@ -21375,7 +21776,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetModelVersion() {
-      ::grpc::Service::MarkMethodStreamed(45,
+      ::grpc::Service::MarkMethodStreamed(46,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetModelVersionRequest, ::clarifai::api::SingleModelVersionResponse>(std::bind(&WithStreamedUnaryMethod_GetModelVersion<BaseClass>::StreamedGetModelVersion, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetModelVersion() override {
@@ -21395,7 +21796,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListModelVersions() {
-      ::grpc::Service::MarkMethodStreamed(46,
+      ::grpc::Service::MarkMethodStreamed(47,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse>(std::bind(&WithStreamedUnaryMethod_ListModelVersions<BaseClass>::StreamedListModelVersions, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListModelVersions() override {
@@ -21415,7 +21816,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostModelVersions() {
-      ::grpc::Service::MarkMethodStreamed(47,
+      ::grpc::Service::MarkMethodStreamed(48,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostModelVersionsRequest, ::clarifai::api::SingleModelResponse>(std::bind(&WithStreamedUnaryMethod_PostModelVersions<BaseClass>::StreamedPostModelVersions, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostModelVersions() override {
@@ -21435,7 +21836,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteModelVersion() {
-      ::grpc::Service::MarkMethodStreamed(48,
+      ::grpc::Service::MarkMethodStreamed(49,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteModelVersion<BaseClass>::StreamedDeleteModelVersion, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteModelVersion() override {
@@ -21455,7 +21856,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetModelVersionMetrics() {
-      ::grpc::Service::MarkMethodStreamed(49,
+      ::grpc::Service::MarkMethodStreamed(50,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>(std::bind(&WithStreamedUnaryMethod_GetModelVersionMetrics<BaseClass>::StreamedGetModelVersionMetrics, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetModelVersionMetrics() override {
@@ -21475,7 +21876,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostModelVersionMetrics() {
-      ::grpc::Service::MarkMethodStreamed(50,
+      ::grpc::Service::MarkMethodStreamed(51,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>(std::bind(&WithStreamedUnaryMethod_PostModelVersionMetrics<BaseClass>::StreamedPostModelVersionMetrics, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostModelVersionMetrics() override {
@@ -21495,7 +21896,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetWorkflow() {
-      ::grpc::Service::MarkMethodStreamed(51,
+      ::grpc::Service::MarkMethodStreamed(52,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse>(std::bind(&WithStreamedUnaryMethod_GetWorkflow<BaseClass>::StreamedGetWorkflow, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetWorkflow() override {
@@ -21515,7 +21916,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListWorkflows() {
-      ::grpc::Service::MarkMethodStreamed(52,
+      ::grpc::Service::MarkMethodStreamed(53,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(std::bind(&WithStreamedUnaryMethod_ListWorkflows<BaseClass>::StreamedListWorkflows, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListWorkflows() override {
@@ -21535,7 +21936,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostWorkflows() {
-      ::grpc::Service::MarkMethodStreamed(53,
+      ::grpc::Service::MarkMethodStreamed(54,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(std::bind(&WithStreamedUnaryMethod_PostWorkflows<BaseClass>::StreamedPostWorkflows, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostWorkflows() override {
@@ -21555,7 +21956,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchWorkflows() {
-      ::grpc::Service::MarkMethodStreamed(54,
+      ::grpc::Service::MarkMethodStreamed(55,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(std::bind(&WithStreamedUnaryMethod_PatchWorkflows<BaseClass>::StreamedPatchWorkflows, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchWorkflows() override {
@@ -21575,7 +21976,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteWorkflow() {
-      ::grpc::Service::MarkMethodStreamed(55,
+      ::grpc::Service::MarkMethodStreamed(56,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteWorkflow<BaseClass>::StreamedDeleteWorkflow, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteWorkflow() override {
@@ -21595,7 +21996,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteWorkflows() {
-      ::grpc::Service::MarkMethodStreamed(56,
+      ::grpc::Service::MarkMethodStreamed(57,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteWorkflows<BaseClass>::StreamedDeleteWorkflows, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteWorkflows() override {
@@ -21615,7 +22016,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostWorkflowResults() {
-      ::grpc::Service::MarkMethodStreamed(57,
+      ::grpc::Service::MarkMethodStreamed(58,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse>(std::bind(&WithStreamedUnaryMethod_PostWorkflowResults<BaseClass>::StreamedPostWorkflowResults, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostWorkflowResults() override {
@@ -21635,7 +22036,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostWorkflowResultsSimilarity() {
-      ::grpc::Service::MarkMethodStreamed(58,
+      ::grpc::Service::MarkMethodStreamed(59,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse>(std::bind(&WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<BaseClass>::StreamedPostWorkflowResultsSimilarity, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostWorkflowResultsSimilarity() override {
@@ -21655,7 +22056,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetKey() {
-      ::grpc::Service::MarkMethodStreamed(59,
+      ::grpc::Service::MarkMethodStreamed(60,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse>(std::bind(&WithStreamedUnaryMethod_GetKey<BaseClass>::StreamedGetKey, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetKey() override {
@@ -21675,7 +22076,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListKeys() {
-      ::grpc::Service::MarkMethodStreamed(60,
+      ::grpc::Service::MarkMethodStreamed(61,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse>(std::bind(&WithStreamedUnaryMethod_ListKeys<BaseClass>::StreamedListKeys, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListKeys() override {
@@ -21695,7 +22096,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListAppKeys() {
-      ::grpc::Service::MarkMethodStreamed(61,
+      ::grpc::Service::MarkMethodStreamed(62,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse>(std::bind(&WithStreamedUnaryMethod_ListAppKeys<BaseClass>::StreamedListAppKeys, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListAppKeys() override {
@@ -21715,7 +22116,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodStreamed(62,
+      ::grpc::Service::MarkMethodStreamed(63,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteKey<BaseClass>::StreamedDeleteKey, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteKey() override {
@@ -21735,7 +22136,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostKeys() {
-      ::grpc::Service::MarkMethodStreamed(63,
+      ::grpc::Service::MarkMethodStreamed(64,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse>(std::bind(&WithStreamedUnaryMethod_PostKeys<BaseClass>::StreamedPostKeys, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostKeys() override {
@@ -21755,7 +22156,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchKeys() {
-      ::grpc::Service::MarkMethodStreamed(64,
+      ::grpc::Service::MarkMethodStreamed(65,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse>(std::bind(&WithStreamedUnaryMethod_PatchKeys<BaseClass>::StreamedPatchKeys, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchKeys() override {
@@ -21775,7 +22176,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_MyScopes() {
-      ::grpc::Service::MarkMethodStreamed(65,
+      ::grpc::Service::MarkMethodStreamed(66,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse>(std::bind(&WithStreamedUnaryMethod_MyScopes<BaseClass>::StreamedMyScopes, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_MyScopes() override {
@@ -21795,7 +22196,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListScopes() {
-      ::grpc::Service::MarkMethodStreamed(66,
+      ::grpc::Service::MarkMethodStreamed(67,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse>(std::bind(&WithStreamedUnaryMethod_ListScopes<BaseClass>::StreamedListScopes, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListScopes() override {
@@ -21815,7 +22216,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetApp() {
-      ::grpc::Service::MarkMethodStreamed(67,
+      ::grpc::Service::MarkMethodStreamed(68,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse>(std::bind(&WithStreamedUnaryMethod_GetApp<BaseClass>::StreamedGetApp, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetApp() override {
@@ -21835,7 +22236,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListApps() {
-      ::grpc::Service::MarkMethodStreamed(68,
+      ::grpc::Service::MarkMethodStreamed(69,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse>(std::bind(&WithStreamedUnaryMethod_ListApps<BaseClass>::StreamedListApps, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListApps() override {
@@ -21855,7 +22256,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteApp() {
-      ::grpc::Service::MarkMethodStreamed(69,
+      ::grpc::Service::MarkMethodStreamed(70,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteApp<BaseClass>::StreamedDeleteApp, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteApp() override {
@@ -21875,7 +22276,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostApps() {
-      ::grpc::Service::MarkMethodStreamed(70,
+      ::grpc::Service::MarkMethodStreamed(71,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse>(std::bind(&WithStreamedUnaryMethod_PostApps<BaseClass>::StreamedPostApps, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostApps() override {
@@ -21895,7 +22296,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchApps() {
-      ::grpc::Service::MarkMethodStreamed(71,
+      ::grpc::Service::MarkMethodStreamed(72,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse>(std::bind(&WithStreamedUnaryMethod_PatchApps<BaseClass>::StreamedPatchApps, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchApps() override {
@@ -21915,7 +22316,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostAppsSearches() {
-      ::grpc::Service::MarkMethodStreamed(72,
+      ::grpc::Service::MarkMethodStreamed(73,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse>(std::bind(&WithStreamedUnaryMethod_PostAppsSearches<BaseClass>::StreamedPostAppsSearches, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostAppsSearches() override {
@@ -21935,7 +22336,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostValidatePassword() {
-      ::grpc::Service::MarkMethodStreamed(73,
+      ::grpc::Service::MarkMethodStreamed(74,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse>(std::bind(&WithStreamedUnaryMethod_PostValidatePassword<BaseClass>::StreamedPostValidatePassword, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostValidatePassword() override {
@@ -21955,7 +22356,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSearch() {
-      ::grpc::Service::MarkMethodStreamed(74,
+      ::grpc::Service::MarkMethodStreamed(75,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse>(std::bind(&WithStreamedUnaryMethod_GetSearch<BaseClass>::StreamedGetSearch, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetSearch() override {
@@ -21975,7 +22376,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListSearches() {
-      ::grpc::Service::MarkMethodStreamed(75,
+      ::grpc::Service::MarkMethodStreamed(76,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse>(std::bind(&WithStreamedUnaryMethod_ListSearches<BaseClass>::StreamedListSearches, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListSearches() override {
@@ -21995,7 +22396,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostSearches() {
-      ::grpc::Service::MarkMethodStreamed(76,
+      ::grpc::Service::MarkMethodStreamed(77,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse>(std::bind(&WithStreamedUnaryMethod_PostSearches<BaseClass>::StreamedPostSearches, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostSearches() override {
@@ -22015,7 +22416,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostSearchesByID() {
-      ::grpc::Service::MarkMethodStreamed(77,
+      ::grpc::Service::MarkMethodStreamed(78,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse>(std::bind(&WithStreamedUnaryMethod_PostSearchesByID<BaseClass>::StreamedPostSearchesByID, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostSearchesByID() override {
@@ -22035,7 +22436,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodStreamed(78,
+      ::grpc::Service::MarkMethodStreamed(79,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(std::bind(&WithStreamedUnaryMethod_PostAnnotationSearchMetrics<BaseClass>::StreamedPostAnnotationSearchMetrics, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostAnnotationSearchMetrics() override {
@@ -22055,7 +22456,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodStreamed(79,
+      ::grpc::Service::MarkMethodStreamed(80,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(std::bind(&WithStreamedUnaryMethod_GetAnnotationSearchMetrics<BaseClass>::StreamedGetAnnotationSearchMetrics, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetAnnotationSearchMetrics() override {
@@ -22075,7 +22476,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodStreamed(80,
+      ::grpc::Service::MarkMethodStreamed(81,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(std::bind(&WithStreamedUnaryMethod_ListAnnotationSearchMetrics<BaseClass>::StreamedListAnnotationSearchMetrics, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListAnnotationSearchMetrics() override {
@@ -22095,7 +22496,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics() {
-      ::grpc::Service::MarkMethodStreamed(81,
+      ::grpc::Service::MarkMethodStreamed(82,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<BaseClass>::StreamedDeleteAnnotationSearchMetrics, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics() override {
@@ -22115,7 +22516,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteSearch() {
-      ::grpc::Service::MarkMethodStreamed(82,
+      ::grpc::Service::MarkMethodStreamed(83,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteSearch<BaseClass>::StreamedDeleteSearch, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteSearch() override {
@@ -22135,7 +22536,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListStatusCodes() {
-      ::grpc::Service::MarkMethodStreamed(83,
+      ::grpc::Service::MarkMethodStreamed(84,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse>(std::bind(&WithStreamedUnaryMethod_ListStatusCodes<BaseClass>::StreamedListStatusCodes, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListStatusCodes() override {
@@ -22155,7 +22556,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetStatusCode() {
-      ::grpc::Service::MarkMethodStreamed(84,
+      ::grpc::Service::MarkMethodStreamed(85,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse>(std::bind(&WithStreamedUnaryMethod_GetStatusCode<BaseClass>::StreamedGetStatusCode, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetStatusCode() override {
@@ -22175,7 +22576,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListCollaborators() {
-      ::grpc::Service::MarkMethodStreamed(85,
+      ::grpc::Service::MarkMethodStreamed(86,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(std::bind(&WithStreamedUnaryMethod_ListCollaborators<BaseClass>::StreamedListCollaborators, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListCollaborators() override {
@@ -22195,7 +22596,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostCollaborators() {
-      ::grpc::Service::MarkMethodStreamed(86,
+      ::grpc::Service::MarkMethodStreamed(87,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(std::bind(&WithStreamedUnaryMethod_PostCollaborators<BaseClass>::StreamedPostCollaborators, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostCollaborators() override {
@@ -22215,7 +22616,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchCollaborators() {
-      ::grpc::Service::MarkMethodStreamed(87,
+      ::grpc::Service::MarkMethodStreamed(88,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(std::bind(&WithStreamedUnaryMethod_PatchCollaborators<BaseClass>::StreamedPatchCollaborators, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchCollaborators() override {
@@ -22235,7 +22636,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteCollaborators() {
-      ::grpc::Service::MarkMethodStreamed(88,
+      ::grpc::Service::MarkMethodStreamed(89,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteCollaborators<BaseClass>::StreamedDeleteCollaborators, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteCollaborators() override {
@@ -22255,7 +22656,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListCollaborations() {
-      ::grpc::Service::MarkMethodStreamed(89,
+      ::grpc::Service::MarkMethodStreamed(90,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse>(std::bind(&WithStreamedUnaryMethod_ListCollaborations<BaseClass>::StreamedListCollaborations, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListCollaborations() override {
@@ -22275,7 +22676,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostAppDuplications() {
-      ::grpc::Service::MarkMethodStreamed(90,
+      ::grpc::Service::MarkMethodStreamed(91,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>(std::bind(&WithStreamedUnaryMethod_PostAppDuplications<BaseClass>::StreamedPostAppDuplications, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostAppDuplications() override {
@@ -22295,7 +22696,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListAppDuplications() {
-      ::grpc::Service::MarkMethodStreamed(91,
+      ::grpc::Service::MarkMethodStreamed(92,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>(std::bind(&WithStreamedUnaryMethod_ListAppDuplications<BaseClass>::StreamedListAppDuplications, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListAppDuplications() override {
@@ -22315,7 +22716,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetAppDuplication() {
-      ::grpc::Service::MarkMethodStreamed(92,
+      ::grpc::Service::MarkMethodStreamed(93,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse>(std::bind(&WithStreamedUnaryMethod_GetAppDuplication<BaseClass>::StreamedGetAppDuplication, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetAppDuplication() override {
@@ -22335,7 +22736,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostTasks() {
-      ::grpc::Service::MarkMethodStreamed(93,
+      ::grpc::Service::MarkMethodStreamed(94,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse>(std::bind(&WithStreamedUnaryMethod_PostTasks<BaseClass>::StreamedPostTasks, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostTasks() override {
@@ -22350,24 +22751,44 @@ class V2 final {
     virtual ::grpc::Status StreamedPostTasks(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostTasksRequest,::clarifai::api::MultiTaskResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetTaskAnnotationsCount : public BaseClass {
+  class WithStreamedUnaryMethod_GetTaskAnnotationCount : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetTaskAnnotationsCount() {
-      ::grpc::Service::MarkMethodStreamed(94,
-        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetTaskAnnotationsCountRequest, ::clarifai::api::SingleTaskAnnotationsCountResponse>(std::bind(&WithStreamedUnaryMethod_GetTaskAnnotationsCount<BaseClass>::StreamedGetTaskAnnotationsCount, this, std::placeholders::_1, std::placeholders::_2)));
+    WithStreamedUnaryMethod_GetTaskAnnotationCount() {
+      ::grpc::Service::MarkMethodStreamed(95,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>(std::bind(&WithStreamedUnaryMethod_GetTaskAnnotationCount<BaseClass>::StreamedGetTaskAnnotationCount, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_GetTaskAnnotationsCount() override {
+    ~WithStreamedUnaryMethod_GetTaskAnnotationCount() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetTaskAnnotationsCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskAnnotationsCountRequest* /*request*/, ::clarifai::api::SingleTaskAnnotationsCountResponse* /*response*/) override {
+    ::grpc::Status GetTaskAnnotationCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetTaskAnnotationsCount(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetTaskAnnotationsCountRequest,::clarifai::api::SingleTaskAnnotationsCountResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetTaskAnnotationCount(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetTaskCountRequest,::clarifai::api::SingleTaskCountResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetTaskInputCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetTaskInputCount() {
+      ::grpc::Service::MarkMethodStreamed(96,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>(std::bind(&WithStreamedUnaryMethod_GetTaskInputCount<BaseClass>::StreamedGetTaskInputCount, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetTaskInputCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetTaskInputCount(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetTaskCountRequest* /*request*/, ::clarifai::api::SingleTaskCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetTaskInputCount(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetTaskCountRequest,::clarifai::api::SingleTaskCountResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetTask : public BaseClass {
@@ -22375,7 +22796,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetTask() {
-      ::grpc::Service::MarkMethodStreamed(95,
+      ::grpc::Service::MarkMethodStreamed(97,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse>(std::bind(&WithStreamedUnaryMethod_GetTask<BaseClass>::StreamedGetTask, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetTask() override {
@@ -22395,7 +22816,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListTasks() {
-      ::grpc::Service::MarkMethodStreamed(96,
+      ::grpc::Service::MarkMethodStreamed(98,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse>(std::bind(&WithStreamedUnaryMethod_ListTasks<BaseClass>::StreamedListTasks, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListTasks() override {
@@ -22415,7 +22836,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchTasks() {
-      ::grpc::Service::MarkMethodStreamed(97,
+      ::grpc::Service::MarkMethodStreamed(99,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse>(std::bind(&WithStreamedUnaryMethod_PatchTasks<BaseClass>::StreamedPatchTasks, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchTasks() override {
@@ -22435,7 +22856,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteTasks() {
-      ::grpc::Service::MarkMethodStreamed(98,
+      ::grpc::Service::MarkMethodStreamed(100,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteTasks<BaseClass>::StreamedDeleteTasks, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteTasks() override {
@@ -22455,7 +22876,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostCollectors() {
-      ::grpc::Service::MarkMethodStreamed(99,
+      ::grpc::Service::MarkMethodStreamed(101,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(std::bind(&WithStreamedUnaryMethod_PostCollectors<BaseClass>::StreamedPostCollectors, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostCollectors() override {
@@ -22475,7 +22896,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetCollector() {
-      ::grpc::Service::MarkMethodStreamed(100,
+      ::grpc::Service::MarkMethodStreamed(102,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>(std::bind(&WithStreamedUnaryMethod_GetCollector<BaseClass>::StreamedGetCollector, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetCollector() override {
@@ -22495,7 +22916,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListCollectors() {
-      ::grpc::Service::MarkMethodStreamed(101,
+      ::grpc::Service::MarkMethodStreamed(103,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(std::bind(&WithStreamedUnaryMethod_ListCollectors<BaseClass>::StreamedListCollectors, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListCollectors() override {
@@ -22515,7 +22936,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchCollectors() {
-      ::grpc::Service::MarkMethodStreamed(102,
+      ::grpc::Service::MarkMethodStreamed(104,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(std::bind(&WithStreamedUnaryMethod_PatchCollectors<BaseClass>::StreamedPatchCollectors, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchCollectors() override {
@@ -22535,7 +22956,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteCollectors() {
-      ::grpc::Service::MarkMethodStreamed(103,
+      ::grpc::Service::MarkMethodStreamed(105,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteCollectors<BaseClass>::StreamedDeleteCollectors, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteCollectors() override {
@@ -22555,7 +22976,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostStatValues() {
-      ::grpc::Service::MarkMethodStreamed(104,
+      ::grpc::Service::MarkMethodStreamed(106,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>(std::bind(&WithStreamedUnaryMethod_PostStatValues<BaseClass>::StreamedPostStatValues, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostStatValues() override {
@@ -22575,7 +22996,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostStatValuesAggregate() {
-      ::grpc::Service::MarkMethodStreamed(105,
+      ::grpc::Service::MarkMethodStreamed(107,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>(std::bind(&WithStreamedUnaryMethod_PostStatValuesAggregate<BaseClass>::StreamedPostStatValuesAggregate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostStatValuesAggregate() override {
@@ -22589,9 +23010,9 @@ class V2 final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedPostStatValuesAggregate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostStatValuesAggregateRequest,::clarifai::api::MultiStatValueAggregateResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetConceptCounts<WithStreamedUnaryMethod_GetConcept<WithStreamedUnaryMethod_ListConcepts<WithStreamedUnaryMethod_PostConceptsSearches<WithStreamedUnaryMethod_PostConcepts<WithStreamedUnaryMethod_PatchConcepts<WithStreamedUnaryMethod_GetConceptLanguage<WithStreamedUnaryMethod_ListConceptLanguages<WithStreamedUnaryMethod_PostConceptLanguages<WithStreamedUnaryMethod_PatchConceptLanguages<WithStreamedUnaryMethod_ListConceptRelations<WithStreamedUnaryMethod_PostConceptRelations<WithStreamedUnaryMethod_DeleteConceptRelations<WithStreamedUnaryMethod_ListKnowledgeGraphs<WithStreamedUnaryMethod_PostKnowledgeGraphs<WithStreamedUnaryMethod_PostConceptMappingJobs<WithStreamedUnaryMethod_GetAnnotation<WithStreamedUnaryMethod_ListAnnotations<WithStreamedUnaryMethod_PostAnnotations<WithStreamedUnaryMethod_PatchAnnotations<WithStreamedUnaryMethod_PatchAnnotationsStatus<WithStreamedUnaryMethod_DeleteAnnotation<WithStreamedUnaryMethod_DeleteAnnotations<WithStreamedUnaryMethod_PostAnnotationsSearches<WithStreamedUnaryMethod_GetInputCount<WithStreamedUnaryMethod_StreamInputs<WithStreamedUnaryMethod_GetInput<WithStreamedUnaryMethod_ListInputs<WithStreamedUnaryMethod_PostInputs<WithStreamedUnaryMethod_PatchInputs<WithStreamedUnaryMethod_DeleteInput<WithStreamedUnaryMethod_DeleteInputs<WithStreamedUnaryMethod_PostInputsSearches<WithStreamedUnaryMethod_PostModelOutputs<WithStreamedUnaryMethod_GetModelType<WithStreamedUnaryMethod_ListModelTypes<WithStreamedUnaryMethod_GetModel<WithStreamedUnaryMethod_GetModelOutputInfo<WithStreamedUnaryMethod_ListModels<WithStreamedUnaryMethod_PostModelsSearches<WithStreamedUnaryMethod_PostModels<WithStreamedUnaryMethod_PatchModels<WithStreamedUnaryMethod_DeleteModel<WithStreamedUnaryMethod_DeleteModels<WithStreamedUnaryMethod_ListModelInputs<WithStreamedUnaryMethod_GetModelVersion<WithStreamedUnaryMethod_ListModelVersions<WithStreamedUnaryMethod_PostModelVersions<WithStreamedUnaryMethod_DeleteModelVersion<WithStreamedUnaryMethod_GetModelVersionMetrics<WithStreamedUnaryMethod_PostModelVersionMetrics<WithStreamedUnaryMethod_GetWorkflow<WithStreamedUnaryMethod_ListWorkflows<WithStreamedUnaryMethod_PostWorkflows<WithStreamedUnaryMethod_PatchWorkflows<WithStreamedUnaryMethod_DeleteWorkflow<WithStreamedUnaryMethod_DeleteWorkflows<WithStreamedUnaryMethod_PostWorkflowResults<WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_ListAppKeys<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_PostKeys<WithStreamedUnaryMethod_PatchKeys<WithStreamedUnaryMethod_MyScopes<WithStreamedUnaryMethod_ListScopes<WithStreamedUnaryMethod_GetApp<WithStreamedUnaryMethod_ListApps<WithStreamedUnaryMethod_DeleteApp<WithStreamedUnaryMethod_PostApps<WithStreamedUnaryMethod_PatchApps<WithStreamedUnaryMethod_PostAppsSearches<WithStreamedUnaryMethod_PostValidatePassword<WithStreamedUnaryMethod_GetSearch<WithStreamedUnaryMethod_ListSearches<WithStreamedUnaryMethod_PostSearches<WithStreamedUnaryMethod_PostSearchesByID<WithStreamedUnaryMethod_PostAnnotationSearchMetrics<WithStreamedUnaryMethod_GetAnnotationSearchMetrics<WithStreamedUnaryMethod_ListAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteSearch<WithStreamedUnaryMethod_ListStatusCodes<WithStreamedUnaryMethod_GetStatusCode<WithStreamedUnaryMethod_ListCollaborators<WithStreamedUnaryMethod_PostCollaborators<WithStreamedUnaryMethod_PatchCollaborators<WithStreamedUnaryMethod_DeleteCollaborators<WithStreamedUnaryMethod_ListCollaborations<WithStreamedUnaryMethod_PostAppDuplications<WithStreamedUnaryMethod_ListAppDuplications<WithStreamedUnaryMethod_GetAppDuplication<WithStreamedUnaryMethod_PostTasks<WithStreamedUnaryMethod_GetTaskAnnotationsCount<WithStreamedUnaryMethod_GetTask<WithStreamedUnaryMethod_ListTasks<WithStreamedUnaryMethod_PatchTasks<WithStreamedUnaryMethod_DeleteTasks<WithStreamedUnaryMethod_PostCollectors<WithStreamedUnaryMethod_GetCollector<WithStreamedUnaryMethod_ListCollectors<WithStreamedUnaryMethod_PatchCollectors<WithStreamedUnaryMethod_DeleteCollectors<WithStreamedUnaryMethod_PostStatValues<WithStreamedUnaryMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_ListConceptRelations<WithStreamedUnaryMethod_PostConceptRelations<WithStreamedUnaryMethod_DeleteConceptRelations<WithStreamedUnaryMethod_GetConceptCounts<WithStreamedUnaryMethod_GetConcept<WithStreamedUnaryMethod_ListConcepts<WithStreamedUnaryMethod_PostConceptsSearches<WithStreamedUnaryMethod_PostConcepts<WithStreamedUnaryMethod_PatchConcepts<WithStreamedUnaryMethod_GetConceptLanguage<WithStreamedUnaryMethod_ListConceptLanguages<WithStreamedUnaryMethod_PostConceptLanguages<WithStreamedUnaryMethod_PatchConceptLanguages<WithStreamedUnaryMethod_ListKnowledgeGraphs<WithStreamedUnaryMethod_PostKnowledgeGraphs<WithStreamedUnaryMethod_PostConceptMappingJobs<WithStreamedUnaryMethod_GetAnnotation<WithStreamedUnaryMethod_ListAnnotations<WithStreamedUnaryMethod_PostAnnotations<WithStreamedUnaryMethod_PatchAnnotations<WithStreamedUnaryMethod_PatchAnnotationsStatus<WithStreamedUnaryMethod_DeleteAnnotation<WithStreamedUnaryMethod_DeleteAnnotations<WithStreamedUnaryMethod_PostAnnotationsSearches<WithStreamedUnaryMethod_GetInputCount<WithStreamedUnaryMethod_StreamInputs<WithStreamedUnaryMethod_GetInputSamples<WithStreamedUnaryMethod_GetInput<WithStreamedUnaryMethod_ListInputs<WithStreamedUnaryMethod_PostInputs<WithStreamedUnaryMethod_PatchInputs<WithStreamedUnaryMethod_DeleteInput<WithStreamedUnaryMethod_DeleteInputs<WithStreamedUnaryMethod_PostInputsSearches<WithStreamedUnaryMethod_PostModelOutputs<WithStreamedUnaryMethod_GetModelType<WithStreamedUnaryMethod_ListModelTypes<WithStreamedUnaryMethod_GetModel<WithStreamedUnaryMethod_GetModelOutputInfo<WithStreamedUnaryMethod_ListModels<WithStreamedUnaryMethod_PostModelsSearches<WithStreamedUnaryMethod_PostModels<WithStreamedUnaryMethod_PatchModels<WithStreamedUnaryMethod_DeleteModel<WithStreamedUnaryMethod_DeleteModels<WithStreamedUnaryMethod_ListModelInputs<WithStreamedUnaryMethod_GetModelVersion<WithStreamedUnaryMethod_ListModelVersions<WithStreamedUnaryMethod_PostModelVersions<WithStreamedUnaryMethod_DeleteModelVersion<WithStreamedUnaryMethod_GetModelVersionMetrics<WithStreamedUnaryMethod_PostModelVersionMetrics<WithStreamedUnaryMethod_GetWorkflow<WithStreamedUnaryMethod_ListWorkflows<WithStreamedUnaryMethod_PostWorkflows<WithStreamedUnaryMethod_PatchWorkflows<WithStreamedUnaryMethod_DeleteWorkflow<WithStreamedUnaryMethod_DeleteWorkflows<WithStreamedUnaryMethod_PostWorkflowResults<WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_ListAppKeys<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_PostKeys<WithStreamedUnaryMethod_PatchKeys<WithStreamedUnaryMethod_MyScopes<WithStreamedUnaryMethod_ListScopes<WithStreamedUnaryMethod_GetApp<WithStreamedUnaryMethod_ListApps<WithStreamedUnaryMethod_DeleteApp<WithStreamedUnaryMethod_PostApps<WithStreamedUnaryMethod_PatchApps<WithStreamedUnaryMethod_PostAppsSearches<WithStreamedUnaryMethod_PostValidatePassword<WithStreamedUnaryMethod_GetSearch<WithStreamedUnaryMethod_ListSearches<WithStreamedUnaryMethod_PostSearches<WithStreamedUnaryMethod_PostSearchesByID<WithStreamedUnaryMethod_PostAnnotationSearchMetrics<WithStreamedUnaryMethod_GetAnnotationSearchMetrics<WithStreamedUnaryMethod_ListAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteSearch<WithStreamedUnaryMethod_ListStatusCodes<WithStreamedUnaryMethod_GetStatusCode<WithStreamedUnaryMethod_ListCollaborators<WithStreamedUnaryMethod_PostCollaborators<WithStreamedUnaryMethod_PatchCollaborators<WithStreamedUnaryMethod_DeleteCollaborators<WithStreamedUnaryMethod_ListCollaborations<WithStreamedUnaryMethod_PostAppDuplications<WithStreamedUnaryMethod_ListAppDuplications<WithStreamedUnaryMethod_GetAppDuplication<WithStreamedUnaryMethod_PostTasks<WithStreamedUnaryMethod_GetTaskAnnotationCount<WithStreamedUnaryMethod_GetTaskInputCount<WithStreamedUnaryMethod_GetTask<WithStreamedUnaryMethod_ListTasks<WithStreamedUnaryMethod_PatchTasks<WithStreamedUnaryMethod_DeleteTasks<WithStreamedUnaryMethod_PostCollectors<WithStreamedUnaryMethod_GetCollector<WithStreamedUnaryMethod_ListCollectors<WithStreamedUnaryMethod_PatchCollectors<WithStreamedUnaryMethod_DeleteCollectors<WithStreamedUnaryMethod_PostStatValues<WithStreamedUnaryMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetConceptCounts<WithStreamedUnaryMethod_GetConcept<WithStreamedUnaryMethod_ListConcepts<WithStreamedUnaryMethod_PostConceptsSearches<WithStreamedUnaryMethod_PostConcepts<WithStreamedUnaryMethod_PatchConcepts<WithStreamedUnaryMethod_GetConceptLanguage<WithStreamedUnaryMethod_ListConceptLanguages<WithStreamedUnaryMethod_PostConceptLanguages<WithStreamedUnaryMethod_PatchConceptLanguages<WithStreamedUnaryMethod_ListConceptRelations<WithStreamedUnaryMethod_PostConceptRelations<WithStreamedUnaryMethod_DeleteConceptRelations<WithStreamedUnaryMethod_ListKnowledgeGraphs<WithStreamedUnaryMethod_PostKnowledgeGraphs<WithStreamedUnaryMethod_PostConceptMappingJobs<WithStreamedUnaryMethod_GetAnnotation<WithStreamedUnaryMethod_ListAnnotations<WithStreamedUnaryMethod_PostAnnotations<WithStreamedUnaryMethod_PatchAnnotations<WithStreamedUnaryMethod_PatchAnnotationsStatus<WithStreamedUnaryMethod_DeleteAnnotation<WithStreamedUnaryMethod_DeleteAnnotations<WithStreamedUnaryMethod_PostAnnotationsSearches<WithStreamedUnaryMethod_GetInputCount<WithStreamedUnaryMethod_StreamInputs<WithStreamedUnaryMethod_GetInput<WithStreamedUnaryMethod_ListInputs<WithStreamedUnaryMethod_PostInputs<WithStreamedUnaryMethod_PatchInputs<WithStreamedUnaryMethod_DeleteInput<WithStreamedUnaryMethod_DeleteInputs<WithStreamedUnaryMethod_PostInputsSearches<WithStreamedUnaryMethod_PostModelOutputs<WithStreamedUnaryMethod_GetModelType<WithStreamedUnaryMethod_ListModelTypes<WithStreamedUnaryMethod_GetModel<WithStreamedUnaryMethod_GetModelOutputInfo<WithStreamedUnaryMethod_ListModels<WithStreamedUnaryMethod_PostModelsSearches<WithStreamedUnaryMethod_PostModels<WithStreamedUnaryMethod_PatchModels<WithStreamedUnaryMethod_DeleteModel<WithStreamedUnaryMethod_DeleteModels<WithStreamedUnaryMethod_ListModelInputs<WithStreamedUnaryMethod_GetModelVersion<WithStreamedUnaryMethod_ListModelVersions<WithStreamedUnaryMethod_PostModelVersions<WithStreamedUnaryMethod_DeleteModelVersion<WithStreamedUnaryMethod_GetModelVersionMetrics<WithStreamedUnaryMethod_PostModelVersionMetrics<WithStreamedUnaryMethod_GetWorkflow<WithStreamedUnaryMethod_ListWorkflows<WithStreamedUnaryMethod_PostWorkflows<WithStreamedUnaryMethod_PatchWorkflows<WithStreamedUnaryMethod_DeleteWorkflow<WithStreamedUnaryMethod_DeleteWorkflows<WithStreamedUnaryMethod_PostWorkflowResults<WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_ListAppKeys<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_PostKeys<WithStreamedUnaryMethod_PatchKeys<WithStreamedUnaryMethod_MyScopes<WithStreamedUnaryMethod_ListScopes<WithStreamedUnaryMethod_GetApp<WithStreamedUnaryMethod_ListApps<WithStreamedUnaryMethod_DeleteApp<WithStreamedUnaryMethod_PostApps<WithStreamedUnaryMethod_PatchApps<WithStreamedUnaryMethod_PostAppsSearches<WithStreamedUnaryMethod_PostValidatePassword<WithStreamedUnaryMethod_GetSearch<WithStreamedUnaryMethod_ListSearches<WithStreamedUnaryMethod_PostSearches<WithStreamedUnaryMethod_PostSearchesByID<WithStreamedUnaryMethod_PostAnnotationSearchMetrics<WithStreamedUnaryMethod_GetAnnotationSearchMetrics<WithStreamedUnaryMethod_ListAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteSearch<WithStreamedUnaryMethod_ListStatusCodes<WithStreamedUnaryMethod_GetStatusCode<WithStreamedUnaryMethod_ListCollaborators<WithStreamedUnaryMethod_PostCollaborators<WithStreamedUnaryMethod_PatchCollaborators<WithStreamedUnaryMethod_DeleteCollaborators<WithStreamedUnaryMethod_ListCollaborations<WithStreamedUnaryMethod_PostAppDuplications<WithStreamedUnaryMethod_ListAppDuplications<WithStreamedUnaryMethod_GetAppDuplication<WithStreamedUnaryMethod_PostTasks<WithStreamedUnaryMethod_GetTaskAnnotationsCount<WithStreamedUnaryMethod_GetTask<WithStreamedUnaryMethod_ListTasks<WithStreamedUnaryMethod_PatchTasks<WithStreamedUnaryMethod_DeleteTasks<WithStreamedUnaryMethod_PostCollectors<WithStreamedUnaryMethod_GetCollector<WithStreamedUnaryMethod_ListCollectors<WithStreamedUnaryMethod_PatchCollectors<WithStreamedUnaryMethod_DeleteCollectors<WithStreamedUnaryMethod_PostStatValues<WithStreamedUnaryMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_ListConceptRelations<WithStreamedUnaryMethod_PostConceptRelations<WithStreamedUnaryMethod_DeleteConceptRelations<WithStreamedUnaryMethod_GetConceptCounts<WithStreamedUnaryMethod_GetConcept<WithStreamedUnaryMethod_ListConcepts<WithStreamedUnaryMethod_PostConceptsSearches<WithStreamedUnaryMethod_PostConcepts<WithStreamedUnaryMethod_PatchConcepts<WithStreamedUnaryMethod_GetConceptLanguage<WithStreamedUnaryMethod_ListConceptLanguages<WithStreamedUnaryMethod_PostConceptLanguages<WithStreamedUnaryMethod_PatchConceptLanguages<WithStreamedUnaryMethod_ListKnowledgeGraphs<WithStreamedUnaryMethod_PostKnowledgeGraphs<WithStreamedUnaryMethod_PostConceptMappingJobs<WithStreamedUnaryMethod_GetAnnotation<WithStreamedUnaryMethod_ListAnnotations<WithStreamedUnaryMethod_PostAnnotations<WithStreamedUnaryMethod_PatchAnnotations<WithStreamedUnaryMethod_PatchAnnotationsStatus<WithStreamedUnaryMethod_DeleteAnnotation<WithStreamedUnaryMethod_DeleteAnnotations<WithStreamedUnaryMethod_PostAnnotationsSearches<WithStreamedUnaryMethod_GetInputCount<WithStreamedUnaryMethod_StreamInputs<WithStreamedUnaryMethod_GetInputSamples<WithStreamedUnaryMethod_GetInput<WithStreamedUnaryMethod_ListInputs<WithStreamedUnaryMethod_PostInputs<WithStreamedUnaryMethod_PatchInputs<WithStreamedUnaryMethod_DeleteInput<WithStreamedUnaryMethod_DeleteInputs<WithStreamedUnaryMethod_PostInputsSearches<WithStreamedUnaryMethod_PostModelOutputs<WithStreamedUnaryMethod_GetModelType<WithStreamedUnaryMethod_ListModelTypes<WithStreamedUnaryMethod_GetModel<WithStreamedUnaryMethod_GetModelOutputInfo<WithStreamedUnaryMethod_ListModels<WithStreamedUnaryMethod_PostModelsSearches<WithStreamedUnaryMethod_PostModels<WithStreamedUnaryMethod_PatchModels<WithStreamedUnaryMethod_DeleteModel<WithStreamedUnaryMethod_DeleteModels<WithStreamedUnaryMethod_ListModelInputs<WithStreamedUnaryMethod_GetModelVersion<WithStreamedUnaryMethod_ListModelVersions<WithStreamedUnaryMethod_PostModelVersions<WithStreamedUnaryMethod_DeleteModelVersion<WithStreamedUnaryMethod_GetModelVersionMetrics<WithStreamedUnaryMethod_PostModelVersionMetrics<WithStreamedUnaryMethod_GetWorkflow<WithStreamedUnaryMethod_ListWorkflows<WithStreamedUnaryMethod_PostWorkflows<WithStreamedUnaryMethod_PatchWorkflows<WithStreamedUnaryMethod_DeleteWorkflow<WithStreamedUnaryMethod_DeleteWorkflows<WithStreamedUnaryMethod_PostWorkflowResults<WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_ListAppKeys<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_PostKeys<WithStreamedUnaryMethod_PatchKeys<WithStreamedUnaryMethod_MyScopes<WithStreamedUnaryMethod_ListScopes<WithStreamedUnaryMethod_GetApp<WithStreamedUnaryMethod_ListApps<WithStreamedUnaryMethod_DeleteApp<WithStreamedUnaryMethod_PostApps<WithStreamedUnaryMethod_PatchApps<WithStreamedUnaryMethod_PostAppsSearches<WithStreamedUnaryMethod_PostValidatePassword<WithStreamedUnaryMethod_GetSearch<WithStreamedUnaryMethod_ListSearches<WithStreamedUnaryMethod_PostSearches<WithStreamedUnaryMethod_PostSearchesByID<WithStreamedUnaryMethod_PostAnnotationSearchMetrics<WithStreamedUnaryMethod_GetAnnotationSearchMetrics<WithStreamedUnaryMethod_ListAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteSearch<WithStreamedUnaryMethod_ListStatusCodes<WithStreamedUnaryMethod_GetStatusCode<WithStreamedUnaryMethod_ListCollaborators<WithStreamedUnaryMethod_PostCollaborators<WithStreamedUnaryMethod_PatchCollaborators<WithStreamedUnaryMethod_DeleteCollaborators<WithStreamedUnaryMethod_ListCollaborations<WithStreamedUnaryMethod_PostAppDuplications<WithStreamedUnaryMethod_ListAppDuplications<WithStreamedUnaryMethod_GetAppDuplication<WithStreamedUnaryMethod_PostTasks<WithStreamedUnaryMethod_GetTaskAnnotationCount<WithStreamedUnaryMethod_GetTaskInputCount<WithStreamedUnaryMethod_GetTask<WithStreamedUnaryMethod_ListTasks<WithStreamedUnaryMethod_PatchTasks<WithStreamedUnaryMethod_DeleteTasks<WithStreamedUnaryMethod_PostCollectors<WithStreamedUnaryMethod_GetCollector<WithStreamedUnaryMethod_ListCollectors<WithStreamedUnaryMethod_PatchCollectors<WithStreamedUnaryMethod_DeleteCollectors<WithStreamedUnaryMethod_PostStatValues<WithStreamedUnaryMethod_PostStatValuesAggregate<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace api
