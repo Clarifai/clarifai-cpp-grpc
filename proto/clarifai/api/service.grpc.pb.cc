@@ -72,6 +72,7 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/GetModelVersion",
   "/clarifai.api.V2/ListModelVersions",
   "/clarifai.api.V2/PostModelVersions",
+  "/clarifai.api.V2/PatchModelVersions",
   "/clarifai.api.V2/DeleteModelVersion",
   "/clarifai.api.V2/GetModelVersionMetrics",
   "/clarifai.api.V2/PostModelVersionMetrics",
@@ -189,65 +190,66 @@ V2::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_GetModelVersion_(V2_method_names[46], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListModelVersions_(V2_method_names[47], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_PostModelVersions_(V2_method_names[48], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteModelVersion_(V2_method_names[49], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetModelVersionMetrics_(V2_method_names[50], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostModelVersionMetrics_(V2_method_names[51], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetWorkflow_(V2_method_names[52], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListWorkflows_(V2_method_names[53], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostWorkflows_(V2_method_names[54], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchWorkflows_(V2_method_names[55], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteWorkflow_(V2_method_names[56], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteWorkflows_(V2_method_names[57], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostWorkflowResults_(V2_method_names[58], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostWorkflowResultsSimilarity_(V2_method_names[59], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKey_(V2_method_names[60], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListKeys_(V2_method_names[61], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAppKeys_(V2_method_names[62], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteKey_(V2_method_names[63], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostKeys_(V2_method_names[64], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchKeys_(V2_method_names[65], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MyScopes_(V2_method_names[66], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListScopes_(V2_method_names[67], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetApp_(V2_method_names[68], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListApps_(V2_method_names[69], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteApp_(V2_method_names[70], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostApps_(V2_method_names[71], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchApps_(V2_method_names[72], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostAppsSearches_(V2_method_names[73], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostValidatePassword_(V2_method_names[74], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSearch_(V2_method_names[75], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListSearches_(V2_method_names[76], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostSearches_(V2_method_names[77], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostSearchesByID_(V2_method_names[78], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostAnnotationSearchMetrics_(V2_method_names[79], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAnnotationSearchMetrics_(V2_method_names[80], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAnnotationSearchMetrics_(V2_method_names[81], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteAnnotationSearchMetrics_(V2_method_names[82], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteSearch_(V2_method_names[83], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListStatusCodes_(V2_method_names[84], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatusCode_(V2_method_names[85], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListCollaborators_(V2_method_names[86], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostCollaborators_(V2_method_names[87], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchCollaborators_(V2_method_names[88], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteCollaborators_(V2_method_names[89], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListCollaborations_(V2_method_names[90], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostAppDuplications_(V2_method_names[91], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAppDuplications_(V2_method_names[92], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAppDuplication_(V2_method_names[93], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostTasks_(V2_method_names[94], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTaskAnnotationCount_(V2_method_names[95], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTaskInputCount_(V2_method_names[96], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTask_(V2_method_names[97], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListTasks_(V2_method_names[98], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchTasks_(V2_method_names[99], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteTasks_(V2_method_names[100], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostCollectors_(V2_method_names[101], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollector_(V2_method_names[102], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListCollectors_(V2_method_names[103], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchCollectors_(V2_method_names[104], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteCollectors_(V2_method_names[105], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostStatValues_(V2_method_names[106], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostStatValuesAggregate_(V2_method_names[107], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModelVersions_(V2_method_names[49], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteModelVersion_(V2_method_names[50], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModelVersionMetrics_(V2_method_names[51], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModelVersionMetrics_(V2_method_names[52], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetWorkflow_(V2_method_names[53], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListWorkflows_(V2_method_names[54], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostWorkflows_(V2_method_names[55], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchWorkflows_(V2_method_names[56], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteWorkflow_(V2_method_names[57], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteWorkflows_(V2_method_names[58], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostWorkflowResults_(V2_method_names[59], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostWorkflowResultsSimilarity_(V2_method_names[60], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKey_(V2_method_names[61], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListKeys_(V2_method_names[62], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAppKeys_(V2_method_names[63], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteKey_(V2_method_names[64], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostKeys_(V2_method_names[65], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchKeys_(V2_method_names[66], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MyScopes_(V2_method_names[67], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListScopes_(V2_method_names[68], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetApp_(V2_method_names[69], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListApps_(V2_method_names[70], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteApp_(V2_method_names[71], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostApps_(V2_method_names[72], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchApps_(V2_method_names[73], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAppsSearches_(V2_method_names[74], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostValidatePassword_(V2_method_names[75], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSearch_(V2_method_names[76], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListSearches_(V2_method_names[77], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostSearches_(V2_method_names[78], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostSearchesByID_(V2_method_names[79], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAnnotationSearchMetrics_(V2_method_names[80], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAnnotationSearchMetrics_(V2_method_names[81], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAnnotationSearchMetrics_(V2_method_names[82], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteAnnotationSearchMetrics_(V2_method_names[83], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteSearch_(V2_method_names[84], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListStatusCodes_(V2_method_names[85], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatusCode_(V2_method_names[86], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListCollaborators_(V2_method_names[87], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostCollaborators_(V2_method_names[88], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchCollaborators_(V2_method_names[89], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteCollaborators_(V2_method_names[90], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListCollaborations_(V2_method_names[91], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAppDuplications_(V2_method_names[92], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAppDuplications_(V2_method_names[93], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAppDuplication_(V2_method_names[94], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostTasks_(V2_method_names[95], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTaskAnnotationCount_(V2_method_names[96], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTaskInputCount_(V2_method_names[97], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTask_(V2_method_names[98], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListTasks_(V2_method_names[99], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchTasks_(V2_method_names[100], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteTasks_(V2_method_names[101], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostCollectors_(V2_method_names[102], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollector_(V2_method_names[103], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListCollectors_(V2_method_names[104], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchCollectors_(V2_method_names[105], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteCollectors_(V2_method_names[106], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostStatValues_(V2_method_names[107], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostStatValuesAggregate_(V2_method_names[108], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status V2::Stub::ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) {
@@ -1620,6 +1622,34 @@ void V2::Stub::experimental_async::PostModelVersions(::grpc::ClientContext* cont
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::PrepareAsyncPostModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersions_, context, request, false);
+}
+
+::grpc::Status V2::Stub::PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::clarifai::api::MultiModelVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchModelVersions_, context, request, response);
+}
+
+void V2::Stub::experimental_async::PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::PatchModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, reactor);
+}
+
+void V2::Stub::experimental_async::PatchModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionResponse>* V2::Stub::AsyncPatchModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelVersions_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionResponse>* V2::Stub::PrepareAsyncPatchModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelVersions_, context, request, false);
 }
 
 ::grpc::Status V2::Stub::DeleteModelVersion(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest& request, ::clarifai::api::status::BaseResponse* response) {
@@ -3523,295 +3553,300 @@ V2::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse>(
+          std::mem_fn(&V2::Service::PatchModelVersions), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[50],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteModelVersion), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[50],
+      V2_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>(
           std::mem_fn(&V2::Service::GetModelVersionMetrics), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[51],
+      V2_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>(
           std::mem_fn(&V2::Service::PostModelVersionMetrics), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[52],
+      V2_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse>(
           std::mem_fn(&V2::Service::GetWorkflow), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[53],
+      V2_method_names[54],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
           std::mem_fn(&V2::Service::ListWorkflows), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[54],
+      V2_method_names[55],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
           std::mem_fn(&V2::Service::PostWorkflows), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[55],
+      V2_method_names[56],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
           std::mem_fn(&V2::Service::PatchWorkflows), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[56],
+      V2_method_names[57],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteWorkflow), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[57],
+      V2_method_names[58],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteWorkflows), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[58],
+      V2_method_names[59],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse>(
           std::mem_fn(&V2::Service::PostWorkflowResults), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[59],
+      V2_method_names[60],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse>(
           std::mem_fn(&V2::Service::PostWorkflowResultsSimilarity), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[60],
+      V2_method_names[61],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse>(
           std::mem_fn(&V2::Service::GetKey), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[61],
+      V2_method_names[62],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse>(
           std::mem_fn(&V2::Service::ListKeys), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[62],
+      V2_method_names[63],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse>(
           std::mem_fn(&V2::Service::ListAppKeys), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[63],
+      V2_method_names[64],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteKey), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[64],
+      V2_method_names[65],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse>(
           std::mem_fn(&V2::Service::PostKeys), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[65],
+      V2_method_names[66],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse>(
           std::mem_fn(&V2::Service::PatchKeys), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[66],
+      V2_method_names[67],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse>(
           std::mem_fn(&V2::Service::MyScopes), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[67],
+      V2_method_names[68],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse>(
           std::mem_fn(&V2::Service::ListScopes), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[68],
+      V2_method_names[69],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse>(
           std::mem_fn(&V2::Service::GetApp), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[69],
+      V2_method_names[70],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse>(
           std::mem_fn(&V2::Service::ListApps), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[70],
+      V2_method_names[71],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteApp), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[71],
+      V2_method_names[72],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse>(
           std::mem_fn(&V2::Service::PostApps), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[72],
+      V2_method_names[73],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse>(
           std::mem_fn(&V2::Service::PatchApps), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[73],
+      V2_method_names[74],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse>(
           std::mem_fn(&V2::Service::PostAppsSearches), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[74],
+      V2_method_names[75],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse>(
           std::mem_fn(&V2::Service::PostValidatePassword), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[75],
+      V2_method_names[76],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse>(
           std::mem_fn(&V2::Service::GetSearch), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[76],
+      V2_method_names[77],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse>(
           std::mem_fn(&V2::Service::ListSearches), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[77],
+      V2_method_names[78],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse>(
           std::mem_fn(&V2::Service::PostSearches), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[78],
+      V2_method_names[79],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse>(
           std::mem_fn(&V2::Service::PostSearchesByID), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[79],
+      V2_method_names[80],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
           std::mem_fn(&V2::Service::PostAnnotationSearchMetrics), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[80],
+      V2_method_names[81],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
           std::mem_fn(&V2::Service::GetAnnotationSearchMetrics), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[81],
+      V2_method_names[82],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
           std::mem_fn(&V2::Service::ListAnnotationSearchMetrics), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[82],
+      V2_method_names[83],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteAnnotationSearchMetrics), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[83],
+      V2_method_names[84],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteSearch), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[84],
+      V2_method_names[85],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse>(
           std::mem_fn(&V2::Service::ListStatusCodes), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[85],
+      V2_method_names[86],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse>(
           std::mem_fn(&V2::Service::GetStatusCode), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[86],
+      V2_method_names[87],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
           std::mem_fn(&V2::Service::ListCollaborators), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[87],
+      V2_method_names[88],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
           std::mem_fn(&V2::Service::PostCollaborators), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[88],
+      V2_method_names[89],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
           std::mem_fn(&V2::Service::PatchCollaborators), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[89],
+      V2_method_names[90],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteCollaborators), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[90],
+      V2_method_names[91],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse>(
           std::mem_fn(&V2::Service::ListCollaborations), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[91],
+      V2_method_names[92],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>(
           std::mem_fn(&V2::Service::PostAppDuplications), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[92],
+      V2_method_names[93],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>(
           std::mem_fn(&V2::Service::ListAppDuplications), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[93],
+      V2_method_names[94],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse>(
           std::mem_fn(&V2::Service::GetAppDuplication), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[94],
+      V2_method_names[95],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse>(
           std::mem_fn(&V2::Service::PostTasks), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[95],
+      V2_method_names[96],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>(
           std::mem_fn(&V2::Service::GetTaskAnnotationCount), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[96],
+      V2_method_names[97],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>(
           std::mem_fn(&V2::Service::GetTaskInputCount), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[97],
+      V2_method_names[98],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse>(
           std::mem_fn(&V2::Service::GetTask), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[98],
+      V2_method_names[99],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse>(
           std::mem_fn(&V2::Service::ListTasks), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[99],
+      V2_method_names[100],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse>(
           std::mem_fn(&V2::Service::PatchTasks), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[100],
+      V2_method_names[101],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteTasks), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[101],
+      V2_method_names[102],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
           std::mem_fn(&V2::Service::PostCollectors), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[102],
+      V2_method_names[103],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>(
           std::mem_fn(&V2::Service::GetCollector), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[103],
+      V2_method_names[104],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
           std::mem_fn(&V2::Service::ListCollectors), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[104],
+      V2_method_names[105],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
           std::mem_fn(&V2::Service::PatchCollectors), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[105],
+      V2_method_names[106],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteCollectors), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[106],
+      V2_method_names[107],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>(
           std::mem_fn(&V2::Service::PostStatValues), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[107],
+      V2_method_names[108],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>(
           std::mem_fn(&V2::Service::PostStatValuesAggregate), this)));
@@ -4157,6 +4192,13 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::PostModelVersions(::grpc::ServerContext* context, const ::clarifai::api::PostModelVersionsRequest* request, ::clarifai::api::SingleModelResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchModelVersions(::grpc::ServerContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response) {
   (void) context;
   (void) request;
   (void) response;
