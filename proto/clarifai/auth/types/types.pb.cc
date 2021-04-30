@@ -31,12 +31,10 @@ const char descriptor_table_protodef_proto_2fclarifai_2fauth_2ftypes_2ftypes_2ep
   "\n%proto/clarifai/auth/types/types.proto\022"
   "\023clarifai.auth.types*`\n\010AuthType\022\t\n\005unde"
   "f\020\000\022\n\n\006NoAuth\020\001\022\013\n\007KeyAuth\020\002\022\024\n\020SessionT"
-  "okenAuth\020\003\022\r\n\tAdminAuth\020\004\022\013\n\007PATAuth\020\005B\240"
-  "\001\n\034com.clarifai.grpc.auth.typesP\001Zwgithu"
-  "b.com/Clarifai/clarifai-go-grpc/proto/cl"
-  "arifai/auth/github.com/Clarifai/clarifai"
-  "-go-grpc/proto/clarifai/auth/types\242\002\004CAI"
-  "Pb\006proto3"
+  "okenAuth\020\003\022\r\n\tAdminAuth\020\004\022\013\n\007PATAuth\020\005Bg"
+  "\n\034com.clarifai.grpc.auth.typesP\001Z>github"
+  ".com/Clarifai/clarifai-go-grpc/proto/cla"
+  "rifai/auth/types\242\002\004CAIPb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto_deps[1] = {
 };
@@ -45,7 +43,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto_once;
 static bool descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto, "proto/clarifai/auth/types/types.proto", 329,
+  &descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto, "proto/clarifai/auth/types/types.proto", 271,
   &descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto_once, descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto_sccs, descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto_deps, 0, 0,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto::offsets,
   file_level_metadata_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto, 0, file_level_enum_descriptors_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto, file_level_service_descriptors_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto,
