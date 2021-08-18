@@ -141,6 +141,7 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/PostStatValues",
   "/clarifai.api.V2/PostStatValuesAggregate",
   "/clarifai.api.V2/PostTrendingMetricsView",
+  "/clarifai.api.V2/ListTrendingMetricsViews",
 };
 
 std::unique_ptr< V2::Stub> V2::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -268,6 +269,7 @@ V2::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_PostStatValues_(V2_method_names[115], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_PostStatValuesAggregate_(V2_method_names[116], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_PostTrendingMetricsView_(V2_method_names[117], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListTrendingMetricsViews_(V2_method_names[118], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status V2::Stub::ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) {
@@ -3574,6 +3576,34 @@ void V2::Stub::experimental_async::PostTrendingMetricsView(::grpc::ClientContext
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_PostTrendingMetricsView_, context, request, false);
 }
 
+::grpc::Status V2::Stub::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest& request, ::clarifai::api::MultiTrendingMetricsViewResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListTrendingMetricsViews_, context, request, response);
+}
+
+void V2::Stub::experimental_async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, reactor);
+}
+
+void V2::Stub::experimental_async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTrendingMetricsViewResponse>* V2::Stub::AsyncListTrendingMetricsViewsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTrendingMetricsViewResponse>::Create(channel_.get(), cq, rpcmethod_ListTrendingMetricsViews_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTrendingMetricsViewResponse>* V2::Stub::PrepareAsyncListTrendingMetricsViewsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTrendingMetricsViewResponse>::Create(channel_.get(), cq, rpcmethod_ListTrendingMetricsViews_, context, request, false);
+}
+
 V2::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[0],
@@ -4165,6 +4195,11 @@ V2::Service::Service() {
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::PostTrendingMetricsView), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[118],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse>(
+          std::mem_fn(&V2::Service::ListTrendingMetricsViews), this)));
 }
 
 V2::Service::~Service() {
@@ -4990,6 +5025,13 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::PostTrendingMetricsView(::grpc::ServerContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListTrendingMetricsViews(::grpc::ServerContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response) {
   (void) context;
   (void) request;
   (void) response;
