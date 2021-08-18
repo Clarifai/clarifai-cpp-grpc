@@ -53,7 +53,7 @@ struct TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[118]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[117]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -377,9 +377,6 @@ extern TrainInfoDefaultTypeInternal _TrainInfo_default_instance_;
 class TrainStats;
 class TrainStatsDefaultTypeInternal;
 extern TrainStatsDefaultTypeInternal _TrainStats_default_instance_;
-class TrendingMetric;
-class TrendingMetricDefaultTypeInternal;
-extern TrendingMetricDefaultTypeInternal _TrendingMetric_default_instance_;
 class User;
 class UserDefaultTypeInternal;
 extern UserDefaultTypeInternal _User_default_instance_;
@@ -524,7 +521,6 @@ template<> ::clarifai::api::Track_TrackInfo* Arena::CreateMaybeMessage<::clarifa
 template<> ::clarifai::api::TrackerMetrics* Arena::CreateMaybeMessage<::clarifai::api::TrackerMetrics>(Arena*);
 template<> ::clarifai::api::TrainInfo* Arena::CreateMaybeMessage<::clarifai::api::TrainInfo>(Arena*);
 template<> ::clarifai::api::TrainStats* Arena::CreateMaybeMessage<::clarifai::api::TrainStats>(Arena*);
-template<> ::clarifai::api::TrendingMetric* Arena::CreateMaybeMessage<::clarifai::api::TrendingMetric>(Arena*);
 template<> ::clarifai::api::User* Arena::CreateMaybeMessage<::clarifai::api::User>(Arena*);
 template<> ::clarifai::api::UserAppIDSet* Arena::CreateMaybeMessage<::clarifai::api::UserAppIDSet>(Arena*);
 template<> ::clarifai::api::UserDetail* Arena::CreateMaybeMessage<::clarifai::api::UserDetail>(Arena*);
@@ -9116,7 +9112,6 @@ class Model :
     kUserIdFieldNumber = 9,
     kModelTypeIdFieldNumber = 14,
     kDescriptionFieldNumber = 16,
-    kNotesFieldNumber = 18,
     kCreatedAtFieldNumber = 3,
     kOutputInfoFieldNumber = 5,
     kModelVersionFieldNumber = 6,
@@ -9237,22 +9232,6 @@ class Model :
   std::string* _internal_mutable_description();
   public:
 
-  // string notes = 18;
-  void clear_notes();
-  const std::string& notes() const;
-  void set_notes(const std::string& value);
-  void set_notes(std::string&& value);
-  void set_notes(const char* value);
-  void set_notes(const char* value, size_t size);
-  std::string* mutable_notes();
-  std::string* release_notes();
-  void set_allocated_notes(std::string* notes);
-  private:
-  const std::string& _internal_notes() const;
-  void _internal_set_notes(const std::string& value);
-  std::string* _internal_mutable_notes();
-  public:
-
   // .google.protobuf.Timestamp created_at = 3;
   bool has_created_at() const;
   private:
@@ -9370,7 +9349,6 @@ class Model :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_type_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr notes_;
   PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
   ::clarifai::api::OutputInfo* output_info_;
   ::clarifai::api::ModelVersion* model_version_;
@@ -24575,188 +24553,6 @@ class Visibility :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto;
 };
-// -------------------------------------------------------------------
-
-class TrendingMetric :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.TrendingMetric) */ {
- public:
-  TrendingMetric();
-  virtual ~TrendingMetric();
-
-  TrendingMetric(const TrendingMetric& from);
-  TrendingMetric(TrendingMetric&& from) noexcept
-    : TrendingMetric() {
-    *this = ::std::move(from);
-  }
-
-  inline TrendingMetric& operator=(const TrendingMetric& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline TrendingMetric& operator=(TrendingMetric&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const TrendingMetric& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TrendingMetric* internal_default_instance() {
-    return reinterpret_cast<const TrendingMetric*>(
-               &_TrendingMetric_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    117;
-
-  friend void swap(TrendingMetric& a, TrendingMetric& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(TrendingMetric* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline TrendingMetric* New() const final {
-    return CreateMaybeMessage<TrendingMetric>(nullptr);
-  }
-
-  TrendingMetric* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TrendingMetric>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TrendingMetric& from);
-  void MergeFrom(const TrendingMetric& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(TrendingMetric* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "clarifai.api.TrendingMetric";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-    return ::descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kUserIdFieldNumber = 1,
-    kAppIdFieldNumber = 2,
-    kObjectIdFieldNumber = 3,
-    kViewCountFieldNumber = 4,
-  };
-  // string user_id = 1;
-  void clear_user_id();
-  const std::string& user_id() const;
-  void set_user_id(const std::string& value);
-  void set_user_id(std::string&& value);
-  void set_user_id(const char* value);
-  void set_user_id(const char* value, size_t size);
-  std::string* mutable_user_id();
-  std::string* release_user_id();
-  void set_allocated_user_id(std::string* user_id);
-  private:
-  const std::string& _internal_user_id() const;
-  void _internal_set_user_id(const std::string& value);
-  std::string* _internal_mutable_user_id();
-  public:
-
-  // string app_id = 2;
-  void clear_app_id();
-  const std::string& app_id() const;
-  void set_app_id(const std::string& value);
-  void set_app_id(std::string&& value);
-  void set_app_id(const char* value);
-  void set_app_id(const char* value, size_t size);
-  std::string* mutable_app_id();
-  std::string* release_app_id();
-  void set_allocated_app_id(std::string* app_id);
-  private:
-  const std::string& _internal_app_id() const;
-  void _internal_set_app_id(const std::string& value);
-  std::string* _internal_mutable_app_id();
-  public:
-
-  // string object_id = 3;
-  void clear_object_id();
-  const std::string& object_id() const;
-  void set_object_id(const std::string& value);
-  void set_object_id(std::string&& value);
-  void set_object_id(const char* value);
-  void set_object_id(const char* value, size_t size);
-  std::string* mutable_object_id();
-  std::string* release_object_id();
-  void set_allocated_object_id(std::string* object_id);
-  private:
-  const std::string& _internal_object_id() const;
-  void _internal_set_object_id(const std::string& value);
-  std::string* _internal_mutable_object_id();
-  public:
-
-  // uint64 view_count = 4;
-  void clear_view_count();
-  ::PROTOBUF_NAMESPACE_ID::uint64 view_count() const;
-  void set_view_count(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_view_count() const;
-  void _internal_set_view_count(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:clarifai.api.TrendingMetric)
- private:
-  class _Internal;
-
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr app_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr object_id_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 view_count_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto;
-};
 // ===================================================================
 
 
@@ -35105,66 +34901,6 @@ inline void Model::set_allocated_metadata(PROTOBUF_NAMESPACE_ID::Struct* metadat
   }
   metadata_ = metadata;
   // @@protoc_insertion_point(field_set_allocated:clarifai.api.Model.metadata)
-}
-
-// string notes = 18;
-inline void Model::clear_notes() {
-  notes_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline const std::string& Model::notes() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.Model.notes)
-  return _internal_notes();
-}
-inline void Model::set_notes(const std::string& value) {
-  _internal_set_notes(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.Model.notes)
-}
-inline std::string* Model::mutable_notes() {
-  // @@protoc_insertion_point(field_mutable:clarifai.api.Model.notes)
-  return _internal_mutable_notes();
-}
-inline const std::string& Model::_internal_notes() const {
-  return notes_.GetNoArena();
-}
-inline void Model::_internal_set_notes(const std::string& value) {
-  
-  notes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
-}
-inline void Model::set_notes(std::string&& value) {
-  
-  notes_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.Model.notes)
-}
-inline void Model::set_notes(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  notes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:clarifai.api.Model.notes)
-}
-inline void Model::set_notes(const char* value, size_t size) {
-  
-  notes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:clarifai.api.Model.notes)
-}
-inline std::string* Model::_internal_mutable_notes() {
-  
-  return notes_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* Model::release_notes() {
-  // @@protoc_insertion_point(field_release:clarifai.api.Model.notes)
-  
-  return notes_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void Model::set_allocated_notes(std::string* notes) {
-  if (notes != nullptr) {
-    
-  } else {
-    
-  }
-  notes_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), notes);
-  // @@protoc_insertion_point(field_set_allocated:clarifai.api.Model.notes)
 }
 
 // -------------------------------------------------------------------
@@ -53110,215 +52846,9 @@ inline void Visibility::set_gettable(::clarifai::api::Visibility_Gettable value)
   // @@protoc_insertion_point(field_set:clarifai.api.Visibility.gettable)
 }
 
-// -------------------------------------------------------------------
-
-// TrendingMetric
-
-// string user_id = 1;
-inline void TrendingMetric::clear_user_id() {
-  user_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline const std::string& TrendingMetric::user_id() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TrendingMetric.user_id)
-  return _internal_user_id();
-}
-inline void TrendingMetric::set_user_id(const std::string& value) {
-  _internal_set_user_id(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TrendingMetric.user_id)
-}
-inline std::string* TrendingMetric::mutable_user_id() {
-  // @@protoc_insertion_point(field_mutable:clarifai.api.TrendingMetric.user_id)
-  return _internal_mutable_user_id();
-}
-inline const std::string& TrendingMetric::_internal_user_id() const {
-  return user_id_.GetNoArena();
-}
-inline void TrendingMetric::_internal_set_user_id(const std::string& value) {
-  
-  user_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
-}
-inline void TrendingMetric::set_user_id(std::string&& value) {
-  
-  user_id_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.TrendingMetric.user_id)
-}
-inline void TrendingMetric::set_user_id(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  user_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:clarifai.api.TrendingMetric.user_id)
-}
-inline void TrendingMetric::set_user_id(const char* value, size_t size) {
-  
-  user_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:clarifai.api.TrendingMetric.user_id)
-}
-inline std::string* TrendingMetric::_internal_mutable_user_id() {
-  
-  return user_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* TrendingMetric::release_user_id() {
-  // @@protoc_insertion_point(field_release:clarifai.api.TrendingMetric.user_id)
-  
-  return user_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void TrendingMetric::set_allocated_user_id(std::string* user_id) {
-  if (user_id != nullptr) {
-    
-  } else {
-    
-  }
-  user_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), user_id);
-  // @@protoc_insertion_point(field_set_allocated:clarifai.api.TrendingMetric.user_id)
-}
-
-// string app_id = 2;
-inline void TrendingMetric::clear_app_id() {
-  app_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline const std::string& TrendingMetric::app_id() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TrendingMetric.app_id)
-  return _internal_app_id();
-}
-inline void TrendingMetric::set_app_id(const std::string& value) {
-  _internal_set_app_id(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TrendingMetric.app_id)
-}
-inline std::string* TrendingMetric::mutable_app_id() {
-  // @@protoc_insertion_point(field_mutable:clarifai.api.TrendingMetric.app_id)
-  return _internal_mutable_app_id();
-}
-inline const std::string& TrendingMetric::_internal_app_id() const {
-  return app_id_.GetNoArena();
-}
-inline void TrendingMetric::_internal_set_app_id(const std::string& value) {
-  
-  app_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
-}
-inline void TrendingMetric::set_app_id(std::string&& value) {
-  
-  app_id_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.TrendingMetric.app_id)
-}
-inline void TrendingMetric::set_app_id(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  app_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:clarifai.api.TrendingMetric.app_id)
-}
-inline void TrendingMetric::set_app_id(const char* value, size_t size) {
-  
-  app_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:clarifai.api.TrendingMetric.app_id)
-}
-inline std::string* TrendingMetric::_internal_mutable_app_id() {
-  
-  return app_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* TrendingMetric::release_app_id() {
-  // @@protoc_insertion_point(field_release:clarifai.api.TrendingMetric.app_id)
-  
-  return app_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void TrendingMetric::set_allocated_app_id(std::string* app_id) {
-  if (app_id != nullptr) {
-    
-  } else {
-    
-  }
-  app_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), app_id);
-  // @@protoc_insertion_point(field_set_allocated:clarifai.api.TrendingMetric.app_id)
-}
-
-// string object_id = 3;
-inline void TrendingMetric::clear_object_id() {
-  object_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline const std::string& TrendingMetric::object_id() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TrendingMetric.object_id)
-  return _internal_object_id();
-}
-inline void TrendingMetric::set_object_id(const std::string& value) {
-  _internal_set_object_id(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TrendingMetric.object_id)
-}
-inline std::string* TrendingMetric::mutable_object_id() {
-  // @@protoc_insertion_point(field_mutable:clarifai.api.TrendingMetric.object_id)
-  return _internal_mutable_object_id();
-}
-inline const std::string& TrendingMetric::_internal_object_id() const {
-  return object_id_.GetNoArena();
-}
-inline void TrendingMetric::_internal_set_object_id(const std::string& value) {
-  
-  object_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
-}
-inline void TrendingMetric::set_object_id(std::string&& value) {
-  
-  object_id_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.TrendingMetric.object_id)
-}
-inline void TrendingMetric::set_object_id(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  object_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:clarifai.api.TrendingMetric.object_id)
-}
-inline void TrendingMetric::set_object_id(const char* value, size_t size) {
-  
-  object_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:clarifai.api.TrendingMetric.object_id)
-}
-inline std::string* TrendingMetric::_internal_mutable_object_id() {
-  
-  return object_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* TrendingMetric::release_object_id() {
-  // @@protoc_insertion_point(field_release:clarifai.api.TrendingMetric.object_id)
-  
-  return object_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void TrendingMetric::set_allocated_object_id(std::string* object_id) {
-  if (object_id != nullptr) {
-    
-  } else {
-    
-  }
-  object_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), object_id);
-  // @@protoc_insertion_point(field_set_allocated:clarifai.api.TrendingMetric.object_id)
-}
-
-// uint64 view_count = 4;
-inline void TrendingMetric::clear_view_count() {
-  view_count_ = PROTOBUF_ULONGLONG(0);
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint64 TrendingMetric::_internal_view_count() const {
-  return view_count_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint64 TrendingMetric::view_count() const {
-  // @@protoc_insertion_point(field_get:clarifai.api.TrendingMetric.view_count)
-  return _internal_view_count();
-}
-inline void TrendingMetric::_internal_set_view_count(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  
-  view_count_ = value;
-}
-inline void TrendingMetric::set_view_count(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_view_count(value);
-  // @@protoc_insertion_point(field_set:clarifai.api.TrendingMetric.view_count)
-}
-
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
