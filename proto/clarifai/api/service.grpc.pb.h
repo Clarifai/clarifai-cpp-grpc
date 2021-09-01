@@ -358,8 +358,6 @@ class V2 final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiOutputResponse>>(PrepareAsyncPostModelOutputsRaw(context, request, cq));
     }
     // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
     // Models
     // //////////////////////////////////////
     //
@@ -1623,8 +1621,6 @@ class V2 final {
       #else
       virtual void PostModelOutputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiOutputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
       // //////////////////////////////////////
       // Models
       // //////////////////////////////////////
@@ -5811,8 +5807,6 @@ class V2 final {
     virtual ::grpc::Status PostInputsSearches(::grpc::ServerContext* context, const ::clarifai::api::PostInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response);
     // Get predicted outputs from the model.
     virtual ::grpc::Status PostModelOutputs(::grpc::ServerContext* context, const ::clarifai::api::PostModelOutputsRequest* request, ::clarifai::api::MultiOutputResponse* response);
-    // //////////////////////////////////////
-    //
     // //////////////////////////////////////
     // Models
     // //////////////////////////////////////
