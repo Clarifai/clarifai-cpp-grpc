@@ -58,7 +58,7 @@ struct TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[174]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[182]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -103,6 +103,9 @@ extern DeleteModelRequestDefaultTypeInternal _DeleteModelRequest_default_instanc
 class DeleteModelVersionRequest;
 class DeleteModelVersionRequestDefaultTypeInternal;
 extern DeleteModelVersionRequestDefaultTypeInternal _DeleteModelVersionRequest_default_instance_;
+class DeleteModelVersionsUnpublishRequest;
+class DeleteModelVersionsUnpublishRequestDefaultTypeInternal;
+extern DeleteModelVersionsUnpublishRequestDefaultTypeInternal _DeleteModelVersionsUnpublishRequest_default_instance_;
 class DeleteModelsRequest;
 class DeleteModelsRequestDefaultTypeInternal;
 extern DeleteModelsRequestDefaultTypeInternal _DeleteModelsRequest_default_instance_;
@@ -277,6 +280,12 @@ extern ListWorkflowVersionsRequestDefaultTypeInternal _ListWorkflowVersionsReque
 class ListWorkflowsRequest;
 class ListWorkflowsRequestDefaultTypeInternal;
 extern ListWorkflowsRequestDefaultTypeInternal _ListWorkflowsRequest_default_instance_;
+class ModelVersionPublishRequest;
+class ModelVersionPublishRequestDefaultTypeInternal;
+extern ModelVersionPublishRequestDefaultTypeInternal _ModelVersionPublishRequest_default_instance_;
+class ModelVersionUnpublishRequest;
+class ModelVersionUnpublishRequestDefaultTypeInternal;
+extern ModelVersionUnpublishRequestDefaultTypeInternal _ModelVersionUnpublishRequest_default_instance_;
 class MultiAnnotationResponse;
 class MultiAnnotationResponseDefaultTypeInternal;
 extern MultiAnnotationResponseDefaultTypeInternal _MultiAnnotationResponse_default_instance_;
@@ -349,6 +358,12 @@ extern MultiScopeDepsResponseDefaultTypeInternal _MultiScopeDepsResponse_default
 class MultiScopeResponse;
 class MultiScopeResponseDefaultTypeInternal;
 extern MultiScopeResponseDefaultTypeInternal _MultiScopeResponse_default_instance_;
+class MultiScopeRootResponse;
+class MultiScopeRootResponseDefaultTypeInternal;
+extern MultiScopeRootResponseDefaultTypeInternal _MultiScopeRootResponse_default_instance_;
+class MultiScopeUserResponse;
+class MultiScopeUserResponseDefaultTypeInternal;
+extern MultiScopeUserResponseDefaultTypeInternal _MultiScopeUserResponse_default_instance_;
 class MultiSearchResponse;
 class MultiSearchResponseDefaultTypeInternal;
 extern MultiSearchResponseDefaultTypeInternal _MultiSearchResponse_default_instance_;
@@ -376,6 +391,12 @@ extern MultiWorkflowVersionResponseDefaultTypeInternal _MultiWorkflowVersionResp
 class MyScopesRequest;
 class MyScopesRequestDefaultTypeInternal;
 extern MyScopesRequestDefaultTypeInternal _MyScopesRequest_default_instance_;
+class MyScopesRootRequest;
+class MyScopesRootRequestDefaultTypeInternal;
+extern MyScopesRootRequestDefaultTypeInternal _MyScopesRootRequest_default_instance_;
+class MyScopesUserRequest;
+class MyScopesUserRequestDefaultTypeInternal;
+extern MyScopesUserRequestDefaultTypeInternal _MyScopesUserRequest_default_instance_;
 class Pagination;
 class PaginationDefaultTypeInternal;
 extern PaginationDefaultTypeInternal _Pagination_default_instance_;
@@ -481,6 +502,9 @@ extern PostModelOutputsRequestDefaultTypeInternal _PostModelOutputsRequest_defau
 class PostModelVersionMetricsRequest;
 class PostModelVersionMetricsRequestDefaultTypeInternal;
 extern PostModelVersionMetricsRequestDefaultTypeInternal _PostModelVersionMetricsRequest_default_instance_;
+class PostModelVersionsPublishRequest;
+class PostModelVersionsPublishRequestDefaultTypeInternal;
+extern PostModelVersionsPublishRequestDefaultTypeInternal _PostModelVersionsPublishRequest_default_instance_;
 class PostModelVersionsRequest;
 class PostModelVersionsRequestDefaultTypeInternal;
 extern PostModelVersionsRequestDefaultTypeInternal _PostModelVersionsRequest_default_instance_;
@@ -604,6 +628,7 @@ template<> ::clarifai::api::DeleteInputsRequest* Arena::CreateMaybeMessage<::cla
 template<> ::clarifai::api::DeleteKeyRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteKeyRequest>(Arena*);
 template<> ::clarifai::api::DeleteModelRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteModelRequest>(Arena*);
 template<> ::clarifai::api::DeleteModelVersionRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteModelVersionRequest>(Arena*);
+template<> ::clarifai::api::DeleteModelVersionsUnpublishRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteModelVersionsUnpublishRequest>(Arena*);
 template<> ::clarifai::api::DeleteModelsRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteModelsRequest>(Arena*);
 template<> ::clarifai::api::DeleteSearchRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteSearchRequest>(Arena*);
 template<> ::clarifai::api::DeleteTasksRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteTasksRequest>(Arena*);
@@ -662,6 +687,8 @@ template<> ::clarifai::api::ListTasksRequest* Arena::CreateMaybeMessage<::clarif
 template<> ::clarifai::api::ListTrendingMetricsViewsRequest* Arena::CreateMaybeMessage<::clarifai::api::ListTrendingMetricsViewsRequest>(Arena*);
 template<> ::clarifai::api::ListWorkflowVersionsRequest* Arena::CreateMaybeMessage<::clarifai::api::ListWorkflowVersionsRequest>(Arena*);
 template<> ::clarifai::api::ListWorkflowsRequest* Arena::CreateMaybeMessage<::clarifai::api::ListWorkflowsRequest>(Arena*);
+template<> ::clarifai::api::ModelVersionPublishRequest* Arena::CreateMaybeMessage<::clarifai::api::ModelVersionPublishRequest>(Arena*);
+template<> ::clarifai::api::ModelVersionUnpublishRequest* Arena::CreateMaybeMessage<::clarifai::api::ModelVersionUnpublishRequest>(Arena*);
 template<> ::clarifai::api::MultiAnnotationResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiAnnotationResponse>(Arena*);
 template<> ::clarifai::api::MultiAnnotationSearchMetricsResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiAnnotationSearchMetricsResponse>(Arena*);
 template<> ::clarifai::api::MultiAppDuplicationsResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiAppDuplicationsResponse>(Arena*);
@@ -686,6 +713,8 @@ template<> ::clarifai::api::MultiModelVersionResponse* Arena::CreateMaybeMessage
 template<> ::clarifai::api::MultiOutputResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiOutputResponse>(Arena*);
 template<> ::clarifai::api::MultiScopeDepsResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiScopeDepsResponse>(Arena*);
 template<> ::clarifai::api::MultiScopeResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiScopeResponse>(Arena*);
+template<> ::clarifai::api::MultiScopeRootResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiScopeRootResponse>(Arena*);
+template<> ::clarifai::api::MultiScopeUserResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiScopeUserResponse>(Arena*);
 template<> ::clarifai::api::MultiSearchResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiSearchResponse>(Arena*);
 template<> ::clarifai::api::MultiStatValueAggregateResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiStatValueAggregateResponse>(Arena*);
 template<> ::clarifai::api::MultiStatValueResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiStatValueResponse>(Arena*);
@@ -695,6 +724,8 @@ template<> ::clarifai::api::MultiTrendingMetricsViewResponse* Arena::CreateMaybe
 template<> ::clarifai::api::MultiWorkflowResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiWorkflowResponse>(Arena*);
 template<> ::clarifai::api::MultiWorkflowVersionResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiWorkflowVersionResponse>(Arena*);
 template<> ::clarifai::api::MyScopesRequest* Arena::CreateMaybeMessage<::clarifai::api::MyScopesRequest>(Arena*);
+template<> ::clarifai::api::MyScopesRootRequest* Arena::CreateMaybeMessage<::clarifai::api::MyScopesRootRequest>(Arena*);
+template<> ::clarifai::api::MyScopesUserRequest* Arena::CreateMaybeMessage<::clarifai::api::MyScopesUserRequest>(Arena*);
 template<> ::clarifai::api::Pagination* Arena::CreateMaybeMessage<::clarifai::api::Pagination>(Arena*);
 template<> ::clarifai::api::PatchAnnotationsRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchAnnotationsRequest>(Arena*);
 template<> ::clarifai::api::PatchAnnotationsStatusRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchAnnotationsStatusRequest>(Arena*);
@@ -730,6 +761,7 @@ template<> ::clarifai::api::PostKeysRequest* Arena::CreateMaybeMessage<::clarifa
 template<> ::clarifai::api::PostKnowledgeGraphsRequest* Arena::CreateMaybeMessage<::clarifai::api::PostKnowledgeGraphsRequest>(Arena*);
 template<> ::clarifai::api::PostModelOutputsRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelOutputsRequest>(Arena*);
 template<> ::clarifai::api::PostModelVersionMetricsRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelVersionMetricsRequest>(Arena*);
+template<> ::clarifai::api::PostModelVersionsPublishRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelVersionsPublishRequest>(Arena*);
 template<> ::clarifai::api::PostModelVersionsRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelVersionsRequest>(Arena*);
 template<> ::clarifai::api::PostModelsRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelsRequest>(Arena*);
 template<> ::clarifai::api::PostModelsSearchesRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelsSearchesRequest>(Arena*);
@@ -2890,8 +2922,33 @@ class GetAppRequest :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAdditionalFieldsFieldNumber = 2,
     kUserAppIdFieldNumber = 1,
   };
+  // repeated string additional_fields = 2;
+  int additional_fields_size() const;
+  private:
+  int _internal_additional_fields_size() const;
+  public:
+  void clear_additional_fields();
+  const std::string& additional_fields(int index) const;
+  std::string* mutable_additional_fields(int index);
+  void set_additional_fields(int index, const std::string& value);
+  void set_additional_fields(int index, std::string&& value);
+  void set_additional_fields(int index, const char* value);
+  void set_additional_fields(int index, const char* value, size_t size);
+  std::string* add_additional_fields();
+  void add_additional_fields(const std::string& value);
+  void add_additional_fields(std::string&& value);
+  void add_additional_fields(const char* value);
+  void add_additional_fields(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& additional_fields() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_additional_fields();
+  private:
+  const std::string& _internal_additional_fields(int index) const;
+  std::string* _internal_add_additional_fields();
+  public:
+
   // .clarifai.api.UserAppIDSet user_app_id = 1;
   bool has_user_app_id() const;
   private:
@@ -2912,6 +2969,7 @@ class GetAppRequest :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> additional_fields_;
   ::clarifai::api::UserAppIDSet* user_app_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
@@ -3030,6 +3088,7 @@ class ListAppsRequest :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAdditionalFieldsFieldNumber = 10,
     kNameFieldNumber = 4,
     kQueryFieldNumber = 8,
     kUserAppIdFieldNumber = 1,
@@ -3040,6 +3099,30 @@ class ListAppsRequest :
     kSortByNameFieldNumber = 6,
     kSortByModifiedAtFieldNumber = 7,
   };
+  // repeated string additional_fields = 10;
+  int additional_fields_size() const;
+  private:
+  int _internal_additional_fields_size() const;
+  public:
+  void clear_additional_fields();
+  const std::string& additional_fields(int index) const;
+  std::string* mutable_additional_fields(int index);
+  void set_additional_fields(int index, const std::string& value);
+  void set_additional_fields(int index, std::string&& value);
+  void set_additional_fields(int index, const char* value);
+  void set_additional_fields(int index, const char* value, size_t size);
+  std::string* add_additional_fields();
+  void add_additional_fields(const std::string& value);
+  void add_additional_fields(std::string&& value);
+  void add_additional_fields(const char* value);
+  void add_additional_fields(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& additional_fields() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_additional_fields();
+  private:
+  const std::string& _internal_additional_fields(int index) const;
+  std::string* _internal_add_additional_fields();
+  public:
+
   // string name = 4 [deprecated = true];
   PROTOBUF_DEPRECATED void clear_name();
   PROTOBUF_DEPRECATED const std::string& name() const;
@@ -3159,6 +3242,7 @@ class ListAppsRequest :
   inline void clear_has_sort_by();
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> additional_fields_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr query_;
   ::clarifai::api::UserAppIDSet* user_app_id_;
@@ -13533,12 +13617,37 @@ class GetModelRequest :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAdditionalFieldsFieldNumber = 19,
     kModelIdFieldNumber = 2,
     kVersionIdFieldNumber = 3,
     kLanguageFieldNumber = 4,
     kUserAppIdFieldNumber = 1,
     kTrainedBeforeFieldNumber = 5,
   };
+  // repeated string additional_fields = 19;
+  int additional_fields_size() const;
+  private:
+  int _internal_additional_fields_size() const;
+  public:
+  void clear_additional_fields();
+  const std::string& additional_fields(int index) const;
+  std::string* mutable_additional_fields(int index);
+  void set_additional_fields(int index, const std::string& value);
+  void set_additional_fields(int index, std::string&& value);
+  void set_additional_fields(int index, const char* value);
+  void set_additional_fields(int index, const char* value, size_t size);
+  std::string* add_additional_fields();
+  void add_additional_fields(const std::string& value);
+  void add_additional_fields(std::string&& value);
+  void add_additional_fields(const char* value);
+  void add_additional_fields(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& additional_fields() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_additional_fields();
+  private:
+  const std::string& _internal_additional_fields(int index) const;
+  std::string* _internal_add_additional_fields();
+  public:
+
   // string model_id = 2;
   void clear_model_id();
   const std::string& model_id() const;
@@ -13616,6 +13725,7 @@ class GetModelRequest :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> additional_fields_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr language_;
@@ -13741,6 +13851,9 @@ class ListModelsRequest :
   enum : int {
     kInputFieldsFieldNumber = 8,
     kOutputFieldsFieldNumber = 9,
+    kToolkitsFieldNumber = 17,
+    kUseCasesFieldNumber = 18,
+    kAdditionalFieldsFieldNumber = 19,
     kNameFieldNumber = 5,
     kModelTypeIdFieldNumber = 6,
     kQueryFieldNumber = 14,
@@ -13801,6 +13914,78 @@ class ListModelsRequest :
   private:
   const std::string& _internal_output_fields(int index) const;
   std::string* _internal_add_output_fields();
+  public:
+
+  // repeated string toolkits = 17;
+  int toolkits_size() const;
+  private:
+  int _internal_toolkits_size() const;
+  public:
+  void clear_toolkits();
+  const std::string& toolkits(int index) const;
+  std::string* mutable_toolkits(int index);
+  void set_toolkits(int index, const std::string& value);
+  void set_toolkits(int index, std::string&& value);
+  void set_toolkits(int index, const char* value);
+  void set_toolkits(int index, const char* value, size_t size);
+  std::string* add_toolkits();
+  void add_toolkits(const std::string& value);
+  void add_toolkits(std::string&& value);
+  void add_toolkits(const char* value);
+  void add_toolkits(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& toolkits() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_toolkits();
+  private:
+  const std::string& _internal_toolkits(int index) const;
+  std::string* _internal_add_toolkits();
+  public:
+
+  // repeated string use_cases = 18;
+  int use_cases_size() const;
+  private:
+  int _internal_use_cases_size() const;
+  public:
+  void clear_use_cases();
+  const std::string& use_cases(int index) const;
+  std::string* mutable_use_cases(int index);
+  void set_use_cases(int index, const std::string& value);
+  void set_use_cases(int index, std::string&& value);
+  void set_use_cases(int index, const char* value);
+  void set_use_cases(int index, const char* value, size_t size);
+  std::string* add_use_cases();
+  void add_use_cases(const std::string& value);
+  void add_use_cases(std::string&& value);
+  void add_use_cases(const char* value);
+  void add_use_cases(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& use_cases() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_use_cases();
+  private:
+  const std::string& _internal_use_cases(int index) const;
+  std::string* _internal_add_use_cases();
+  public:
+
+  // repeated string additional_fields = 19;
+  int additional_fields_size() const;
+  private:
+  int _internal_additional_fields_size() const;
+  public:
+  void clear_additional_fields();
+  const std::string& additional_fields(int index) const;
+  std::string* mutable_additional_fields(int index);
+  void set_additional_fields(int index, const std::string& value);
+  void set_additional_fields(int index, std::string&& value);
+  void set_additional_fields(int index, const char* value);
+  void set_additional_fields(int index, const char* value, size_t size);
+  std::string* add_additional_fields();
+  void add_additional_fields(const std::string& value);
+  void add_additional_fields(std::string&& value);
+  void add_additional_fields(const char* value);
+  void add_additional_fields(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& additional_fields() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_additional_fields();
+  private:
+  const std::string& _internal_additional_fields(int index) const;
+  std::string* _internal_add_additional_fields();
   public:
 
   // string name = 5 [deprecated = true];
@@ -13978,6 +14163,9 @@ class ListModelsRequest :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> input_fields_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> output_fields_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> toolkits_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> use_cases_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> additional_fields_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_type_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr query_;
@@ -16427,6 +16615,620 @@ class PostModelVersionsRequest :
 };
 // -------------------------------------------------------------------
 
+class ModelVersionPublishRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.ModelVersionPublishRequest) */ {
+ public:
+  ModelVersionPublishRequest();
+  virtual ~ModelVersionPublishRequest();
+
+  ModelVersionPublishRequest(const ModelVersionPublishRequest& from);
+  ModelVersionPublishRequest(ModelVersionPublishRequest&& from) noexcept
+    : ModelVersionPublishRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ModelVersionPublishRequest& operator=(const ModelVersionPublishRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModelVersionPublishRequest& operator=(ModelVersionPublishRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ModelVersionPublishRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ModelVersionPublishRequest* internal_default_instance() {
+    return reinterpret_cast<const ModelVersionPublishRequest*>(
+               &_ModelVersionPublishRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    93;
+
+  friend void swap(ModelVersionPublishRequest& a, ModelVersionPublishRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModelVersionPublishRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ModelVersionPublishRequest* New() const final {
+    return CreateMaybeMessage<ModelVersionPublishRequest>(nullptr);
+  }
+
+  ModelVersionPublishRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ModelVersionPublishRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ModelVersionPublishRequest& from);
+  void MergeFrom(const ModelVersionPublishRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModelVersionPublishRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.ModelVersionPublishRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVersionIdFieldNumber = 1,
+  };
+  // string version_id = 1;
+  void clear_version_id();
+  const std::string& version_id() const;
+  void set_version_id(const std::string& value);
+  void set_version_id(std::string&& value);
+  void set_version_id(const char* value);
+  void set_version_id(const char* value, size_t size);
+  std::string* mutable_version_id();
+  std::string* release_version_id();
+  void set_allocated_version_id(std::string* version_id);
+  private:
+  const std::string& _internal_version_id() const;
+  void _internal_set_version_id(const std::string& value);
+  std::string* _internal_mutable_version_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.ModelVersionPublishRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PostModelVersionsPublishRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.PostModelVersionsPublishRequest) */ {
+ public:
+  PostModelVersionsPublishRequest();
+  virtual ~PostModelVersionsPublishRequest();
+
+  PostModelVersionsPublishRequest(const PostModelVersionsPublishRequest& from);
+  PostModelVersionsPublishRequest(PostModelVersionsPublishRequest&& from) noexcept
+    : PostModelVersionsPublishRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline PostModelVersionsPublishRequest& operator=(const PostModelVersionsPublishRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PostModelVersionsPublishRequest& operator=(PostModelVersionsPublishRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PostModelVersionsPublishRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PostModelVersionsPublishRequest* internal_default_instance() {
+    return reinterpret_cast<const PostModelVersionsPublishRequest*>(
+               &_PostModelVersionsPublishRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    94;
+
+  friend void swap(PostModelVersionsPublishRequest& a, PostModelVersionsPublishRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PostModelVersionsPublishRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PostModelVersionsPublishRequest* New() const final {
+    return CreateMaybeMessage<PostModelVersionsPublishRequest>(nullptr);
+  }
+
+  PostModelVersionsPublishRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PostModelVersionsPublishRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PostModelVersionsPublishRequest& from);
+  void MergeFrom(const PostModelVersionsPublishRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PostModelVersionsPublishRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.PostModelVersionsPublishRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPublicationsFieldNumber = 3,
+    kModelIdFieldNumber = 2,
+    kUserAppIdFieldNumber = 1,
+  };
+  // repeated .clarifai.api.ModelVersionPublishRequest publications = 3;
+  int publications_size() const;
+  private:
+  int _internal_publications_size() const;
+  public:
+  void clear_publications();
+  ::clarifai::api::ModelVersionPublishRequest* mutable_publications(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionPublishRequest >*
+      mutable_publications();
+  private:
+  const ::clarifai::api::ModelVersionPublishRequest& _internal_publications(int index) const;
+  ::clarifai::api::ModelVersionPublishRequest* _internal_add_publications();
+  public:
+  const ::clarifai::api::ModelVersionPublishRequest& publications(int index) const;
+  ::clarifai::api::ModelVersionPublishRequest* add_publications();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionPublishRequest >&
+      publications() const;
+
+  // string model_id = 2;
+  void clear_model_id();
+  const std::string& model_id() const;
+  void set_model_id(const std::string& value);
+  void set_model_id(std::string&& value);
+  void set_model_id(const char* value);
+  void set_model_id(const char* value, size_t size);
+  std::string* mutable_model_id();
+  std::string* release_model_id();
+  void set_allocated_model_id(std::string* model_id);
+  private:
+  const std::string& _internal_model_id() const;
+  void _internal_set_model_id(const std::string& value);
+  std::string* _internal_mutable_model_id();
+  public:
+
+  // .clarifai.api.UserAppIDSet user_app_id = 1;
+  bool has_user_app_id() const;
+  private:
+  bool _internal_has_user_app_id() const;
+  public:
+  void clear_user_app_id();
+  const ::clarifai::api::UserAppIDSet& user_app_id() const;
+  ::clarifai::api::UserAppIDSet* release_user_app_id();
+  ::clarifai::api::UserAppIDSet* mutable_user_app_id();
+  void set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id);
+  private:
+  const ::clarifai::api::UserAppIDSet& _internal_user_app_id() const;
+  ::clarifai::api::UserAppIDSet* _internal_mutable_user_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.PostModelVersionsPublishRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionPublishRequest > publications_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_id_;
+  ::clarifai::api::UserAppIDSet* user_app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ModelVersionUnpublishRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.ModelVersionUnpublishRequest) */ {
+ public:
+  ModelVersionUnpublishRequest();
+  virtual ~ModelVersionUnpublishRequest();
+
+  ModelVersionUnpublishRequest(const ModelVersionUnpublishRequest& from);
+  ModelVersionUnpublishRequest(ModelVersionUnpublishRequest&& from) noexcept
+    : ModelVersionUnpublishRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ModelVersionUnpublishRequest& operator=(const ModelVersionUnpublishRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModelVersionUnpublishRequest& operator=(ModelVersionUnpublishRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ModelVersionUnpublishRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ModelVersionUnpublishRequest* internal_default_instance() {
+    return reinterpret_cast<const ModelVersionUnpublishRequest*>(
+               &_ModelVersionUnpublishRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    95;
+
+  friend void swap(ModelVersionUnpublishRequest& a, ModelVersionUnpublishRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModelVersionUnpublishRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ModelVersionUnpublishRequest* New() const final {
+    return CreateMaybeMessage<ModelVersionUnpublishRequest>(nullptr);
+  }
+
+  ModelVersionUnpublishRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ModelVersionUnpublishRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ModelVersionUnpublishRequest& from);
+  void MergeFrom(const ModelVersionUnpublishRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModelVersionUnpublishRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.ModelVersionUnpublishRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVersionIdFieldNumber = 1,
+  };
+  // string version_id = 1;
+  void clear_version_id();
+  const std::string& version_id() const;
+  void set_version_id(const std::string& value);
+  void set_version_id(std::string&& value);
+  void set_version_id(const char* value);
+  void set_version_id(const char* value, size_t size);
+  std::string* mutable_version_id();
+  std::string* release_version_id();
+  void set_allocated_version_id(std::string* version_id);
+  private:
+  const std::string& _internal_version_id() const;
+  void _internal_set_version_id(const std::string& value);
+  std::string* _internal_mutable_version_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.ModelVersionUnpublishRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteModelVersionsUnpublishRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.DeleteModelVersionsUnpublishRequest) */ {
+ public:
+  DeleteModelVersionsUnpublishRequest();
+  virtual ~DeleteModelVersionsUnpublishRequest();
+
+  DeleteModelVersionsUnpublishRequest(const DeleteModelVersionsUnpublishRequest& from);
+  DeleteModelVersionsUnpublishRequest(DeleteModelVersionsUnpublishRequest&& from) noexcept
+    : DeleteModelVersionsUnpublishRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteModelVersionsUnpublishRequest& operator=(const DeleteModelVersionsUnpublishRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteModelVersionsUnpublishRequest& operator=(DeleteModelVersionsUnpublishRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DeleteModelVersionsUnpublishRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DeleteModelVersionsUnpublishRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteModelVersionsUnpublishRequest*>(
+               &_DeleteModelVersionsUnpublishRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    96;
+
+  friend void swap(DeleteModelVersionsUnpublishRequest& a, DeleteModelVersionsUnpublishRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteModelVersionsUnpublishRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DeleteModelVersionsUnpublishRequest* New() const final {
+    return CreateMaybeMessage<DeleteModelVersionsUnpublishRequest>(nullptr);
+  }
+
+  DeleteModelVersionsUnpublishRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DeleteModelVersionsUnpublishRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DeleteModelVersionsUnpublishRequest& from);
+  void MergeFrom(const DeleteModelVersionsUnpublishRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteModelVersionsUnpublishRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.DeleteModelVersionsUnpublishRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPublicationsFieldNumber = 3,
+    kModelIdFieldNumber = 2,
+    kUserAppIdFieldNumber = 1,
+  };
+  // repeated .clarifai.api.ModelVersionUnpublishRequest publications = 3;
+  int publications_size() const;
+  private:
+  int _internal_publications_size() const;
+  public:
+  void clear_publications();
+  ::clarifai::api::ModelVersionUnpublishRequest* mutable_publications(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionUnpublishRequest >*
+      mutable_publications();
+  private:
+  const ::clarifai::api::ModelVersionUnpublishRequest& _internal_publications(int index) const;
+  ::clarifai::api::ModelVersionUnpublishRequest* _internal_add_publications();
+  public:
+  const ::clarifai::api::ModelVersionUnpublishRequest& publications(int index) const;
+  ::clarifai::api::ModelVersionUnpublishRequest* add_publications();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionUnpublishRequest >&
+      publications() const;
+
+  // string model_id = 2;
+  void clear_model_id();
+  const std::string& model_id() const;
+  void set_model_id(const std::string& value);
+  void set_model_id(std::string&& value);
+  void set_model_id(const char* value);
+  void set_model_id(const char* value, size_t size);
+  std::string* mutable_model_id();
+  std::string* release_model_id();
+  void set_allocated_model_id(std::string* model_id);
+  private:
+  const std::string& _internal_model_id() const;
+  void _internal_set_model_id(const std::string& value);
+  std::string* _internal_mutable_model_id();
+  public:
+
+  // .clarifai.api.UserAppIDSet user_app_id = 1;
+  bool has_user_app_id() const;
+  private:
+  bool _internal_has_user_app_id() const;
+  public:
+  void clear_user_app_id();
+  const ::clarifai::api::UserAppIDSet& user_app_id() const;
+  ::clarifai::api::UserAppIDSet* release_user_app_id();
+  ::clarifai::api::UserAppIDSet* mutable_user_app_id();
+  void set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id);
+  private:
+  const ::clarifai::api::UserAppIDSet& _internal_user_app_id() const;
+  ::clarifai::api::UserAppIDSet* _internal_mutable_user_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.DeleteModelVersionsUnpublishRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionUnpublishRequest > publications_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_id_;
+  ::clarifai::api::UserAppIDSet* user_app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
 class PostModelVersionMetricsRequest :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.PostModelVersionMetricsRequest) */ {
  public:
@@ -16469,7 +17271,7 @@ class PostModelVersionMetricsRequest :
                &_PostModelVersionMetricsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    93;
+    97;
 
   friend void swap(PostModelVersionMetricsRequest& a, PostModelVersionMetricsRequest& b) {
     a.Swap(&b);
@@ -16667,7 +17469,7 @@ class GetModelVersionMetricsRequest :
                &_GetModelVersionMetricsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    94;
+    98;
 
   friend void swap(GetModelVersionMetricsRequest& a, GetModelVersionMetricsRequest& b) {
     a.Swap(&b);
@@ -16854,7 +17656,7 @@ class GetModelTypeRequest :
                &_GetModelTypeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    95;
+    99;
 
   friend void swap(GetModelTypeRequest& a, GetModelTypeRequest& b) {
     a.Swap(&b);
@@ -17006,7 +17808,7 @@ class ListModelTypesRequest :
                &_ListModelTypesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    96;
+    100;
 
   friend void swap(ListModelTypesRequest& a, ListModelTypesRequest& b) {
     a.Swap(&b);
@@ -17162,7 +17964,7 @@ class ListOpenSourceLicensesRequest :
                &_ListOpenSourceLicensesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    97;
+    101;
 
   friend void swap(ListOpenSourceLicensesRequest& a, ListOpenSourceLicensesRequest& b) {
     a.Swap(&b);
@@ -17277,7 +18079,7 @@ class ListOpenSourceLicensesResponse :
                &_ListOpenSourceLicensesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    98;
+    102;
 
   friend void swap(ListOpenSourceLicensesResponse& a, ListOpenSourceLicensesResponse& b) {
     a.Swap(&b);
@@ -17437,7 +18239,7 @@ class SingleModelTypeResponse :
                &_SingleModelTypeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    99;
+    103;
 
   friend void swap(SingleModelTypeResponse& a, SingleModelTypeResponse& b) {
     a.Swap(&b);
@@ -17588,7 +18390,7 @@ class MultiModelTypeResponse :
                &_MultiModelTypeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    100;
+    104;
 
   friend void swap(MultiModelTypeResponse& a, MultiModelTypeResponse& b) {
     a.Swap(&b);
@@ -17742,7 +18544,7 @@ class GetModelVersionInputExampleRequest :
                &_GetModelVersionInputExampleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    101;
+    105;
 
   friend void swap(GetModelVersionInputExampleRequest& a, GetModelVersionInputExampleRequest& b) {
     a.Swap(&b);
@@ -17930,7 +18732,7 @@ class ListModelVersionInputExamplesRequest :
                &_ListModelVersionInputExamplesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    102;
+    106;
 
   friend void swap(ListModelVersionInputExamplesRequest& a, ListModelVersionInputExamplesRequest& b) {
     a.Swap(&b);
@@ -18122,7 +18924,7 @@ class SingleModelVersionInputExampleResponse :
                &_SingleModelVersionInputExampleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    103;
+    107;
 
   friend void swap(SingleModelVersionInputExampleResponse& a, SingleModelVersionInputExampleResponse& b) {
     a.Swap(&b);
@@ -18273,7 +19075,7 @@ class MultiModelVersionInputExampleResponse :
                &_MultiModelVersionInputExampleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    104;
+    108;
 
   friend void swap(MultiModelVersionInputExampleResponse& a, MultiModelVersionInputExampleResponse& b) {
     a.Swap(&b);
@@ -18427,7 +19229,7 @@ class ListModelReferencesRequest :
                &_ListModelReferencesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    105;
+    109;
 
   friend void swap(ListModelReferencesRequest& a, ListModelReferencesRequest& b) {
     a.Swap(&b);
@@ -18601,7 +19403,7 @@ class MultiModelReferenceResponse :
                &_MultiModelReferenceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    106;
+    110;
 
   friend void swap(MultiModelReferenceResponse& a, MultiModelReferenceResponse& b) {
     a.Swap(&b);
@@ -18755,7 +19557,7 @@ class MultiOutputResponse :
                &_MultiOutputResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    107;
+    111;
 
   friend void swap(MultiOutputResponse& a, MultiOutputResponse& b) {
     a.Swap(&b);
@@ -18909,7 +19711,7 @@ class ListScopesRequest :
                &_ListScopesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    108;
+    112;
 
   friend void swap(ListScopesRequest& a, ListScopesRequest& b) {
     a.Swap(&b);
@@ -19061,7 +19863,7 @@ class MyScopesRequest :
                &_MyScopesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    109;
+    113;
 
   friend void swap(MyScopesRequest& a, MyScopesRequest& b) {
     a.Swap(&b);
@@ -19153,6 +19955,255 @@ class MyScopesRequest :
 };
 // -------------------------------------------------------------------
 
+class MyScopesUserRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.MyScopesUserRequest) */ {
+ public:
+  MyScopesUserRequest();
+  virtual ~MyScopesUserRequest();
+
+  MyScopesUserRequest(const MyScopesUserRequest& from);
+  MyScopesUserRequest(MyScopesUserRequest&& from) noexcept
+    : MyScopesUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline MyScopesUserRequest& operator=(const MyScopesUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MyScopesUserRequest& operator=(MyScopesUserRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MyScopesUserRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MyScopesUserRequest* internal_default_instance() {
+    return reinterpret_cast<const MyScopesUserRequest*>(
+               &_MyScopesUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    114;
+
+  friend void swap(MyScopesUserRequest& a, MyScopesUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MyScopesUserRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MyScopesUserRequest* New() const final {
+    return CreateMaybeMessage<MyScopesUserRequest>(nullptr);
+  }
+
+  MyScopesUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MyScopesUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MyScopesUserRequest& from);
+  void MergeFrom(const MyScopesUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MyScopesUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.MyScopesUserRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserAppIdFieldNumber = 1,
+  };
+  // .clarifai.api.UserAppIDSet user_app_id = 1;
+  bool has_user_app_id() const;
+  private:
+  bool _internal_has_user_app_id() const;
+  public:
+  void clear_user_app_id();
+  const ::clarifai::api::UserAppIDSet& user_app_id() const;
+  ::clarifai::api::UserAppIDSet* release_user_app_id();
+  ::clarifai::api::UserAppIDSet* mutable_user_app_id();
+  void set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id);
+  private:
+  const ::clarifai::api::UserAppIDSet& _internal_user_app_id() const;
+  ::clarifai::api::UserAppIDSet* _internal_mutable_user_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.MyScopesUserRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::clarifai::api::UserAppIDSet* user_app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MyScopesRootRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.MyScopesRootRequest) */ {
+ public:
+  MyScopesRootRequest();
+  virtual ~MyScopesRootRequest();
+
+  MyScopesRootRequest(const MyScopesRootRequest& from);
+  MyScopesRootRequest(MyScopesRootRequest&& from) noexcept
+    : MyScopesRootRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline MyScopesRootRequest& operator=(const MyScopesRootRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MyScopesRootRequest& operator=(MyScopesRootRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MyScopesRootRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MyScopesRootRequest* internal_default_instance() {
+    return reinterpret_cast<const MyScopesRootRequest*>(
+               &_MyScopesRootRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    115;
+
+  friend void swap(MyScopesRootRequest& a, MyScopesRootRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MyScopesRootRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MyScopesRootRequest* New() const final {
+    return CreateMaybeMessage<MyScopesRootRequest>(nullptr);
+  }
+
+  MyScopesRootRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MyScopesRootRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MyScopesRootRequest& from);
+  void MergeFrom(const MyScopesRootRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MyScopesRootRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.MyScopesRootRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.MyScopesRootRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MultiScopeDepsResponse :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.MultiScopeDepsResponse) */ {
  public:
@@ -19195,7 +20246,7 @@ class MultiScopeDepsResponse :
                &_MultiScopeDepsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    110;
+    116;
 
   friend void swap(MultiScopeDepsResponse& a, MultiScopeDepsResponse& b) {
     a.Swap(&b);
@@ -19369,7 +20420,7 @@ class MultiScopeResponse :
                &_MultiScopeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    111;
+    117;
 
   friend void swap(MultiScopeResponse& a, MultiScopeResponse& b) {
     a.Swap(&b);
@@ -19530,6 +20581,378 @@ class MultiScopeResponse :
 };
 // -------------------------------------------------------------------
 
+class MultiScopeUserResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.MultiScopeUserResponse) */ {
+ public:
+  MultiScopeUserResponse();
+  virtual ~MultiScopeUserResponse();
+
+  MultiScopeUserResponse(const MultiScopeUserResponse& from);
+  MultiScopeUserResponse(MultiScopeUserResponse&& from) noexcept
+    : MultiScopeUserResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline MultiScopeUserResponse& operator=(const MultiScopeUserResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MultiScopeUserResponse& operator=(MultiScopeUserResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MultiScopeUserResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MultiScopeUserResponse* internal_default_instance() {
+    return reinterpret_cast<const MultiScopeUserResponse*>(
+               &_MultiScopeUserResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    118;
+
+  friend void swap(MultiScopeUserResponse& a, MultiScopeUserResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MultiScopeUserResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MultiScopeUserResponse* New() const final {
+    return CreateMaybeMessage<MultiScopeUserResponse>(nullptr);
+  }
+
+  MultiScopeUserResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MultiScopeUserResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MultiScopeUserResponse& from);
+  void MergeFrom(const MultiScopeUserResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MultiScopeUserResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.MultiScopeUserResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kScopesFieldNumber = 2,
+    kEndpointsFieldNumber = 4,
+    kStatusFieldNumber = 1,
+  };
+  // repeated string scopes = 2;
+  int scopes_size() const;
+  private:
+  int _internal_scopes_size() const;
+  public:
+  void clear_scopes();
+  const std::string& scopes(int index) const;
+  std::string* mutable_scopes(int index);
+  void set_scopes(int index, const std::string& value);
+  void set_scopes(int index, std::string&& value);
+  void set_scopes(int index, const char* value);
+  void set_scopes(int index, const char* value, size_t size);
+  std::string* add_scopes();
+  void add_scopes(const std::string& value);
+  void add_scopes(std::string&& value);
+  void add_scopes(const char* value);
+  void add_scopes(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& scopes() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_scopes();
+  private:
+  const std::string& _internal_scopes(int index) const;
+  std::string* _internal_add_scopes();
+  public:
+
+  // repeated string endpoints = 4;
+  int endpoints_size() const;
+  private:
+  int _internal_endpoints_size() const;
+  public:
+  void clear_endpoints();
+  const std::string& endpoints(int index) const;
+  std::string* mutable_endpoints(int index);
+  void set_endpoints(int index, const std::string& value);
+  void set_endpoints(int index, std::string&& value);
+  void set_endpoints(int index, const char* value);
+  void set_endpoints(int index, const char* value, size_t size);
+  std::string* add_endpoints();
+  void add_endpoints(const std::string& value);
+  void add_endpoints(std::string&& value);
+  void add_endpoints(const char* value);
+  void add_endpoints(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& endpoints() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_endpoints();
+  private:
+  const std::string& _internal_endpoints(int index) const;
+  std::string* _internal_add_endpoints();
+  public:
+
+  // .clarifai.api.status.Status status = 1;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const ::clarifai::api::status::Status& status() const;
+  ::clarifai::api::status::Status* release_status();
+  ::clarifai::api::status::Status* mutable_status();
+  void set_allocated_status(::clarifai::api::status::Status* status);
+  private:
+  const ::clarifai::api::status::Status& _internal_status() const;
+  ::clarifai::api::status::Status* _internal_mutable_status();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.MultiScopeUserResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> scopes_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> endpoints_;
+  ::clarifai::api::status::Status* status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MultiScopeRootResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.MultiScopeRootResponse) */ {
+ public:
+  MultiScopeRootResponse();
+  virtual ~MultiScopeRootResponse();
+
+  MultiScopeRootResponse(const MultiScopeRootResponse& from);
+  MultiScopeRootResponse(MultiScopeRootResponse&& from) noexcept
+    : MultiScopeRootResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline MultiScopeRootResponse& operator=(const MultiScopeRootResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MultiScopeRootResponse& operator=(MultiScopeRootResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MultiScopeRootResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MultiScopeRootResponse* internal_default_instance() {
+    return reinterpret_cast<const MultiScopeRootResponse*>(
+               &_MultiScopeRootResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    119;
+
+  friend void swap(MultiScopeRootResponse& a, MultiScopeRootResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MultiScopeRootResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MultiScopeRootResponse* New() const final {
+    return CreateMaybeMessage<MultiScopeRootResponse>(nullptr);
+  }
+
+  MultiScopeRootResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MultiScopeRootResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MultiScopeRootResponse& from);
+  void MergeFrom(const MultiScopeRootResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MultiScopeRootResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.MultiScopeRootResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kScopesFieldNumber = 2,
+    kEndpointsFieldNumber = 4,
+    kStatusFieldNumber = 1,
+  };
+  // repeated string scopes = 2;
+  int scopes_size() const;
+  private:
+  int _internal_scopes_size() const;
+  public:
+  void clear_scopes();
+  const std::string& scopes(int index) const;
+  std::string* mutable_scopes(int index);
+  void set_scopes(int index, const std::string& value);
+  void set_scopes(int index, std::string&& value);
+  void set_scopes(int index, const char* value);
+  void set_scopes(int index, const char* value, size_t size);
+  std::string* add_scopes();
+  void add_scopes(const std::string& value);
+  void add_scopes(std::string&& value);
+  void add_scopes(const char* value);
+  void add_scopes(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& scopes() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_scopes();
+  private:
+  const std::string& _internal_scopes(int index) const;
+  std::string* _internal_add_scopes();
+  public:
+
+  // repeated string endpoints = 4;
+  int endpoints_size() const;
+  private:
+  int _internal_endpoints_size() const;
+  public:
+  void clear_endpoints();
+  const std::string& endpoints(int index) const;
+  std::string* mutable_endpoints(int index);
+  void set_endpoints(int index, const std::string& value);
+  void set_endpoints(int index, std::string&& value);
+  void set_endpoints(int index, const char* value);
+  void set_endpoints(int index, const char* value, size_t size);
+  std::string* add_endpoints();
+  void add_endpoints(const std::string& value);
+  void add_endpoints(std::string&& value);
+  void add_endpoints(const char* value);
+  void add_endpoints(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& endpoints() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_endpoints();
+  private:
+  const std::string& _internal_endpoints(int index) const;
+  std::string* _internal_add_endpoints();
+  public:
+
+  // .clarifai.api.status.Status status = 1;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const ::clarifai::api::status::Status& status() const;
+  ::clarifai::api::status::Status* release_status();
+  ::clarifai::api::status::Status* mutable_status();
+  void set_allocated_status(::clarifai::api::status::Status* status);
+  private:
+  const ::clarifai::api::status::Status& _internal_status() const;
+  ::clarifai::api::status::Status* _internal_mutable_status();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.MultiScopeRootResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> scopes_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> endpoints_;
+  ::clarifai::api::status::Status* status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetSearchRequest :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.GetSearchRequest) */ {
  public:
@@ -19572,7 +20995,7 @@ class GetSearchRequest :
                &_GetSearchRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    112;
+    120;
 
   friend void swap(GetSearchRequest& a, GetSearchRequest& b) {
     a.Swap(&b);
@@ -19724,7 +21147,7 @@ class ListSearchesRequest :
                &_ListSearchesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    113;
+    121;
 
   friend void swap(ListSearchesRequest& a, ListSearchesRequest& b) {
     a.Swap(&b);
@@ -19880,7 +21303,7 @@ class PostSearchesRequest :
                &_PostSearchesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    114;
+    122;
 
   friend void swap(PostSearchesRequest& a, PostSearchesRequest& b) {
     a.Swap(&b);
@@ -20068,7 +21491,7 @@ class PostSearchesByIDRequest :
                &_PostSearchesByIDRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    115;
+    123;
 
   friend void swap(PostSearchesByIDRequest& a, PostSearchesByIDRequest& b) {
     a.Swap(&b);
@@ -20237,7 +21660,7 @@ class DeleteSearchRequest :
                &_DeleteSearchRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    116;
+    124;
 
   friend void swap(DeleteSearchRequest& a, DeleteSearchRequest& b) {
     a.Swap(&b);
@@ -20389,7 +21812,7 @@ class PostAnnotationsSearchesRequest :
                &_PostAnnotationsSearchesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    117;
+    125;
 
   friend void swap(PostAnnotationsSearchesRequest& a, PostAnnotationsSearchesRequest& b) {
     a.Swap(&b);
@@ -20560,7 +21983,7 @@ class DeleteAnnotationSearchMetricsRequest :
                &_DeleteAnnotationSearchMetricsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    118;
+    126;
 
   friend void swap(DeleteAnnotationSearchMetricsRequest& a, DeleteAnnotationSearchMetricsRequest& b) {
     a.Swap(&b);
@@ -20712,7 +22135,7 @@ class PostInputsSearchesRequest :
                &_PostInputsSearchesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    119;
+    127;
 
   friend void swap(PostInputsSearchesRequest& a, PostInputsSearchesRequest& b) {
     a.Swap(&b);
@@ -20883,7 +22306,7 @@ class SingleSearchResponse :
                &_SingleSearchResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    120;
+    128;
 
   friend void swap(SingleSearchResponse& a, SingleSearchResponse& b) {
     a.Swap(&b);
@@ -21034,7 +22457,7 @@ class MultiSearchResponse :
                &_MultiSearchResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    121;
+    129;
 
   friend void swap(MultiSearchResponse& a, MultiSearchResponse& b) {
     a.Swap(&b);
@@ -21243,7 +22666,7 @@ class PostAnnotationSearchMetricsRequest :
                &_PostAnnotationSearchMetricsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    122;
+    130;
 
   friend void swap(PostAnnotationSearchMetricsRequest& a, PostAnnotationSearchMetricsRequest& b) {
     a.Swap(&b);
@@ -21457,7 +22880,7 @@ class GetAnnotationSearchMetricsRequest :
                &_GetAnnotationSearchMetricsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    123;
+    131;
 
   friend void swap(GetAnnotationSearchMetricsRequest& a, GetAnnotationSearchMetricsRequest& b) {
     a.Swap(&b);
@@ -21609,7 +23032,7 @@ class ListAnnotationSearchMetricsRequest :
                &_ListAnnotationSearchMetricsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    124;
+    132;
 
   friend void swap(ListAnnotationSearchMetricsRequest& a, ListAnnotationSearchMetricsRequest& b) {
     a.Swap(&b);
@@ -21743,7 +23166,7 @@ class MultiAnnotationSearchMetricsResponse :
                &_MultiAnnotationSearchMetricsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    125;
+    133;
 
   friend void swap(MultiAnnotationSearchMetricsResponse& a, MultiAnnotationSearchMetricsResponse& b) {
     a.Swap(&b);
@@ -21897,7 +23320,7 @@ class PostValidatePasswordRequest :
                &_PostValidatePasswordRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    126;
+    134;
 
   friend void swap(PostValidatePasswordRequest& a, PostValidatePasswordRequest& b) {
     a.Swap(&b);
@@ -22048,7 +23471,7 @@ class SinglePasswordValidationResponse :
                &_SinglePasswordValidationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    127;
+    135;
 
   friend void swap(SinglePasswordValidationResponse& a, SinglePasswordValidationResponse& b) {
     a.Swap(&b);
@@ -22199,7 +23622,7 @@ class GetWorkflowRequest :
                &_GetWorkflowRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    128;
+    136;
 
   friend void swap(GetWorkflowRequest& a, GetWorkflowRequest& b) {
     a.Swap(&b);
@@ -22263,10 +23686,35 @@ class GetWorkflowRequest :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAdditionalFieldsFieldNumber = 4,
     kWorkflowIdFieldNumber = 2,
     kUserAppIdFieldNumber = 1,
     kFavorClarifaiWorkflowsFieldNumber = 3,
   };
+  // repeated string additional_fields = 4;
+  int additional_fields_size() const;
+  private:
+  int _internal_additional_fields_size() const;
+  public:
+  void clear_additional_fields();
+  const std::string& additional_fields(int index) const;
+  std::string* mutable_additional_fields(int index);
+  void set_additional_fields(int index, const std::string& value);
+  void set_additional_fields(int index, std::string&& value);
+  void set_additional_fields(int index, const char* value);
+  void set_additional_fields(int index, const char* value, size_t size);
+  std::string* add_additional_fields();
+  void add_additional_fields(const std::string& value);
+  void add_additional_fields(std::string&& value);
+  void add_additional_fields(const char* value);
+  void add_additional_fields(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& additional_fields() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_additional_fields();
+  private:
+  const std::string& _internal_additional_fields(int index) const;
+  std::string* _internal_add_additional_fields();
+  public:
+
   // string workflow_id = 2;
   void clear_workflow_id();
   const std::string& workflow_id() const;
@@ -22312,6 +23760,7 @@ class GetWorkflowRequest :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> additional_fields_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr workflow_id_;
   ::clarifai::api::UserAppIDSet* user_app_id_;
   bool favor_clarifai_workflows_;
@@ -22368,7 +23817,7 @@ class ListWorkflowsRequest :
                &_ListWorkflowsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    129;
+    137;
 
   friend void swap(ListWorkflowsRequest& a, ListWorkflowsRequest& b) {
     a.Swap(&b);
@@ -22432,6 +23881,7 @@ class ListWorkflowsRequest :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAdditionalFieldsFieldNumber = 10,
     kIdFieldNumber = 4,
     kQueryFieldNumber = 8,
     kUserAppIdFieldNumber = 1,
@@ -22442,6 +23892,30 @@ class ListWorkflowsRequest :
     kSortByIdFieldNumber = 6,
     kSortByModifiedAtFieldNumber = 7,
   };
+  // repeated string additional_fields = 10;
+  int additional_fields_size() const;
+  private:
+  int _internal_additional_fields_size() const;
+  public:
+  void clear_additional_fields();
+  const std::string& additional_fields(int index) const;
+  std::string* mutable_additional_fields(int index);
+  void set_additional_fields(int index, const std::string& value);
+  void set_additional_fields(int index, std::string&& value);
+  void set_additional_fields(int index, const char* value);
+  void set_additional_fields(int index, const char* value, size_t size);
+  std::string* add_additional_fields();
+  void add_additional_fields(const std::string& value);
+  void add_additional_fields(std::string&& value);
+  void add_additional_fields(const char* value);
+  void add_additional_fields(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& additional_fields() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_additional_fields();
+  private:
+  const std::string& _internal_additional_fields(int index) const;
+  std::string* _internal_add_additional_fields();
+  public:
+
   // string id = 4 [deprecated = true];
   PROTOBUF_DEPRECATED void clear_id();
   PROTOBUF_DEPRECATED const std::string& id() const;
@@ -22561,6 +24035,7 @@ class ListWorkflowsRequest :
   inline void clear_has_sort_by();
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> additional_fields_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr query_;
   ::clarifai::api::UserAppIDSet* user_app_id_;
@@ -22622,7 +24097,7 @@ class PostWorkflowsRequest :
                &_PostWorkflowsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    130;
+    138;
 
   friend void swap(PostWorkflowsRequest& a, PostWorkflowsRequest& b) {
     a.Swap(&b);
@@ -22776,7 +24251,7 @@ class PatchWorkflowsRequest :
                &_PatchWorkflowsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    131;
+    139;
 
   friend void swap(PatchWorkflowsRequest& a, PatchWorkflowsRequest& b) {
     a.Swap(&b);
@@ -22948,7 +24423,7 @@ class DeleteWorkflowRequest :
                &_DeleteWorkflowRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    132;
+    140;
 
   friend void swap(DeleteWorkflowRequest& a, DeleteWorkflowRequest& b) {
     a.Swap(&b);
@@ -23100,7 +24575,7 @@ class DeleteWorkflowsRequest :
                &_DeleteWorkflowsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    133;
+    141;
 
   friend void swap(DeleteWorkflowsRequest& a, DeleteWorkflowsRequest& b) {
     a.Swap(&b);
@@ -23271,7 +24746,7 @@ class SingleWorkflowResponse :
                &_SingleWorkflowResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    134;
+    142;
 
   friend void swap(SingleWorkflowResponse& a, SingleWorkflowResponse& b) {
     a.Swap(&b);
@@ -23422,7 +24897,7 @@ class MultiWorkflowResponse :
                &_MultiWorkflowResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    135;
+    143;
 
   friend void swap(MultiWorkflowResponse& a, MultiWorkflowResponse& b) {
     a.Swap(&b);
@@ -23576,7 +25051,7 @@ class PostWorkflowResultsRequest :
                &_PostWorkflowResultsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    136;
+    144;
 
   friend void swap(PostWorkflowResultsRequest& a, PostWorkflowResultsRequest& b) {
     a.Swap(&b);
@@ -23811,7 +25286,7 @@ class PostWorkflowResultsResponse :
                &_PostWorkflowResultsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    137;
+    145;
 
   friend void swap(PostWorkflowResultsResponse& a, PostWorkflowResultsResponse& b) {
     a.Swap(&b);
@@ -23999,7 +25474,7 @@ class PostWorkflowResultsSimilarityRequest :
                &_PostWorkflowResultsSimilarityRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    138;
+    146;
 
   friend void swap(PostWorkflowResultsSimilarityRequest& a, PostWorkflowResultsSimilarityRequest& b) {
     a.Swap(&b);
@@ -24238,7 +25713,7 @@ class PostWorkflowResultsSimilarityResponse :
                &_PostWorkflowResultsSimilarityResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    139;
+    147;
 
   friend void swap(PostWorkflowResultsSimilarityResponse& a, PostWorkflowResultsSimilarityResponse& b) {
     a.Swap(&b);
@@ -24392,7 +25867,7 @@ class ListWorkflowVersionsRequest :
                &_ListWorkflowVersionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    140;
+    148;
 
   friend void swap(ListWorkflowVersionsRequest& a, ListWorkflowVersionsRequest& b) {
     a.Swap(&b);
@@ -24566,7 +26041,7 @@ class GetWorkflowVersionRequest :
                &_GetWorkflowVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    141;
+    149;
 
   friend void swap(GetWorkflowVersionRequest& a, GetWorkflowVersionRequest& b) {
     a.Swap(&b);
@@ -24736,7 +26211,7 @@ class DeleteWorkflowVersionsRequest :
                &_DeleteWorkflowVersionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    142;
+    150;
 
   friend void swap(DeleteWorkflowVersionsRequest& a, DeleteWorkflowVersionsRequest& b) {
     a.Swap(&b);
@@ -24914,7 +26389,7 @@ class PatchWorkflowVersionsRequest :
                &_PatchWorkflowVersionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    143;
+    151;
 
   friend void swap(PatchWorkflowVersionsRequest& a, PatchWorkflowVersionsRequest& b) {
     a.Swap(&b);
@@ -25104,7 +26579,7 @@ class MultiWorkflowVersionResponse :
                &_MultiWorkflowVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    144;
+    152;
 
   friend void swap(MultiWorkflowVersionResponse& a, MultiWorkflowVersionResponse& b) {
     a.Swap(&b);
@@ -25258,7 +26733,7 @@ class SingleWorkflowVersionResponse :
                &_SingleWorkflowVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    145;
+    153;
 
   friend void swap(SingleWorkflowVersionResponse& a, SingleWorkflowVersionResponse& b) {
     a.Swap(&b);
@@ -25409,7 +26884,7 @@ class PostAppDuplicationsRequest :
                &_PostAppDuplicationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    146;
+    154;
 
   friend void swap(PostAppDuplicationsRequest& a, PostAppDuplicationsRequest& b) {
     a.Swap(&b);
@@ -25563,7 +27038,7 @@ class GetAppDuplicationRequest :
                &_GetAppDuplicationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    147;
+    155;
 
   friend void swap(GetAppDuplicationRequest& a, GetAppDuplicationRequest& b) {
     a.Swap(&b);
@@ -25715,7 +27190,7 @@ class ListAppDuplicationsRequest :
                &_ListAppDuplicationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    148;
+    156;
 
   friend void swap(ListAppDuplicationsRequest& a, ListAppDuplicationsRequest& b) {
     a.Swap(&b);
@@ -25871,7 +27346,7 @@ class MultiAppDuplicationsResponse :
                &_MultiAppDuplicationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    149;
+    157;
 
   friend void swap(MultiAppDuplicationsResponse& a, MultiAppDuplicationsResponse& b) {
     a.Swap(&b);
@@ -26025,7 +27500,7 @@ class SingleAppDuplicationResponse :
                &_SingleAppDuplicationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    150;
+    158;
 
   friend void swap(SingleAppDuplicationResponse& a, SingleAppDuplicationResponse& b) {
     a.Swap(&b);
@@ -26176,7 +27651,7 @@ class PostTasksRequest :
                &_PostTasksRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    151;
+    159;
 
   friend void swap(PostTasksRequest& a, PostTasksRequest& b) {
     a.Swap(&b);
@@ -26330,7 +27805,7 @@ class GetTaskRequest :
                &_GetTaskRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    152;
+    160;
 
   friend void swap(GetTaskRequest& a, GetTaskRequest& b) {
     a.Swap(&b);
@@ -26482,7 +27957,7 @@ class ListTasksRequest :
                &_ListTasksRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    153;
+    161;
 
   friend void swap(ListTasksRequest& a, ListTasksRequest& b) {
     a.Swap(&b);
@@ -26701,7 +28176,7 @@ class PatchTasksRequest :
                &_PatchTasksRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    154;
+    162;
 
   friend void swap(PatchTasksRequest& a, PatchTasksRequest& b) {
     a.Swap(&b);
@@ -26873,7 +28348,7 @@ class DeleteTasksRequest :
                &_DeleteTasksRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    155;
+    163;
 
   friend void swap(DeleteTasksRequest& a, DeleteTasksRequest& b) {
     a.Swap(&b);
@@ -27033,7 +28508,7 @@ class MultiTaskResponse :
                &_MultiTaskResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    156;
+    164;
 
   friend void swap(MultiTaskResponse& a, MultiTaskResponse& b) {
     a.Swap(&b);
@@ -27187,7 +28662,7 @@ class SingleTaskResponse :
                &_SingleTaskResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    157;
+    165;
 
   friend void swap(SingleTaskResponse& a, SingleTaskResponse& b) {
     a.Swap(&b);
@@ -27338,7 +28813,7 @@ class GetTaskCountRequest :
                &_GetTaskCountRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    158;
+    166;
 
   friend void swap(GetTaskCountRequest& a, GetTaskCountRequest& b) {
     a.Swap(&b);
@@ -27516,7 +28991,7 @@ class SingleTaskCountResponse :
                &_SingleTaskCountResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    159;
+    167;
 
   friend void swap(SingleTaskCountResponse& a, SingleTaskCountResponse& b) {
     a.Swap(&b);
@@ -27706,7 +29181,7 @@ class PostCollectorsRequest :
                &_PostCollectorsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    160;
+    168;
 
   friend void swap(PostCollectorsRequest& a, PostCollectorsRequest& b) {
     a.Swap(&b);
@@ -27860,7 +29335,7 @@ class PatchCollectorsRequest :
                &_PatchCollectorsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    161;
+    169;
 
   friend void swap(PatchCollectorsRequest& a, PatchCollectorsRequest& b) {
     a.Swap(&b);
@@ -28032,7 +29507,7 @@ class DeleteCollectorsRequest :
                &_DeleteCollectorsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    162;
+    170;
 
   friend void swap(DeleteCollectorsRequest& a, DeleteCollectorsRequest& b) {
     a.Swap(&b);
@@ -28203,7 +29678,7 @@ class GetCollectorRequest :
                &_GetCollectorRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    163;
+    171;
 
   friend void swap(GetCollectorRequest& a, GetCollectorRequest& b) {
     a.Swap(&b);
@@ -28355,7 +29830,7 @@ class ListCollectorsRequest :
                &_ListCollectorsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    164;
+    172;
 
   friend void swap(ListCollectorsRequest& a, ListCollectorsRequest& b) {
     a.Swap(&b);
@@ -28511,7 +29986,7 @@ class MultiCollectorResponse :
                &_MultiCollectorResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    165;
+    173;
 
   friend void swap(MultiCollectorResponse& a, MultiCollectorResponse& b) {
     a.Swap(&b);
@@ -28665,7 +30140,7 @@ class SingleCollectorResponse :
                &_SingleCollectorResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    166;
+    174;
 
   friend void swap(SingleCollectorResponse& a, SingleCollectorResponse& b) {
     a.Swap(&b);
@@ -28816,7 +30291,7 @@ class PostStatValuesRequest :
                &_PostStatValuesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    167;
+    175;
 
   friend void swap(PostStatValuesRequest& a, PostStatValuesRequest& b) {
     a.Swap(&b);
@@ -28970,7 +30445,7 @@ class MultiStatValueResponse :
                &_MultiStatValueResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    168;
+    176;
 
   friend void swap(MultiStatValueResponse& a, MultiStatValueResponse& b) {
     a.Swap(&b);
@@ -29124,7 +30599,7 @@ class PostStatValuesAggregateRequest :
                &_PostStatValuesAggregateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    169;
+    177;
 
   friend void swap(PostStatValuesAggregateRequest& a, PostStatValuesAggregateRequest& b) {
     a.Swap(&b);
@@ -29278,7 +30753,7 @@ class MultiStatValueAggregateResponse :
                &_MultiStatValueAggregateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    170;
+    178;
 
   friend void swap(MultiStatValueAggregateResponse& a, MultiStatValueAggregateResponse& b) {
     a.Swap(&b);
@@ -29432,7 +30907,7 @@ class PostTrendingMetricsViewRequest :
                &_PostTrendingMetricsViewRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    171;
+    179;
 
   friend void swap(PostTrendingMetricsViewRequest& a, PostTrendingMetricsViewRequest& b) {
     a.Swap(&b);
@@ -29602,7 +31077,7 @@ class ListTrendingMetricsViewsRequest :
                &_ListTrendingMetricsViewsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    172;
+    180;
 
   friend void swap(ListTrendingMetricsViewsRequest& a, ListTrendingMetricsViewsRequest& b) {
     a.Swap(&b);
@@ -29776,7 +31251,7 @@ class MultiTrendingMetricsViewResponse :
                &_MultiTrendingMetricsViewResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    173;
+    181;
 
   friend void swap(MultiTrendingMetricsViewResponse& a, MultiTrendingMetricsViewResponse& b) {
     a.Swap(&b);
@@ -31945,6 +33420,80 @@ inline void GetAppRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDS
   // @@protoc_insertion_point(field_set_allocated:clarifai.api.GetAppRequest.user_app_id)
 }
 
+// repeated string additional_fields = 2;
+inline int GetAppRequest::_internal_additional_fields_size() const {
+  return additional_fields_.size();
+}
+inline int GetAppRequest::additional_fields_size() const {
+  return _internal_additional_fields_size();
+}
+inline void GetAppRequest::clear_additional_fields() {
+  additional_fields_.Clear();
+}
+inline std::string* GetAppRequest::add_additional_fields() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.GetAppRequest.additional_fields)
+  return _internal_add_additional_fields();
+}
+inline const std::string& GetAppRequest::_internal_additional_fields(int index) const {
+  return additional_fields_.Get(index);
+}
+inline const std::string& GetAppRequest::additional_fields(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.GetAppRequest.additional_fields)
+  return _internal_additional_fields(index);
+}
+inline std::string* GetAppRequest::mutable_additional_fields(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.GetAppRequest.additional_fields)
+  return additional_fields_.Mutable(index);
+}
+inline void GetAppRequest::set_additional_fields(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.GetAppRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(value);
+}
+inline void GetAppRequest::set_additional_fields(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.GetAppRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(std::move(value));
+}
+inline void GetAppRequest::set_additional_fields(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.GetAppRequest.additional_fields)
+}
+inline void GetAppRequest::set_additional_fields(int index, const char* value, size_t size) {
+  additional_fields_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.GetAppRequest.additional_fields)
+}
+inline std::string* GetAppRequest::_internal_add_additional_fields() {
+  return additional_fields_.Add();
+}
+inline void GetAppRequest::add_additional_fields(const std::string& value) {
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.GetAppRequest.additional_fields)
+}
+inline void GetAppRequest::add_additional_fields(std::string&& value) {
+  additional_fields_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.GetAppRequest.additional_fields)
+}
+inline void GetAppRequest::add_additional_fields(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.GetAppRequest.additional_fields)
+}
+inline void GetAppRequest::add_additional_fields(const char* value, size_t size) {
+  additional_fields_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.GetAppRequest.additional_fields)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetAppRequest::additional_fields() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.GetAppRequest.additional_fields)
+  return additional_fields_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetAppRequest::mutable_additional_fields() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.GetAppRequest.additional_fields)
+  return &additional_fields_;
+}
+
 // -------------------------------------------------------------------
 
 // ListAppsRequest
@@ -32271,6 +33820,80 @@ inline void ListAppsRequest::_internal_set_featured_only(bool value) {
 inline void ListAppsRequest::set_featured_only(bool value) {
   _internal_set_featured_only(value);
   // @@protoc_insertion_point(field_set:clarifai.api.ListAppsRequest.featured_only)
+}
+
+// repeated string additional_fields = 10;
+inline int ListAppsRequest::_internal_additional_fields_size() const {
+  return additional_fields_.size();
+}
+inline int ListAppsRequest::additional_fields_size() const {
+  return _internal_additional_fields_size();
+}
+inline void ListAppsRequest::clear_additional_fields() {
+  additional_fields_.Clear();
+}
+inline std::string* ListAppsRequest::add_additional_fields() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.ListAppsRequest.additional_fields)
+  return _internal_add_additional_fields();
+}
+inline const std::string& ListAppsRequest::_internal_additional_fields(int index) const {
+  return additional_fields_.Get(index);
+}
+inline const std::string& ListAppsRequest::additional_fields(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ListAppsRequest.additional_fields)
+  return _internal_additional_fields(index);
+}
+inline std::string* ListAppsRequest::mutable_additional_fields(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ListAppsRequest.additional_fields)
+  return additional_fields_.Mutable(index);
+}
+inline void ListAppsRequest::set_additional_fields(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListAppsRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(value);
+}
+inline void ListAppsRequest::set_additional_fields(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListAppsRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(std::move(value));
+}
+inline void ListAppsRequest::set_additional_fields(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ListAppsRequest.additional_fields)
+}
+inline void ListAppsRequest::set_additional_fields(int index, const char* value, size_t size) {
+  additional_fields_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ListAppsRequest.additional_fields)
+}
+inline std::string* ListAppsRequest::_internal_add_additional_fields() {
+  return additional_fields_.Add();
+}
+inline void ListAppsRequest::add_additional_fields(const std::string& value) {
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.ListAppsRequest.additional_fields)
+}
+inline void ListAppsRequest::add_additional_fields(std::string&& value) {
+  additional_fields_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.ListAppsRequest.additional_fields)
+}
+inline void ListAppsRequest::add_additional_fields(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.ListAppsRequest.additional_fields)
+}
+inline void ListAppsRequest::add_additional_fields(const char* value, size_t size) {
+  additional_fields_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.ListAppsRequest.additional_fields)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ListAppsRequest::additional_fields() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.ListAppsRequest.additional_fields)
+  return additional_fields_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ListAppsRequest::mutable_additional_fields() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.ListAppsRequest.additional_fields)
+  return &additional_fields_;
 }
 
 inline bool ListAppsRequest::has_sort_by() const {
@@ -40504,6 +42127,80 @@ inline void GetModelRequest::set_trained_before(bool value) {
   // @@protoc_insertion_point(field_set:clarifai.api.GetModelRequest.trained_before)
 }
 
+// repeated string additional_fields = 19;
+inline int GetModelRequest::_internal_additional_fields_size() const {
+  return additional_fields_.size();
+}
+inline int GetModelRequest::additional_fields_size() const {
+  return _internal_additional_fields_size();
+}
+inline void GetModelRequest::clear_additional_fields() {
+  additional_fields_.Clear();
+}
+inline std::string* GetModelRequest::add_additional_fields() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.GetModelRequest.additional_fields)
+  return _internal_add_additional_fields();
+}
+inline const std::string& GetModelRequest::_internal_additional_fields(int index) const {
+  return additional_fields_.Get(index);
+}
+inline const std::string& GetModelRequest::additional_fields(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.GetModelRequest.additional_fields)
+  return _internal_additional_fields(index);
+}
+inline std::string* GetModelRequest::mutable_additional_fields(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.GetModelRequest.additional_fields)
+  return additional_fields_.Mutable(index);
+}
+inline void GetModelRequest::set_additional_fields(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.GetModelRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(value);
+}
+inline void GetModelRequest::set_additional_fields(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.GetModelRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(std::move(value));
+}
+inline void GetModelRequest::set_additional_fields(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.GetModelRequest.additional_fields)
+}
+inline void GetModelRequest::set_additional_fields(int index, const char* value, size_t size) {
+  additional_fields_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.GetModelRequest.additional_fields)
+}
+inline std::string* GetModelRequest::_internal_add_additional_fields() {
+  return additional_fields_.Add();
+}
+inline void GetModelRequest::add_additional_fields(const std::string& value) {
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.GetModelRequest.additional_fields)
+}
+inline void GetModelRequest::add_additional_fields(std::string&& value) {
+  additional_fields_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.GetModelRequest.additional_fields)
+}
+inline void GetModelRequest::add_additional_fields(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.GetModelRequest.additional_fields)
+}
+inline void GetModelRequest::add_additional_fields(const char* value, size_t size) {
+  additional_fields_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.GetModelRequest.additional_fields)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetModelRequest::additional_fields() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.GetModelRequest.additional_fields)
+  return additional_fields_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetModelRequest::mutable_additional_fields() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.GetModelRequest.additional_fields)
+  return &additional_fields_;
+}
+
 // -------------------------------------------------------------------
 
 // ListModelsRequest
@@ -41153,6 +42850,228 @@ inline void ListModelsRequest::_internal_set_featured_only(bool value) {
 inline void ListModelsRequest::set_featured_only(bool value) {
   _internal_set_featured_only(value);
   // @@protoc_insertion_point(field_set:clarifai.api.ListModelsRequest.featured_only)
+}
+
+// repeated string toolkits = 17;
+inline int ListModelsRequest::_internal_toolkits_size() const {
+  return toolkits_.size();
+}
+inline int ListModelsRequest::toolkits_size() const {
+  return _internal_toolkits_size();
+}
+inline void ListModelsRequest::clear_toolkits() {
+  toolkits_.Clear();
+}
+inline std::string* ListModelsRequest::add_toolkits() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.ListModelsRequest.toolkits)
+  return _internal_add_toolkits();
+}
+inline const std::string& ListModelsRequest::_internal_toolkits(int index) const {
+  return toolkits_.Get(index);
+}
+inline const std::string& ListModelsRequest::toolkits(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ListModelsRequest.toolkits)
+  return _internal_toolkits(index);
+}
+inline std::string* ListModelsRequest::mutable_toolkits(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ListModelsRequest.toolkits)
+  return toolkits_.Mutable(index);
+}
+inline void ListModelsRequest::set_toolkits(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListModelsRequest.toolkits)
+  toolkits_.Mutable(index)->assign(value);
+}
+inline void ListModelsRequest::set_toolkits(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListModelsRequest.toolkits)
+  toolkits_.Mutable(index)->assign(std::move(value));
+}
+inline void ListModelsRequest::set_toolkits(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  toolkits_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ListModelsRequest.toolkits)
+}
+inline void ListModelsRequest::set_toolkits(int index, const char* value, size_t size) {
+  toolkits_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ListModelsRequest.toolkits)
+}
+inline std::string* ListModelsRequest::_internal_add_toolkits() {
+  return toolkits_.Add();
+}
+inline void ListModelsRequest::add_toolkits(const std::string& value) {
+  toolkits_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.ListModelsRequest.toolkits)
+}
+inline void ListModelsRequest::add_toolkits(std::string&& value) {
+  toolkits_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.ListModelsRequest.toolkits)
+}
+inline void ListModelsRequest::add_toolkits(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  toolkits_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.ListModelsRequest.toolkits)
+}
+inline void ListModelsRequest::add_toolkits(const char* value, size_t size) {
+  toolkits_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.ListModelsRequest.toolkits)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ListModelsRequest::toolkits() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.ListModelsRequest.toolkits)
+  return toolkits_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ListModelsRequest::mutable_toolkits() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.ListModelsRequest.toolkits)
+  return &toolkits_;
+}
+
+// repeated string use_cases = 18;
+inline int ListModelsRequest::_internal_use_cases_size() const {
+  return use_cases_.size();
+}
+inline int ListModelsRequest::use_cases_size() const {
+  return _internal_use_cases_size();
+}
+inline void ListModelsRequest::clear_use_cases() {
+  use_cases_.Clear();
+}
+inline std::string* ListModelsRequest::add_use_cases() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.ListModelsRequest.use_cases)
+  return _internal_add_use_cases();
+}
+inline const std::string& ListModelsRequest::_internal_use_cases(int index) const {
+  return use_cases_.Get(index);
+}
+inline const std::string& ListModelsRequest::use_cases(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ListModelsRequest.use_cases)
+  return _internal_use_cases(index);
+}
+inline std::string* ListModelsRequest::mutable_use_cases(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ListModelsRequest.use_cases)
+  return use_cases_.Mutable(index);
+}
+inline void ListModelsRequest::set_use_cases(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListModelsRequest.use_cases)
+  use_cases_.Mutable(index)->assign(value);
+}
+inline void ListModelsRequest::set_use_cases(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListModelsRequest.use_cases)
+  use_cases_.Mutable(index)->assign(std::move(value));
+}
+inline void ListModelsRequest::set_use_cases(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  use_cases_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ListModelsRequest.use_cases)
+}
+inline void ListModelsRequest::set_use_cases(int index, const char* value, size_t size) {
+  use_cases_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ListModelsRequest.use_cases)
+}
+inline std::string* ListModelsRequest::_internal_add_use_cases() {
+  return use_cases_.Add();
+}
+inline void ListModelsRequest::add_use_cases(const std::string& value) {
+  use_cases_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.ListModelsRequest.use_cases)
+}
+inline void ListModelsRequest::add_use_cases(std::string&& value) {
+  use_cases_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.ListModelsRequest.use_cases)
+}
+inline void ListModelsRequest::add_use_cases(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  use_cases_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.ListModelsRequest.use_cases)
+}
+inline void ListModelsRequest::add_use_cases(const char* value, size_t size) {
+  use_cases_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.ListModelsRequest.use_cases)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ListModelsRequest::use_cases() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.ListModelsRequest.use_cases)
+  return use_cases_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ListModelsRequest::mutable_use_cases() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.ListModelsRequest.use_cases)
+  return &use_cases_;
+}
+
+// repeated string additional_fields = 19;
+inline int ListModelsRequest::_internal_additional_fields_size() const {
+  return additional_fields_.size();
+}
+inline int ListModelsRequest::additional_fields_size() const {
+  return _internal_additional_fields_size();
+}
+inline void ListModelsRequest::clear_additional_fields() {
+  additional_fields_.Clear();
+}
+inline std::string* ListModelsRequest::add_additional_fields() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.ListModelsRequest.additional_fields)
+  return _internal_add_additional_fields();
+}
+inline const std::string& ListModelsRequest::_internal_additional_fields(int index) const {
+  return additional_fields_.Get(index);
+}
+inline const std::string& ListModelsRequest::additional_fields(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ListModelsRequest.additional_fields)
+  return _internal_additional_fields(index);
+}
+inline std::string* ListModelsRequest::mutable_additional_fields(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ListModelsRequest.additional_fields)
+  return additional_fields_.Mutable(index);
+}
+inline void ListModelsRequest::set_additional_fields(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListModelsRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(value);
+}
+inline void ListModelsRequest::set_additional_fields(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListModelsRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(std::move(value));
+}
+inline void ListModelsRequest::set_additional_fields(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ListModelsRequest.additional_fields)
+}
+inline void ListModelsRequest::set_additional_fields(int index, const char* value, size_t size) {
+  additional_fields_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ListModelsRequest.additional_fields)
+}
+inline std::string* ListModelsRequest::_internal_add_additional_fields() {
+  return additional_fields_.Add();
+}
+inline void ListModelsRequest::add_additional_fields(const std::string& value) {
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.ListModelsRequest.additional_fields)
+}
+inline void ListModelsRequest::add_additional_fields(std::string&& value) {
+  additional_fields_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.ListModelsRequest.additional_fields)
+}
+inline void ListModelsRequest::add_additional_fields(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.ListModelsRequest.additional_fields)
+}
+inline void ListModelsRequest::add_additional_fields(const char* value, size_t size) {
+  additional_fields_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.ListModelsRequest.additional_fields)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ListModelsRequest::additional_fields() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.ListModelsRequest.additional_fields)
+  return additional_fields_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ListModelsRequest::mutable_additional_fields() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.ListModelsRequest.additional_fields)
+  return &additional_fields_;
 }
 
 inline bool ListModelsRequest::has_sort_by() const {
@@ -43520,6 +45439,448 @@ inline void PostModelVersionsRequest::set_allocated_description(std::string* des
 
 // -------------------------------------------------------------------
 
+// ModelVersionPublishRequest
+
+// string version_id = 1;
+inline void ModelVersionPublishRequest::clear_version_id() {
+  version_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& ModelVersionPublishRequest::version_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ModelVersionPublishRequest.version_id)
+  return _internal_version_id();
+}
+inline void ModelVersionPublishRequest::set_version_id(const std::string& value) {
+  _internal_set_version_id(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.ModelVersionPublishRequest.version_id)
+}
+inline std::string* ModelVersionPublishRequest::mutable_version_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ModelVersionPublishRequest.version_id)
+  return _internal_mutable_version_id();
+}
+inline const std::string& ModelVersionPublishRequest::_internal_version_id() const {
+  return version_id_.GetNoArena();
+}
+inline void ModelVersionPublishRequest::_internal_set_version_id(const std::string& value) {
+  
+  version_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void ModelVersionPublishRequest::set_version_id(std::string&& value) {
+  
+  version_id_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.ModelVersionPublishRequest.version_id)
+}
+inline void ModelVersionPublishRequest::set_version_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  version_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ModelVersionPublishRequest.version_id)
+}
+inline void ModelVersionPublishRequest::set_version_id(const char* value, size_t size) {
+  
+  version_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ModelVersionPublishRequest.version_id)
+}
+inline std::string* ModelVersionPublishRequest::_internal_mutable_version_id() {
+  
+  return version_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* ModelVersionPublishRequest::release_version_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.ModelVersionPublishRequest.version_id)
+  
+  return version_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void ModelVersionPublishRequest::set_allocated_version_id(std::string* version_id) {
+  if (version_id != nullptr) {
+    
+  } else {
+    
+  }
+  version_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), version_id);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.ModelVersionPublishRequest.version_id)
+}
+
+// -------------------------------------------------------------------
+
+// PostModelVersionsPublishRequest
+
+// .clarifai.api.UserAppIDSet user_app_id = 1;
+inline bool PostModelVersionsPublishRequest::_internal_has_user_app_id() const {
+  return this != internal_default_instance() && user_app_id_ != nullptr;
+}
+inline bool PostModelVersionsPublishRequest::has_user_app_id() const {
+  return _internal_has_user_app_id();
+}
+inline const ::clarifai::api::UserAppIDSet& PostModelVersionsPublishRequest::_internal_user_app_id() const {
+  const ::clarifai::api::UserAppIDSet* p = user_app_id_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::UserAppIDSet*>(
+      &::clarifai::api::_UserAppIDSet_default_instance_);
+}
+inline const ::clarifai::api::UserAppIDSet& PostModelVersionsPublishRequest::user_app_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.PostModelVersionsPublishRequest.user_app_id)
+  return _internal_user_app_id();
+}
+inline ::clarifai::api::UserAppIDSet* PostModelVersionsPublishRequest::release_user_app_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.PostModelVersionsPublishRequest.user_app_id)
+  
+  ::clarifai::api::UserAppIDSet* temp = user_app_id_;
+  user_app_id_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::UserAppIDSet* PostModelVersionsPublishRequest::_internal_mutable_user_app_id() {
+  
+  if (user_app_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::UserAppIDSet>(GetArenaNoVirtual());
+    user_app_id_ = p;
+  }
+  return user_app_id_;
+}
+inline ::clarifai::api::UserAppIDSet* PostModelVersionsPublishRequest::mutable_user_app_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.PostModelVersionsPublishRequest.user_app_id)
+  return _internal_mutable_user_app_id();
+}
+inline void PostModelVersionsPublishRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_app_id_);
+  }
+  if (user_app_id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user_app_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_app_id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_app_id_ = user_app_id;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.PostModelVersionsPublishRequest.user_app_id)
+}
+
+// string model_id = 2;
+inline void PostModelVersionsPublishRequest::clear_model_id() {
+  model_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& PostModelVersionsPublishRequest::model_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.PostModelVersionsPublishRequest.model_id)
+  return _internal_model_id();
+}
+inline void PostModelVersionsPublishRequest::set_model_id(const std::string& value) {
+  _internal_set_model_id(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.PostModelVersionsPublishRequest.model_id)
+}
+inline std::string* PostModelVersionsPublishRequest::mutable_model_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.PostModelVersionsPublishRequest.model_id)
+  return _internal_mutable_model_id();
+}
+inline const std::string& PostModelVersionsPublishRequest::_internal_model_id() const {
+  return model_id_.GetNoArena();
+}
+inline void PostModelVersionsPublishRequest::_internal_set_model_id(const std::string& value) {
+  
+  model_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void PostModelVersionsPublishRequest::set_model_id(std::string&& value) {
+  
+  model_id_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.PostModelVersionsPublishRequest.model_id)
+}
+inline void PostModelVersionsPublishRequest::set_model_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  model_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.PostModelVersionsPublishRequest.model_id)
+}
+inline void PostModelVersionsPublishRequest::set_model_id(const char* value, size_t size) {
+  
+  model_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.PostModelVersionsPublishRequest.model_id)
+}
+inline std::string* PostModelVersionsPublishRequest::_internal_mutable_model_id() {
+  
+  return model_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* PostModelVersionsPublishRequest::release_model_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.PostModelVersionsPublishRequest.model_id)
+  
+  return model_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void PostModelVersionsPublishRequest::set_allocated_model_id(std::string* model_id) {
+  if (model_id != nullptr) {
+    
+  } else {
+    
+  }
+  model_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), model_id);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.PostModelVersionsPublishRequest.model_id)
+}
+
+// repeated .clarifai.api.ModelVersionPublishRequest publications = 3;
+inline int PostModelVersionsPublishRequest::_internal_publications_size() const {
+  return publications_.size();
+}
+inline int PostModelVersionsPublishRequest::publications_size() const {
+  return _internal_publications_size();
+}
+inline void PostModelVersionsPublishRequest::clear_publications() {
+  publications_.Clear();
+}
+inline ::clarifai::api::ModelVersionPublishRequest* PostModelVersionsPublishRequest::mutable_publications(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.PostModelVersionsPublishRequest.publications)
+  return publications_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionPublishRequest >*
+PostModelVersionsPublishRequest::mutable_publications() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.PostModelVersionsPublishRequest.publications)
+  return &publications_;
+}
+inline const ::clarifai::api::ModelVersionPublishRequest& PostModelVersionsPublishRequest::_internal_publications(int index) const {
+  return publications_.Get(index);
+}
+inline const ::clarifai::api::ModelVersionPublishRequest& PostModelVersionsPublishRequest::publications(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.PostModelVersionsPublishRequest.publications)
+  return _internal_publications(index);
+}
+inline ::clarifai::api::ModelVersionPublishRequest* PostModelVersionsPublishRequest::_internal_add_publications() {
+  return publications_.Add();
+}
+inline ::clarifai::api::ModelVersionPublishRequest* PostModelVersionsPublishRequest::add_publications() {
+  // @@protoc_insertion_point(field_add:clarifai.api.PostModelVersionsPublishRequest.publications)
+  return _internal_add_publications();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionPublishRequest >&
+PostModelVersionsPublishRequest::publications() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.PostModelVersionsPublishRequest.publications)
+  return publications_;
+}
+
+// -------------------------------------------------------------------
+
+// ModelVersionUnpublishRequest
+
+// string version_id = 1;
+inline void ModelVersionUnpublishRequest::clear_version_id() {
+  version_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& ModelVersionUnpublishRequest::version_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ModelVersionUnpublishRequest.version_id)
+  return _internal_version_id();
+}
+inline void ModelVersionUnpublishRequest::set_version_id(const std::string& value) {
+  _internal_set_version_id(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.ModelVersionUnpublishRequest.version_id)
+}
+inline std::string* ModelVersionUnpublishRequest::mutable_version_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ModelVersionUnpublishRequest.version_id)
+  return _internal_mutable_version_id();
+}
+inline const std::string& ModelVersionUnpublishRequest::_internal_version_id() const {
+  return version_id_.GetNoArena();
+}
+inline void ModelVersionUnpublishRequest::_internal_set_version_id(const std::string& value) {
+  
+  version_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void ModelVersionUnpublishRequest::set_version_id(std::string&& value) {
+  
+  version_id_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.ModelVersionUnpublishRequest.version_id)
+}
+inline void ModelVersionUnpublishRequest::set_version_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  version_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ModelVersionUnpublishRequest.version_id)
+}
+inline void ModelVersionUnpublishRequest::set_version_id(const char* value, size_t size) {
+  
+  version_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ModelVersionUnpublishRequest.version_id)
+}
+inline std::string* ModelVersionUnpublishRequest::_internal_mutable_version_id() {
+  
+  return version_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* ModelVersionUnpublishRequest::release_version_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.ModelVersionUnpublishRequest.version_id)
+  
+  return version_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void ModelVersionUnpublishRequest::set_allocated_version_id(std::string* version_id) {
+  if (version_id != nullptr) {
+    
+  } else {
+    
+  }
+  version_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), version_id);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.ModelVersionUnpublishRequest.version_id)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteModelVersionsUnpublishRequest
+
+// .clarifai.api.UserAppIDSet user_app_id = 1;
+inline bool DeleteModelVersionsUnpublishRequest::_internal_has_user_app_id() const {
+  return this != internal_default_instance() && user_app_id_ != nullptr;
+}
+inline bool DeleteModelVersionsUnpublishRequest::has_user_app_id() const {
+  return _internal_has_user_app_id();
+}
+inline const ::clarifai::api::UserAppIDSet& DeleteModelVersionsUnpublishRequest::_internal_user_app_id() const {
+  const ::clarifai::api::UserAppIDSet* p = user_app_id_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::UserAppIDSet*>(
+      &::clarifai::api::_UserAppIDSet_default_instance_);
+}
+inline const ::clarifai::api::UserAppIDSet& DeleteModelVersionsUnpublishRequest::user_app_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.DeleteModelVersionsUnpublishRequest.user_app_id)
+  return _internal_user_app_id();
+}
+inline ::clarifai::api::UserAppIDSet* DeleteModelVersionsUnpublishRequest::release_user_app_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.DeleteModelVersionsUnpublishRequest.user_app_id)
+  
+  ::clarifai::api::UserAppIDSet* temp = user_app_id_;
+  user_app_id_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::UserAppIDSet* DeleteModelVersionsUnpublishRequest::_internal_mutable_user_app_id() {
+  
+  if (user_app_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::UserAppIDSet>(GetArenaNoVirtual());
+    user_app_id_ = p;
+  }
+  return user_app_id_;
+}
+inline ::clarifai::api::UserAppIDSet* DeleteModelVersionsUnpublishRequest::mutable_user_app_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.DeleteModelVersionsUnpublishRequest.user_app_id)
+  return _internal_mutable_user_app_id();
+}
+inline void DeleteModelVersionsUnpublishRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_app_id_);
+  }
+  if (user_app_id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user_app_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_app_id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_app_id_ = user_app_id;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.DeleteModelVersionsUnpublishRequest.user_app_id)
+}
+
+// string model_id = 2;
+inline void DeleteModelVersionsUnpublishRequest::clear_model_id() {
+  model_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& DeleteModelVersionsUnpublishRequest::model_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.DeleteModelVersionsUnpublishRequest.model_id)
+  return _internal_model_id();
+}
+inline void DeleteModelVersionsUnpublishRequest::set_model_id(const std::string& value) {
+  _internal_set_model_id(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.DeleteModelVersionsUnpublishRequest.model_id)
+}
+inline std::string* DeleteModelVersionsUnpublishRequest::mutable_model_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.DeleteModelVersionsUnpublishRequest.model_id)
+  return _internal_mutable_model_id();
+}
+inline const std::string& DeleteModelVersionsUnpublishRequest::_internal_model_id() const {
+  return model_id_.GetNoArena();
+}
+inline void DeleteModelVersionsUnpublishRequest::_internal_set_model_id(const std::string& value) {
+  
+  model_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void DeleteModelVersionsUnpublishRequest::set_model_id(std::string&& value) {
+  
+  model_id_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.DeleteModelVersionsUnpublishRequest.model_id)
+}
+inline void DeleteModelVersionsUnpublishRequest::set_model_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  model_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.DeleteModelVersionsUnpublishRequest.model_id)
+}
+inline void DeleteModelVersionsUnpublishRequest::set_model_id(const char* value, size_t size) {
+  
+  model_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.DeleteModelVersionsUnpublishRequest.model_id)
+}
+inline std::string* DeleteModelVersionsUnpublishRequest::_internal_mutable_model_id() {
+  
+  return model_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* DeleteModelVersionsUnpublishRequest::release_model_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.DeleteModelVersionsUnpublishRequest.model_id)
+  
+  return model_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void DeleteModelVersionsUnpublishRequest::set_allocated_model_id(std::string* model_id) {
+  if (model_id != nullptr) {
+    
+  } else {
+    
+  }
+  model_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), model_id);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.DeleteModelVersionsUnpublishRequest.model_id)
+}
+
+// repeated .clarifai.api.ModelVersionUnpublishRequest publications = 3;
+inline int DeleteModelVersionsUnpublishRequest::_internal_publications_size() const {
+  return publications_.size();
+}
+inline int DeleteModelVersionsUnpublishRequest::publications_size() const {
+  return _internal_publications_size();
+}
+inline void DeleteModelVersionsUnpublishRequest::clear_publications() {
+  publications_.Clear();
+}
+inline ::clarifai::api::ModelVersionUnpublishRequest* DeleteModelVersionsUnpublishRequest::mutable_publications(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.DeleteModelVersionsUnpublishRequest.publications)
+  return publications_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionUnpublishRequest >*
+DeleteModelVersionsUnpublishRequest::mutable_publications() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.DeleteModelVersionsUnpublishRequest.publications)
+  return &publications_;
+}
+inline const ::clarifai::api::ModelVersionUnpublishRequest& DeleteModelVersionsUnpublishRequest::_internal_publications(int index) const {
+  return publications_.Get(index);
+}
+inline const ::clarifai::api::ModelVersionUnpublishRequest& DeleteModelVersionsUnpublishRequest::publications(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.DeleteModelVersionsUnpublishRequest.publications)
+  return _internal_publications(index);
+}
+inline ::clarifai::api::ModelVersionUnpublishRequest* DeleteModelVersionsUnpublishRequest::_internal_add_publications() {
+  return publications_.Add();
+}
+inline ::clarifai::api::ModelVersionUnpublishRequest* DeleteModelVersionsUnpublishRequest::add_publications() {
+  // @@protoc_insertion_point(field_add:clarifai.api.DeleteModelVersionsUnpublishRequest.publications)
+  return _internal_add_publications();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelVersionUnpublishRequest >&
+DeleteModelVersionsUnpublishRequest::publications() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.DeleteModelVersionsUnpublishRequest.publications)
+  return publications_;
+}
+
+// -------------------------------------------------------------------
+
 // PostModelVersionMetricsRequest
 
 // .clarifai.api.UserAppIDSet user_app_id = 1;
@@ -45746,6 +48107,68 @@ inline void MyScopesRequest::set_allocated_user_app_id(::clarifai::api::UserAppI
 
 // -------------------------------------------------------------------
 
+// MyScopesUserRequest
+
+// .clarifai.api.UserAppIDSet user_app_id = 1;
+inline bool MyScopesUserRequest::_internal_has_user_app_id() const {
+  return this != internal_default_instance() && user_app_id_ != nullptr;
+}
+inline bool MyScopesUserRequest::has_user_app_id() const {
+  return _internal_has_user_app_id();
+}
+inline const ::clarifai::api::UserAppIDSet& MyScopesUserRequest::_internal_user_app_id() const {
+  const ::clarifai::api::UserAppIDSet* p = user_app_id_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::UserAppIDSet*>(
+      &::clarifai::api::_UserAppIDSet_default_instance_);
+}
+inline const ::clarifai::api::UserAppIDSet& MyScopesUserRequest::user_app_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MyScopesUserRequest.user_app_id)
+  return _internal_user_app_id();
+}
+inline ::clarifai::api::UserAppIDSet* MyScopesUserRequest::release_user_app_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.MyScopesUserRequest.user_app_id)
+  
+  ::clarifai::api::UserAppIDSet* temp = user_app_id_;
+  user_app_id_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::UserAppIDSet* MyScopesUserRequest::_internal_mutable_user_app_id() {
+  
+  if (user_app_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::UserAppIDSet>(GetArenaNoVirtual());
+    user_app_id_ = p;
+  }
+  return user_app_id_;
+}
+inline ::clarifai::api::UserAppIDSet* MyScopesUserRequest::mutable_user_app_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MyScopesUserRequest.user_app_id)
+  return _internal_mutable_user_app_id();
+}
+inline void MyScopesUserRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_app_id_);
+  }
+  if (user_app_id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user_app_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_app_id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_app_id_ = user_app_id;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.MyScopesUserRequest.user_app_id)
+}
+
+// -------------------------------------------------------------------
+
+// MyScopesRootRequest
+
+// -------------------------------------------------------------------
+
 // MultiScopeDepsResponse
 
 // .clarifai.api.status.Status status = 1;
@@ -46131,6 +48554,418 @@ MultiScopeResponse::endpoints() const {
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 MultiScopeResponse::mutable_endpoints() {
   // @@protoc_insertion_point(field_mutable_list:clarifai.api.MultiScopeResponse.endpoints)
+  return &endpoints_;
+}
+
+// -------------------------------------------------------------------
+
+// MultiScopeUserResponse
+
+// .clarifai.api.status.Status status = 1;
+inline bool MultiScopeUserResponse::_internal_has_status() const {
+  return this != internal_default_instance() && status_ != nullptr;
+}
+inline bool MultiScopeUserResponse::has_status() const {
+  return _internal_has_status();
+}
+inline const ::clarifai::api::status::Status& MultiScopeUserResponse::_internal_status() const {
+  const ::clarifai::api::status::Status* p = status_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::status::Status*>(
+      &::clarifai::api::status::_Status_default_instance_);
+}
+inline const ::clarifai::api::status::Status& MultiScopeUserResponse::status() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiScopeUserResponse.status)
+  return _internal_status();
+}
+inline ::clarifai::api::status::Status* MultiScopeUserResponse::release_status() {
+  // @@protoc_insertion_point(field_release:clarifai.api.MultiScopeUserResponse.status)
+  
+  ::clarifai::api::status::Status* temp = status_;
+  status_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::status::Status* MultiScopeUserResponse::_internal_mutable_status() {
+  
+  if (status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::status::Status>(GetArenaNoVirtual());
+    status_ = p;
+  }
+  return status_;
+}
+inline ::clarifai::api::status::Status* MultiScopeUserResponse::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiScopeUserResponse.status)
+  return _internal_mutable_status();
+}
+inline void MultiScopeUserResponse::set_allocated_status(::clarifai::api::status::Status* status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(status_);
+  }
+  if (status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  status_ = status;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.MultiScopeUserResponse.status)
+}
+
+// repeated string scopes = 2;
+inline int MultiScopeUserResponse::_internal_scopes_size() const {
+  return scopes_.size();
+}
+inline int MultiScopeUserResponse::scopes_size() const {
+  return _internal_scopes_size();
+}
+inline void MultiScopeUserResponse::clear_scopes() {
+  scopes_.Clear();
+}
+inline std::string* MultiScopeUserResponse::add_scopes() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.MultiScopeUserResponse.scopes)
+  return _internal_add_scopes();
+}
+inline const std::string& MultiScopeUserResponse::_internal_scopes(int index) const {
+  return scopes_.Get(index);
+}
+inline const std::string& MultiScopeUserResponse::scopes(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiScopeUserResponse.scopes)
+  return _internal_scopes(index);
+}
+inline std::string* MultiScopeUserResponse::mutable_scopes(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiScopeUserResponse.scopes)
+  return scopes_.Mutable(index);
+}
+inline void MultiScopeUserResponse::set_scopes(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.MultiScopeUserResponse.scopes)
+  scopes_.Mutable(index)->assign(value);
+}
+inline void MultiScopeUserResponse::set_scopes(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.MultiScopeUserResponse.scopes)
+  scopes_.Mutable(index)->assign(std::move(value));
+}
+inline void MultiScopeUserResponse::set_scopes(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  scopes_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.MultiScopeUserResponse.scopes)
+}
+inline void MultiScopeUserResponse::set_scopes(int index, const char* value, size_t size) {
+  scopes_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.MultiScopeUserResponse.scopes)
+}
+inline std::string* MultiScopeUserResponse::_internal_add_scopes() {
+  return scopes_.Add();
+}
+inline void MultiScopeUserResponse::add_scopes(const std::string& value) {
+  scopes_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiScopeUserResponse.scopes)
+}
+inline void MultiScopeUserResponse::add_scopes(std::string&& value) {
+  scopes_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiScopeUserResponse.scopes)
+}
+inline void MultiScopeUserResponse::add_scopes(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  scopes_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.MultiScopeUserResponse.scopes)
+}
+inline void MultiScopeUserResponse::add_scopes(const char* value, size_t size) {
+  scopes_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.MultiScopeUserResponse.scopes)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+MultiScopeUserResponse::scopes() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.MultiScopeUserResponse.scopes)
+  return scopes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+MultiScopeUserResponse::mutable_scopes() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.MultiScopeUserResponse.scopes)
+  return &scopes_;
+}
+
+// repeated string endpoints = 4;
+inline int MultiScopeUserResponse::_internal_endpoints_size() const {
+  return endpoints_.size();
+}
+inline int MultiScopeUserResponse::endpoints_size() const {
+  return _internal_endpoints_size();
+}
+inline void MultiScopeUserResponse::clear_endpoints() {
+  endpoints_.Clear();
+}
+inline std::string* MultiScopeUserResponse::add_endpoints() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.MultiScopeUserResponse.endpoints)
+  return _internal_add_endpoints();
+}
+inline const std::string& MultiScopeUserResponse::_internal_endpoints(int index) const {
+  return endpoints_.Get(index);
+}
+inline const std::string& MultiScopeUserResponse::endpoints(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiScopeUserResponse.endpoints)
+  return _internal_endpoints(index);
+}
+inline std::string* MultiScopeUserResponse::mutable_endpoints(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiScopeUserResponse.endpoints)
+  return endpoints_.Mutable(index);
+}
+inline void MultiScopeUserResponse::set_endpoints(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.MultiScopeUserResponse.endpoints)
+  endpoints_.Mutable(index)->assign(value);
+}
+inline void MultiScopeUserResponse::set_endpoints(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.MultiScopeUserResponse.endpoints)
+  endpoints_.Mutable(index)->assign(std::move(value));
+}
+inline void MultiScopeUserResponse::set_endpoints(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  endpoints_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.MultiScopeUserResponse.endpoints)
+}
+inline void MultiScopeUserResponse::set_endpoints(int index, const char* value, size_t size) {
+  endpoints_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.MultiScopeUserResponse.endpoints)
+}
+inline std::string* MultiScopeUserResponse::_internal_add_endpoints() {
+  return endpoints_.Add();
+}
+inline void MultiScopeUserResponse::add_endpoints(const std::string& value) {
+  endpoints_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiScopeUserResponse.endpoints)
+}
+inline void MultiScopeUserResponse::add_endpoints(std::string&& value) {
+  endpoints_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiScopeUserResponse.endpoints)
+}
+inline void MultiScopeUserResponse::add_endpoints(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  endpoints_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.MultiScopeUserResponse.endpoints)
+}
+inline void MultiScopeUserResponse::add_endpoints(const char* value, size_t size) {
+  endpoints_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.MultiScopeUserResponse.endpoints)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+MultiScopeUserResponse::endpoints() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.MultiScopeUserResponse.endpoints)
+  return endpoints_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+MultiScopeUserResponse::mutable_endpoints() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.MultiScopeUserResponse.endpoints)
+  return &endpoints_;
+}
+
+// -------------------------------------------------------------------
+
+// MultiScopeRootResponse
+
+// .clarifai.api.status.Status status = 1;
+inline bool MultiScopeRootResponse::_internal_has_status() const {
+  return this != internal_default_instance() && status_ != nullptr;
+}
+inline bool MultiScopeRootResponse::has_status() const {
+  return _internal_has_status();
+}
+inline const ::clarifai::api::status::Status& MultiScopeRootResponse::_internal_status() const {
+  const ::clarifai::api::status::Status* p = status_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::status::Status*>(
+      &::clarifai::api::status::_Status_default_instance_);
+}
+inline const ::clarifai::api::status::Status& MultiScopeRootResponse::status() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiScopeRootResponse.status)
+  return _internal_status();
+}
+inline ::clarifai::api::status::Status* MultiScopeRootResponse::release_status() {
+  // @@protoc_insertion_point(field_release:clarifai.api.MultiScopeRootResponse.status)
+  
+  ::clarifai::api::status::Status* temp = status_;
+  status_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::status::Status* MultiScopeRootResponse::_internal_mutable_status() {
+  
+  if (status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::status::Status>(GetArenaNoVirtual());
+    status_ = p;
+  }
+  return status_;
+}
+inline ::clarifai::api::status::Status* MultiScopeRootResponse::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiScopeRootResponse.status)
+  return _internal_mutable_status();
+}
+inline void MultiScopeRootResponse::set_allocated_status(::clarifai::api::status::Status* status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(status_);
+  }
+  if (status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  status_ = status;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.MultiScopeRootResponse.status)
+}
+
+// repeated string scopes = 2;
+inline int MultiScopeRootResponse::_internal_scopes_size() const {
+  return scopes_.size();
+}
+inline int MultiScopeRootResponse::scopes_size() const {
+  return _internal_scopes_size();
+}
+inline void MultiScopeRootResponse::clear_scopes() {
+  scopes_.Clear();
+}
+inline std::string* MultiScopeRootResponse::add_scopes() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.MultiScopeRootResponse.scopes)
+  return _internal_add_scopes();
+}
+inline const std::string& MultiScopeRootResponse::_internal_scopes(int index) const {
+  return scopes_.Get(index);
+}
+inline const std::string& MultiScopeRootResponse::scopes(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiScopeRootResponse.scopes)
+  return _internal_scopes(index);
+}
+inline std::string* MultiScopeRootResponse::mutable_scopes(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiScopeRootResponse.scopes)
+  return scopes_.Mutable(index);
+}
+inline void MultiScopeRootResponse::set_scopes(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.MultiScopeRootResponse.scopes)
+  scopes_.Mutable(index)->assign(value);
+}
+inline void MultiScopeRootResponse::set_scopes(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.MultiScopeRootResponse.scopes)
+  scopes_.Mutable(index)->assign(std::move(value));
+}
+inline void MultiScopeRootResponse::set_scopes(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  scopes_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.MultiScopeRootResponse.scopes)
+}
+inline void MultiScopeRootResponse::set_scopes(int index, const char* value, size_t size) {
+  scopes_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.MultiScopeRootResponse.scopes)
+}
+inline std::string* MultiScopeRootResponse::_internal_add_scopes() {
+  return scopes_.Add();
+}
+inline void MultiScopeRootResponse::add_scopes(const std::string& value) {
+  scopes_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiScopeRootResponse.scopes)
+}
+inline void MultiScopeRootResponse::add_scopes(std::string&& value) {
+  scopes_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiScopeRootResponse.scopes)
+}
+inline void MultiScopeRootResponse::add_scopes(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  scopes_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.MultiScopeRootResponse.scopes)
+}
+inline void MultiScopeRootResponse::add_scopes(const char* value, size_t size) {
+  scopes_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.MultiScopeRootResponse.scopes)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+MultiScopeRootResponse::scopes() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.MultiScopeRootResponse.scopes)
+  return scopes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+MultiScopeRootResponse::mutable_scopes() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.MultiScopeRootResponse.scopes)
+  return &scopes_;
+}
+
+// repeated string endpoints = 4;
+inline int MultiScopeRootResponse::_internal_endpoints_size() const {
+  return endpoints_.size();
+}
+inline int MultiScopeRootResponse::endpoints_size() const {
+  return _internal_endpoints_size();
+}
+inline void MultiScopeRootResponse::clear_endpoints() {
+  endpoints_.Clear();
+}
+inline std::string* MultiScopeRootResponse::add_endpoints() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.MultiScopeRootResponse.endpoints)
+  return _internal_add_endpoints();
+}
+inline const std::string& MultiScopeRootResponse::_internal_endpoints(int index) const {
+  return endpoints_.Get(index);
+}
+inline const std::string& MultiScopeRootResponse::endpoints(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiScopeRootResponse.endpoints)
+  return _internal_endpoints(index);
+}
+inline std::string* MultiScopeRootResponse::mutable_endpoints(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiScopeRootResponse.endpoints)
+  return endpoints_.Mutable(index);
+}
+inline void MultiScopeRootResponse::set_endpoints(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.MultiScopeRootResponse.endpoints)
+  endpoints_.Mutable(index)->assign(value);
+}
+inline void MultiScopeRootResponse::set_endpoints(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.MultiScopeRootResponse.endpoints)
+  endpoints_.Mutable(index)->assign(std::move(value));
+}
+inline void MultiScopeRootResponse::set_endpoints(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  endpoints_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.MultiScopeRootResponse.endpoints)
+}
+inline void MultiScopeRootResponse::set_endpoints(int index, const char* value, size_t size) {
+  endpoints_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.MultiScopeRootResponse.endpoints)
+}
+inline std::string* MultiScopeRootResponse::_internal_add_endpoints() {
+  return endpoints_.Add();
+}
+inline void MultiScopeRootResponse::add_endpoints(const std::string& value) {
+  endpoints_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiScopeRootResponse.endpoints)
+}
+inline void MultiScopeRootResponse::add_endpoints(std::string&& value) {
+  endpoints_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiScopeRootResponse.endpoints)
+}
+inline void MultiScopeRootResponse::add_endpoints(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  endpoints_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.MultiScopeRootResponse.endpoints)
+}
+inline void MultiScopeRootResponse::add_endpoints(const char* value, size_t size) {
+  endpoints_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.MultiScopeRootResponse.endpoints)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+MultiScopeRootResponse::endpoints() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.MultiScopeRootResponse.endpoints)
+  return endpoints_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+MultiScopeRootResponse::mutable_endpoints() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.MultiScopeRootResponse.endpoints)
   return &endpoints_;
 }
 
@@ -48568,6 +51403,80 @@ inline void GetWorkflowRequest::set_favor_clarifai_workflows(bool value) {
   // @@protoc_insertion_point(field_set:clarifai.api.GetWorkflowRequest.favor_clarifai_workflows)
 }
 
+// repeated string additional_fields = 4;
+inline int GetWorkflowRequest::_internal_additional_fields_size() const {
+  return additional_fields_.size();
+}
+inline int GetWorkflowRequest::additional_fields_size() const {
+  return _internal_additional_fields_size();
+}
+inline void GetWorkflowRequest::clear_additional_fields() {
+  additional_fields_.Clear();
+}
+inline std::string* GetWorkflowRequest::add_additional_fields() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.GetWorkflowRequest.additional_fields)
+  return _internal_add_additional_fields();
+}
+inline const std::string& GetWorkflowRequest::_internal_additional_fields(int index) const {
+  return additional_fields_.Get(index);
+}
+inline const std::string& GetWorkflowRequest::additional_fields(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.GetWorkflowRequest.additional_fields)
+  return _internal_additional_fields(index);
+}
+inline std::string* GetWorkflowRequest::mutable_additional_fields(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.GetWorkflowRequest.additional_fields)
+  return additional_fields_.Mutable(index);
+}
+inline void GetWorkflowRequest::set_additional_fields(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.GetWorkflowRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(value);
+}
+inline void GetWorkflowRequest::set_additional_fields(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.GetWorkflowRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(std::move(value));
+}
+inline void GetWorkflowRequest::set_additional_fields(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.GetWorkflowRequest.additional_fields)
+}
+inline void GetWorkflowRequest::set_additional_fields(int index, const char* value, size_t size) {
+  additional_fields_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.GetWorkflowRequest.additional_fields)
+}
+inline std::string* GetWorkflowRequest::_internal_add_additional_fields() {
+  return additional_fields_.Add();
+}
+inline void GetWorkflowRequest::add_additional_fields(const std::string& value) {
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.GetWorkflowRequest.additional_fields)
+}
+inline void GetWorkflowRequest::add_additional_fields(std::string&& value) {
+  additional_fields_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.GetWorkflowRequest.additional_fields)
+}
+inline void GetWorkflowRequest::add_additional_fields(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.GetWorkflowRequest.additional_fields)
+}
+inline void GetWorkflowRequest::add_additional_fields(const char* value, size_t size) {
+  additional_fields_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.GetWorkflowRequest.additional_fields)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetWorkflowRequest::additional_fields() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.GetWorkflowRequest.additional_fields)
+  return additional_fields_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetWorkflowRequest::mutable_additional_fields() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.GetWorkflowRequest.additional_fields)
+  return &additional_fields_;
+}
+
 // -------------------------------------------------------------------
 
 // ListWorkflowsRequest
@@ -48894,6 +51803,80 @@ inline void ListWorkflowsRequest::_internal_set_featured_only(bool value) {
 inline void ListWorkflowsRequest::set_featured_only(bool value) {
   _internal_set_featured_only(value);
   // @@protoc_insertion_point(field_set:clarifai.api.ListWorkflowsRequest.featured_only)
+}
+
+// repeated string additional_fields = 10;
+inline int ListWorkflowsRequest::_internal_additional_fields_size() const {
+  return additional_fields_.size();
+}
+inline int ListWorkflowsRequest::additional_fields_size() const {
+  return _internal_additional_fields_size();
+}
+inline void ListWorkflowsRequest::clear_additional_fields() {
+  additional_fields_.Clear();
+}
+inline std::string* ListWorkflowsRequest::add_additional_fields() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.ListWorkflowsRequest.additional_fields)
+  return _internal_add_additional_fields();
+}
+inline const std::string& ListWorkflowsRequest::_internal_additional_fields(int index) const {
+  return additional_fields_.Get(index);
+}
+inline const std::string& ListWorkflowsRequest::additional_fields(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ListWorkflowsRequest.additional_fields)
+  return _internal_additional_fields(index);
+}
+inline std::string* ListWorkflowsRequest::mutable_additional_fields(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ListWorkflowsRequest.additional_fields)
+  return additional_fields_.Mutable(index);
+}
+inline void ListWorkflowsRequest::set_additional_fields(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListWorkflowsRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(value);
+}
+inline void ListWorkflowsRequest::set_additional_fields(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.ListWorkflowsRequest.additional_fields)
+  additional_fields_.Mutable(index)->assign(std::move(value));
+}
+inline void ListWorkflowsRequest::set_additional_fields(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.ListWorkflowsRequest.additional_fields)
+}
+inline void ListWorkflowsRequest::set_additional_fields(int index, const char* value, size_t size) {
+  additional_fields_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.ListWorkflowsRequest.additional_fields)
+}
+inline std::string* ListWorkflowsRequest::_internal_add_additional_fields() {
+  return additional_fields_.Add();
+}
+inline void ListWorkflowsRequest::add_additional_fields(const std::string& value) {
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.ListWorkflowsRequest.additional_fields)
+}
+inline void ListWorkflowsRequest::add_additional_fields(std::string&& value) {
+  additional_fields_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.ListWorkflowsRequest.additional_fields)
+}
+inline void ListWorkflowsRequest::add_additional_fields(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  additional_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.ListWorkflowsRequest.additional_fields)
+}
+inline void ListWorkflowsRequest::add_additional_fields(const char* value, size_t size) {
+  additional_fields_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.ListWorkflowsRequest.additional_fields)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ListWorkflowsRequest::additional_fields() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.ListWorkflowsRequest.additional_fields)
+  return additional_fields_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ListWorkflowsRequest::mutable_additional_fields() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.ListWorkflowsRequest.additional_fields)
+  return &additional_fields_;
 }
 
 inline bool ListWorkflowsRequest::has_sort_by() const {
@@ -55068,6 +58051,22 @@ MultiTrendingMetricsViewResponse::metrics() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
