@@ -43,10 +43,6 @@ class V2 final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // //////////////////////////////////////
-    // Concept Relationships
-    // //////////////////////////////////////
-    //
     // List concept relations between concepts in the platform.
     // MUST be above ListConcepts so that if concept_id is empty this will still match
     // /concepts/relations to list all the concept relations in the app.
@@ -73,10 +69,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteConceptRelationsRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // Concepts
-    // //////////////////////////////////////
-    //
     // List all the concepts with their positive and negative counts
     virtual ::grpc::Status GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::clarifai::api::MultiConceptCountResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptCountResponse>> AsyncGetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -127,12 +119,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptResponse>> PrepareAsyncPatchConcepts(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptResponse>>(PrepareAsyncPatchConceptsRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Concept Languages
-    // //////////////////////////////////////
-    //
     // Get a specific concept from an app.
     virtual ::grpc::Status GetConceptLanguage(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest& request, ::clarifai::api::SingleConceptLanguageResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleConceptLanguageResponse>> AsyncGetConceptLanguage(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest& request, ::grpc::CompletionQueue* cq) {
@@ -149,7 +135,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>> PrepareAsyncListConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>>(PrepareAsyncListConceptLanguagesRaw(context, request, cq));
     }
-    // Add a new tranlsation for this concept.
+    // Add a new translation for this concept.
     virtual ::grpc::Status PostConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest& request, ::clarifai::api::MultiConceptLanguageResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>> AsyncPostConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>>(AsyncPostConceptLanguagesRaw(context, request, cq));
@@ -166,10 +152,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>> PrepareAsyncPatchConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptLanguageResponse>>(PrepareAsyncPatchConceptLanguagesRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // Knowledge Graph
-    // //////////////////////////////////////
-    //
     // List all domain graphs.
     virtual ::grpc::Status ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::clarifai::api::MultiKnowledgeGraphResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiKnowledgeGraphResponse>> AsyncListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -194,10 +176,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptMappingJobResponse>> PrepareAsyncPostConceptMappingJobs(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiConceptMappingJobResponse>>(PrepareAsyncPostConceptMappingJobsRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // annotations
-    // //////////////////////////////////////
-    //
     // Get a specific annotation from an app.
     virtual ::grpc::Status GetAnnotation(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest& request, ::clarifai::api::SingleAnnotationResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleAnnotationResponse>> AsyncGetAnnotation(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest& request, ::grpc::CompletionQueue* cq) {
@@ -262,10 +240,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiSearchResponse>> PrepareAsyncPostAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiSearchResponse>>(PrepareAsyncPostAnnotationsSearchesRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // Inputs
-    // //////////////////////////////////////
-    //
     // Get input count per status.
     virtual ::grpc::Status GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::clarifai::api::SingleInputCountResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleInputCountResponse>> AsyncGetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::grpc::CompletionQueue* cq) {
@@ -422,7 +396,6 @@ class V2 final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelResponse>>(PrepareAsyncPostModelsSearchesRaw(context, request, cq));
     }
     // Add a models to an app.
-    // FIXME(zeiler): this should have been a plural response.
     virtual ::grpc::Status PostModels(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest& request, ::clarifai::api::SingleModelResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelResponse>> AsyncPostModels(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelResponse>>(AsyncPostModelsRaw(context, request, cq));
@@ -486,12 +459,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputResponse>> PrepareAsyncListModelInputs(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiInputResponse>>(PrepareAsyncListModelInputsRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Model versions
-    // //////////////////////////////////////
-    //
     // Get a specific model from an app.
     virtual ::grpc::Status GetModelVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest& request, ::clarifai::api::SingleModelVersionResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelVersionResponse>> AsyncGetModelVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest& request, ::grpc::CompletionQueue* cq) {
@@ -508,6 +475,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelVersionResponse>> PrepareAsyncListModelVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelVersionResponse>>(PrepareAsyncListModelVersionsRaw(context, request, cq));
     }
+    // PostModelVersionsPublish
     virtual ::grpc::Status PostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> AsyncPostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(AsyncPostModelVersionsPublishRaw(context, request, cq));
@@ -515,6 +483,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncPostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncPostModelVersionsPublishRaw(context, request, cq));
     }
+    // PostModelVersionsUnPublish
     virtual ::grpc::Status PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> AsyncPostModelVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(AsyncPostModelVersionsUnPublishRaw(context, request, cq));
@@ -525,7 +494,6 @@ class V2 final {
     // NOTE: inconsistency: do we want this to return a SingleModelResponse?
     //
     // Create a new model version to trigger training of the model.
-    // FIXME(zeiler): this should have been a plural response.
     virtual ::grpc::Status PostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest& request, ::clarifai::api::SingleModelResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelResponse>> AsyncPostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelResponse>>(AsyncPostModelVersionsRaw(context, request, cq));
@@ -533,6 +501,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelResponse>> PrepareAsyncPostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelResponse>>(PrepareAsyncPostModelVersionsRaw(context, request, cq));
     }
+    // PatchModelVersions
     virtual ::grpc::Status PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::clarifai::api::MultiModelVersionResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelVersionResponse>> AsyncPatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelVersionResponse>>(AsyncPatchModelVersionsRaw(context, request, cq));
@@ -564,12 +533,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelVersionResponse>> PrepareAsyncPostModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelVersionResponse>>(PrepareAsyncPostModelVersionMetricsRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Model References
-    // //////////////////////////////////////
-    //
     // Lists model references tied to a particular model id.
     virtual ::grpc::Status ListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest& request, ::clarifai::api::MultiModelReferenceResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelReferenceResponse>> AsyncListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest& request, ::grpc::CompletionQueue* cq) {
@@ -578,12 +541,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelReferenceResponse>> PrepareAsyncListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelReferenceResponse>>(PrepareAsyncListModelReferencesRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Model Version Input Examples
-    // //////////////////////////////////////
-    //
+    // GetModelVersionInputExample
     virtual ::grpc::Status GetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest& request, ::clarifai::api::SingleModelVersionInputExampleResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelVersionInputExampleResponse>> AsyncGetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelVersionInputExampleResponse>>(AsyncGetModelVersionInputExampleRaw(context, request, cq));
@@ -591,6 +549,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelVersionInputExampleResponse>> PrepareAsyncGetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleModelVersionInputExampleResponse>>(PrepareAsyncGetModelVersionInputExampleRaw(context, request, cq));
     }
+    // ListModelVersionInputExamples
     virtual ::grpc::Status ListModelVersionInputExamples(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest& request, ::clarifai::api::MultiModelVersionInputExampleResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelVersionInputExampleResponse>> AsyncListModelVersionInputExamples(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiModelVersionInputExampleResponse>>(AsyncListModelVersionInputExamplesRaw(context, request, cq));
@@ -661,7 +620,6 @@ class V2 final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PostWorkflowResultsResponse>>(PrepareAsyncPostWorkflowResultsRaw(context, request, cq));
     }
     // Compare embeddings distances using a workflow
-    //
     virtual ::grpc::Status PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest& request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PostWorkflowResultsSimilarityResponse>> AsyncPostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PostWorkflowResultsSimilarityResponse>>(AsyncPostWorkflowResultsSimilarityRaw(context, request, cq));
@@ -669,12 +627,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PostWorkflowResultsSimilarityResponse>> PrepareAsyncPostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::PostWorkflowResultsSimilarityResponse>>(PrepareAsyncPostWorkflowResultsSimilarityRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Workflow Versions
-    // //////////////////////////////////////
-    //
     // List workflow versions.
     virtual ::grpc::Status ListWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest& request, ::clarifai::api::MultiWorkflowVersionResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiWorkflowVersionResponse>> AsyncListWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -707,10 +659,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiWorkflowVersionResponse>> PrepareAsyncPatchWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiWorkflowVersionResponse>>(PrepareAsyncPatchWorkflowVersionsRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // API Keys
-    // //////////////////////////////////////
-    //
     // Get a specific key from an app.
     virtual ::grpc::Status GetKey(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest& request, ::clarifai::api::SingleKeyResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleKeyResponse>> AsyncGetKey(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
@@ -793,10 +741,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiScopeDepsResponse>> PrepareAsyncListScopes(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiScopeDepsResponse>>(PrepareAsyncListScopesRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // Apps
-    // //////////////////////////////////////
-    //
     // Get a specific app from an app.
     virtual ::grpc::Status GetApp(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest& request, ::clarifai::api::SingleAppResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleAppResponse>> AsyncGetApp(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest& request, ::grpc::CompletionQueue* cq) {
@@ -849,12 +793,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiAppResponse>> PrepareAsyncPostAppsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiAppResponse>>(PrepareAsyncPostAppsSearchesRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Password
-    // //////////////////////////////////////
-    //
     // Validate new password in real-time for a user
     virtual ::grpc::Status PostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest& request, ::clarifai::api::SinglePasswordValidationResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SinglePasswordValidationResponse>> AsyncPostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest& request, ::grpc::CompletionQueue* cq) {
@@ -863,10 +801,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SinglePasswordValidationResponse>> PrepareAsyncPostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SinglePasswordValidationResponse>>(PrepareAsyncPostValidatePasswordRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // Searches
-    // //////////////////////////////////////
-    //
     // Get a saved search.
     virtual ::grpc::Status GetSearch(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest& request, ::clarifai::api::SingleSearchResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleSearchResponse>> AsyncGetSearch(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest& request, ::grpc::CompletionQueue* cq) {
@@ -923,6 +857,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiAnnotationSearchMetricsResponse>> PrepareAsyncListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiAnnotationSearchMetricsResponse>>(PrepareAsyncListAnnotationSearchMetricsRaw(context, request, cq));
     }
+    // DeleteAnnotationSearchMetrics
     virtual ::grpc::Status DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> AsyncDeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(AsyncDeleteAnnotationSearchMetricsRaw(context, request, cq));
@@ -938,12 +873,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteSearch(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteSearchRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Status Codes
-    // //////////////////////////////////////
-    //
     // List all status codes.
     virtual ::grpc::Status ListStatusCodes(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest& request, ::clarifai::api::MultiStatusCodeResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatusCodeResponse>> AsyncListStatusCodes(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest& request, ::grpc::CompletionQueue* cq) {
@@ -960,10 +889,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleStatusCodeResponse>> PrepareAsyncGetStatusCode(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleStatusCodeResponse>>(PrepareAsyncGetStatusCodeRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // App Sharing
-    // //////////////////////////////////////
-    //
     // owner list users who the app is shared with
     virtual ::grpc::Status ListCollaborators(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest& request, ::clarifai::api::MultiCollaboratorsResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiCollaboratorsResponse>> AsyncListCollaborators(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -1004,10 +929,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiCollaborationsResponse>> PrepareAsyncListCollaborations(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiCollaborationsResponse>>(PrepareAsyncListCollaborationsRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // App duplication
-    // //////////////////////////////////////
-    //
     // start to duplicate an app which copies all the inputs, annotations, models, concepts etc. to a new app.
     // this is an async process, you should use ListAppDuplications or GetAppDuplication to check the status.
     virtual ::grpc::Status PostAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest& request, ::clarifai::api::MultiAppDuplicationsResponse* response) = 0;
@@ -1033,10 +954,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleAppDuplicationResponse>> PrepareAsyncGetAppDuplication(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleAppDuplicationResponse>>(PrepareAsyncGetAppDuplicationRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // Tasks
-    // //////////////////////////////////////
-    //
     // Add tasks to an app.
     virtual ::grpc::Status PostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::clarifai::api::MultiTaskResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiTaskResponse>> AsyncPostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) {
@@ -1093,10 +1010,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteTasks(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteTasksRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // Collectors
-    // //////////////////////////////////////
-    //
     // Add a list of Collectors to an app.
     // In the handler of this endpoint we also check for all the scopes of the  POST /inputs
     // endpoint.
@@ -1143,10 +1056,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteCollectors(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteCollectorsRaw(context, request, cq));
     }
-    // //////////////////////////////////////////////////////////////////////////////
-    // Stats Collection Endpoints.
-    // //////////////////////////////////////////////////////////////////////////////
-    //
+    // PostStatValues
     virtual ::grpc::Status PostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest& request, ::clarifai::api::MultiStatValueResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatValueResponse>> AsyncPostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatValueResponse>>(AsyncPostStatValuesRaw(context, request, cq));
@@ -1154,6 +1064,7 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatValueResponse>> PrepareAsyncPostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatValueResponse>>(PrepareAsyncPostStatValuesRaw(context, request, cq));
     }
+    // PostStatValuesAggregate
     virtual ::grpc::Status PostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::clarifai::api::MultiStatValueAggregateResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatValueAggregateResponse>> AsyncPostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatValueAggregateResponse>>(AsyncPostStatValuesAggregateRaw(context, request, cq));
@@ -1161,10 +1072,6 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatValueAggregateResponse>> PrepareAsyncPostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiStatValueAggregateResponse>>(PrepareAsyncPostStatValuesAggregateRaw(context, request, cq));
     }
-    // //////////////////////////////////////
-    // Trending Metrics
-    // //////////////////////////////////////
-    //
     // Increase the view metric for a detail view
     virtual ::grpc::Status PostTrendingMetricsView(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> AsyncPostTrendingMetricsView(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest& request, ::grpc::CompletionQueue* cq) {
@@ -1184,10 +1091,6 @@ class V2 final {
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
-      // //////////////////////////////////////
-      // Concept Relationships
-      // //////////////////////////////////////
-      //
       // List concept relations between concepts in the platform.
       // MUST be above ListConcepts so that if concept_id is empty this will still match
       // /concepts/relations to list all the concept relations in the app.
@@ -1229,10 +1132,6 @@ class V2 final {
       #else
       virtual void DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // Concepts
-      // //////////////////////////////////////
-      //
       // List all the concepts with their positive and negative counts
       virtual void GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetConceptCounts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptCountResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -1313,12 +1212,6 @@ class V2 final {
       #else
       virtual void PatchConcepts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
-      // //////////////////////////////////////
-      // Concept Languages
-      // //////////////////////////////////////
-      //
       // Get a specific concept from an app.
       virtual void GetConceptLanguage(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest* request, ::clarifai::api::SingleConceptLanguageResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetConceptLanguage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleConceptLanguageResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -1345,7 +1238,7 @@ class V2 final {
       #else
       virtual void ListConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // Add a new tranlsation for this concept.
+      // Add a new translation for this concept.
       virtual void PostConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1372,10 +1265,6 @@ class V2 final {
       #else
       virtual void PatchConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // Knowledge Graph
-      // //////////////////////////////////////
-      //
       // List all domain graphs.
       virtual void ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListKnowledgeGraphs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -1415,10 +1304,6 @@ class V2 final {
       #else
       virtual void PostConceptMappingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptMappingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // annotations
-      // //////////////////////////////////////
-      //
       // Get a specific annotation from an app.
       virtual void GetAnnotation(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest* request, ::clarifai::api::SingleAnnotationResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetAnnotation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAnnotationResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -1523,10 +1408,6 @@ class V2 final {
       #else
       virtual void PostAnnotationsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // Inputs
-      // //////////////////////////////////////
-      //
       // Get input count per status.
       virtual void GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest* request, ::clarifai::api::SingleInputCountResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleInputCountResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -1773,7 +1654,6 @@ class V2 final {
       virtual void PostModelsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // Add a models to an app.
-      // FIXME(zeiler): this should have been a plural response.
       virtual void PostModels(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1877,12 +1757,6 @@ class V2 final {
       #else
       virtual void ListModelInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
-      // //////////////////////////////////////
-      // Model versions
-      // //////////////////////////////////////
-      //
       // Get a specific model from an app.
       virtual void GetModelVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetModelVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -1909,6 +1783,7 @@ class V2 final {
       #else
       virtual void ListModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      // PostModelVersionsPublish
       virtual void PostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostModelVersionsPublish(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1921,6 +1796,7 @@ class V2 final {
       #else
       virtual void PostModelVersionsPublish(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      // PostModelVersionsUnPublish
       virtual void PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1936,7 +1812,6 @@ class V2 final {
       // NOTE: inconsistency: do we want this to return a SingleModelResponse?
       //
       // Create a new model version to trigger training of the model.
-      // FIXME(zeiler): this should have been a plural response.
       virtual void PostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -1949,6 +1824,7 @@ class V2 final {
       #else
       virtual void PostModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      // PatchModelVersions
       virtual void PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PatchModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2000,12 +1876,6 @@ class V2 final {
       #else
       virtual void PostModelVersionMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
-      // //////////////////////////////////////
-      // Model References
-      // //////////////////////////////////////
-      //
       // Lists model references tied to a particular model id.
       virtual void ListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest* request, ::clarifai::api::MultiModelReferenceResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListModelReferences(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelReferenceResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2019,12 +1889,7 @@ class V2 final {
       #else
       virtual void ListModelReferences(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelReferenceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
-      // //////////////////////////////////////
-      // Model Version Input Examples
-      // //////////////////////////////////////
-      //
+      // GetModelVersionInputExample
       virtual void GetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetModelVersionInputExample(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2037,6 +1902,7 @@ class V2 final {
       #else
       virtual void GetModelVersionInputExample(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      // ListModelVersionInputExamples
       virtual void ListModelVersionInputExamples(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListModelVersionInputExamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2147,7 +2013,6 @@ class V2 final {
       virtual void PostWorkflowResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PostWorkflowResultsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // Compare embeddings distances using a workflow
-      //
       virtual void PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2160,12 +2025,6 @@ class V2 final {
       #else
       virtual void PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
-      // //////////////////////////////////////
-      // Workflow Versions
-      // //////////////////////////////////////
-      //
       // List workflow versions.
       virtual void ListWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListWorkflowVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowVersionResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2218,10 +2077,6 @@ class V2 final {
       #else
       virtual void PatchWorkflowVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // API Keys
-      // //////////////////////////////////////
-      //
       // Get a specific key from an app.
       virtual void GetKey(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest* request, ::clarifai::api::SingleKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2354,10 +2209,6 @@ class V2 final {
       #else
       virtual void ListScopes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeDepsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // Apps
-      // //////////////////////////////////////
-      //
       // Get a specific app from an app.
       virtual void GetApp(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest* request, ::clarifai::api::SingleAppResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAppResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2440,12 +2291,6 @@ class V2 final {
       #else
       virtual void PostAppsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
-      // //////////////////////////////////////
-      // Password
-      // //////////////////////////////////////
-      //
       // Validate new password in real-time for a user
       virtual void PostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest* request, ::clarifai::api::SinglePasswordValidationResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostValidatePassword(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SinglePasswordValidationResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2459,10 +2304,6 @@ class V2 final {
       #else
       virtual void PostValidatePassword(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SinglePasswordValidationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // Searches
-      // //////////////////////////////////////
-      //
       // Get a saved search.
       virtual void GetSearch(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest* request, ::clarifai::api::SingleSearchResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetSearch(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleSearchResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2554,6 +2395,7 @@ class V2 final {
       #else
       virtual void ListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      // DeleteAnnotationSearchMetrics
       virtual void DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2579,12 +2421,6 @@ class V2 final {
       #else
       virtual void DeleteSearch(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      //
-      // //////////////////////////////////////
-      // Status Codes
-      // //////////////////////////////////////
-      //
       // List all status codes.
       virtual void ListStatusCodes(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest* request, ::clarifai::api::MultiStatusCodeResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListStatusCodes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatusCodeResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2611,10 +2447,6 @@ class V2 final {
       #else
       virtual void GetStatusCode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleStatusCodeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // App Sharing
-      // //////////////////////////////////////
-      //
       // owner list users who the app is shared with
       virtual void ListCollaborators(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2680,10 +2512,6 @@ class V2 final {
       #else
       virtual void ListCollaborations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaborationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // App duplication
-      // //////////////////////////////////////
-      //
       // start to duplicate an app which copies all the inputs, annotations, models, concepts etc. to a new app.
       // this is an async process, you should use ListAppDuplications or GetAppDuplication to check the status.
       virtual void PostAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2724,10 +2552,6 @@ class V2 final {
       #else
       virtual void GetAppDuplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAppDuplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // Tasks
-      // //////////////////////////////////////
-      //
       // Add tasks to an app.
       virtual void PostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -2819,10 +2643,6 @@ class V2 final {
       #else
       virtual void DeleteTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // Collectors
-      // //////////////////////////////////////
-      //
       // Add a list of Collectors to an app.
       // In the handler of this endpoint we also check for all the scopes of the  POST /inputs
       // endpoint.
@@ -2894,10 +2714,7 @@ class V2 final {
       #else
       virtual void DeleteCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////////////////////////////////////////////
-      // Stats Collection Endpoints.
-      // //////////////////////////////////////////////////////////////////////////////
-      //
+      // PostStatValues
       virtual void PostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest* request, ::clarifai::api::MultiStatValueResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostStatValues(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatValueResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2910,6 +2727,7 @@ class V2 final {
       #else
       virtual void PostStatValues(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      // PostStatValuesAggregate
       virtual void PostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest* request, ::clarifai::api::MultiStatValueAggregateResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostStatValuesAggregate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatValueAggregateResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -2922,10 +2740,6 @@ class V2 final {
       #else
       virtual void PostStatValuesAggregate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatValueAggregateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //////////////////////////////////////
-      // Trending Metrics
-      // //////////////////////////////////////
-      //
       // Increase the view metric for a detail view
       virtual void PostTrendingMetricsView(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PostTrendingMetricsView(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -6010,10 +5824,6 @@ class V2 final {
    public:
     Service();
     virtual ~Service();
-    // //////////////////////////////////////
-    // Concept Relationships
-    // //////////////////////////////////////
-    //
     // List concept relations between concepts in the platform.
     // MUST be above ListConcepts so that if concept_id is empty this will still match
     // /concepts/relations to list all the concept relations in the app.
@@ -6022,10 +5832,6 @@ class V2 final {
     virtual ::grpc::Status PostConceptRelations(::grpc::ServerContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response);
     // Post concept relations to create relations between concepts in the platform.
     virtual ::grpc::Status DeleteConceptRelations(::grpc::ServerContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response);
-    // //////////////////////////////////////
-    // Concepts
-    // //////////////////////////////////////
-    //
     // List all the concepts with their positive and negative counts
     virtual ::grpc::Status GetConceptCounts(::grpc::ServerContext* context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response);
     // Get a specific concept from an app.
@@ -6040,35 +5846,21 @@ class V2 final {
     virtual ::grpc::Status PostConcepts(::grpc::ServerContext* context, const ::clarifai::api::PostConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response);
     // Patch one or more concepts.
     virtual ::grpc::Status PatchConcepts(::grpc::ServerContext* context, const ::clarifai::api::PatchConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response);
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Concept Languages
-    // //////////////////////////////////////
-    //
     // Get a specific concept from an app.
     virtual ::grpc::Status GetConceptLanguage(::grpc::ServerContext* context, const ::clarifai::api::GetConceptLanguageRequest* request, ::clarifai::api::SingleConceptLanguageResponse* response);
     // List the concept in all the translated languages.
     virtual ::grpc::Status ListConceptLanguages(::grpc::ServerContext* context, const ::clarifai::api::ListConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response);
-    // Add a new tranlsation for this concept.
+    // Add a new translation for this concept.
     virtual ::grpc::Status PostConceptLanguages(::grpc::ServerContext* context, const ::clarifai::api::PostConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response);
     // Patch the name for a given language names by passing in a list of concepts with the new names
     // for the languages.
     virtual ::grpc::Status PatchConceptLanguages(::grpc::ServerContext* context, const ::clarifai::api::PatchConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response);
-    // //////////////////////////////////////
-    // Knowledge Graph
-    // //////////////////////////////////////
-    //
     // List all domain graphs.
     virtual ::grpc::Status ListKnowledgeGraphs(::grpc::ServerContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response);
     // Post domain graphs.
     virtual ::grpc::Status PostKnowledgeGraphs(::grpc::ServerContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response);
     // Start concept mapping jobs.
     virtual ::grpc::Status PostConceptMappingJobs(::grpc::ServerContext* context, const ::clarifai::api::PostConceptMappingJobsRequest* request, ::clarifai::api::MultiConceptMappingJobResponse* response);
-    // //////////////////////////////////////
-    // annotations
-    // //////////////////////////////////////
-    //
     // Get a specific annotation from an app.
     virtual ::grpc::Status GetAnnotation(::grpc::ServerContext* context, const ::clarifai::api::GetAnnotationRequest* request, ::clarifai::api::SingleAnnotationResponse* response);
     // List all the annotation.
@@ -6085,10 +5877,6 @@ class V2 final {
     virtual ::grpc::Status DeleteAnnotations(::grpc::ServerContext* context, const ::clarifai::api::DeleteAnnotationsRequest* request, ::clarifai::api::status::BaseResponse* response);
     // Execute a search over annotation
     virtual ::grpc::Status PostAnnotationsSearches(::grpc::ServerContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response);
-    // //////////////////////////////////////
-    // Inputs
-    // //////////////////////////////////////
-    //
     // Get input count per status.
     virtual ::grpc::Status GetInputCount(::grpc::ServerContext* context, const ::clarifai::api::GetInputCountRequest* request, ::clarifai::api::SingleInputCountResponse* response);
     // Streams all the inputs starting from oldest assets.
@@ -6137,7 +5925,6 @@ class V2 final {
     // per_page as url query param variables in this request.
     virtual ::grpc::Status PostModelsSearches(::grpc::ServerContext* context, const ::clarifai::api::PostModelsSearchesRequest* request, ::clarifai::api::MultiModelResponse* response);
     // Add a models to an app.
-    // FIXME(zeiler): this should have been a plural response.
     virtual ::grpc::Status PostModels(::grpc::ServerContext* context, const ::clarifai::api::PostModelsRequest* request, ::clarifai::api::SingleModelResponse* response);
     // Patch one or more models.
     virtual ::grpc::Status PatchModels(::grpc::ServerContext* context, const ::clarifai::api::PatchModelsRequest* request, ::clarifai::api::MultiModelResponse* response);
@@ -6153,23 +5940,19 @@ class V2 final {
     virtual ::grpc::Status PatchModelLanguages(::grpc::ServerContext* context, const ::clarifai::api::PatchModelLanguagesRequest* request, ::clarifai::api::MultiModelLanguageResponse* response);
     // List all the inputs.
     virtual ::grpc::Status ListModelInputs(::grpc::ServerContext* context, const ::clarifai::api::ListModelInputsRequest* request, ::clarifai::api::MultiInputResponse* response);
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Model versions
-    // //////////////////////////////////////
-    //
     // Get a specific model from an app.
     virtual ::grpc::Status GetModelVersion(::grpc::ServerContext* context, const ::clarifai::api::GetModelVersionRequest* request, ::clarifai::api::SingleModelVersionResponse* response);
     // List all the models.
     virtual ::grpc::Status ListModelVersions(::grpc::ServerContext* context, const ::clarifai::api::ListModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response);
+    // PostModelVersionsPublish
     virtual ::grpc::Status PostModelVersionsPublish(::grpc::ServerContext* context, const ::clarifai::api::PostModelVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response);
+    // PostModelVersionsUnPublish
     virtual ::grpc::Status PostModelVersionsUnPublish(::grpc::ServerContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response);
     // NOTE: inconsistency: do we want this to return a SingleModelResponse?
     //
     // Create a new model version to trigger training of the model.
-    // FIXME(zeiler): this should have been a plural response.
     virtual ::grpc::Status PostModelVersions(::grpc::ServerContext* context, const ::clarifai::api::PostModelVersionsRequest* request, ::clarifai::api::SingleModelResponse* response);
+    // PatchModelVersions
     virtual ::grpc::Status PatchModelVersions(::grpc::ServerContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response);
     // Delete a single model.
     virtual ::grpc::Status DeleteModelVersion(::grpc::ServerContext* context, const ::clarifai::api::DeleteModelVersionRequest* request, ::clarifai::api::status::BaseResponse* response);
@@ -6177,21 +5960,11 @@ class V2 final {
     virtual ::grpc::Status GetModelVersionMetrics(::grpc::ServerContext* context, const ::clarifai::api::GetModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response);
     // Run the evaluation metrics for a model version.
     virtual ::grpc::Status PostModelVersionMetrics(::grpc::ServerContext* context, const ::clarifai::api::PostModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response);
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Model References
-    // //////////////////////////////////////
-    //
     // Lists model references tied to a particular model id.
     virtual ::grpc::Status ListModelReferences(::grpc::ServerContext* context, const ::clarifai::api::ListModelReferencesRequest* request, ::clarifai::api::MultiModelReferenceResponse* response);
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Model Version Input Examples
-    // //////////////////////////////////////
-    //
+    // GetModelVersionInputExample
     virtual ::grpc::Status GetModelVersionInputExample(::grpc::ServerContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response);
+    // ListModelVersionInputExamples
     virtual ::grpc::Status ListModelVersionInputExamples(::grpc::ServerContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response);
     // //////////////////////////////////////
     //
@@ -6214,14 +5987,7 @@ class V2 final {
     // Predict using a workflow.
     virtual ::grpc::Status PostWorkflowResults(::grpc::ServerContext* context, const ::clarifai::api::PostWorkflowResultsRequest* request, ::clarifai::api::PostWorkflowResultsResponse* response);
     // Compare embeddings distances using a workflow
-    //
     virtual ::grpc::Status PostWorkflowResultsSimilarity(::grpc::ServerContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response);
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Workflow Versions
-    // //////////////////////////////////////
-    //
     // List workflow versions.
     virtual ::grpc::Status ListWorkflowVersions(::grpc::ServerContext* context, const ::clarifai::api::ListWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response);
     // Get single workflow version.
@@ -6230,10 +5996,6 @@ class V2 final {
     virtual ::grpc::Status DeleteWorkflowVersions(::grpc::ServerContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest* request, ::clarifai::api::status::BaseResponse* response);
     // Patch workflow versions.
     virtual ::grpc::Status PatchWorkflowVersions(::grpc::ServerContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response);
-    // //////////////////////////////////////
-    // API Keys
-    // //////////////////////////////////////
-    //
     // Get a specific key from an app.
     virtual ::grpc::Status GetKey(::grpc::ServerContext* context, const ::clarifai::api::GetKeyRequest* request, ::clarifai::api::SingleKeyResponse* response);
     // List all the keys.
@@ -6256,10 +6018,6 @@ class V2 final {
     virtual ::grpc::Status MyScopesRoot(::grpc::ServerContext* context, const ::clarifai::api::MyScopesRootRequest* request, ::clarifai::api::MultiScopeRootResponse* response);
     // List all auth scopes available to me as a user.
     virtual ::grpc::Status ListScopes(::grpc::ServerContext* context, const ::clarifai::api::ListScopesRequest* request, ::clarifai::api::MultiScopeDepsResponse* response);
-    // //////////////////////////////////////
-    // Apps
-    // //////////////////////////////////////
-    //
     // Get a specific app from an app.
     virtual ::grpc::Status GetApp(::grpc::ServerContext* context, const ::clarifai::api::GetAppRequest* request, ::clarifai::api::SingleAppResponse* response);
     // List all the apps.
@@ -6276,18 +6034,8 @@ class V2 final {
     virtual ::grpc::Status PatchApps(::grpc::ServerContext* context, const ::clarifai::api::PatchAppsRequest* request, ::clarifai::api::MultiAppResponse* response);
     // Search over the applications to find one or more you're looking for.
     virtual ::grpc::Status PostAppsSearches(::grpc::ServerContext* context, const ::clarifai::api::PostAppsSearchesRequest* request, ::clarifai::api::MultiAppResponse* response);
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Password
-    // //////////////////////////////////////
-    //
     // Validate new password in real-time for a user
     virtual ::grpc::Status PostValidatePassword(::grpc::ServerContext* context, const ::clarifai::api::PostValidatePasswordRequest* request, ::clarifai::api::SinglePasswordValidationResponse* response);
-    // //////////////////////////////////////
-    // Searches
-    // //////////////////////////////////////
-    //
     // Get a saved search.
     virtual ::grpc::Status GetSearch(::grpc::ServerContext* context, const ::clarifai::api::GetSearchRequest* request, ::clarifai::api::SingleSearchResponse* response);
     // List all saved searches.
@@ -6302,23 +6050,14 @@ class V2 final {
     virtual ::grpc::Status GetAnnotationSearchMetrics(::grpc::ServerContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response);
     // List the evaluation results between two search requests
     virtual ::grpc::Status ListAnnotationSearchMetrics(::grpc::ServerContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response);
+    // DeleteAnnotationSearchMetrics
     virtual ::grpc::Status DeleteAnnotationSearchMetrics(::grpc::ServerContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest* request, ::clarifai::api::status::BaseResponse* response);
     // Delete a saved search.
     virtual ::grpc::Status DeleteSearch(::grpc::ServerContext* context, const ::clarifai::api::DeleteSearchRequest* request, ::clarifai::api::status::BaseResponse* response);
-    // //////////////////////////////////////
-    //
-    // //////////////////////////////////////
-    // Status Codes
-    // //////////////////////////////////////
-    //
     // List all status codes.
     virtual ::grpc::Status ListStatusCodes(::grpc::ServerContext* context, const ::clarifai::api::ListStatusCodesRequest* request, ::clarifai::api::MultiStatusCodeResponse* response);
     // Get more details for a status code.
     virtual ::grpc::Status GetStatusCode(::grpc::ServerContext* context, const ::clarifai::api::GetStatusCodeRequest* request, ::clarifai::api::SingleStatusCodeResponse* response);
-    // //////////////////////////////////////
-    // App Sharing
-    // //////////////////////////////////////
-    //
     // owner list users who the app is shared with
     virtual ::grpc::Status ListCollaborators(::grpc::ServerContext* context, const ::clarifai::api::ListCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response);
     // add collaborators to an app.
@@ -6329,10 +6068,6 @@ class V2 final {
     virtual ::grpc::Status DeleteCollaborators(::grpc::ServerContext* context, const ::clarifai::api::DeleteCollaboratorsRequest* request, ::clarifai::api::status::BaseResponse* response);
     // Collaboration includes the app user are invitied to work on
     virtual ::grpc::Status ListCollaborations(::grpc::ServerContext* context, const ::clarifai::api::ListCollaborationsRequest* request, ::clarifai::api::MultiCollaborationsResponse* response);
-    // //////////////////////////////////////
-    // App duplication
-    // //////////////////////////////////////
-    //
     // start to duplicate an app which copies all the inputs, annotations, models, concepts etc. to a new app.
     // this is an async process, you should use ListAppDuplications or GetAppDuplication to check the status.
     virtual ::grpc::Status PostAppDuplications(::grpc::ServerContext* context, const ::clarifai::api::PostAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response);
@@ -6340,10 +6075,6 @@ class V2 final {
     virtual ::grpc::Status ListAppDuplications(::grpc::ServerContext* context, const ::clarifai::api::ListAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response);
     // get the app duplication status
     virtual ::grpc::Status GetAppDuplication(::grpc::ServerContext* context, const ::clarifai::api::GetAppDuplicationRequest* request, ::clarifai::api::SingleAppDuplicationResponse* response);
-    // //////////////////////////////////////
-    // Tasks
-    // //////////////////////////////////////
-    //
     // Add tasks to an app.
     virtual ::grpc::Status PostTasks(::grpc::ServerContext* context, const ::clarifai::api::PostTasksRequest* request, ::clarifai::api::MultiTaskResponse* response);
     // Task annotation count
@@ -6358,10 +6089,6 @@ class V2 final {
     virtual ::grpc::Status PatchTasks(::grpc::ServerContext* context, const ::clarifai::api::PatchTasksRequest* request, ::clarifai::api::MultiTaskResponse* response);
     // Delete multiple tasks in one request.
     virtual ::grpc::Status DeleteTasks(::grpc::ServerContext* context, const ::clarifai::api::DeleteTasksRequest* request, ::clarifai::api::status::BaseResponse* response);
-    // //////////////////////////////////////
-    // Collectors
-    // //////////////////////////////////////
-    //
     // Add a list of Collectors to an app.
     // In the handler of this endpoint we also check for all the scopes of the  POST /inputs
     // endpoint.
@@ -6378,16 +6105,10 @@ class V2 final {
     // Delete multiple collectors in one request.
     // This call is asynchronous. Use DeleteCollector if you want a synchronous version.
     virtual ::grpc::Status DeleteCollectors(::grpc::ServerContext* context, const ::clarifai::api::DeleteCollectorsRequest* request, ::clarifai::api::status::BaseResponse* response);
-    // //////////////////////////////////////////////////////////////////////////////
-    // Stats Collection Endpoints.
-    // //////////////////////////////////////////////////////////////////////////////
-    //
+    // PostStatValues
     virtual ::grpc::Status PostStatValues(::grpc::ServerContext* context, const ::clarifai::api::PostStatValuesRequest* request, ::clarifai::api::MultiStatValueResponse* response);
+    // PostStatValuesAggregate
     virtual ::grpc::Status PostStatValuesAggregate(::grpc::ServerContext* context, const ::clarifai::api::PostStatValuesAggregateRequest* request, ::clarifai::api::MultiStatValueAggregateResponse* response);
-    // //////////////////////////////////////
-    // Trending Metrics
-    // //////////////////////////////////////
-    //
     // Increase the view metric for a detail view
     virtual ::grpc::Status PostTrendingMetricsView(::grpc::ServerContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest* request, ::clarifai::api::status::BaseResponse* response);
     // List the view metrics for a detail view

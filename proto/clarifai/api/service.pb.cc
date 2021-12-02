@@ -6993,9 +6993,11 @@ const char descriptor_table_protodef_proto_2fclarifai_2fapi_2fservice_2eproto[] 
   "er_app_id.user_id}/apps/{user_app_id.app"
   "_id}/trending_metrics/views/{view_type}Z"
   "(\022&/v2/trending_metrics/views/{view_type"
-  "}\230\234\'\002B]\n\025com.clarifai.grpc.apiP\001Z;github"
-  ".com/Clarifai/clarifai-go-grpc/proto/cla"
-  "rifai/api/api\242\002\004CAIPb\006proto3"
+  "}\230\234\'\002B\225\001\n\025com.clarifai.grpc.apiP\001Zsgithu"
+  "b.com/Clarifai/clarifai-go-grpc/proto/cl"
+  "arifai/api/github.com/Clarifai/clarifai-"
+  "go-grpc/proto/clarifai/api/api\242\002\004CAIPb\006p"
+  "roto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto_deps[10] = {
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
@@ -7202,7 +7204,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto_once;
 static bool descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2fservice_2eproto, "proto/clarifai/api/service.proto", 54228,
+  &descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2fservice_2eproto, "proto/clarifai/api/service.proto", 54285,
   &descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto_sccs, descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto_deps, 188, 10,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto::offsets,
   file_level_metadata_proto_2fclarifai_2fapi_2fservice_2eproto, 188, file_level_enum_descriptors_proto_2fclarifai_2fapi_2fservice_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2fservice_2eproto,
