@@ -114,10 +114,12 @@ const char descriptor_table_protodef_proto_2fclarifai_2fauth_2fscope_2fscope_2ep
   "rfai_exposed\022!.google.protobuf.EnumValue"
   "Options\030\276\363\004 \001(\010:^\n\031clarifai_depending_sc"
   "opes\022!.google.protobuf.EnumValueOptions\030"
-  "\277\363\004 \003(\0162\026.clarifai.auth.scope.SBg\n\034com.c"
-  "larifai.grpc.auth.scopeP\001Z>github.com/Cl"
-  "arifai/clarifai-go-grpc/proto/clarifai/a"
-  "uth/scope\242\002\004CAIPb\006proto3"
+  "\277\363\004 \003(\0162\026.clarifai.auth.scope.SB\240\001\n\034com."
+  "clarifai.grpc.auth.scopeP\001Zwgithub.com/C"
+  "larifai/clarifai-go-grpc/proto/clarifai/"
+  "auth/github.com/Clarifai/clarifai-go-grp"
+  "c/proto/clarifai/auth/scope\242\002\004CAIPb\006prot"
+  "o3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
@@ -128,7 +130,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_once;
 static bool descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, "proto/clarifai/auth/scope/scope.proto", 2304,
+  &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, "proto/clarifai/auth/scope/scope.proto", 2362,
   &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_once, descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_sccs, descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_deps, 1, 1,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto::offsets,
   file_level_metadata_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, 1, file_level_enum_descriptors_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, file_level_service_descriptors_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto,

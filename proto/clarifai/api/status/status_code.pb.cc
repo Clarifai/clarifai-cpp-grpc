@@ -256,10 +256,11 @@ const char descriptor_table_protodef_proto_2fclarifai_2fapi_2fstatus_2fstatus_5f
   "\010\010\322\202\002\020\322\202\002\"\010\010\260\203\002\020\260\203\002\"\010\010\261\203\002\020\261\203\002\"\010\010\263\203\002\020\263\203\002\""
   "\010\010\272\203\002\020\272\203\002\"\010\010\273\270\002\020\273\270\002\"\010\010\322\270\002\020\322\270\002\"\010\010\323\270\002\020\323\270\002\""
   "\010\010\360\301\002\020\360\301\002\"\010\010\361\301\002\020\361\301\002\"\010\010\362\301\002\020\362\301\002\"\010\010\363\301\002\020\363\301\002\""
-  "\010\010\364\301\002\020\364\301\002Bg\n\034com.clarifai.grpc.api.statu"
-  "sP\001Z>github.com/Clarifai/clarifai-go-grp"
-  "c/proto/clarifai/api/status\242\002\004CAIPb\006prot"
-  "o3"
+  "\010\010\364\301\002\020\364\301\002B\237\001\n\034com.clarifai.grpc.api.stat"
+  "usP\001Zvgithub.com/Clarifai/clarifai-go-gr"
+  "pc/proto/clarifai/api/github.com/Clarifa"
+  "i/clarifai-go-grpc/proto/clarifai/api/st"
+  "atus\242\002\004CAIPb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto_deps[1] = {
 };
@@ -268,7 +269,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto_once;
 static bool descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto, "proto/clarifai/api/status/status_code.proto", 9242,
+  &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto, "proto/clarifai/api/status/status_code.proto", 9299,
   &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto_sccs, descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto_deps, 0, 0,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto::offsets,
   file_level_metadata_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto, 0, file_level_enum_descriptors_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto,

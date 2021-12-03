@@ -107,10 +107,11 @@ const char descriptor_table_protodef_proto_2fclarifai_2fapi_2futils_2ftest_5fpro
   "\tH\000\022\024\n\nbool_oneof\030\006 \001(\010H\000\0227\n\rmessage_one"
   "of\030\007 \001(\0132\036.clarifai.api.utils.TestProto2"
   "H\000B\016\n\014one_of_field\"&\n\nTestProto2\022\n\n\002id\030\001"
-  " \001(\t\022\014\n\004flip\030\002 \001(\010Be\n\033com.clarifai.grpc."
-  "api.utilsP\001Z=github.com/Clarifai/clarifa"
-  "i-go-grpc/proto/clarifai/api/utils\242\002\004CAI"
-  "Pb\006proto3"
+  " \001(\t\022\014\n\004flip\030\002 \001(\010B\235\001\n\033com.clarifai.grpc"
+  ".api.utilsP\001Zugithub.com/Clarifai/clarif"
+  "ai-go-grpc/proto/clarifai/api/github.com"
+  "/Clarifai/clarifai-go-grpc/proto/clarifa"
+  "i/api/utils\242\002\004CAIPb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto_deps[1] = {
   &::descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto,
@@ -122,7 +123,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto_once;
 static bool descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto, "proto/clarifai/api/utils/test_proto.proto", 489,
+  &descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto, "proto/clarifai/api/utils/test_proto.proto", 546,
   &descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto_sccs, descriptor_table_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto_deps, 2, 1,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto::offsets,
   file_level_metadata_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto, 2, file_level_enum_descriptors_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2futils_2ftest_5fproto_2eproto,
