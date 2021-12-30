@@ -16,7 +16,7 @@
 #include <google/protobuf/port_def.inc>
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_APIPostModelOutputsCollectorSource_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_AiAssistParameters_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<13> scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<14> scc_info_Annotation_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_App_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_AppDuplicationFilters_proto_2fclarifai_2fapi_2fresources_2eproto;
@@ -32,10 +32,7 @@ extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PRO
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ConfusionMatrixEntry_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_CooccurrenceMatrix_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CooccurrenceMatrixEntry_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_DatasetFilter_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DatasetVersionDatasetFilterConfig_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DatasetVersionSummary_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DatasetVersionSummary_InputCountsEntry_DoNotUse_proto_2fclarifai_2fapi_2fresources_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DatasetVersionMetrics_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DetailConceptCount_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_EmailAddress_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Embedding_proto_2fclarifai_2fapi_2fresources_2eproto;
@@ -55,24 +52,21 @@ extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PRO
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LOPQEvalResult_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LabelCount_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_LabelDistribution_proto_2fclarifai_2fapi_2fresources_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LossCurveEntry_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Mask_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_MetricsSummary_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<8> scc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_ModelTypeEnumOption_proto_2fclarifai_2fapi_2fresources_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_ModelTypeEnumOption_proto_2fclarifai_2fapi_2fresources_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ModelTypeEnumOptionAlias_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ModelTypeRangeInfo_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<5> scc_info_ModelVersion_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_NodeInput_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_OutputConfig_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_OutputInfo_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Point_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Polygon_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PrecisionRecallCurve_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_Query_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ROC_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Rank_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_RegionInfo_proto_2fclarifai_2fapi_2fresources_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_StatValueAggregate_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_StatValueAggregateQuery_proto_2fclarifai_2fapi_2fresources_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fresources_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TaskAIAssistant_proto_2fclarifai_2fapi_2fresources_2eproto;
@@ -278,14 +272,10 @@ class DatasetVersionDatasetFilterConfigDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DatasetVersionDatasetFilterConfig> _instance;
 } _DatasetVersionDatasetFilterConfig_default_instance_;
-class DatasetVersionSummary_InputCountsEntry_DoNotUseDefaultTypeInternal {
+class DatasetVersionMetricsDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DatasetVersionSummary_InputCountsEntry_DoNotUse> _instance;
-} _DatasetVersionSummary_InputCountsEntry_DoNotUse_default_instance_;
-class DatasetVersionSummaryDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DatasetVersionSummary> _instance;
-} _DatasetVersionSummary_default_instance_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DatasetVersionMetrics> _instance;
+} _DatasetVersionMetrics_default_instance_;
 class WorkflowResultsSimilarityDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<WorkflowResultsSimilarity> _instance;
@@ -342,6 +332,10 @@ class ModelTypeEnumOptionDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ModelTypeEnumOption> _instance;
 } _ModelTypeEnumOption_default_instance_;
+class ModelTypeEnumOptionAliasDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ModelTypeEnumOptionAlias> _instance;
+} _ModelTypeEnumOptionAlias_default_instance_;
 class ModelQueryDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ModelQuery> _instance;
@@ -350,6 +344,18 @@ class ModelVersionDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ModelVersion> _instance;
 } _ModelVersion_default_instance_;
+class PretrainedModelConfigDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<PretrainedModelConfig> _instance;
+} _PretrainedModelConfig_default_instance_;
+class TrainStatsDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TrainStats> _instance;
+} _TrainStats_default_instance_;
+class LossCurveEntryDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<LossCurveEntry> _instance;
+} _LossCurveEntry_default_instance_;
 class LabelCountDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<LabelCount> _instance;
@@ -643,17 +649,76 @@ static void InitDefaultsscc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto(
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
+    void* ptr = &::clarifai::api::_DatasetFilter_default_instance_;
+    new (ptr) ::clarifai::api::DatasetFilter();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  {
+    void* ptr = &::clarifai::api::_DatasetVersion_default_instance_;
+    new (ptr) ::clarifai::api::DatasetVersion();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  {
+    void* ptr = &::clarifai::api::_DatasetVersionDatasetFilterConfig_default_instance_;
+    new (ptr) ::clarifai::api::DatasetVersionDatasetFilterConfig();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  {
+    void* ptr = &::clarifai::api::_Model_default_instance_;
+    new (ptr) ::clarifai::api::Model();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  {
+    void* ptr = &::clarifai::api::_ModelVersion_default_instance_;
+    new (ptr) ::clarifai::api::ModelVersion();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  {
+    void* ptr = &::clarifai::api::_Output_default_instance_;
+    new (ptr) ::clarifai::api::Output();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  {
     void* ptr = &::clarifai::api::_And_default_instance_;
     new (ptr) ::clarifai::api::And();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  {
+    void* ptr = &::clarifai::api::_Query_default_instance_;
+    new (ptr) ::clarifai::api::Query();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  {
+    void* ptr = &::clarifai::api::_Search_default_instance_;
+    new (ptr) ::clarifai::api::Search();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::clarifai::api::DatasetFilter::InitAsDefaultInstance();
+  ::clarifai::api::DatasetVersion::InitAsDefaultInstance();
+  ::clarifai::api::DatasetVersionDatasetFilterConfig::InitAsDefaultInstance();
+  ::clarifai::api::Model::InitAsDefaultInstance();
+  ::clarifai::api::ModelVersion::InitAsDefaultInstance();
+  ::clarifai::api::Output::InitAsDefaultInstance();
   ::clarifai::api::And::InitAsDefaultInstance();
+  ::clarifai::api::Query::InitAsDefaultInstance();
+  ::clarifai::api::Search::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<13> scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 13, 0, InitDefaultsscc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto}, {
       &scc_info_Annotation_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
+      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
+      &scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base,
+      &scc_info_DatasetVersionMetrics_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_ListValue_google_2fprotobuf_2fstruct_2eproto.base,
+      &scc_info_Visibility_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_OutputInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_InputInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_TrainInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_ImportInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_EvalMetrics_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_Filter_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_Rank_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
 
 static void InitDefaultsscc_info_Annotation_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -744,7 +809,7 @@ static void InitDefaultsscc_info_AnnotationSearchMetrics_proto_2fclarifai_2fapi_
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_AnnotationSearchMetrics_proto_2fclarifai_2fapi_2fresources_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 4, 0, InitDefaultsscc_info_AnnotationSearchMetrics_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base,
       &scc_info_EvalMetrics_proto_2fclarifai_2fapi_2fresources_2eproto.base,
       &scc_info_Annotation_proto_2fclarifai_2fapi_2fresources_2eproto.base,
       &scc_info_Visibility_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
@@ -1115,84 +1180,19 @@ static void InitDefaultsscc_info_CooccurrenceMatrixEntry_proto_2fclarifai_2fapi_
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CooccurrenceMatrixEntry_proto_2fclarifai_2fapi_2fresources_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_CooccurrenceMatrixEntry_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
 
-static void InitDefaultsscc_info_DatasetFilter_proto_2fclarifai_2fapi_2fresources_2eproto() {
+static void InitDefaultsscc_info_DatasetVersionMetrics_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::clarifai::api::_DatasetFilter_default_instance_;
-    new (ptr) ::clarifai::api::DatasetFilter();
+    void* ptr = &::clarifai::api::_DatasetVersionMetrics_default_instance_;
+    new (ptr) ::clarifai::api::DatasetVersionMetrics();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::clarifai::api::DatasetFilter::InitAsDefaultInstance();
+  ::clarifai::api::DatasetVersionMetrics::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_DatasetFilter_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_DatasetFilter_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
-
-static void InitDefaultsscc_info_DatasetVersion_proto_2fclarifai_2fapi_2fresources_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::_DatasetVersion_default_instance_;
-    new (ptr) ::clarifai::api::DatasetVersion();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::DatasetVersion::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<6> scc_info_DatasetVersion_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 6, 0, InitDefaultsscc_info_DatasetVersion_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_DatasetVersionDatasetFilterConfig_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base,
-      &scc_info_DatasetVersionSummary_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_ListValue_google_2fprotobuf_2fstruct_2eproto.base,
-      &scc_info_Visibility_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
-
-static void InitDefaultsscc_info_DatasetVersionDatasetFilterConfig_proto_2fclarifai_2fapi_2fresources_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::_DatasetVersionDatasetFilterConfig_default_instance_;
-    new (ptr) ::clarifai::api::DatasetVersionDatasetFilterConfig();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::DatasetVersionDatasetFilterConfig::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DatasetVersionDatasetFilterConfig_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_DatasetVersionDatasetFilterConfig_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_DatasetFilter_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
-
-static void InitDefaultsscc_info_DatasetVersionSummary_proto_2fclarifai_2fapi_2fresources_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::_DatasetVersionSummary_default_instance_;
-    new (ptr) ::clarifai::api::DatasetVersionSummary();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::DatasetVersionSummary::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DatasetVersionSummary_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_DatasetVersionSummary_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_DatasetVersionSummary_InputCountsEntry_DoNotUse_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
-
-static void InitDefaultsscc_info_DatasetVersionSummary_InputCountsEntry_DoNotUse_proto_2fclarifai_2fapi_2fresources_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::_DatasetVersionSummary_InputCountsEntry_DoNotUse_default_instance_;
-    new (ptr) ::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse();
-  }
-  ::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DatasetVersionSummary_InputCountsEntry_DoNotUse_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_DatasetVersionSummary_InputCountsEntry_DoNotUse_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DatasetVersionMetrics_proto_2fclarifai_2fapi_2fresources_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_DatasetVersionMetrics_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
 
 static void InitDefaultsscc_info_DetailConceptCount_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1554,6 +1554,20 @@ static void InitDefaultsscc_info_LabelDistribution_proto_2fclarifai_2fapi_2freso
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_LabelDistribution_proto_2fclarifai_2fapi_2fresources_2eproto}, {
       &scc_info_LabelCount_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
 
+static void InitDefaultsscc_info_LossCurveEntry_proto_2fclarifai_2fapi_2fresources_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::clarifai::api::_LossCurveEntry_default_instance_;
+    new (ptr) ::clarifai::api::LossCurveEntry();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::clarifai::api::LossCurveEntry::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LossCurveEntry_proto_2fclarifai_2fapi_2fresources_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_LossCurveEntry_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
+
 static void InitDefaultsscc_info_Mask_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -1583,28 +1597,6 @@ static void InitDefaultsscc_info_MetricsSummary_proto_2fclarifai_2fapi_2fresourc
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_MetricsSummary_proto_2fclarifai_2fapi_2fresources_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_MetricsSummary_proto_2fclarifai_2fapi_2fresources_2eproto}, {
       &scc_info_LOPQEvalResult_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
-
-static void InitDefaultsscc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::_Model_default_instance_;
-    new (ptr) ::clarifai::api::Model();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::Model::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<8> scc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 8, 0, InitDefaultsscc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_OutputInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_ModelVersion_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_InputInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_TrainInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Visibility_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_ListValue_google_2fprotobuf_2fstruct_2eproto.base,
-      &scc_info_ImportInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
 
 static void InitDefaultsscc_info_ModelQuery_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1668,10 +1660,25 @@ static void InitDefaultsscc_info_ModelTypeEnumOption_proto_2fclarifai_2fapi_2fre
   ::clarifai::api::ModelTypeEnumOption::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_ModelTypeEnumOption_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_ModelTypeEnumOption_proto_2fclarifai_2fapi_2fresources_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_ModelTypeEnumOption_proto_2fclarifai_2fapi_2fresources_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_ModelTypeEnumOption_proto_2fclarifai_2fapi_2fresources_2eproto}, {
+      &scc_info_ModelTypeEnumOptionAlias_proto_2fclarifai_2fapi_2fresources_2eproto.base,
       &scc_info_ListValue_google_2fprotobuf_2fstruct_2eproto.base,
       &scc_info_ModelTypeRangeInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
+
+static void InitDefaultsscc_info_ModelTypeEnumOptionAlias_proto_2fclarifai_2fapi_2fresources_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::clarifai::api::_ModelTypeEnumOptionAlias_default_instance_;
+    new (ptr) ::clarifai::api::ModelTypeEnumOptionAlias();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::clarifai::api::ModelTypeEnumOptionAlias::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ModelTypeEnumOptionAlias_proto_2fclarifai_2fapi_2fresources_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ModelTypeEnumOptionAlias_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
 
 static void InitDefaultsscc_info_ModelTypeRangeInfo_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1686,25 +1693,6 @@ static void InitDefaultsscc_info_ModelTypeRangeInfo_proto_2fclarifai_2fapi_2fres
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ModelTypeRangeInfo_proto_2fclarifai_2fapi_2fresources_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ModelTypeRangeInfo_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
-
-static void InitDefaultsscc_info_ModelVersion_proto_2fclarifai_2fapi_2fresources_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::_ModelVersion_default_instance_;
-    new (ptr) ::clarifai::api::ModelVersion();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::ModelVersion::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<5> scc_info_ModelVersion_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 5, 0, InitDefaultsscc_info_ModelVersion_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base,
-      &scc_info_EvalMetrics_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Visibility_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_ListValue_google_2fprotobuf_2fstruct_2eproto.base,}};
 
 static void InitDefaultsscc_info_ModelVersionInputExample_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1734,24 +1722,6 @@ static void InitDefaultsscc_info_NodeInput_proto_2fclarifai_2fapi_2fresources_2e
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_NodeInput_proto_2fclarifai_2fapi_2fresources_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_NodeInput_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
-
-static void InitDefaultsscc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::_Output_default_instance_;
-    new (ptr) ::clarifai::api::Output();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::Output::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 4, 0, InitDefaultsscc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base,
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Annotation_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
 
 static void InitDefaultsscc_info_OutputConfig_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1871,22 +1841,20 @@ static void InitDefaultsscc_info_PrecisionRecallCurve_proto_2fclarifai_2fapi_2fr
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PrecisionRecallCurve_proto_2fclarifai_2fapi_2fresources_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_PrecisionRecallCurve_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
 
-static void InitDefaultsscc_info_Query_proto_2fclarifai_2fapi_2fresources_2eproto() {
+static void InitDefaultsscc_info_PretrainedModelConfig_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::clarifai::api::_Query_default_instance_;
-    new (ptr) ::clarifai::api::Query();
+    void* ptr = &::clarifai::api::_PretrainedModelConfig_default_instance_;
+    new (ptr) ::clarifai::api::PretrainedModelConfig();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::clarifai::api::Query::InitAsDefaultInstance();
+  ::clarifai::api::PretrainedModelConfig::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_Query_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_Query_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Filter_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Rank_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_PretrainedModelConfig_proto_2fclarifai_2fapi_2fresources_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_PretrainedModelConfig_proto_2fclarifai_2fapi_2fresources_2eproto}, {
+      &scc_info_ListValue_google_2fprotobuf_2fstruct_2eproto.base,}};
 
 static void InitDefaultsscc_info_ROC_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1948,23 +1916,6 @@ static void InitDefaultsscc_info_ScopeDeps_proto_2fclarifai_2fapi_2fresources_2e
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ScopeDeps_proto_2fclarifai_2fapi_2fresources_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ScopeDeps_proto_2fclarifai_2fapi_2fresources_2eproto}, {}};
-
-static void InitDefaultsscc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::_Search_default_instance_;
-    new (ptr) ::clarifai::api::Search();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::Search::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_Query_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_Visibility_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
 
 static void InitDefaultsscc_info_StatValue_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -2253,6 +2204,21 @@ static void InitDefaultsscc_info_TrainInfo_proto_2fclarifai_2fapi_2fresources_2e
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TrainInfo_proto_2fclarifai_2fapi_2fresources_2eproto}, {
       &scc_info_ListValue_google_2fprotobuf_2fstruct_2eproto.base,}};
 
+static void InitDefaultsscc_info_TrainStats_proto_2fclarifai_2fapi_2fresources_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::clarifai::api::_TrainStats_default_instance_;
+    new (ptr) ::clarifai::api::TrainStats();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::clarifai::api::TrainStats::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TrainStats_proto_2fclarifai_2fapi_2fresources_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TrainStats_proto_2fclarifai_2fapi_2fresources_2eproto}, {
+      &scc_info_LossCurveEntry_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
+
 static void InitDefaultsscc_info_TrendingMetric_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -2407,7 +2373,7 @@ static void InitDefaultsscc_info_WorkflowNode_proto_2fclarifai_2fapi_2fresources
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_WorkflowNode_proto_2fclarifai_2fapi_2fresources_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_WorkflowNode_proto_2fclarifai_2fapi_2fresources_2eproto}, {
-      &scc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base,
       &scc_info_NodeInput_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
 
 static void InitDefaultsscc_info_WorkflowResult_proto_2fclarifai_2fapi_2fresources_2eproto() {
@@ -2421,13 +2387,12 @@ static void InitDefaultsscc_info_WorkflowResult_proto_2fclarifai_2fapi_2fresourc
   ::clarifai::api::WorkflowResult::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<5> scc_info_WorkflowResult_proto_2fclarifai_2fapi_2fresources_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 5, 0, InitDefaultsscc_info_WorkflowResult_proto_2fclarifai_2fapi_2fresources_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_WorkflowResult_proto_2fclarifai_2fapi_2fresources_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 4, 0, InitDefaultsscc_info_WorkflowResult_proto_2fclarifai_2fapi_2fresources_2eproto}, {
       &scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base,
       &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Annotation_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-      &scc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
+      &scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+      &scc_info_Annotation_proto_2fclarifai_2fapi_2fresources_2eproto.base,}};
 
 static void InitDefaultsscc_info_WorkflowResultsSimilarity_proto_2fclarifai_2fapi_2fresources_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -2476,8 +2441,8 @@ static void InitDefaultsscc_info_WorkflowVersion_proto_2fclarifai_2fapi_2fresour
       &scc_info_WorkflowNode_proto_2fclarifai_2fapi_2fresources_2eproto.base,
       &scc_info_ListValue_google_2fprotobuf_2fstruct_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_proto_2fclarifai_2fapi_2fresources_2eproto[126];
-static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[17];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_proto_2fclarifai_2fapi_2fresources_2eproto[129];
+static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[18];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -2896,7 +2861,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fresou
   offsetof(::clarifai::api::DatasetVersionDefaultTypeInternal, dataset_filter_config_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersion, status_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersion, description_),
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersion, summary_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersion, metrics_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersion, metadata_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersion, visibility_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersion, embed_model_version_ids_),
@@ -2907,21 +2872,14 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fresou
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionDatasetFilterConfig, dataset_filter_),
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse, key_),
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse, value_),
-  0,
-  1,
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionSummary, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionMetrics, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionSummary, input_counts_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionMetrics, inputs_count_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionMetrics, positive_annotations_count_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::DatasetVersionMetrics, bounding_boxes_count_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::WorkflowResultsSimilarity, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -2999,8 +2957,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fresou
   PROTOBUF_FIELD_OFFSET(::clarifai::api::OutputInfo, data_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::OutputInfo, output_config_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::OutputInfo, message_),
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::OutputInfo, type_),
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::OutputInfo, type_ext_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::OutputInfo, fields_map_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::OutputInfo, params_),
   ~0u,  // no _has_bits_
@@ -3049,7 +3005,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fresou
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelType, id_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelType, title_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelType, description_),
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelType, type_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelType, input_fields_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelType, output_fields_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelType, trainable_),
@@ -3088,16 +3043,22 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fresou
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelTypeEnumOption, id_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelTypeEnumOption, aliases_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelTypeEnumOption, description_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelTypeEnumOption, model_type_fields_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelTypeEnumOption, internal_only_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelTypeEnumOptionAlias, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelTypeEnumOptionAlias, id_int_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelQuery, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelQuery, name_),
-  PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelQuery, type_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelQuery, model_type_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelVersion, _internal_metadata_),
@@ -3118,6 +3079,33 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fresou
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelVersion, modified_at_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelVersion, metadata_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelVersion, license_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::ModelVersion, dataset_version_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::PretrainedModelConfig, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::PretrainedModelConfig, id_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::PretrainedModelConfig, type_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::PretrainedModelConfig, input_fields_map_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::PretrainedModelConfig, output_fields_map_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::PretrainedModelConfig, data_provider_params_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::PretrainedModelConfig, model_zip_url_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::PretrainedModelConfig, overwrite_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::TrainStats, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::TrainStats, loss_curve_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::LossCurveEntry, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::LossCurveEntry, epoch_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::LossCurveEntry, global_step_),
+  PROTOBUF_FIELD_OFFSET(::clarifai::api::LossCurveEntry, cost_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::LabelCount, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -3815,88 +3803,91 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 389, -1, sizeof(::clarifai::api::DatasetFilter)},
   { 401, -1, sizeof(::clarifai::api::DatasetVersion)},
   { 420, -1, sizeof(::clarifai::api::DatasetVersionDatasetFilterConfig)},
-  { 426, 433, sizeof(::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse)},
-  { 435, -1, sizeof(::clarifai::api::DatasetVersionSummary)},
-  { 441, -1, sizeof(::clarifai::api::WorkflowResultsSimilarity)},
-  { 448, -1, sizeof(::clarifai::api::Key)},
-  { 462, -1, sizeof(::clarifai::api::Model)},
-  { 489, -1, sizeof(::clarifai::api::ModelReference)},
-  { 499, -1, sizeof(::clarifai::api::ModelVersionInputExample)},
-  { 510, -1, sizeof(::clarifai::api::OutputInfo)},
-  { 522, -1, sizeof(::clarifai::api::InputInfo)},
-  { 529, -1, sizeof(::clarifai::api::TrainInfo)},
-  { 535, -1, sizeof(::clarifai::api::ImportInfo)},
-  { 541, -1, sizeof(::clarifai::api::OutputConfig)},
-  { 560, -1, sizeof(::clarifai::api::ModelType)},
-  { 579, -1, sizeof(::clarifai::api::ModelTypeField)},
-  { 593, -1, sizeof(::clarifai::api::ModelTypeRangeInfo)},
-  { 601, -1, sizeof(::clarifai::api::ModelTypeEnumOption)},
-  { 610, -1, sizeof(::clarifai::api::ModelQuery)},
-  { 618, -1, sizeof(::clarifai::api::ModelVersion)},
-  { 637, -1, sizeof(::clarifai::api::LabelCount)},
-  { 644, -1, sizeof(::clarifai::api::LabelDistribution)},
-  { 650, -1, sizeof(::clarifai::api::CooccurrenceMatrixEntry)},
-  { 658, -1, sizeof(::clarifai::api::CooccurrenceMatrix)},
-  { 665, -1, sizeof(::clarifai::api::ConfusionMatrixEntry)},
-  { 673, -1, sizeof(::clarifai::api::ConfusionMatrix)},
-  { 680, -1, sizeof(::clarifai::api::ROC)},
-  { 690, -1, sizeof(::clarifai::api::PrecisionRecallCurve)},
-  { 698, -1, sizeof(::clarifai::api::BinaryMetrics)},
-  { 716, -1, sizeof(::clarifai::api::TrackerMetrics)},
-  { 727, -1, sizeof(::clarifai::api::EvalTestSetEntry)},
-  { 738, -1, sizeof(::clarifai::api::LOPQEvalResult)},
-  { 749, -1, sizeof(::clarifai::api::MetricsSummary)},
-  { 765, -1, sizeof(::clarifai::api::EvalMetrics)},
-  { 781, -1, sizeof(::clarifai::api::FieldsValue)},
-  { 793, -1, sizeof(::clarifai::api::Output)},
-  { 804, -1, sizeof(::clarifai::api::ScopeDeps)},
-  { 811, -1, sizeof(::clarifai::api::EndpointDeps)},
-  { 818, -1, sizeof(::clarifai::api::Hit)},
-  { 826, -1, sizeof(::clarifai::api::And)},
-  { 835, -1, sizeof(::clarifai::api::Query)},
-  { 844, -1, sizeof(::clarifai::api::Search)},
-  { 861, -1, sizeof(::clarifai::api::Filter)},
-  { 870, -1, sizeof(::clarifai::api::TimeRange)},
-  { 877, -1, sizeof(::clarifai::api::Rank)},
-  { 884, -1, sizeof(::clarifai::api::AnnotationSearchMetrics)},
-  { 895, -1, sizeof(::clarifai::api::Text)},
-  { 905, -1, sizeof(::clarifai::api::TextInfo)},
-  { 912, -1, sizeof(::clarifai::api::User)},
-  { 938, -1, sizeof(::clarifai::api::UserDetail)},
-  { 955, -1, sizeof(::clarifai::api::EmailAddress)},
-  { 963, -1, sizeof(::clarifai::api::Password)},
-  { 969, -1, sizeof(::clarifai::api::PasswordViolations)},
-  { 988, -1, sizeof(::clarifai::api::Video)},
-  { 999, -1, sizeof(::clarifai::api::VideoInfo)},
-  { 1011, -1, sizeof(::clarifai::api::Workflow)},
-  { 1030, -1, sizeof(::clarifai::api::WorkflowVersion)},
-  { 1046, -1, sizeof(::clarifai::api::WorkflowNode)},
-  { 1055, -1, sizeof(::clarifai::api::NodeInput)},
-  { 1061, -1, sizeof(::clarifai::api::WorkflowResult)},
-  { 1073, -1, sizeof(::clarifai::api::WorkflowState)},
-  { 1079, -1, sizeof(::clarifai::api::AppDuplication)},
-  { 1091, -1, sizeof(::clarifai::api::AppDuplicationFilters)},
-  { 1101, -1, sizeof(::clarifai::api::Task)},
-  { 1123, -1, sizeof(::clarifai::api::AiAssistParameters)},
-  { 1131, -1, sizeof(::clarifai::api::TaskWorker)},
-  { 1140, -1, sizeof(::clarifai::api::TaskWorkerPartitionedStrategyInfo)},
-  { 1148, -1, sizeof(::clarifai::api::TaskInputSource)},
-  { 1155, -1, sizeof(::clarifai::api::TaskReview)},
-  { 1165, -1, sizeof(::clarifai::api::TaskReviewManualStrategyInfo)},
-  { 1171, -1, sizeof(::clarifai::api::TaskReviewConsensusStrategyInfo)},
-  { 1177, -1, sizeof(::clarifai::api::TaskAIAssistant)},
-  { 1183, -1, sizeof(::clarifai::api::TaskStatusCountPerUser)},
-  { 1194, -1, sizeof(::clarifai::api::Collector)},
-  { 1206, -1, sizeof(::clarifai::api::CollectorSource)},
-  { 1212, -1, sizeof(::clarifai::api::APIPostModelOutputsCollectorSource)},
-  { 1222, -1, sizeof(::clarifai::api::StatValue)},
-  { 1230, -1, sizeof(::clarifai::api::StatValueAggregateResult)},
-  { 1237, -1, sizeof(::clarifai::api::StatValueAggregate)},
-  { 1246, -1, sizeof(::clarifai::api::StatValueAggregateQuery)},
-  { 1257, -1, sizeof(::clarifai::api::Visibility)},
-  { 1263, -1, sizeof(::clarifai::api::TrendingMetric)},
-  { 1272, -1, sizeof(::clarifai::api::TimeSegment)},
-  { 1280, -1, sizeof(::clarifai::api::TimeInfo)},
+  { 426, -1, sizeof(::clarifai::api::DatasetVersionMetrics)},
+  { 434, -1, sizeof(::clarifai::api::WorkflowResultsSimilarity)},
+  { 441, -1, sizeof(::clarifai::api::Key)},
+  { 455, -1, sizeof(::clarifai::api::Model)},
+  { 482, -1, sizeof(::clarifai::api::ModelReference)},
+  { 492, -1, sizeof(::clarifai::api::ModelVersionInputExample)},
+  { 503, -1, sizeof(::clarifai::api::OutputInfo)},
+  { 513, -1, sizeof(::clarifai::api::InputInfo)},
+  { 520, -1, sizeof(::clarifai::api::TrainInfo)},
+  { 526, -1, sizeof(::clarifai::api::ImportInfo)},
+  { 532, -1, sizeof(::clarifai::api::OutputConfig)},
+  { 551, -1, sizeof(::clarifai::api::ModelType)},
+  { 569, -1, sizeof(::clarifai::api::ModelTypeField)},
+  { 583, -1, sizeof(::clarifai::api::ModelTypeRangeInfo)},
+  { 591, -1, sizeof(::clarifai::api::ModelTypeEnumOption)},
+  { 601, -1, sizeof(::clarifai::api::ModelTypeEnumOptionAlias)},
+  { 607, -1, sizeof(::clarifai::api::ModelQuery)},
+  { 614, -1, sizeof(::clarifai::api::ModelVersion)},
+  { 634, -1, sizeof(::clarifai::api::PretrainedModelConfig)},
+  { 646, -1, sizeof(::clarifai::api::TrainStats)},
+  { 652, -1, sizeof(::clarifai::api::LossCurveEntry)},
+  { 660, -1, sizeof(::clarifai::api::LabelCount)},
+  { 667, -1, sizeof(::clarifai::api::LabelDistribution)},
+  { 673, -1, sizeof(::clarifai::api::CooccurrenceMatrixEntry)},
+  { 681, -1, sizeof(::clarifai::api::CooccurrenceMatrix)},
+  { 688, -1, sizeof(::clarifai::api::ConfusionMatrixEntry)},
+  { 696, -1, sizeof(::clarifai::api::ConfusionMatrix)},
+  { 703, -1, sizeof(::clarifai::api::ROC)},
+  { 713, -1, sizeof(::clarifai::api::PrecisionRecallCurve)},
+  { 721, -1, sizeof(::clarifai::api::BinaryMetrics)},
+  { 739, -1, sizeof(::clarifai::api::TrackerMetrics)},
+  { 750, -1, sizeof(::clarifai::api::EvalTestSetEntry)},
+  { 761, -1, sizeof(::clarifai::api::LOPQEvalResult)},
+  { 772, -1, sizeof(::clarifai::api::MetricsSummary)},
+  { 788, -1, sizeof(::clarifai::api::EvalMetrics)},
+  { 804, -1, sizeof(::clarifai::api::FieldsValue)},
+  { 816, -1, sizeof(::clarifai::api::Output)},
+  { 827, -1, sizeof(::clarifai::api::ScopeDeps)},
+  { 834, -1, sizeof(::clarifai::api::EndpointDeps)},
+  { 841, -1, sizeof(::clarifai::api::Hit)},
+  { 849, -1, sizeof(::clarifai::api::And)},
+  { 858, -1, sizeof(::clarifai::api::Query)},
+  { 867, -1, sizeof(::clarifai::api::Search)},
+  { 884, -1, sizeof(::clarifai::api::Filter)},
+  { 893, -1, sizeof(::clarifai::api::TimeRange)},
+  { 900, -1, sizeof(::clarifai::api::Rank)},
+  { 907, -1, sizeof(::clarifai::api::AnnotationSearchMetrics)},
+  { 918, -1, sizeof(::clarifai::api::Text)},
+  { 928, -1, sizeof(::clarifai::api::TextInfo)},
+  { 935, -1, sizeof(::clarifai::api::User)},
+  { 961, -1, sizeof(::clarifai::api::UserDetail)},
+  { 978, -1, sizeof(::clarifai::api::EmailAddress)},
+  { 986, -1, sizeof(::clarifai::api::Password)},
+  { 992, -1, sizeof(::clarifai::api::PasswordViolations)},
+  { 1011, -1, sizeof(::clarifai::api::Video)},
+  { 1022, -1, sizeof(::clarifai::api::VideoInfo)},
+  { 1034, -1, sizeof(::clarifai::api::Workflow)},
+  { 1053, -1, sizeof(::clarifai::api::WorkflowVersion)},
+  { 1069, -1, sizeof(::clarifai::api::WorkflowNode)},
+  { 1078, -1, sizeof(::clarifai::api::NodeInput)},
+  { 1084, -1, sizeof(::clarifai::api::WorkflowResult)},
+  { 1096, -1, sizeof(::clarifai::api::WorkflowState)},
+  { 1102, -1, sizeof(::clarifai::api::AppDuplication)},
+  { 1114, -1, sizeof(::clarifai::api::AppDuplicationFilters)},
+  { 1124, -1, sizeof(::clarifai::api::Task)},
+  { 1146, -1, sizeof(::clarifai::api::AiAssistParameters)},
+  { 1154, -1, sizeof(::clarifai::api::TaskWorker)},
+  { 1163, -1, sizeof(::clarifai::api::TaskWorkerPartitionedStrategyInfo)},
+  { 1171, -1, sizeof(::clarifai::api::TaskInputSource)},
+  { 1178, -1, sizeof(::clarifai::api::TaskReview)},
+  { 1188, -1, sizeof(::clarifai::api::TaskReviewManualStrategyInfo)},
+  { 1194, -1, sizeof(::clarifai::api::TaskReviewConsensusStrategyInfo)},
+  { 1200, -1, sizeof(::clarifai::api::TaskAIAssistant)},
+  { 1206, -1, sizeof(::clarifai::api::TaskStatusCountPerUser)},
+  { 1217, -1, sizeof(::clarifai::api::Collector)},
+  { 1229, -1, sizeof(::clarifai::api::CollectorSource)},
+  { 1235, -1, sizeof(::clarifai::api::APIPostModelOutputsCollectorSource)},
+  { 1245, -1, sizeof(::clarifai::api::StatValue)},
+  { 1253, -1, sizeof(::clarifai::api::StatValueAggregateResult)},
+  { 1260, -1, sizeof(::clarifai::api::StatValueAggregate)},
+  { 1269, -1, sizeof(::clarifai::api::StatValueAggregateQuery)},
+  { 1280, -1, sizeof(::clarifai::api::Visibility)},
+  { 1286, -1, sizeof(::clarifai::api::TrendingMetric)},
+  { 1295, -1, sizeof(::clarifai::api::TimeSegment)},
+  { 1303, -1, sizeof(::clarifai::api::TimeInfo)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -3944,8 +3935,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_DatasetFilter_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_DatasetVersion_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_DatasetVersionDatasetFilterConfig_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_DatasetVersionSummary_InputCountsEntry_DoNotUse_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_DatasetVersionSummary_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_DatasetVersionMetrics_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_WorkflowResultsSimilarity_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_Key_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_Model_default_instance_),
@@ -3960,8 +3950,12 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_ModelTypeField_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_ModelTypeRangeInfo_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_ModelTypeEnumOption_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_ModelTypeEnumOptionAlias_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_ModelQuery_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_ModelVersion_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_PretrainedModelConfig_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_TrainStats_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_LossCurveEntry_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_LabelCount_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_LabelDistribution_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::clarifai::api::_CooccurrenceMatrixEntry_default_instance_),
@@ -4194,451 +4188,463 @@ const char descriptor_table_protodef_proto_2fclarifai_2fapi_2fresources_2eproto[
   "et_filter_config\030\007 \001(\0132/.clarifai.api.Da"
   "tasetVersionDatasetFilterConfigH\000\022+\n\006sta"
   "tus\030\010 \001(\0132\033.clarifai.api.status.Status\022\023"
-  "\n\013description\030\n \001(\t\0224\n\007summary\030\013 \001(\0132#.c"
-  "larifai.api.DatasetVersionSummary\022)\n\010met"
+  "\n\013description\030\n \001(\t\0224\n\007metrics\030\013 \001(\0132#.c"
+  "larifai.api.DatasetVersionMetrics\022)\n\010met"
   "adata\030\014 \001(\0132\027.google.protobuf.Struct\022,\n\n"
   "visibility\030\r \001(\0132\030.clarifai.api.Visibili"
   "ty\022\037\n\027embed_model_version_ids\030\016 \003(\tB\r\n\013d"
   "ata_configJ\004\010\t\020\n\"X\n!DatasetVersionDatase"
   "tFilterConfig\0223\n\016dataset_filter\030\001 \001(\0132\033."
-  "clarifai.api.DatasetFilter\"\227\001\n\025DatasetVe"
-  "rsionSummary\022J\n\014input_counts\030\001 \003(\01324.cla"
-  "rifai.api.DatasetVersionSummary.InputCou"
-  "ntsEntry\0322\n\020InputCountsEntry\022\013\n\003key\030\001 \001("
-  "\t\022\r\n\005value\030\002 \001(\004:\0028\001\"n\n\031WorkflowResultsS"
-  "imilarity\022(\n\013probe_input\030\001 \001(\0132\023.clarifa"
-  "i.api.Input\022\'\n\014pool_results\030\002 \003(\0132\021.clar"
-  "ifai.api.Hit\"\364\001\n\003Key\022\n\n\002id\030\001 \001(\t\022\014\n\004type"
-  "\030\010 \001(\t\022\023\n\013description\030\002 \001(\t\022\016\n\006scopes\030\003 "
-  "\003(\t\022\021\n\tendpoints\030\007 \003(\t\022\037\n\004apps\030\004 \003(\0132\021.c"
-  "larifai.api.App\022.\n\ncreated_at\030\005 \001(\0132\032.go"
-  "ogle.protobuf.Timestamp\022.\n\nexpires_at\030\006 "
-  "\001(\0132\032.google.protobuf.Timestamp\022\032\n\022autho"
-  "rized_idp_ids\030\t \003(\t\"\302\005\n\005Model\022\n\n\002id\030\001 \001("
-  "\t\022\014\n\004name\030\002 \001(\t\022.\n\ncreated_at\030\003 \001(\0132\032.go"
-  "ogle.protobuf.Timestamp\022/\n\013modified_at\030\023"
-  " \001(\0132\032.google.protobuf.Timestamp\022\024\n\006app_"
-  "id\030\004 \001(\tB\004\200\265\030\001\022-\n\013output_info\030\005 \001(\0132\030.cl"
-  "arifai.api.OutputInfo\0221\n\rmodel_version\030\006"
-  " \001(\0132\032.clarifai.api.ModelVersion\022\024\n\014disp"
-  "lay_name\030\007 \001(\t\022\017\n\007user_id\030\t \001(\t\022+\n\ninput"
-  "_info\030\014 \001(\0132\027.clarifai.api.InputInfo\022+\n\n"
-  "train_info\030\r \001(\0132\027.clarifai.api.TrainInf"
-  "o\022\025\n\rmodel_type_id\030\016 \001(\t\022,\n\nvisibility\030\017"
-  " \001(\0132\030.clarifai.api.Visibility\022\023\n\013descri"
-  "ption\030\020 \001(\t\022)\n\010metadata\030\021 \001(\0132\027.google.p"
-  "rotobuf.Struct\022\r\n\005notes\030\022 \001(\t\022\026\n\010toolkit"
-  "s\030\024 \003(\tB\004\200\265\030\001\022\027\n\tuse_cases\030\025 \003(\tB\004\200\265\030\001\022\027"
-  "\n\tlanguages\030\031 \003(\tB\004\200\265\030\001\022\022\n\nis_starred\030\026 "
-  "\001(\010\022\022\n\nstar_count\030\027 \001(\005\022-\n\013import_info\030\030"
-  " \001(\0132\030.clarifai.api.ImportInfoJ\004\010\010\020\tJ\004\010\n"
-  "\020\013J\004\010\013\020\014\"t\n\016ModelReference\022\n\n\002id\030\001 \001(\t\022\020"
-  "\n\010model_id\030\002 \001(\t\022\013\n\003url\030\003 \001(\t\022\014\n\004name\030\004 "
-  "\001(\t\022)\n\010metadata\030\005 \001(\0132\027.google.protobuf."
-  "Struct\"\227\001\n\030ModelVersionInputExample\022\n\n\002i"
-  "d\030\001 \001(\t\022\020\n\010model_id\030\002 \001(\t\022\030\n\020model_versi"
-  "on_id\030\003 \001(\t\022 \n\004data\030\004 \001(\0132\022.clarifai.api"
-  ".Data\022\014\n\004name\030\005 \001(\t\022\023\n\013description\030\006 \001(\t"
-  "\"\350\001\n\nOutputInfo\022 \n\004data\030\001 \001(\0132\022.clarifai"
-  ".api.Data\0221\n\routput_config\030\002 \001(\0132\032.clari"
-  "fai.api.OutputConfig\022\017\n\007message\030\003 \001(\t\022\014\n"
-  "\004type\030\004 \001(\t\022\020\n\010type_ext\030\005 \001(\t\022+\n\nfields_"
-  "map\030\006 \001(\0132\027.google.protobuf.Struct\022\'\n\006pa"
-  "rams\030\007 \001(\0132\027.google.protobuf.Struct\"a\n\tI"
-  "nputInfo\022+\n\nfields_map\030\001 \001(\0132\027.google.pr"
-  "otobuf.Struct\022\'\n\006params\030\002 \001(\0132\027.google.p"
-  "rotobuf.Struct\"4\n\tTrainInfo\022\'\n\006params\030\001 "
-  "\001(\0132\027.google.protobuf.Struct\"5\n\nImportIn"
-  "fo\022\'\n\006params\030\001 \001(\0132\027.google.protobuf.Str"
-  "uct\"\203\004\n\014OutputConfig\022)\n\033concepts_mutuall"
-  "y_exclusive\030\001 \001(\010B\004\200\265\030\001\022 \n\022closed_enviro"
-  "nment\030\002 \001(\010B\004\200\265\030\001\022\035\n\021existing_model_id\030\003"
-  " \001(\tB\002\030\001\022\020\n\010language\030\004 \001(\t\022\034\n\020hyper_para"
-  "meters\030\005 \001(\tB\002\030\001\022\032\n\014max_concepts\030\006 \001(\rB\004"
-  "\200\265\030\001\022\027\n\tmin_value\030\007 \001(\002B\004\200\265\030\001\022.\n\017select_"
-  "concepts\030\010 \003(\0132\025.clarifai.api.Concept\022\030\n"
-  "\020training_timeout\030\t \001(\r\022\021\n\tsample_ms\030\n \001"
-  "(\r\022-\n\014hyper_params\030\r \001(\0132\027.google.protob"
-  "uf.Struct\022\036\n\026embed_model_version_id\030\016 \001("
-  "\t\022)\n!fail_on_missing_positive_examples\030\017"
-  " \001(\010\0223\n\016model_metadata\030\021 \001(\0132\027.google.pr"
-  "otobuf.StructB\002\030\001J\004\010\013\020\014J\004\010\014\020\rJ\004\010\020\020\021J\004\010\022\020"
-  "\023\"\260\003\n\tModelType\022\n\n\002id\030\001 \001(\t\022\r\n\005title\030\002 \001"
-  "(\t\022\023\n\013description\030\003 \001(\t\022\014\n\004type\030\004 \001(\t\022\024\n"
-  "\014input_fields\030\005 \003(\t\022\025\n\routput_fields\030\006 \003"
-  "(\t\022\021\n\ttrainable\030\010 \001(\010\022\021\n\tcreatable\030\t \001(\010"
-  "\022\025\n\rinternal_only\030\n \001(\010\0227\n\021model_type_fi"
-  "elds\030\013 \003(\0132\034.clarifai.api.ModelTypeField"
-  "\022\"\n\032requires_sequential_frames\030\014 \001(\010\022\021\n\t"
-  "evaluable\030\r \001(\010\022A\n expected_pretrained_i"
-  "nput_fields\030\016 \001(\0132\027.google.protobuf.Stru"
-  "ct\022B\n!expected_pretrained_output_fields\030"
-  "\017 \001(\0132\027.google.protobuf.StructJ\004\010\007\020\010\"\231\005\n"
-  "\016ModelTypeField\022\014\n\004path\030\001 \001(\t\022C\n\nfield_t"
-  "ype\030\002 \001(\0162/.clarifai.api.ModelTypeField."
-  "ModelTypeFieldType\022-\n\rdefault_value\030\003 \001("
-  "\0132\026.google.protobuf.Value\022\023\n\013description"
-  "\030\004 \001(\t\022\023\n\013placeholder\030\005 \001(\t\022B\n\027model_typ"
-  "e_enum_options\030\006 \003(\0132!.clarifai.api.Mode"
-  "lTypeEnumOption\022\025\n\rinternal_only\030\007 \001(\010\022\020"
-  "\n\010required\030\010 \001(\010\022\?\n\025model_type_range_inf"
-  "o\030\t \001(\0132 .clarifai.api.ModelTypeRangeInf"
-  "o\"\254\002\n\022ModelTypeFieldType\022!\n\035INVALID_MODE"
-  "L_TYPE_FIELD_TYPE\020\000\022\013\n\007BOOLEAN\020\001\022\n\n\006STRI"
-  "NG\020\002\022\n\n\006NUMBER\020\003\022\025\n\021ARRAY_OF_CONCEPTS\020\004\022"
-  "$\n ARRAY_OF_CONCEPTS_WITH_THRESHOLD\020\005\022\t\n"
-  "\005RANGE\020\007\022\010\n\004ENUM\020\010\022\021\n\rCOLLABORATORS\020\t\022\010\n"
-  "\004JSON\020\n\022\024\n\020ARRAY_OF_NUMBERS\020\013\022\031\n\025WORKFLO"
-  "W_EMBED_MODELS\020\014\022\024\n\020ARRAY_OF_STRINGS\020\r\022\022"
-  "\n\016RECURSIVE_ENUM\020\016\"\004\010\006\020\006\"<\n\022ModelTypeRan"
-  "geInfo\022\013\n\003min\030\001 \001(\002\022\013\n\003max\030\002 \001(\002\022\014\n\004step"
-  "\030\003 \001(\002\"\206\001\n\023ModelTypeEnumOption\022\n\n\002id\030\001 \001"
-  "(\t\022\023\n\013description\030\002 \001(\t\0227\n\021model_type_fi"
-  "elds\030\003 \003(\0132\034.clarifai.api.ModelTypeField"
-  "\022\025\n\rinternal_only\030\004 \001(\010\"C\n\nModelQuery\022\014\n"
-  "\004name\030\001 \001(\t\022\020\n\004type\030\002 \001(\tB\002\030\001\022\025\n\rmodel_t"
-  "ype_id\030\003 \001(\t\"\345\003\n\014ModelVersion\022\n\n\002id\030\001 \001("
-  "\t\022.\n\ncreated_at\030\002 \001(\0132\032.google.protobuf."
-  "Timestamp\022+\n\006status\030\003 \001(\0132\033.clarifai.api"
-  ".status.Status\022\034\n\024active_concept_count\030\004"
-  " \001(\r\022*\n\007metrics\030\005 \001(\0132\031.clarifai.api.Eva"
-  "lMetrics\022\031\n\021total_input_count\030\006 \001(\r\0220\n\014c"
-  "ompleted_at\030\n \001(\0132\032.google.protobuf.Time"
-  "stamp\022\023\n\013description\030\013 \001(\t\022,\n\nvisibility"
-  "\030\014 \001(\0132\030.clarifai.api.Visibility\022\016\n\006app_"
-  "id\030\r \001(\t\022\017\n\007user_id\030\016 \001(\t\022/\n\013modified_at"
-  "\030\017 \001(\0132\032.google.protobuf.Timestamp\022)\n\010me"
-  "tadata\030\020 \001(\0132\027.google.protobuf.Struct\022\017\n"
-  "\007license\030\021 \001(\tJ\004\010\t\020\n\"1\n\nLabelCount\022\024\n\014co"
-  "ncept_name\030\001 \001(\t\022\r\n\005count\030\002 \001(\r\"L\n\021Label"
-  "Distribution\0227\n\025positive_label_counts\030\001 "
-  "\003(\0132\030.clarifai.api.LabelCount\"B\n\027Cooccur"
-  "renceMatrixEntry\022\013\n\003row\030\001 \001(\t\022\013\n\003col\030\002 \001"
-  "(\t\022\r\n\005count\030\003 \001(\r\"`\n\022CooccurrenceMatrix\022"
-  "5\n\006matrix\030\001 \003(\0132%.clarifai.api.Cooccurre"
-  "nceMatrixEntry\022\023\n\013concept_ids\030\002 \003(\t\"N\n\024C"
-  "onfusionMatrixEntry\022\021\n\tpredicted\030\001 \001(\t\022\016"
-  "\n\006actual\030\002 \001(\t\022\023\n\005value\030\004 \001(\002B\004\200\265\030\001\"Z\n\017C"
-  "onfusionMatrix\0222\n\006matrix\030\001 \003(\0132\".clarifa"
-  "i.api.ConfusionMatrixEntry\022\023\n\013concept_id"
-  "s\030\002 \003(\t\"t\n\003ROC\022\021\n\003fpr\030\001 \003(\002B\004\200\265\030\001\022\021\n\003tpr"
-  "\030\002 \003(\002B\004\200\265\030\001\022\030\n\nthresholds\030\003 \003(\002B\004\200\265\030\001\022\025"
-  "\n\rfpr_per_image\030\004 \003(\002\022\026\n\016fpr_per_object\030"
-  "\005 \003(\002\"_\n\024PrecisionRecallCurve\022\024\n\006recall\030"
-  "\001 \003(\002B\004\200\265\030\001\022\027\n\tprecision\030\002 \003(\002B\004\200\265\030\001\022\030\n\n"
-  "thresholds\030\003 \003(\002B\004\200\265\030\001\"\352\002\n\rBinaryMetrics"
-  "\022\025\n\007num_pos\030\001 \001(\rB\004\200\265\030\001\022\025\n\007num_neg\030\002 \001(\r"
-  "B\004\200\265\030\001\022\025\n\007num_tot\030\003 \001(\rB\004\200\265\030\001\022\025\n\007roc_auc"
-  "\030\004 \001(\002B\004\200\265\030\001\022\020\n\002f1\030\005 \001(\002B\004\200\265\030\001\022&\n\007concep"
-  "t\030\006 \001(\0132\025.clarifai.api.Concept\022$\n\troc_cu"
-  "rve\030\007 \001(\0132\021.clarifai.api.ROC\022B\n\026precisio"
-  "n_recall_curve\030\010 \001(\0132\".clarifai.api.Prec"
-  "isionRecallCurve\022\025\n\ravg_precision\030\t \001(\002\022"
-  "\021\n\tarea_name\030\n \001(\t\022\020\n\010area_min\030\013 \001(\001\022\020\n\010"
-  "area_max\030\014 \001(\001\022\013\n\003iou\030\r \001(\002\"\221\001\n\016TrackerM"
-  "etrics\022\020\n\010mot_mota\030\001 \001(\002\022\030\n\020mot_num_swit"
-  "ches\030\002 \001(\005\022\022\n\nmorse_frag\030\003 \001(\002\022\025\n\ravg_pr"
-  "ecision\030\004 \001(\002\022\014\n\004aiid\030\005 \001(\t\022\032\n\022unique_sw"
-  "itch_rate\030\006 \001(\002\"\356\001\n\020EvalTestSetEntry\022\016\n\002"
-  "id\030\001 \001(\tB\002\030\001\022\017\n\003url\030\002 \001(\tB\002\030\001\022\"\n\005input\030\006"
-  " \001(\0132\023.clarifai.api.Input\0221\n\022predicted_c"
-  "oncepts\030\003 \003(\0132\025.clarifai.api.Concept\0224\n\025"
-  "ground_truth_concepts\030\004 \003(\0132\025.clarifai.a"
-  "pi.Concept\022,\n\nannotation\030\005 \001(\0132\030.clarifa"
-  "i.api.Annotation\"\315\001\n\016LOPQEvalResult\022\t\n\001k"
-  "\030\001 \001(\005\022#\n\025recall_vs_brute_force\030\002 \001(\002B\004\200"
-  "\265\030\001\022(\n\032kendall_tau_vs_brute_force\030\003 \001(\002B"
-  "\004\200\265\030\001\022(\n\032most_frequent_code_percent\030\004 \001("
-  "\002B\004\200\265\030\001\022\027\n\tlopq_ndcg\030\005 \001(\002B\004\200\265\030\001\022\036\n\020brut"
-  "e_force_ndcg\030\006 \001(\002B\004\200\265\030\001\"\214\003\n\016MetricsSumm"
-  "ary\022\031\n\rtop1_accuracy\030\001 \001(\002B\002\030\001\022\031\n\rtop5_a"
-  "ccuracy\030\002 \001(\002B\002\030\001\022\037\n\021macro_avg_roc_auc\030\003"
-  " \001(\002B\004\200\265\030\001\022\037\n\021macro_std_roc_auc\030\004 \001(\002B\004\200"
-  "\265\030\001\022 \n\022macro_avg_f1_score\030\005 \001(\002B\004\200\265\030\001\022 \n"
-  "\022macro_std_f1_score\030\006 \001(\002B\004\200\265\030\001\022!\n\023macro"
-  "_avg_precision\030\007 \001(\002B\004\200\265\030\001\022\036\n\020macro_avg_"
-  "recall\030\010 \001(\002B\004\200\265\030\001\022!\n\031mean_avg_precision"
-  "_iou_50\030\n \001(\002\022$\n\034mean_avg_precision_iou_"
-  "range\030\013 \001(\002\0222\n\014lopq_metrics\030\t \003(\0132\034.clar"
-  "ifai.api.LOPQEvalResult\"\257\004\n\013EvalMetrics\022"
-  "+\n\006status\030\001 \001(\0132\033.clarifai.api.status.St"
-  "atus\022\n\n\002id\030\n \001(\t\022-\n\007summary\030\002 \001(\0132\034.clar"
-  "ifai.api.MetricsSummary\0227\n\020confusion_mat"
-  "rix\030\003 \001(\0132\035.clarifai.api.ConfusionMatrix"
-  "\022=\n\023cooccurrence_matrix\030\004 \001(\0132 .clarifai"
-  ".api.CooccurrenceMatrix\0225\n\014label_counts\030"
-  "\005 \001(\0132\037.clarifai.api.LabelDistribution\0223"
-  "\n\016binary_metrics\030\006 \003(\0132\033.clarifai.api.Bi"
-  "naryMetrics\0220\n\010test_set\030\007 \003(\0132\036.clarifai"
-  ".api.EvalTestSetEntry\0224\n\017metrics_by_area"
-  "\030\010 \003(\0132\033.clarifai.api.BinaryMetrics\0225\n\020m"
-  "etrics_by_class\030\t \003(\0132\033.clarifai.api.Bin"
-  "aryMetrics\0225\n\017tracker_metrics\030\013 \003(\0132\034.cl"
-  "arifai.api.TrackerMetrics\"\267\001\n\013FieldsValu"
-  "e\022\030\n\020confusion_matrix\030\001 \001(\010\022\033\n\023cooccurre"
-  "nce_matrix\030\002 \001(\010\022\024\n\014label_counts\030\003 \001(\010\022\026"
-  "\n\016binary_metrics\030\004 \001(\010\022\020\n\010test_set\030\005 \001(\010"
-  "\022\027\n\017metrics_by_area\030\006 \001(\010\022\030\n\020metrics_by_"
-  "class\030\007 \001(\010\"\333\001\n\006Output\022\n\n\002id\030\001 \001(\t\022+\n\006st"
-  "atus\030\002 \001(\0132\033.clarifai.api.status.Status\022"
-  ".\n\ncreated_at\030\003 \001(\0132\032.google.protobuf.Ti"
-  "mestamp\022\"\n\005model\030\004 \001(\0132\023.clarifai.api.Mo"
-  "del\022\"\n\005input\030\005 \001(\0132\023.clarifai.api.Input\022"
-  " \n\004data\030\006 \001(\0132\022.clarifai.api.Data\"4\n\tSco"
-  "peDeps\022\r\n\005scope\030\001 \001(\t\022\030\n\020depending_scope"
-  "s\030\002 \003(\t\":\n\014EndpointDeps\022\020\n\010endpoint\030\001 \001("
-  "\t\022\030\n\020depending_scopes\030\002 \003(\t\"l\n\003Hit\022\023\n\005sc"
-  "ore\030\001 \001(\002B\004\200\265\030\001\022\"\n\005input\030\002 \001(\0132\023.clarifa"
-  "i.api.Input\022,\n\nannotation\030\003 \001(\0132\030.clarif"
-  "ai.api.Annotation\"\215\001\n\003And\022\"\n\005input\030\001 \001(\013"
-  "2\023.clarifai.api.Input\022$\n\006output\030\002 \001(\0132\024."
-  "clarifai.api.Output\022\016\n\006negate\030\003 \001(\010\022,\n\na"
-  "nnotation\030\004 \001(\0132\030.clarifai.api.Annotatio"
-  "n\"\204\001\n\005Query\022\037\n\004ands\030\001 \003(\0132\021.clarifai.api"
-  ".And\022\020\n\010language\030\002 \001(\t\022%\n\007filters\030\003 \003(\0132"
-  "\024.clarifai.api.Filter\022!\n\005ranks\030\004 \003(\0132\022.c"
-  "larifai.api.Rank\"\336\002\n\006Search\022\"\n\005query\030\001 \001"
-  "(\0132\023.clarifai.api.Query\022\n\n\002id\030\002 \001(\t\022\026\n\016a"
-  "pplication_id\030\003 \001(\t\022\014\n\004name\030\004 \001(\t\022)\n\005as_"
-  "of\030\005 \001(\0132\032.google.protobuf.Timestamp\022\020\n\010"
-  "git_hash\030\006 \001(\t\022.\n\ncreated_at\030\007 \001(\0132\032.goo"
-  "gle.protobuf.Timestamp\022/\n\013modified_at\030\010 "
-  "\001(\0132\032.google.protobuf.Timestamp\022\021\n\talgor"
-  "ithm\030\t \001(\t\022\014\n\004save\030\n \001(\010\022\021\n\tmin_value\030\013 "
-  "\001(\002\022,\n\nvisibility\030\014 \001(\0132\030.clarifai.api.V"
-  "isibility\"\244\001\n\006Filter\022\016\n\006negate\030\003 \001(\010\022,\n\n"
-  "annotation\030\004 \001(\0132\030.clarifai.api.Annotati"
-  "on\022\"\n\005input\030\005 \001(\0132\023.clarifai.api.Input\0228"
-  "\n\027last_updated_time_range\030\006 \001(\0132\027.clarif"
-  "ai.api.TimeRange\"i\n\tTimeRange\022.\n\nstart_t"
-  "ime\030\001 \001(\0132\032.google.protobuf.Timestamp\022,\n"
-  "\010end_time\030\002 \001(\0132\032.google.protobuf.Timest"
-  "amp\"D\n\004Rank\022\016\n\006negate\030\003 \001(\010\022,\n\nannotatio"
-  "n\030\004 \001(\0132\030.clarifai.api.Annotation\"\215\002\n\027An"
-  "notationSearchMetrics\022*\n\014ground_truth\030\001 "
-  "\001(\0132\024.clarifai.api.Search\022,\n\016search_to_e"
-  "val\030\002 \001(\0132\024.clarifai.api.Search\022*\n\007metri"
-  "cs\030\003 \001(\0132\031.clarifai.api.EvalMetrics\022 \n\004d"
-  "ata\030\004 \001(\0132\022.clarifai.api.Data\022\034\n\024active_"
-  "concept_count\030\005 \001(\r\022,\n\nvisibility\030\006 \001(\0132"
-  "\030.clarifai.api.Visibility\"\221\001\n\004Text\022\013\n\003ra"
-  "w\030\001 \001(\t\022\013\n\003url\030\002 \001(\t\022\033\n\023allow_duplicate_"
-  "url\030\003 \001(\010\022\'\n\006hosted\030\004 \001(\0132\027.clarifai.api"
-  ".HostedURL\022)\n\ttext_info\030\005 \001(\0132\026.clarifai"
-  ".api.TextInfo\"0\n\010TextInfo\022\022\n\nchar_count\030"
-  "\001 \001(\005\022\020\n\010encoding\030\002 \001(\t\"\326\005\n\004User\022\n\n\002id\030\001"
-  " \001(\t\022\031\n\rprimary_email\030\002 \001(\tB\002\030\001\022\022\n\nfirst"
-  "_name\030\003 \001(\t\022\021\n\tlast_name\030\004 \001(\t\022\024\n\014compan"
-  "y_name\030\005 \001(\t\022\021\n\tjob_title\030\023 \001(\t\022\020\n\010job_r"
-  "ole\030\024 \001(\t\022\025\n\tbill_type\030\007 \001(\tB\002\030\001\022.\n\ncrea"
-  "ted_at\030\006 \001(\0132\032.google.protobuf.Timestamp"
-  "\0229\n\021date_gdpr_consent\030\010 \001(\0132\032.google.pro"
-  "tobuf.TimestampB\002\030\001\0228\n\020date_tos_consent\030"
-  "\t \001(\0132\032.google.protobuf.TimestampB\002\030\001\022>\n"
-  "\026date_marketing_consent\030\n \001(\0132\032.google.p"
-  "rotobuf.TimestampB\002\030\001\022-\n\010metadata\030\013 \001(\0132"
-  "\027.google.protobuf.StructB\002\030\001\0227\n\017email_ad"
-  "dresses\030\014 \003(\0132\032.clarifai.api.EmailAddres"
-  "sB\002\030\001\022\030\n\014is_org_admin\030\016 \001(\010B\002\030\001\022#\n\027two_f"
-  "actor_auth_enabled\030\017 \001(\010B\002\030\001\022\027\n\013teams_co"
-  "unt\030\020 \001(\rB\002\030\001\022\022\n\nis_starred\030\025 \001(\010\022\022\n\nsta"
-  "r_count\030\026 \001(\005\022,\n\nvisibility\030\021 \001(\0132\030.clar"
-  "ifai.api.Visibility\022-\n\013user_detail\030\022 \001(\013"
-  "2\030.clarifai.api.UserDetailJ\004\010\r\020\016\"\253\003\n\nUse"
-  "rDetail\022\025\n\rprimary_email\030\001 \001(\t\022\021\n\tbill_t"
-  "ype\030\002 \001(\t\0225\n\021date_gdpr_consent\030\003 \001(\0132\032.g"
-  "oogle.protobuf.Timestamp\0224\n\020date_tos_con"
-  "sent\030\004 \001(\0132\032.google.protobuf.Timestamp\022:"
-  "\n\026date_marketing_consent\030\005 \001(\0132\032.google."
-  "protobuf.Timestamp\022)\n\010metadata\030\006 \001(\0132\027.g"
-  "oogle.protobuf.Struct\0223\n\017email_addresses"
-  "\030\007 \003(\0132\032.clarifai.api.EmailAddress\022\024\n\014is"
-  "_org_admin\030\010 \001(\010\022\037\n\027two_factor_auth_enab"
-  "led\030\t \001(\010\022\023\n\013teams_count\030\n \001(\r\022\017\n\007countr"
-  "y\030\013 \001(\t\022\r\n\005state\030\014 \001(\t\"R\n\014EmailAddress\022\023"
-  "\n\005email\030\001 \001(\tB\004\200\265\030\001\022\025\n\007primary\030\002 \001(\010B\004\200\265"
-  "\030\001\022\026\n\010verified\030\003 \001(\010B\004\200\265\030\001\"\035\n\010Password\022\021"
-  "\n\tplaintext\030\001 \001(\t\"\206\003\n\022PasswordViolations"
-  "\022\026\n\016minimum_length\030\001 \001(\010\022\026\n\016maximum_leng"
-  "th\030\002 \001(\010\022\031\n\021upper_case_needed\030\003 \001(\010\022\031\n\021l"
-  "ower_case_needed\030\004 \001(\010\022\026\n\016numeric_needed"
-  "\030\005 \001(\010\022\037\n\027non_alphanumeric_needed\030\006 \001(\010\022"
-  "\026\n\016password_reuse\030\007 \001(\010\022\025\n\rexclude_names"
-  "\030\010 \001(\010\022\025\n\rexclude_email\030\t \001(\010\022\034\n\024no_conf"
-  "using_letters\030\n \001(\010\022\033\n\023no_simple_passwor"
-  "ds\030\013 \001(\010\022\030\n\020no_common_vocabs\030\014 \001(\010\022\033\n\023no"
-  "_overlap_with_old\030\r \001(\010\022\031\n\021password_life"
-  "span\030\016 \001(\010\"\256\001\n\005Video\022\013\n\003url\030\001 \001(\t\022\016\n\006bas"
-  "e64\030\002 \001(\014\022\033\n\023allow_duplicate_url\030\004 \001(\010\022\025"
-  "\n\rthumbnail_url\030\005 \001(\t\022\'\n\006hosted\030\006 \001(\0132\027."
-  "clarifai.api.HostedURL\022+\n\nvideo_info\030\007 \001"
-  "(\0132\027.clarifai.api.VideoInfo\"\216\001\n\tVideoInf"
-  "o\022\r\n\005width\030\001 \001(\005\022\016\n\006height\030\002 \001(\005\022\013\n\003fps\030"
-  "\003 \001(\002\022\024\n\014video_format\030\004 \001(\t\022\020\n\010bit_rate\030"
-  "\005 \001(\005\022\023\n\013frame_count\030\006 \001(\005\022\030\n\020duration_s"
-  "econds\030\007 \001(\002\"\261\003\n\010Workflow\022\n\n\002id\030\001 \001(\t\022\016\n"
-  "\006app_id\030\002 \001(\t\022.\n\ncreated_at\030\003 \001(\0132\032.goog"
-  "le.protobuf.Timestamp\022)\n\005nodes\030\004 \003(\0132\032.c"
-  "larifai.api.WorkflowNode\022)\n\010metadata\030\005 \001"
-  "(\0132\027.google.protobuf.Struct\022,\n\nvisibilit"
-  "y\030\006 \001(\0132\030.clarifai.api.Visibility\022\017\n\007use"
-  "r_id\030\007 \001(\t\022/\n\013modified_at\030\010 \001(\0132\032.google"
-  ".protobuf.Timestamp\022.\n\007version\030\t \001(\0132\035.c"
-  "larifai.api.WorkflowVersion\022\022\n\nis_starre"
-  "d\030\n \001(\010\022\022\n\nstar_count\030\013 \001(\005\022\023\n\013descripti"
-  "on\030\014 \001(\t\022\r\n\005notes\030\r \001(\t\022\027\n\tuse_cases\030\016 \003"
-  "(\tB\004\200\265\030\001\"\336\002\n\017WorkflowVersion\022\n\n\002id\030\001 \001(\t"
-  "\022\023\n\013workflow_id\030\002 \001(\t\022.\n\ncreated_at\030\003 \001("
-  "\0132\032.google.protobuf.Timestamp\022/\n\013modifie"
-  "d_at\030\004 \001(\0132\032.google.protobuf.Timestamp\022,"
-  "\n\nvisibility\030\005 \001(\0132\030.clarifai.api.Visibi"
-  "lity\022)\n\005nodes\030\006 \003(\0132\032.clarifai.api.Workf"
-  "lowNode\022)\n\010metadata\030\007 \001(\0132\027.google.proto"
-  "buf.Struct\022\016\n\006app_id\030\010 \001(\t\022\017\n\007user_id\030\t "
-  "\001(\t\022\023\n\013description\030\n \001(\t\022\017\n\007license\030\013 \001("
-  "\t\"\205\001\n\014WorkflowNode\022\n\n\002id\030\001 \001(\t\022\"\n\005model\030"
-  "\002 \001(\0132\023.clarifai.api.Model\022,\n\013node_input"
-  "s\030\003 \003(\0132\027.clarifai.api.NodeInput\022\027\n\017supp"
-  "ress_output\030\004 \001(\010\"\034\n\tNodeInput\022\017\n\007node_i"
-  "d\030\001 \001(\t\"\201\002\n\016WorkflowResult\022\n\n\002id\030\001 \001(\t\022+"
-  "\n\006status\030\002 \001(\0132\033.clarifai.api.status.Sta"
-  "tus\022.\n\ncreated_at\030\003 \001(\0132\032.google.protobu"
-  "f.Timestamp\022\"\n\005model\030\004 \001(\0132\023.clarifai.ap"
-  "i.Model\022\"\n\005input\030\005 \001(\0132\023.clarifai.api.In"
-  "put\022%\n\007outputs\030\006 \003(\0132\024.clarifai.api.Outp"
-  "ut\022\027\n\017suppress_output\030\007 \001(\010\"\033\n\rWorkflowS"
-  "tate\022\n\n\002id\030\001 \001(\t\"\216\002\n\016AppDuplication\022\n\n\002i"
-  "d\030\001 \001(\t\022\022\n\nnew_app_id\030\002 \001(\t\022\024\n\014new_app_n"
-  "ame\030\003 \001(\t\022+\n\006status\030\004 \001(\0132\033.clarifai.api"
-  ".status.Status\022.\n\ncreated_at\030\005 \001(\0132\032.goo"
-  "gle.protobuf.Timestamp\0224\n\020last_modified_"
-  "at\030\006 \001(\0132\032.google.protobuf.Timestamp\0223\n\006"
-  "filter\030\007 \001(\0132#.clarifai.api.AppDuplicati"
-  "onFilters\"\212\001\n\025AppDuplicationFilters\022\023\n\013c"
-  "opy_inputs\030\001 \001(\010\022\025\n\rcopy_concepts\030\002 \001(\010\022"
-  "\030\n\020copy_annotations\030\003 \001(\010\022\023\n\013copy_models"
-  "\030\004 \001(\010\022\026\n\016copy_workflows\030\005 \001(\010\"\315\005\n\004Task\022"
-  "\n\n\002id\030\001 \001(\t\022.\n\ncreated_at\030\002 \001(\0132\032.google"
-  ".protobuf.Timestamp\022/\n\013modified_at\030\003 \001(\013"
-  "2\032.google.protobuf.Timestamp\022)\n\004type\030\004 \001"
-  "(\0162\033.clarifai.api.Task.TaskType\022\023\n\013descr"
-  "iption\030\005 \001(\t\022(\n\006worker\030\006 \001(\0132\030.clarifai."
-  "api.TaskWorker\022\023\n\013concept_ids\030\007 \003(\t\0223\n\014i"
-  "nput_source\030\010 \001(\0132\035.clarifai.api.TaskInp"
-  "utSource\022\021\n\tsample_ms\030\t \001(\r\0223\n\014ai_assist"
-  "ant\030\n \001(\0132\035.clarifai.api.TaskAIAssistant"
-  "\022(\n\006review\030\013 \001(\0132\030.clarifai.api.TaskRevi"
-  "ew\022+\n\006status\030\014 \001(\0132\033.clarifai.api.status"
-  ".Status\022\014\n\004name\030\r \001(\t\022:\n\020ai_assist_param"
-  "s\030\016 \001(\0132 .clarifai.api.AiAssistParameter"
-  "s\022,\n\nvisibility\030\017 \001(\0132\030.clarifai.api.Vis"
-  "ibility\022\016\n\006app_id\030\020 \001(\t\022\017\n\007user_id\030\021 \001(\t"
-  "\"l\n\010TaskType\022\020\n\014TYPE_NOT_SET\020\000\022\033\n\027CONCEP"
-  "TS_CLASSIFICATION\020\001\022\032\n\026BOUNDING_BOX_DETE"
-  "CTION\020\002\022\025\n\021POLYGON_DETECTION\020\003\"`\n\022AiAssi"
-  "stParameters\022\025\n\rmin_threshold\030\001 \001(\002\022\025\n\rm"
-  "ax_threshold\030\002 \001(\002\022\034\n\024concept_relation_i"
-  "ds\030\003 \003(\t\"\230\002\n\nTaskWorker\022=\n\010strategy\030\001 \001("
-  "\0162+.clarifai.api.TaskWorker.TaskWorkerSt"
-  "rategy\022\020\n\010user_ids\030\002 \003(\t\022T\n\031partitioned_"
-  "strategy_info\030\003 \001(\0132/.clarifai.api.TaskW"
-  "orkerPartitionedStrategyInfoH\000\"R\n\022TaskWo"
-  "rkerStrategy\022\033\n\027WORKER_STRATEGY_NOT_SET\020"
-  "\000\022\017\n\013PARTITIONED\020\002\022\010\n\004FULL\020\003\"\004\010\001\020\001B\017\n\rst"
-  "rategy_info\"\251\002\n!TaskWorkerPartitionedStr"
-  "ategyInfo\022[\n\004type\030\001 \001(\0162M.clarifai.api.T"
-  "askWorkerPartitionedStrategyInfo.TaskWor"
-  "kerPartitionedStrategy\022\031\n\021workers_per_in"
-  "put\030\002 \001(\005\022(\n\007weights\030\003 \001(\0132\027.google.prot"
-  "obuf.Struct\"b\n\035TaskWorkerPartitionedStra"
-  "tegy\022\'\n#PARTITIONED_WORKER_STRATEGY_NOT_"
-  "SET\020\000\022\n\n\006EVENLY\020\001\022\014\n\010WEIGHTED\020\002\"\266\001\n\017Task"
-  "InputSource\022\?\n\004type\030\001 \001(\01621.clarifai.api"
-  ".TaskInputSource.TaskInputSourceType\022\n\n\002"
-  "id\030\002 \001(\t\"V\n\023TaskInputSourceType\022\035\n\031INPUT"
-  "_SOURCE_TYPE_NOT_SET\020\000\022\016\n\nALL_INPUTS\020\001\022\020"
-  "\n\014SAVED_SEARCH\020\002\"\351\002\n\nTaskReview\022=\n\010strat"
-  "egy\030\001 \001(\0162+.clarifai.api.TaskReview.Task"
-  "ReviewStrategy\022\020\n\010user_ids\030\002 \003(\t\022J\n\024manu"
-  "al_strategy_info\030\003 \001(\0132*.clarifai.api.Ta"
-  "skReviewManualStrategyInfoH\000\022P\n\027consensu"
-  "s_strategy_info\030\004 \001(\0132-.clarifai.api.Tas"
-  "kReviewConsensusStrategyInfoH\000\"[\n\022TaskRe"
-  "viewStrategy\022 \n\034TASK_REVIEW_STRATEGY_NOT"
-  "_SET\020\000\022\010\n\004NONE\020\001\022\n\n\006MANUAL\020\002\022\r\n\tCONSENSU"
-  "S\020\003B\017\n\rstrategy_info\"9\n\034TaskReviewManual"
-  "StrategyInfo\022\031\n\021sample_percentage\030\001 \001(\002\""
-  "C\n\037TaskReviewConsensusStrategyInfo\022\032\n\022ap"
-  "proval_threshold\030\002 \001(\rJ\004\010\001\020\002\"&\n\017TaskAIAs"
-  "sistant\022\023\n\013workflow_id\030\001 \001(\t\"\274\001\n\026TaskSta"
-  "tusCountPerUser\022\017\n\007user_id\030\001 \001(\t\022\025\n\007pend"
-  "ing\030\002 \001(\rB\004\200\265\030\001\022\035\n\017awaiting_review\030\003 \001(\r"
-  "B\004\200\265\030\001\022\025\n\007success\030\004 \001(\rB\004\200\265\030\001\022\033\n\rreview_"
-  "denied\030\005 \001(\rB\004\200\265\030\001\022\'\n\031awaiting_consensus"
-  "_review\030\006 \001(\rB\004\200\265\030\001\"\201\002\n\tCollector\022\n\n\002id\030"
-  "\001 \001(\t\022\023\n\013description\030\002 \001(\t\022.\n\ncreated_at"
-  "\030\003 \001(\0132\032.google.protobuf.Timestamp\022\035\n\025pr"
-  "e_queue_workflow_id\030\004 \001(\t\022\036\n\026post_queue_"
-  "workflow_id\030\005 \001(\t\0227\n\020collector_source\030\006 "
-  "\001(\0132\035.clarifai.api.CollectorSource\022+\n\006st"
-  "atus\030\007 \001(\0132\033.clarifai.api.status.Status\""
-  "t\n\017CollectorSource\022a\n\'api_post_model_out"
-  "puts_collector_source\030\002 \001(\01320.clarifai.a"
-  "pi.APIPostModelOutputsCollectorSource\"\231\001"
-  "\n\"APIPostModelOutputsCollectorSource\022\025\n\r"
-  "model_user_id\030\001 \001(\t\022\024\n\014model_app_id\030\002 \001("
-  "\t\022\020\n\010model_id\030\003 \001(\t\022\030\n\020model_version_id\030"
-  "\004 \001(\t\022\032\n\022post_inputs_key_id\030\005 \001(\t\"R\n\tSta"
-  "tValue\022(\n\004time\030\001 \001(\0132\032.google.protobuf.T"
-  "imestamp\022\r\n\005value\030\002 \001(\002\022\014\n\004tags\030\003 \003(\t\"\246\001"
-  "\n\030StatValueAggregateResult\022\?\n\025stat_value"
-  "_aggregates\030\001 \003(\0132 .clarifai.api.StatVal"
-  "ueAggregate\022I\n\032stat_value_aggregate_quer"
-  "y\030\002 \001(\0132%.clarifai.api.StatValueAggregat"
-  "eQuery\"t\n\022StatValueAggregate\022(\n\004time\030\001 \001"
-  "(\0132\032.google.protobuf.Timestamp\022\027\n\017aggreg"
-  "ate_value\030\002 \001(\002\022\r\n\005count\030\003 \001(\004\022\014\n\004tags\030\004"
-  " \003(\t\"\221\002\n\027StatValueAggregateQuery\022\014\n\004tags"
-  "\030\001 \003(\t\022\022\n\ntag_groups\030\002 \003(\t\022;\n\023stat_value"
-  "_agg_type\030\003 \001(\0162\036.clarifai.api.StatValue"
-  "AggType\0229\n\022stat_time_agg_type\030\004 \001(\0162\035.cl"
-  "arifai.api.StatTimeAggType\022.\n\nstart_time"
-  "\030\005 \001(\0132\032.google.protobuf.Timestamp\022,\n\010en"
-  "d_time\030\006 \001(\0132\032.google.protobuf.Timestamp"
-  "\"\207\001\n\nVisibility\0223\n\010gettable\030\001 \001(\0162!.clar"
-  "ifai.api.Visibility.Gettable\"D\n\010Gettable"
-  "\022\026\n\022UNKNOWN_VISIBILITY\020\000\022\013\n\007PRIVATE\020\n\022\007\n"
-  "\003ORG\020\036\022\n\n\006PUBLIC\0202\"X\n\016TrendingMetric\022\017\n\007"
-  "user_id\030\001 \001(\t\022\016\n\006app_id\030\002 \001(\t\022\021\n\tobject_"
-  "id\030\003 \001(\t\022\022\n\nview_count\030\004 \001(\004\"f\n\013TimeSegm"
-  "ent\022\n\n\002id\030\001 \001(\t\022 \n\004data\030\002 \001(\0132\022.clarifai"
-  ".api.Data\022)\n\ttime_info\030\003 \001(\0132\026.clarifai."
-  "api.TimeInfo\"D\n\010TimeInfo\022\022\n\nnum_frames\030\001"
-  " \001(\r\022\022\n\nbegin_time\030\002 \001(\r\022\020\n\010end_time\030\003 \001"
-  "(\r*H\n\020ExpirationAction\022\035\n\031EXPIRATION_ACT"
-  "ION_NOT_SET\020\000\022\t\n\005DELAY\020\001\022\n\n\006EXPIRY\020\002*M\n\014"
-  "LicenseScope\022\031\n\025LICENSE_SCOPE_NOT_SET\020\000\022"
-  "\013\n\007PREDICT\020\001\022\t\n\005TRAIN\020\002\022\n\n\006SEARCH\020\003*\217\001\n\017"
-  "ValueComparator\022\035\n\031CONCEPT_THRESHOLD_NOT"
-  "_SET\020\000\022\020\n\014GREATER_THAN\020\001\022\031\n\025GREATER_THAN"
-  "_OR_EQUAL\020\002\022\r\n\tLESS_THAN\020\003\022\026\n\022LESS_THAN_"
-  "OR_EQUAL\020\004\022\t\n\005EQUAL\020\005*3\n\016EvaluationType\022"
-  "\022\n\016Classification\020\000\022\r\n\tDetection\020\001*f\n\014AP"
-  "IEventType\022\032\n\026API_EVENT_TYPE_NOT_SET\020\000\022\023"
-  "\n\017ON_PREM_PREDICT\020\001\022\021\n\rON_PREM_TRAIN\020\002\022\022"
-  "\n\016ON_PREM_SEARCH\020\003*<\n\021UsageIntervalType\022"
-  "\t\n\005undef\020\000\022\007\n\003day\020\001\022\t\n\005month\020\002\022\010\n\004year\020\003"
-  "*\035\n\010RoleType\022\010\n\004TEAM\020\000\022\007\n\003ORG\020\001*$\n\020StatV"
-  "alueAggType\022\007\n\003SUM\020\000\022\007\n\003AVG\020\001*`\n\017StatTim"
-  "eAggType\022\017\n\013NO_TIME_AGG\020\000\022\010\n\004YEAR\020\001\022\t\n\005M"
-  "ONTH\020\002\022\010\n\004WEEK\020\003\022\007\n\003DAY\020\004\022\010\n\004HOUR\020\005\022\n\n\006M"
-  "INUTE\020\006*b\n\023ValidationErrorType\022!\n\035VALIDA"
-  "TION_ERROR_TYPE_NOT_SET\020\000\022\016\n\nRESTRICTED\020"
-  "\001\022\014\n\010DATABASE\020\002\022\n\n\006FORMAT\020\003B\225\001\n\025com.clar"
-  "ifai.grpc.apiP\001Zsgithub.com/Clarifai/cla"
-  "rifai-go-grpc/proto/clarifai/api/github."
-  "com/Clarifai/clarifai-go-grpc/proto/clar"
-  "ifai/api/api\242\002\004CAIPb\006proto3"
+  "clarifai.api.DatasetFilter\"o\n\025DatasetVer"
+  "sionMetrics\022\024\n\014inputs_count\030\001 \001(\004\022\"\n\032pos"
+  "itive_annotations_count\030\002 \001(\004\022\034\n\024boundin"
+  "g_boxes_count\030\003 \001(\004\"n\n\031WorkflowResultsSi"
+  "milarity\022(\n\013probe_input\030\001 \001(\0132\023.clarifai"
+  ".api.Input\022\'\n\014pool_results\030\002 \003(\0132\021.clari"
+  "fai.api.Hit\"\364\001\n\003Key\022\n\n\002id\030\001 \001(\t\022\014\n\004type\030"
+  "\010 \001(\t\022\023\n\013description\030\002 \001(\t\022\016\n\006scopes\030\003 \003"
+  "(\t\022\021\n\tendpoints\030\007 \003(\t\022\037\n\004apps\030\004 \003(\0132\021.cl"
+  "arifai.api.App\022.\n\ncreated_at\030\005 \001(\0132\032.goo"
+  "gle.protobuf.Timestamp\022.\n\nexpires_at\030\006 \001"
+  "(\0132\032.google.protobuf.Timestamp\022\032\n\022author"
+  "ized_idp_ids\030\t \003(\t\"\312\005\n\005Model\022\n\n\002id\030\001 \001(\t"
+  "\022\020\n\004name\030\002 \001(\tB\002\030\001\022.\n\ncreated_at\030\003 \001(\0132\032"
+  ".google.protobuf.Timestamp\022/\n\013modified_a"
+  "t\030\023 \001(\0132\032.google.protobuf.Timestamp\022\024\n\006a"
+  "pp_id\030\004 \001(\tB\004\200\265\030\001\022-\n\013output_info\030\005 \001(\0132\030"
+  ".clarifai.api.OutputInfo\0221\n\rmodel_versio"
+  "n\030\006 \001(\0132\032.clarifai.api.ModelVersion\022\030\n\014d"
+  "isplay_name\030\007 \001(\tB\002\030\001\022\017\n\007user_id\030\t \001(\t\022+"
+  "\n\ninput_info\030\014 \001(\0132\027.clarifai.api.InputI"
+  "nfo\022+\n\ntrain_info\030\r \001(\0132\027.clarifai.api.T"
+  "rainInfo\022\025\n\rmodel_type_id\030\016 \001(\t\022,\n\nvisib"
+  "ility\030\017 \001(\0132\030.clarifai.api.Visibility\022\023\n"
+  "\013description\030\020 \001(\t\022)\n\010metadata\030\021 \001(\0132\027.g"
+  "oogle.protobuf.Struct\022\r\n\005notes\030\022 \001(\t\022\026\n\010"
+  "toolkits\030\024 \003(\tB\004\200\265\030\001\022\027\n\tuse_cases\030\025 \003(\tB"
+  "\004\200\265\030\001\022\027\n\tlanguages\030\031 \003(\tB\004\200\265\030\001\022\022\n\nis_sta"
+  "rred\030\026 \001(\010\022\022\n\nstar_count\030\027 \001(\005\022-\n\013import"
+  "_info\030\030 \001(\0132\030.clarifai.api.ImportInfoJ\004\010"
+  "\010\020\tJ\004\010\n\020\013J\004\010\013\020\014\"t\n\016ModelReference\022\n\n\002id\030"
+  "\001 \001(\t\022\020\n\010model_id\030\002 \001(\t\022\013\n\003url\030\003 \001(\t\022\014\n\004"
+  "name\030\004 \001(\t\022)\n\010metadata\030\005 \001(\0132\027.google.pr"
+  "otobuf.Struct\"\227\001\n\030ModelVersionInputExamp"
+  "le\022\n\n\002id\030\001 \001(\t\022\020\n\010model_id\030\002 \001(\t\022\030\n\020mode"
+  "l_version_id\030\003 \001(\t\022 \n\004data\030\004 \001(\0132\022.clari"
+  "fai.api.Data\022\014\n\004name\030\005 \001(\t\022\023\n\013descriptio"
+  "n\030\006 \001(\t\"\324\001\n\nOutputInfo\022 \n\004data\030\001 \001(\0132\022.c"
+  "larifai.api.Data\0221\n\routput_config\030\002 \001(\0132"
+  "\032.clarifai.api.OutputConfig\022\017\n\007message\030\003"
+  " \001(\t\022+\n\nfields_map\030\006 \001(\0132\027.google.protob"
+  "uf.Struct\022\'\n\006params\030\007 \001(\0132\027.google.proto"
+  "buf.StructJ\004\010\004\020\005J\004\010\005\020\006\"a\n\tInputInfo\022+\n\nf"
+  "ields_map\030\001 \001(\0132\027.google.protobuf.Struct"
+  "\022\'\n\006params\030\002 \001(\0132\027.google.protobuf.Struc"
+  "t\"4\n\tTrainInfo\022\'\n\006params\030\001 \001(\0132\027.google."
+  "protobuf.Struct\"5\n\nImportInfo\022\'\n\006params\030"
+  "\001 \001(\0132\027.google.protobuf.Struct\"\203\004\n\014Outpu"
+  "tConfig\022)\n\033concepts_mutually_exclusive\030\001"
+  " \001(\010B\004\200\265\030\001\022 \n\022closed_environment\030\002 \001(\010B\004"
+  "\200\265\030\001\022\035\n\021existing_model_id\030\003 \001(\tB\002\030\001\022\020\n\010l"
+  "anguage\030\004 \001(\t\022\034\n\020hyper_parameters\030\005 \001(\tB"
+  "\002\030\001\022\032\n\014max_concepts\030\006 \001(\rB\004\200\265\030\001\022\027\n\tmin_v"
+  "alue\030\007 \001(\002B\004\200\265\030\001\022.\n\017select_concepts\030\010 \003("
+  "\0132\025.clarifai.api.Concept\022\030\n\020training_tim"
+  "eout\030\t \001(\r\022\021\n\tsample_ms\030\n \001(\r\022-\n\014hyper_p"
+  "arams\030\r \001(\0132\027.google.protobuf.Struct\022\036\n\026"
+  "embed_model_version_id\030\016 \001(\t\022)\n!fail_on_"
+  "missing_positive_examples\030\017 \001(\010\0223\n\016model"
+  "_metadata\030\021 \001(\0132\027.google.protobuf.Struct"
+  "B\002\030\001J\004\010\013\020\014J\004\010\014\020\rJ\004\010\020\020\021J\004\010\022\020\023\"\250\003\n\tModelTy"
+  "pe\022\n\n\002id\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\023\n\013descrip"
+  "tion\030\003 \001(\t\022\024\n\014input_fields\030\005 \003(\t\022\025\n\routp"
+  "ut_fields\030\006 \003(\t\022\021\n\ttrainable\030\010 \001(\010\022\021\n\tcr"
+  "eatable\030\t \001(\010\022\025\n\rinternal_only\030\n \001(\010\0227\n\021"
+  "model_type_fields\030\013 \003(\0132\034.clarifai.api.M"
+  "odelTypeField\022\"\n\032requires_sequential_fra"
+  "mes\030\014 \001(\010\022\021\n\tevaluable\030\r \001(\010\022A\n expected"
+  "_pretrained_input_fields\030\016 \001(\0132\027.google."
+  "protobuf.Struct\022B\n!expected_pretrained_o"
+  "utput_fields\030\017 \001(\0132\027.google.protobuf.Str"
+  "uctJ\004\010\007\020\010J\004\010\004\020\005\"\231\005\n\016ModelTypeField\022\014\n\004pa"
+  "th\030\001 \001(\t\022C\n\nfield_type\030\002 \001(\0162/.clarifai."
+  "api.ModelTypeField.ModelTypeFieldType\022-\n"
+  "\rdefault_value\030\003 \001(\0132\026.google.protobuf.V"
+  "alue\022\023\n\013description\030\004 \001(\t\022\023\n\013placeholder"
+  "\030\005 \001(\t\022B\n\027model_type_enum_options\030\006 \003(\0132"
+  "!.clarifai.api.ModelTypeEnumOption\022\025\n\rin"
+  "ternal_only\030\007 \001(\010\022\020\n\010required\030\010 \001(\010\022\?\n\025m"
+  "odel_type_range_info\030\t \001(\0132 .clarifai.ap"
+  "i.ModelTypeRangeInfo\"\254\002\n\022ModelTypeFieldT"
+  "ype\022!\n\035INVALID_MODEL_TYPE_FIELD_TYPE\020\000\022\013"
+  "\n\007BOOLEAN\020\001\022\n\n\006STRING\020\002\022\n\n\006NUMBER\020\003\022\025\n\021A"
+  "RRAY_OF_CONCEPTS\020\004\022$\n ARRAY_OF_CONCEPTS_"
+  "WITH_THRESHOLD\020\005\022\t\n\005RANGE\020\007\022\010\n\004ENUM\020\010\022\021\n"
+  "\rCOLLABORATORS\020\t\022\010\n\004JSON\020\n\022\024\n\020ARRAY_OF_N"
+  "UMBERS\020\013\022\031\n\025WORKFLOW_EMBED_MODELS\020\014\022\024\n\020A"
+  "RRAY_OF_STRINGS\020\r\022\022\n\016RECURSIVE_ENUM\020\016\"\004\010"
+  "\006\020\006\"<\n\022ModelTypeRangeInfo\022\013\n\003min\030\001 \001(\002\022\013"
+  "\n\003max\030\002 \001(\002\022\014\n\004step\030\003 \001(\002\"\277\001\n\023ModelTypeE"
+  "numOption\022\n\n\002id\030\001 \001(\t\0227\n\007aliases\030\005 \003(\0132&"
+  ".clarifai.api.ModelTypeEnumOptionAlias\022\023"
+  "\n\013description\030\002 \001(\t\0227\n\021model_type_fields"
+  "\030\003 \003(\0132\034.clarifai.api.ModelTypeField\022\025\n\r"
+  "internal_only\030\004 \001(\010\"*\n\030ModelTypeEnumOpti"
+  "onAlias\022\016\n\006id_int\030\001 \001(\003\"7\n\nModelQuery\022\014\n"
+  "\004name\030\001 \001(\t\022\025\n\rmodel_type_id\030\003 \001(\tJ\004\010\002\020\003"
+  "\"\234\004\n\014ModelVersion\022\n\n\002id\030\001 \001(\t\022.\n\ncreated"
+  "_at\030\002 \001(\0132\032.google.protobuf.Timestamp\022+\n"
+  "\006status\030\003 \001(\0132\033.clarifai.api.status.Stat"
+  "us\022\034\n\024active_concept_count\030\004 \001(\r\022*\n\007metr"
+  "ics\030\005 \001(\0132\031.clarifai.api.EvalMetrics\022\031\n\021"
+  "total_input_count\030\006 \001(\r\0220\n\014completed_at\030"
+  "\n \001(\0132\032.google.protobuf.Timestamp\022\023\n\013des"
+  "cription\030\013 \001(\t\022,\n\nvisibility\030\014 \001(\0132\030.cla"
+  "rifai.api.Visibility\022\016\n\006app_id\030\r \001(\t\022\017\n\007"
+  "user_id\030\016 \001(\t\022/\n\013modified_at\030\017 \001(\0132\032.goo"
+  "gle.protobuf.Timestamp\022)\n\010metadata\030\020 \001(\013"
+  "2\027.google.protobuf.Struct\022\017\n\007license\030\021 \001"
+  "(\t\0225\n\017dataset_version\030\022 \001(\0132\034.clarifai.a"
+  "pi.DatasetVersionJ\004\010\t\020\n\"\340\001\n\025PretrainedMo"
+  "delConfig\022\n\n\002id\030\001 \001(\t\022\014\n\004type\030\002 \001(\t\0221\n\020i"
+  "nput_fields_map\030\003 \001(\0132\027.google.protobuf."
+  "Struct\0222\n\021output_fields_map\030\004 \001(\0132\027.goog"
+  "le.protobuf.Struct\022\034\n\024data_provider_para"
+  "ms\030\005 \001(\t\022\025\n\rmodel_zip_url\030\006 \001(\t\022\021\n\toverw"
+  "rite\030\007 \001(\010\">\n\nTrainStats\0220\n\nloss_curve\030\001"
+  " \003(\0132\034.clarifai.api.LossCurveEntry\"B\n\016Lo"
+  "ssCurveEntry\022\r\n\005epoch\030\001 \001(\r\022\023\n\013global_st"
+  "ep\030\002 \001(\r\022\014\n\004cost\030\003 \001(\002\"1\n\nLabelCount\022\024\n\014"
+  "concept_name\030\001 \001(\t\022\r\n\005count\030\002 \001(\r\"L\n\021Lab"
+  "elDistribution\0227\n\025positive_label_counts\030"
+  "\001 \003(\0132\030.clarifai.api.LabelCount\"B\n\027Coocc"
+  "urrenceMatrixEntry\022\013\n\003row\030\001 \001(\t\022\013\n\003col\030\002"
+  " \001(\t\022\r\n\005count\030\003 \001(\r\"`\n\022CooccurrenceMatri"
+  "x\0225\n\006matrix\030\001 \003(\0132%.clarifai.api.Cooccur"
+  "renceMatrixEntry\022\023\n\013concept_ids\030\002 \003(\t\"N\n"
+  "\024ConfusionMatrixEntry\022\021\n\tpredicted\030\001 \001(\t"
+  "\022\016\n\006actual\030\002 \001(\t\022\023\n\005value\030\004 \001(\002B\004\200\265\030\001\"Z\n"
+  "\017ConfusionMatrix\0222\n\006matrix\030\001 \003(\0132\".clari"
+  "fai.api.ConfusionMatrixEntry\022\023\n\013concept_"
+  "ids\030\002 \003(\t\"t\n\003ROC\022\021\n\003fpr\030\001 \003(\002B\004\200\265\030\001\022\021\n\003t"
+  "pr\030\002 \003(\002B\004\200\265\030\001\022\030\n\nthresholds\030\003 \003(\002B\004\200\265\030\001"
+  "\022\025\n\rfpr_per_image\030\004 \003(\002\022\026\n\016fpr_per_objec"
+  "t\030\005 \003(\002\"_\n\024PrecisionRecallCurve\022\024\n\006recal"
+  "l\030\001 \003(\002B\004\200\265\030\001\022\027\n\tprecision\030\002 \003(\002B\004\200\265\030\001\022\030"
+  "\n\nthresholds\030\003 \003(\002B\004\200\265\030\001\"\352\002\n\rBinaryMetri"
+  "cs\022\025\n\007num_pos\030\001 \001(\rB\004\200\265\030\001\022\025\n\007num_neg\030\002 \001"
+  "(\rB\004\200\265\030\001\022\025\n\007num_tot\030\003 \001(\rB\004\200\265\030\001\022\025\n\007roc_a"
+  "uc\030\004 \001(\002B\004\200\265\030\001\022\020\n\002f1\030\005 \001(\002B\004\200\265\030\001\022&\n\007conc"
+  "ept\030\006 \001(\0132\025.clarifai.api.Concept\022$\n\troc_"
+  "curve\030\007 \001(\0132\021.clarifai.api.ROC\022B\n\026precis"
+  "ion_recall_curve\030\010 \001(\0132\".clarifai.api.Pr"
+  "ecisionRecallCurve\022\025\n\ravg_precision\030\t \001("
+  "\002\022\021\n\tarea_name\030\n \001(\t\022\020\n\010area_min\030\013 \001(\001\022\020"
+  "\n\010area_max\030\014 \001(\001\022\013\n\003iou\030\r \001(\002\"\221\001\n\016Tracke"
+  "rMetrics\022\020\n\010mot_mota\030\001 \001(\002\022\030\n\020mot_num_sw"
+  "itches\030\002 \001(\005\022\022\n\nmorse_frag\030\003 \001(\002\022\025\n\ravg_"
+  "precision\030\004 \001(\002\022\014\n\004aiid\030\005 \001(\t\022\032\n\022unique_"
+  "switch_rate\030\006 \001(\002\"\356\001\n\020EvalTestSetEntry\022\016"
+  "\n\002id\030\001 \001(\tB\002\030\001\022\017\n\003url\030\002 \001(\tB\002\030\001\022\"\n\005input"
+  "\030\006 \001(\0132\023.clarifai.api.Input\0221\n\022predicted"
+  "_concepts\030\003 \003(\0132\025.clarifai.api.Concept\0224"
+  "\n\025ground_truth_concepts\030\004 \003(\0132\025.clarifai"
+  ".api.Concept\022,\n\nannotation\030\005 \001(\0132\030.clari"
+  "fai.api.Annotation\"\315\001\n\016LOPQEvalResult\022\t\n"
+  "\001k\030\001 \001(\005\022#\n\025recall_vs_brute_force\030\002 \001(\002B"
+  "\004\200\265\030\001\022(\n\032kendall_tau_vs_brute_force\030\003 \001("
+  "\002B\004\200\265\030\001\022(\n\032most_frequent_code_percent\030\004 "
+  "\001(\002B\004\200\265\030\001\022\027\n\tlopq_ndcg\030\005 \001(\002B\004\200\265\030\001\022\036\n\020br"
+  "ute_force_ndcg\030\006 \001(\002B\004\200\265\030\001\"\214\003\n\016MetricsSu"
+  "mmary\022\031\n\rtop1_accuracy\030\001 \001(\002B\002\030\001\022\031\n\rtop5"
+  "_accuracy\030\002 \001(\002B\002\030\001\022\037\n\021macro_avg_roc_auc"
+  "\030\003 \001(\002B\004\200\265\030\001\022\037\n\021macro_std_roc_auc\030\004 \001(\002B"
+  "\004\200\265\030\001\022 \n\022macro_avg_f1_score\030\005 \001(\002B\004\200\265\030\001\022"
+  " \n\022macro_std_f1_score\030\006 \001(\002B\004\200\265\030\001\022!\n\023mac"
+  "ro_avg_precision\030\007 \001(\002B\004\200\265\030\001\022\036\n\020macro_av"
+  "g_recall\030\010 \001(\002B\004\200\265\030\001\022!\n\031mean_avg_precisi"
+  "on_iou_50\030\n \001(\002\022$\n\034mean_avg_precision_io"
+  "u_range\030\013 \001(\002\0222\n\014lopq_metrics\030\t \003(\0132\034.cl"
+  "arifai.api.LOPQEvalResult\"\257\004\n\013EvalMetric"
+  "s\022+\n\006status\030\001 \001(\0132\033.clarifai.api.status."
+  "Status\022\n\n\002id\030\n \001(\t\022-\n\007summary\030\002 \001(\0132\034.cl"
+  "arifai.api.MetricsSummary\0227\n\020confusion_m"
+  "atrix\030\003 \001(\0132\035.clarifai.api.ConfusionMatr"
+  "ix\022=\n\023cooccurrence_matrix\030\004 \001(\0132 .clarif"
+  "ai.api.CooccurrenceMatrix\0225\n\014label_count"
+  "s\030\005 \001(\0132\037.clarifai.api.LabelDistribution"
+  "\0223\n\016binary_metrics\030\006 \003(\0132\033.clarifai.api."
+  "BinaryMetrics\0220\n\010test_set\030\007 \003(\0132\036.clarif"
+  "ai.api.EvalTestSetEntry\0224\n\017metrics_by_ar"
+  "ea\030\010 \003(\0132\033.clarifai.api.BinaryMetrics\0225\n"
+  "\020metrics_by_class\030\t \003(\0132\033.clarifai.api.B"
+  "inaryMetrics\0225\n\017tracker_metrics\030\013 \003(\0132\034."
+  "clarifai.api.TrackerMetrics\"\267\001\n\013FieldsVa"
+  "lue\022\030\n\020confusion_matrix\030\001 \001(\010\022\033\n\023cooccur"
+  "rence_matrix\030\002 \001(\010\022\024\n\014label_counts\030\003 \001(\010"
+  "\022\026\n\016binary_metrics\030\004 \001(\010\022\020\n\010test_set\030\005 \001"
+  "(\010\022\027\n\017metrics_by_area\030\006 \001(\010\022\030\n\020metrics_b"
+  "y_class\030\007 \001(\010\"\333\001\n\006Output\022\n\n\002id\030\001 \001(\t\022+\n\006"
+  "status\030\002 \001(\0132\033.clarifai.api.status.Statu"
+  "s\022.\n\ncreated_at\030\003 \001(\0132\032.google.protobuf."
+  "Timestamp\022\"\n\005model\030\004 \001(\0132\023.clarifai.api."
+  "Model\022\"\n\005input\030\005 \001(\0132\023.clarifai.api.Inpu"
+  "t\022 \n\004data\030\006 \001(\0132\022.clarifai.api.Data\"4\n\tS"
+  "copeDeps\022\r\n\005scope\030\001 \001(\t\022\030\n\020depending_sco"
+  "pes\030\002 \003(\t\":\n\014EndpointDeps\022\020\n\010endpoint\030\001 "
+  "\001(\t\022\030\n\020depending_scopes\030\002 \003(\t\"l\n\003Hit\022\023\n\005"
+  "score\030\001 \001(\002B\004\200\265\030\001\022\"\n\005input\030\002 \001(\0132\023.clari"
+  "fai.api.Input\022,\n\nannotation\030\003 \001(\0132\030.clar"
+  "ifai.api.Annotation\"\215\001\n\003And\022\"\n\005input\030\001 \001"
+  "(\0132\023.clarifai.api.Input\022$\n\006output\030\002 \001(\0132"
+  "\024.clarifai.api.Output\022\016\n\006negate\030\003 \001(\010\022,\n"
+  "\nannotation\030\004 \001(\0132\030.clarifai.api.Annotat"
+  "ion\"\204\001\n\005Query\022\037\n\004ands\030\001 \003(\0132\021.clarifai.a"
+  "pi.And\022\020\n\010language\030\002 \001(\t\022%\n\007filters\030\003 \003("
+  "\0132\024.clarifai.api.Filter\022!\n\005ranks\030\004 \003(\0132\022"
+  ".clarifai.api.Rank\"\336\002\n\006Search\022\"\n\005query\030\001"
+  " \001(\0132\023.clarifai.api.Query\022\n\n\002id\030\002 \001(\t\022\026\n"
+  "\016application_id\030\003 \001(\t\022\014\n\004name\030\004 \001(\t\022)\n\005a"
+  "s_of\030\005 \001(\0132\032.google.protobuf.Timestamp\022\020"
+  "\n\010git_hash\030\006 \001(\t\022.\n\ncreated_at\030\007 \001(\0132\032.g"
+  "oogle.protobuf.Timestamp\022/\n\013modified_at\030"
+  "\010 \001(\0132\032.google.protobuf.Timestamp\022\021\n\talg"
+  "orithm\030\t \001(\t\022\014\n\004save\030\n \001(\010\022\021\n\tmin_value\030"
+  "\013 \001(\002\022,\n\nvisibility\030\014 \001(\0132\030.clarifai.api"
+  ".Visibility\"\244\001\n\006Filter\022\016\n\006negate\030\003 \001(\010\022,"
+  "\n\nannotation\030\004 \001(\0132\030.clarifai.api.Annota"
+  "tion\022\"\n\005input\030\005 \001(\0132\023.clarifai.api.Input"
+  "\0228\n\027last_updated_time_range\030\006 \001(\0132\027.clar"
+  "ifai.api.TimeRange\"i\n\tTimeRange\022.\n\nstart"
+  "_time\030\001 \001(\0132\032.google.protobuf.Timestamp\022"
+  ",\n\010end_time\030\002 \001(\0132\032.google.protobuf.Time"
+  "stamp\"D\n\004Rank\022\016\n\006negate\030\003 \001(\010\022,\n\nannotat"
+  "ion\030\004 \001(\0132\030.clarifai.api.Annotation\"\215\002\n\027"
+  "AnnotationSearchMetrics\022*\n\014ground_truth\030"
+  "\001 \001(\0132\024.clarifai.api.Search\022,\n\016search_to"
+  "_eval\030\002 \001(\0132\024.clarifai.api.Search\022*\n\007met"
+  "rics\030\003 \001(\0132\031.clarifai.api.EvalMetrics\022 \n"
+  "\004data\030\004 \001(\0132\022.clarifai.api.Data\022\034\n\024activ"
+  "e_concept_count\030\005 \001(\r\022,\n\nvisibility\030\006 \001("
+  "\0132\030.clarifai.api.Visibility\"\221\001\n\004Text\022\013\n\003"
+  "raw\030\001 \001(\t\022\013\n\003url\030\002 \001(\t\022\033\n\023allow_duplicat"
+  "e_url\030\003 \001(\010\022\'\n\006hosted\030\004 \001(\0132\027.clarifai.a"
+  "pi.HostedURL\022)\n\ttext_info\030\005 \001(\0132\026.clarif"
+  "ai.api.TextInfo\"0\n\010TextInfo\022\022\n\nchar_coun"
+  "t\030\001 \001(\005\022\020\n\010encoding\030\002 \001(\t\"\326\005\n\004User\022\n\n\002id"
+  "\030\001 \001(\t\022\031\n\rprimary_email\030\002 \001(\tB\002\030\001\022\022\n\nfir"
+  "st_name\030\003 \001(\t\022\021\n\tlast_name\030\004 \001(\t\022\024\n\014comp"
+  "any_name\030\005 \001(\t\022\021\n\tjob_title\030\023 \001(\t\022\020\n\010job"
+  "_role\030\024 \001(\t\022\025\n\tbill_type\030\007 \001(\tB\002\030\001\022.\n\ncr"
+  "eated_at\030\006 \001(\0132\032.google.protobuf.Timesta"
+  "mp\0229\n\021date_gdpr_consent\030\010 \001(\0132\032.google.p"
+  "rotobuf.TimestampB\002\030\001\0228\n\020date_tos_consen"
+  "t\030\t \001(\0132\032.google.protobuf.TimestampB\002\030\001\022"
+  ">\n\026date_marketing_consent\030\n \001(\0132\032.google"
+  ".protobuf.TimestampB\002\030\001\022-\n\010metadata\030\013 \001("
+  "\0132\027.google.protobuf.StructB\002\030\001\0227\n\017email_"
+  "addresses\030\014 \003(\0132\032.clarifai.api.EmailAddr"
+  "essB\002\030\001\022\030\n\014is_org_admin\030\016 \001(\010B\002\030\001\022#\n\027two"
+  "_factor_auth_enabled\030\017 \001(\010B\002\030\001\022\027\n\013teams_"
+  "count\030\020 \001(\rB\002\030\001\022\022\n\nis_starred\030\025 \001(\010\022\022\n\ns"
+  "tar_count\030\026 \001(\005\022,\n\nvisibility\030\021 \001(\0132\030.cl"
+  "arifai.api.Visibility\022-\n\013user_detail\030\022 \001"
+  "(\0132\030.clarifai.api.UserDetailJ\004\010\r\020\016\"\253\003\n\nU"
+  "serDetail\022\025\n\rprimary_email\030\001 \001(\t\022\021\n\tbill"
+  "_type\030\002 \001(\t\0225\n\021date_gdpr_consent\030\003 \001(\0132\032"
+  ".google.protobuf.Timestamp\0224\n\020date_tos_c"
+  "onsent\030\004 \001(\0132\032.google.protobuf.Timestamp"
+  "\022:\n\026date_marketing_consent\030\005 \001(\0132\032.googl"
+  "e.protobuf.Timestamp\022)\n\010metadata\030\006 \001(\0132\027"
+  ".google.protobuf.Struct\0223\n\017email_address"
+  "es\030\007 \003(\0132\032.clarifai.api.EmailAddress\022\024\n\014"
+  "is_org_admin\030\010 \001(\010\022\037\n\027two_factor_auth_en"
+  "abled\030\t \001(\010\022\023\n\013teams_count\030\n \001(\r\022\017\n\007coun"
+  "try\030\013 \001(\t\022\r\n\005state\030\014 \001(\t\"R\n\014EmailAddress"
+  "\022\023\n\005email\030\001 \001(\tB\004\200\265\030\001\022\025\n\007primary\030\002 \001(\010B\004"
+  "\200\265\030\001\022\026\n\010verified\030\003 \001(\010B\004\200\265\030\001\"\035\n\010Password"
+  "\022\021\n\tplaintext\030\001 \001(\t\"\206\003\n\022PasswordViolatio"
+  "ns\022\026\n\016minimum_length\030\001 \001(\010\022\026\n\016maximum_le"
+  "ngth\030\002 \001(\010\022\031\n\021upper_case_needed\030\003 \001(\010\022\031\n"
+  "\021lower_case_needed\030\004 \001(\010\022\026\n\016numeric_need"
+  "ed\030\005 \001(\010\022\037\n\027non_alphanumeric_needed\030\006 \001("
+  "\010\022\026\n\016password_reuse\030\007 \001(\010\022\025\n\rexclude_nam"
+  "es\030\010 \001(\010\022\025\n\rexclude_email\030\t \001(\010\022\034\n\024no_co"
+  "nfusing_letters\030\n \001(\010\022\033\n\023no_simple_passw"
+  "ords\030\013 \001(\010\022\030\n\020no_common_vocabs\030\014 \001(\010\022\033\n\023"
+  "no_overlap_with_old\030\r \001(\010\022\031\n\021password_li"
+  "fespan\030\016 \001(\010\"\256\001\n\005Video\022\013\n\003url\030\001 \001(\t\022\016\n\006b"
+  "ase64\030\002 \001(\014\022\033\n\023allow_duplicate_url\030\004 \001(\010"
+  "\022\025\n\rthumbnail_url\030\005 \001(\t\022\'\n\006hosted\030\006 \001(\0132"
+  "\027.clarifai.api.HostedURL\022+\n\nvideo_info\030\007"
+  " \001(\0132\027.clarifai.api.VideoInfo\"\216\001\n\tVideoI"
+  "nfo\022\r\n\005width\030\001 \001(\005\022\016\n\006height\030\002 \001(\005\022\013\n\003fp"
+  "s\030\003 \001(\002\022\024\n\014video_format\030\004 \001(\t\022\020\n\010bit_rat"
+  "e\030\005 \001(\005\022\023\n\013frame_count\030\006 \001(\005\022\030\n\020duration"
+  "_seconds\030\007 \001(\002\"\261\003\n\010Workflow\022\n\n\002id\030\001 \001(\t\022"
+  "\016\n\006app_id\030\002 \001(\t\022.\n\ncreated_at\030\003 \001(\0132\032.go"
+  "ogle.protobuf.Timestamp\022)\n\005nodes\030\004 \003(\0132\032"
+  ".clarifai.api.WorkflowNode\022)\n\010metadata\030\005"
+  " \001(\0132\027.google.protobuf.Struct\022,\n\nvisibil"
+  "ity\030\006 \001(\0132\030.clarifai.api.Visibility\022\017\n\007u"
+  "ser_id\030\007 \001(\t\022/\n\013modified_at\030\010 \001(\0132\032.goog"
+  "le.protobuf.Timestamp\022.\n\007version\030\t \001(\0132\035"
+  ".clarifai.api.WorkflowVersion\022\022\n\nis_star"
+  "red\030\n \001(\010\022\022\n\nstar_count\030\013 \001(\005\022\023\n\013descrip"
+  "tion\030\014 \001(\t\022\r\n\005notes\030\r \001(\t\022\027\n\tuse_cases\030\016"
+  " \003(\tB\004\200\265\030\001\"\336\002\n\017WorkflowVersion\022\n\n\002id\030\001 \001"
+  "(\t\022\023\n\013workflow_id\030\002 \001(\t\022.\n\ncreated_at\030\003 "
+  "\001(\0132\032.google.protobuf.Timestamp\022/\n\013modif"
+  "ied_at\030\004 \001(\0132\032.google.protobuf.Timestamp"
+  "\022,\n\nvisibility\030\005 \001(\0132\030.clarifai.api.Visi"
+  "bility\022)\n\005nodes\030\006 \003(\0132\032.clarifai.api.Wor"
+  "kflowNode\022)\n\010metadata\030\007 \001(\0132\027.google.pro"
+  "tobuf.Struct\022\016\n\006app_id\030\010 \001(\t\022\017\n\007user_id\030"
+  "\t \001(\t\022\023\n\013description\030\n \001(\t\022\017\n\007license\030\013 "
+  "\001(\t\"\205\001\n\014WorkflowNode\022\n\n\002id\030\001 \001(\t\022\"\n\005mode"
+  "l\030\002 \001(\0132\023.clarifai.api.Model\022,\n\013node_inp"
+  "uts\030\003 \003(\0132\027.clarifai.api.NodeInput\022\027\n\017su"
+  "ppress_output\030\004 \001(\010\"\034\n\tNodeInput\022\017\n\007node"
+  "_id\030\001 \001(\t\"\201\002\n\016WorkflowResult\022\n\n\002id\030\001 \001(\t"
+  "\022+\n\006status\030\002 \001(\0132\033.clarifai.api.status.S"
+  "tatus\022.\n\ncreated_at\030\003 \001(\0132\032.google.proto"
+  "buf.Timestamp\022\"\n\005model\030\004 \001(\0132\023.clarifai."
+  "api.Model\022\"\n\005input\030\005 \001(\0132\023.clarifai.api."
+  "Input\022%\n\007outputs\030\006 \003(\0132\024.clarifai.api.Ou"
+  "tput\022\027\n\017suppress_output\030\007 \001(\010\"\033\n\rWorkflo"
+  "wState\022\n\n\002id\030\001 \001(\t\"\216\002\n\016AppDuplication\022\n\n"
+  "\002id\030\001 \001(\t\022\022\n\nnew_app_id\030\002 \001(\t\022\024\n\014new_app"
+  "_name\030\003 \001(\t\022+\n\006status\030\004 \001(\0132\033.clarifai.a"
+  "pi.status.Status\022.\n\ncreated_at\030\005 \001(\0132\032.g"
+  "oogle.protobuf.Timestamp\0224\n\020last_modifie"
+  "d_at\030\006 \001(\0132\032.google.protobuf.Timestamp\0223"
+  "\n\006filter\030\007 \001(\0132#.clarifai.api.AppDuplica"
+  "tionFilters\"\212\001\n\025AppDuplicationFilters\022\023\n"
+  "\013copy_inputs\030\001 \001(\010\022\025\n\rcopy_concepts\030\002 \001("
+  "\010\022\030\n\020copy_annotations\030\003 \001(\010\022\023\n\013copy_mode"
+  "ls\030\004 \001(\010\022\026\n\016copy_workflows\030\005 \001(\010\"\315\005\n\004Tas"
+  "k\022\n\n\002id\030\001 \001(\t\022.\n\ncreated_at\030\002 \001(\0132\032.goog"
+  "le.protobuf.Timestamp\022/\n\013modified_at\030\003 \001"
+  "(\0132\032.google.protobuf.Timestamp\022)\n\004type\030\004"
+  " \001(\0162\033.clarifai.api.Task.TaskType\022\023\n\013des"
+  "cription\030\005 \001(\t\022(\n\006worker\030\006 \001(\0132\030.clarifa"
+  "i.api.TaskWorker\022\023\n\013concept_ids\030\007 \003(\t\0223\n"
+  "\014input_source\030\010 \001(\0132\035.clarifai.api.TaskI"
+  "nputSource\022\021\n\tsample_ms\030\t \001(\r\0223\n\014ai_assi"
+  "stant\030\n \001(\0132\035.clarifai.api.TaskAIAssista"
+  "nt\022(\n\006review\030\013 \001(\0132\030.clarifai.api.TaskRe"
+  "view\022+\n\006status\030\014 \001(\0132\033.clarifai.api.stat"
+  "us.Status\022\014\n\004name\030\r \001(\t\022:\n\020ai_assist_par"
+  "ams\030\016 \001(\0132 .clarifai.api.AiAssistParamet"
+  "ers\022,\n\nvisibility\030\017 \001(\0132\030.clarifai.api.V"
+  "isibility\022\016\n\006app_id\030\020 \001(\t\022\017\n\007user_id\030\021 \001"
+  "(\t\"l\n\010TaskType\022\020\n\014TYPE_NOT_SET\020\000\022\033\n\027CONC"
+  "EPTS_CLASSIFICATION\020\001\022\032\n\026BOUNDING_BOX_DE"
+  "TECTION\020\002\022\025\n\021POLYGON_DETECTION\020\003\"`\n\022AiAs"
+  "sistParameters\022\025\n\rmin_threshold\030\001 \001(\002\022\025\n"
+  "\rmax_threshold\030\002 \001(\002\022\034\n\024concept_relation"
+  "_ids\030\003 \003(\t\"\230\002\n\nTaskWorker\022=\n\010strategy\030\001 "
+  "\001(\0162+.clarifai.api.TaskWorker.TaskWorker"
+  "Strategy\022\020\n\010user_ids\030\002 \003(\t\022T\n\031partitione"
+  "d_strategy_info\030\003 \001(\0132/.clarifai.api.Tas"
+  "kWorkerPartitionedStrategyInfoH\000\"R\n\022Task"
+  "WorkerStrategy\022\033\n\027WORKER_STRATEGY_NOT_SE"
+  "T\020\000\022\017\n\013PARTITIONED\020\002\022\010\n\004FULL\020\003\"\004\010\001\020\001B\017\n\r"
+  "strategy_info\"\251\002\n!TaskWorkerPartitionedS"
+  "trategyInfo\022[\n\004type\030\001 \001(\0162M.clarifai.api"
+  ".TaskWorkerPartitionedStrategyInfo.TaskW"
+  "orkerPartitionedStrategy\022\031\n\021workers_per_"
+  "input\030\002 \001(\005\022(\n\007weights\030\003 \001(\0132\027.google.pr"
+  "otobuf.Struct\"b\n\035TaskWorkerPartitionedSt"
+  "rategy\022\'\n#PARTITIONED_WORKER_STRATEGY_NO"
+  "T_SET\020\000\022\n\n\006EVENLY\020\001\022\014\n\010WEIGHTED\020\002\"\266\001\n\017Ta"
+  "skInputSource\022\?\n\004type\030\001 \001(\01621.clarifai.a"
+  "pi.TaskInputSource.TaskInputSourceType\022\n"
+  "\n\002id\030\002 \001(\t\"V\n\023TaskInputSourceType\022\035\n\031INP"
+  "UT_SOURCE_TYPE_NOT_SET\020\000\022\016\n\nALL_INPUTS\020\001"
+  "\022\020\n\014SAVED_SEARCH\020\002\"\351\002\n\nTaskReview\022=\n\010str"
+  "ategy\030\001 \001(\0162+.clarifai.api.TaskReview.Ta"
+  "skReviewStrategy\022\020\n\010user_ids\030\002 \003(\t\022J\n\024ma"
+  "nual_strategy_info\030\003 \001(\0132*.clarifai.api."
+  "TaskReviewManualStrategyInfoH\000\022P\n\027consen"
+  "sus_strategy_info\030\004 \001(\0132-.clarifai.api.T"
+  "askReviewConsensusStrategyInfoH\000\"[\n\022Task"
+  "ReviewStrategy\022 \n\034TASK_REVIEW_STRATEGY_N"
+  "OT_SET\020\000\022\010\n\004NONE\020\001\022\n\n\006MANUAL\020\002\022\r\n\tCONSEN"
+  "SUS\020\003B\017\n\rstrategy_info\"9\n\034TaskReviewManu"
+  "alStrategyInfo\022\031\n\021sample_percentage\030\001 \001("
+  "\002\"C\n\037TaskReviewConsensusStrategyInfo\022\032\n\022"
+  "approval_threshold\030\002 \001(\rJ\004\010\001\020\002\"&\n\017TaskAI"
+  "Assistant\022\023\n\013workflow_id\030\001 \001(\t\"\274\001\n\026TaskS"
+  "tatusCountPerUser\022\017\n\007user_id\030\001 \001(\t\022\025\n\007pe"
+  "nding\030\002 \001(\rB\004\200\265\030\001\022\035\n\017awaiting_review\030\003 \001"
+  "(\rB\004\200\265\030\001\022\025\n\007success\030\004 \001(\rB\004\200\265\030\001\022\033\n\rrevie"
+  "w_denied\030\005 \001(\rB\004\200\265\030\001\022\'\n\031awaiting_consens"
+  "us_review\030\006 \001(\rB\004\200\265\030\001\"\201\002\n\tCollector\022\n\n\002i"
+  "d\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022.\n\ncreated_"
+  "at\030\003 \001(\0132\032.google.protobuf.Timestamp\022\035\n\025"
+  "pre_queue_workflow_id\030\004 \001(\t\022\036\n\026post_queu"
+  "e_workflow_id\030\005 \001(\t\0227\n\020collector_source\030"
+  "\006 \001(\0132\035.clarifai.api.CollectorSource\022+\n\006"
+  "status\030\007 \001(\0132\033.clarifai.api.status.Statu"
+  "s\"t\n\017CollectorSource\022a\n\'api_post_model_o"
+  "utputs_collector_source\030\002 \001(\01320.clarifai"
+  ".api.APIPostModelOutputsCollectorSource\""
+  "\231\001\n\"APIPostModelOutputsCollectorSource\022\025"
+  "\n\rmodel_user_id\030\001 \001(\t\022\024\n\014model_app_id\030\002 "
+  "\001(\t\022\020\n\010model_id\030\003 \001(\t\022\030\n\020model_version_i"
+  "d\030\004 \001(\t\022\032\n\022post_inputs_key_id\030\005 \001(\t\"R\n\tS"
+  "tatValue\022(\n\004time\030\001 \001(\0132\032.google.protobuf"
+  ".Timestamp\022\r\n\005value\030\002 \001(\002\022\014\n\004tags\030\003 \003(\t\""
+  "\246\001\n\030StatValueAggregateResult\022\?\n\025stat_val"
+  "ue_aggregates\030\001 \003(\0132 .clarifai.api.StatV"
+  "alueAggregate\022I\n\032stat_value_aggregate_qu"
+  "ery\030\002 \001(\0132%.clarifai.api.StatValueAggreg"
+  "ateQuery\"t\n\022StatValueAggregate\022(\n\004time\030\001"
+  " \001(\0132\032.google.protobuf.Timestamp\022\027\n\017aggr"
+  "egate_value\030\002 \001(\002\022\r\n\005count\030\003 \001(\004\022\014\n\004tags"
+  "\030\004 \003(\t\"\221\002\n\027StatValueAggregateQuery\022\014\n\004ta"
+  "gs\030\001 \003(\t\022\022\n\ntag_groups\030\002 \003(\t\022;\n\023stat_val"
+  "ue_agg_type\030\003 \001(\0162\036.clarifai.api.StatVal"
+  "ueAggType\0229\n\022stat_time_agg_type\030\004 \001(\0162\035."
+  "clarifai.api.StatTimeAggType\022.\n\nstart_ti"
+  "me\030\005 \001(\0132\032.google.protobuf.Timestamp\022,\n\010"
+  "end_time\030\006 \001(\0132\032.google.protobuf.Timesta"
+  "mp\"\207\001\n\nVisibility\0223\n\010gettable\030\001 \001(\0162!.cl"
+  "arifai.api.Visibility.Gettable\"D\n\010Gettab"
+  "le\022\026\n\022UNKNOWN_VISIBILITY\020\000\022\013\n\007PRIVATE\020\n\022"
+  "\007\n\003ORG\020\036\022\n\n\006PUBLIC\0202\"X\n\016TrendingMetric\022\017"
+  "\n\007user_id\030\001 \001(\t\022\016\n\006app_id\030\002 \001(\t\022\021\n\tobjec"
+  "t_id\030\003 \001(\t\022\022\n\nview_count\030\004 \001(\004\"f\n\013TimeSe"
+  "gment\022\n\n\002id\030\001 \001(\t\022 \n\004data\030\002 \001(\0132\022.clarif"
+  "ai.api.Data\022)\n\ttime_info\030\003 \001(\0132\026.clarifa"
+  "i.api.TimeInfo\"D\n\010TimeInfo\022\022\n\nnum_frames"
+  "\030\001 \001(\r\022\022\n\nbegin_time\030\002 \001(\r\022\020\n\010end_time\030\003"
+  " \001(\r*`\n\036DatasetVersionMetricsGroupType\022."
+  "\n*DATASET_VERSION_METRICS_GROUP_TYPE_NOT"
+  "_SET\020\000\022\016\n\nINPUT_TYPE\020\001*H\n\020ExpirationActi"
+  "on\022\035\n\031EXPIRATION_ACTION_NOT_SET\020\000\022\t\n\005DEL"
+  "AY\020\001\022\n\n\006EXPIRY\020\002*M\n\014LicenseScope\022\031\n\025LICE"
+  "NSE_SCOPE_NOT_SET\020\000\022\013\n\007PREDICT\020\001\022\t\n\005TRAI"
+  "N\020\002\022\n\n\006SEARCH\020\003*\217\001\n\017ValueComparator\022\035\n\031C"
+  "ONCEPT_THRESHOLD_NOT_SET\020\000\022\020\n\014GREATER_TH"
+  "AN\020\001\022\031\n\025GREATER_THAN_OR_EQUAL\020\002\022\r\n\tLESS_"
+  "THAN\020\003\022\026\n\022LESS_THAN_OR_EQUAL\020\004\022\t\n\005EQUAL\020"
+  "\005*3\n\016EvaluationType\022\022\n\016Classification\020\000\022"
+  "\r\n\tDetection\020\001*f\n\014APIEventType\022\032\n\026API_EV"
+  "ENT_TYPE_NOT_SET\020\000\022\023\n\017ON_PREM_PREDICT\020\001\022"
+  "\021\n\rON_PREM_TRAIN\020\002\022\022\n\016ON_PREM_SEARCH\020\003*<"
+  "\n\021UsageIntervalType\022\t\n\005undef\020\000\022\007\n\003day\020\001\022"
+  "\t\n\005month\020\002\022\010\n\004year\020\003*\035\n\010RoleType\022\010\n\004TEAM"
+  "\020\000\022\007\n\003ORG\020\001*$\n\020StatValueAggType\022\007\n\003SUM\020\000"
+  "\022\007\n\003AVG\020\001*`\n\017StatTimeAggType\022\017\n\013NO_TIME_"
+  "AGG\020\000\022\010\n\004YEAR\020\001\022\t\n\005MONTH\020\002\022\010\n\004WEEK\020\003\022\007\n\003"
+  "DAY\020\004\022\010\n\004HOUR\020\005\022\n\n\006MINUTE\020\006*b\n\023Validatio"
+  "nErrorType\022!\n\035VALIDATION_ERROR_TYPE_NOT_"
+  "SET\020\000\022\016\n\nRESTRICTED\020\001\022\014\n\010DATABASE\020\002\022\n\n\006F"
+  "ORMAT\020\003B]\n\025com.clarifai.grpc.apiP\001Z;gith"
+  "ub.com/Clarifai/clarifai-go-grpc/proto/c"
+  "larifai/api/api\242\002\004CAIPb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_deps[5] = {
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
@@ -4647,7 +4653,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
   &::descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto,
   &::descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_sccs[117] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_sccs[112] = {
   &scc_info_APIPostModelOutputsCollectorSource_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_AiAssistParameters_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base,
@@ -4677,11 +4683,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
   &scc_info_ConfusionMatrixEntry_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_CooccurrenceMatrix_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_CooccurrenceMatrixEntry_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_DatasetFilter_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_DatasetVersion_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_DatasetVersionDatasetFilterConfig_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_DatasetVersionSummary_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_DatasetVersionSummary_InputCountsEntry_DoNotUse_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+  &scc_info_DatasetVersionMetrics_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_DetailConceptCount_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_EmailAddress_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_Embedding_proto_2fclarifai_2fapi_2fresources_2eproto.base,
@@ -4706,18 +4708,17 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
   &scc_info_LOPQEvalResult_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_LabelCount_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_LabelDistribution_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+  &scc_info_LossCurveEntry_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_Mask_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_MetricsSummary_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_ModelQuery_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_ModelReference_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_ModelType_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_ModelTypeEnumOption_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+  &scc_info_ModelTypeEnumOptionAlias_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_ModelTypeRangeInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_ModelVersion_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_ModelVersionInputExample_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_NodeInput_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_OutputConfig_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_OutputInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_Password_proto_2fclarifai_2fapi_2fresources_2eproto.base,
@@ -4726,12 +4727,11 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
   &scc_info_Point_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_Polygon_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_PrecisionRecallCurve_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_Query_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+  &scc_info_PretrainedModelConfig_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_ROC_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_Rank_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_RegionInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_ScopeDeps_proto_2fclarifai_2fapi_2fresources_2eproto.base,
-  &scc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_StatValue_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_StatValueAggregate_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_StatValueAggregateQuery_proto_2fclarifai_2fapi_2fresources_2eproto.base,
@@ -4751,6 +4751,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
   &scc_info_TimeRange_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_TrackerMetrics_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_TrainInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base,
+  &scc_info_TrainStats_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_TrendingMetric_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_User_proto_2fclarifai_2fapi_2fresources_2eproto.base,
   &scc_info_UserAppIDSet_proto_2fclarifai_2fapi_2fresources_2eproto.base,
@@ -4769,10 +4770,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_pro
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_once;
 static bool descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2fresources_2eproto, "proto/clarifai/api/resources.proto", 24387,
-  &descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_sccs, descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_deps, 117, 5,
+  &descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2fresources_2eproto, "proto/clarifai/api/resources.proto", 24870,
+  &descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_sccs, descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto_deps, 112, 5,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fapi_2fresources_2eproto::offsets,
-  file_level_metadata_proto_2fclarifai_2fapi_2fresources_2eproto, 126, file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto,
+  file_level_metadata_proto_2fclarifai_2fapi_2fresources_2eproto, 129, file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -4968,9 +4969,23 @@ constexpr Visibility_Gettable Visibility::Gettable_MIN;
 constexpr Visibility_Gettable Visibility::Gettable_MAX;
 constexpr int Visibility::Gettable_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ExpirationAction_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* DatasetVersionMetricsGroupType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
   return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[7];
+}
+bool DatasetVersionMetricsGroupType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ExpirationAction_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[8];
 }
 bool ExpirationAction_IsValid(int value) {
   switch (value) {
@@ -4985,7 +5000,7 @@ bool ExpirationAction_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LicenseScope_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[8];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[9];
 }
 bool LicenseScope_IsValid(int value) {
   switch (value) {
@@ -5001,7 +5016,7 @@ bool LicenseScope_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ValueComparator_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[9];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[10];
 }
 bool ValueComparator_IsValid(int value) {
   switch (value) {
@@ -5019,7 +5034,7 @@ bool ValueComparator_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EvaluationType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[10];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[11];
 }
 bool EvaluationType_IsValid(int value) {
   switch (value) {
@@ -5033,7 +5048,7 @@ bool EvaluationType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* APIEventType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[11];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[12];
 }
 bool APIEventType_IsValid(int value) {
   switch (value) {
@@ -5049,7 +5064,7 @@ bool APIEventType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* UsageIntervalType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[12];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[13];
 }
 bool UsageIntervalType_IsValid(int value) {
   switch (value) {
@@ -5065,7 +5080,7 @@ bool UsageIntervalType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RoleType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[13];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[14];
 }
 bool RoleType_IsValid(int value) {
   switch (value) {
@@ -5079,7 +5094,7 @@ bool RoleType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* StatValueAggType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[14];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[15];
 }
 bool StatValueAggType_IsValid(int value) {
   switch (value) {
@@ -5093,7 +5108,7 @@ bool StatValueAggType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* StatTimeAggType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[15];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[16];
 }
 bool StatTimeAggType_IsValid(int value) {
   switch (value) {
@@ -5112,7 +5127,7 @@ bool StatTimeAggType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ValidationErrorType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fresources_2eproto);
-  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[16];
+  return file_level_enum_descriptors_proto_2fclarifai_2fapi_2fresources_2eproto[17];
 }
 bool ValidationErrorType_IsValid(int value) {
   switch (value) {
@@ -18641,7 +18656,7 @@ DatasetFilter::DatasetFilter(const DatasetFilter& from)
 }
 
 void DatasetFilter::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DatasetFilter_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   app_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -18670,7 +18685,7 @@ void DatasetFilter::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 const DatasetFilter& DatasetFilter::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DatasetFilter_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
@@ -19027,8 +19042,8 @@ void DatasetVersion::InitAsDefaultInstance() {
       ::clarifai::api::DatasetVersionDatasetFilterConfig::internal_default_instance());
   ::clarifai::api::_DatasetVersion_default_instance_._instance.get_mutable()->status_ = const_cast< ::clarifai::api::status::Status*>(
       ::clarifai::api::status::Status::internal_default_instance());
-  ::clarifai::api::_DatasetVersion_default_instance_._instance.get_mutable()->summary_ = const_cast< ::clarifai::api::DatasetVersionSummary*>(
-      ::clarifai::api::DatasetVersionSummary::internal_default_instance());
+  ::clarifai::api::_DatasetVersion_default_instance_._instance.get_mutable()->metrics_ = const_cast< ::clarifai::api::DatasetVersionMetrics*>(
+      ::clarifai::api::DatasetVersionMetrics::internal_default_instance());
   ::clarifai::api::_DatasetVersion_default_instance_._instance.get_mutable()->metadata_ = const_cast< PROTOBUF_NAMESPACE_ID::Struct*>(
       PROTOBUF_NAMESPACE_ID::Struct::internal_default_instance());
   ::clarifai::api::_DatasetVersion_default_instance_._instance.get_mutable()->visibility_ = const_cast< ::clarifai::api::Visibility*>(
@@ -19040,7 +19055,7 @@ class DatasetVersion::_Internal {
   static const PROTOBUF_NAMESPACE_ID::Timestamp& modified_at(const DatasetVersion* msg);
   static const ::clarifai::api::DatasetVersionDatasetFilterConfig& dataset_filter_config(const DatasetVersion* msg);
   static const ::clarifai::api::status::Status& status(const DatasetVersion* msg);
-  static const ::clarifai::api::DatasetVersionSummary& summary(const DatasetVersion* msg);
+  static const ::clarifai::api::DatasetVersionMetrics& metrics(const DatasetVersion* msg);
   static const PROTOBUF_NAMESPACE_ID::Struct& metadata(const DatasetVersion* msg);
   static const ::clarifai::api::Visibility& visibility(const DatasetVersion* msg);
 };
@@ -19061,9 +19076,9 @@ const ::clarifai::api::status::Status&
 DatasetVersion::_Internal::status(const DatasetVersion* msg) {
   return *msg->status_;
 }
-const ::clarifai::api::DatasetVersionSummary&
-DatasetVersion::_Internal::summary(const DatasetVersion* msg) {
-  return *msg->summary_;
+const ::clarifai::api::DatasetVersionMetrics&
+DatasetVersion::_Internal::metrics(const DatasetVersion* msg) {
+  return *msg->metrics_;
 }
 const PROTOBUF_NAMESPACE_ID::Struct&
 DatasetVersion::_Internal::metadata(const DatasetVersion* msg) {
@@ -19156,10 +19171,10 @@ DatasetVersion::DatasetVersion(const DatasetVersion& from)
   } else {
     status_ = nullptr;
   }
-  if (from._internal_has_summary()) {
-    summary_ = new ::clarifai::api::DatasetVersionSummary(*from.summary_);
+  if (from._internal_has_metrics()) {
+    metrics_ = new ::clarifai::api::DatasetVersionMetrics(*from.metrics_);
   } else {
-    summary_ = nullptr;
+    metrics_ = nullptr;
   }
   if (from._internal_has_metadata()) {
     metadata_ = new PROTOBUF_NAMESPACE_ID::Struct(*from.metadata_);
@@ -19185,7 +19200,7 @@ DatasetVersion::DatasetVersion(const DatasetVersion& from)
 }
 
 void DatasetVersion::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DatasetVersion_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   app_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -19211,7 +19226,7 @@ void DatasetVersion::SharedDtor() {
   if (this != internal_default_instance()) delete created_at_;
   if (this != internal_default_instance()) delete modified_at_;
   if (this != internal_default_instance()) delete status_;
-  if (this != internal_default_instance()) delete summary_;
+  if (this != internal_default_instance()) delete metrics_;
   if (this != internal_default_instance()) delete metadata_;
   if (this != internal_default_instance()) delete visibility_;
   if (has_data_config()) {
@@ -19223,7 +19238,7 @@ void DatasetVersion::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 const DatasetVersion& DatasetVersion::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DatasetVersion_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
@@ -19267,10 +19282,10 @@ void DatasetVersion::Clear() {
     delete status_;
   }
   status_ = nullptr;
-  if (GetArenaNoVirtual() == nullptr && summary_ != nullptr) {
-    delete summary_;
+  if (GetArenaNoVirtual() == nullptr && metrics_ != nullptr) {
+    delete metrics_;
   }
-  summary_ = nullptr;
+  metrics_ = nullptr;
   if (GetArenaNoVirtual() == nullptr && metadata_ != nullptr) {
     delete metadata_;
   }
@@ -19363,10 +19378,10 @@ const char* DatasetVersion::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .clarifai.api.DatasetVersionSummary summary = 11;
+      // .clarifai.api.DatasetVersionMetrics metrics = 11;
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
-          ptr = ctx->ParseMessage(_internal_mutable_summary(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_metrics(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -19506,12 +19521,12 @@ failure:
         10, this->_internal_description(), target);
   }
 
-  // .clarifai.api.DatasetVersionSummary summary = 11;
-  if (this->has_summary()) {
+  // .clarifai.api.DatasetVersionMetrics metrics = 11;
+  if (this->has_metrics()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        11, _Internal::summary(this), target, stream);
+        11, _Internal::metrics(this), target, stream);
   }
 
   // .google.protobuf.Struct metadata = 12;
@@ -19620,11 +19635,11 @@ size_t DatasetVersion::ByteSizeLong() const {
         *status_);
   }
 
-  // .clarifai.api.DatasetVersionSummary summary = 11;
-  if (this->has_summary()) {
+  // .clarifai.api.DatasetVersionMetrics metrics = 11;
+  if (this->has_metrics()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *summary_);
+        *metrics_);
   }
 
   // .google.protobuf.Struct metadata = 12;
@@ -19714,8 +19729,8 @@ void DatasetVersion::MergeFrom(const DatasetVersion& from) {
   if (from.has_status()) {
     _internal_mutable_status()->::clarifai::api::status::Status::MergeFrom(from._internal_status());
   }
-  if (from.has_summary()) {
-    _internal_mutable_summary()->::clarifai::api::DatasetVersionSummary::MergeFrom(from._internal_summary());
+  if (from.has_metrics()) {
+    _internal_mutable_metrics()->::clarifai::api::DatasetVersionMetrics::MergeFrom(from._internal_metrics());
   }
   if (from.has_metadata()) {
     _internal_mutable_metadata()->PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_metadata());
@@ -19769,7 +19784,7 @@ void DatasetVersion::InternalSwap(DatasetVersion* other) {
   swap(created_at_, other->created_at_);
   swap(modified_at_, other->modified_at_);
   swap(status_, other->status_);
-  swap(summary_, other->summary_);
+  swap(metrics_, other->metrics_);
   swap(metadata_, other->metadata_);
   swap(visibility_, other->visibility_);
   swap(data_config_, other->data_config_);
@@ -19814,7 +19829,7 @@ DatasetVersionDatasetFilterConfig::DatasetVersionDatasetFilterConfig(const Datas
 }
 
 void DatasetVersionDatasetFilterConfig::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DatasetVersionDatasetFilterConfig_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   dataset_filter_ = nullptr;
 }
 
@@ -19831,7 +19846,7 @@ void DatasetVersionDatasetFilterConfig::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 const DatasetVersionDatasetFilterConfig& DatasetVersionDatasetFilterConfig::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DatasetVersionDatasetFilterConfig_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
@@ -19987,90 +20002,88 @@ void DatasetVersionDatasetFilterConfig::InternalSwap(DatasetVersionDatasetFilter
 
 // ===================================================================
 
-DatasetVersionSummary_InputCountsEntry_DoNotUse::DatasetVersionSummary_InputCountsEntry_DoNotUse() {}
-DatasetVersionSummary_InputCountsEntry_DoNotUse::DatasetVersionSummary_InputCountsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-    : SuperType(arena) {}
-void DatasetVersionSummary_InputCountsEntry_DoNotUse::MergeFrom(const DatasetVersionSummary_InputCountsEntry_DoNotUse& other) {
-  MergeFromInternal(other);
+void DatasetVersionMetrics::InitAsDefaultInstance() {
 }
-::PROTOBUF_NAMESPACE_ID::Metadata DatasetVersionSummary_InputCountsEntry_DoNotUse::GetMetadata() const {
-  return GetMetadataStatic();
-}
-void DatasetVersionSummary_InputCountsEntry_DoNotUse::MergeFrom(
-    const ::PROTOBUF_NAMESPACE_ID::Message& other) {
-  ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom(other);
-}
-
-
-// ===================================================================
-
-void DatasetVersionSummary::InitAsDefaultInstance() {
-}
-class DatasetVersionSummary::_Internal {
+class DatasetVersionMetrics::_Internal {
  public:
 };
 
-DatasetVersionSummary::DatasetVersionSummary()
+DatasetVersionMetrics::DatasetVersionMetrics()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:clarifai.api.DatasetVersionSummary)
+  // @@protoc_insertion_point(constructor:clarifai.api.DatasetVersionMetrics)
 }
-DatasetVersionSummary::DatasetVersionSummary(const DatasetVersionSummary& from)
+DatasetVersionMetrics::DatasetVersionMetrics(const DatasetVersionMetrics& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  input_counts_.MergeFrom(from.input_counts_);
-  // @@protoc_insertion_point(copy_constructor:clarifai.api.DatasetVersionSummary)
+  ::memcpy(&inputs_count_, &from.inputs_count_,
+    static_cast<size_t>(reinterpret_cast<char*>(&bounding_boxes_count_) -
+    reinterpret_cast<char*>(&inputs_count_)) + sizeof(bounding_boxes_count_));
+  // @@protoc_insertion_point(copy_constructor:clarifai.api.DatasetVersionMetrics)
 }
 
-void DatasetVersionSummary::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DatasetVersionSummary_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+void DatasetVersionMetrics::SharedCtor() {
+  ::memset(&inputs_count_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&bounding_boxes_count_) -
+      reinterpret_cast<char*>(&inputs_count_)) + sizeof(bounding_boxes_count_));
 }
 
-DatasetVersionSummary::~DatasetVersionSummary() {
-  // @@protoc_insertion_point(destructor:clarifai.api.DatasetVersionSummary)
+DatasetVersionMetrics::~DatasetVersionMetrics() {
+  // @@protoc_insertion_point(destructor:clarifai.api.DatasetVersionMetrics)
   SharedDtor();
 }
 
-void DatasetVersionSummary::SharedDtor() {
+void DatasetVersionMetrics::SharedDtor() {
 }
 
-void DatasetVersionSummary::SetCachedSize(int size) const {
+void DatasetVersionMetrics::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const DatasetVersionSummary& DatasetVersionSummary::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DatasetVersionSummary_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+const DatasetVersionMetrics& DatasetVersionMetrics::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DatasetVersionMetrics_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void DatasetVersionSummary::Clear() {
-// @@protoc_insertion_point(message_clear_start:clarifai.api.DatasetVersionSummary)
+void DatasetVersionMetrics::Clear() {
+// @@protoc_insertion_point(message_clear_start:clarifai.api.DatasetVersionMetrics)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  input_counts_.Clear();
+  ::memset(&inputs_count_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&bounding_boxes_count_) -
+      reinterpret_cast<char*>(&inputs_count_)) + sizeof(bounding_boxes_count_));
   _internal_metadata_.Clear();
 }
 
-const char* DatasetVersionSummary::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* DatasetVersionMetrics::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // map<string, uint64> input_counts = 1;
+      // uint64 inputs_count = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(&input_counts_, ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          inputs_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint64 positive_annotations_count = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          positive_annotations_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint64 bounding_boxes_count = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          bounding_boxes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -20093,76 +20106,65 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* DatasetVersionSummary::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* DatasetVersionMetrics::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:clarifai.api.DatasetVersionSummary)
+  // @@protoc_insertion_point(serialize_to_array_start:clarifai.api.DatasetVersionMetrics)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // map<string, uint64> input_counts = 1;
-  if (!this->_internal_input_counts().empty()) {
-    typedef ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint64 >::const_pointer
-        ConstPtr;
-    typedef ConstPtr SortItem;
-    typedef ::PROTOBUF_NAMESPACE_ID::internal::CompareByDerefFirst<SortItem> Less;
-    struct Utf8Check {
-      static void Check(ConstPtr p) {
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-          p->first.data(), static_cast<int>(p->first.length()),
-          ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-          "clarifai.api.DatasetVersionSummary.InputCountsEntry.key");
-      }
-    };
+  // uint64 inputs_count = 1;
+  if (this->inputs_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_inputs_count(), target);
+  }
 
-    if (stream->IsSerializationDeterministic() &&
-        this->_internal_input_counts().size() > 1) {
-      ::std::unique_ptr<SortItem[]> items(
-          new SortItem[this->_internal_input_counts().size()]);
-      typedef ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint64 >::size_type size_type;
-      size_type n = 0;
-      for (::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint64 >::const_iterator
-          it = this->_internal_input_counts().begin();
-          it != this->_internal_input_counts().end(); ++it, ++n) {
-        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
-      }
-      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
-      for (size_type i = 0; i < n; i++) {
-        target = DatasetVersionSummary_InputCountsEntry_DoNotUse::Funcs::InternalSerialize(1, items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second, target, stream);
-        Utf8Check::Check(&(*items[static_cast<ptrdiff_t>(i)]));
-      }
-    } else {
-      for (::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint64 >::const_iterator
-          it = this->_internal_input_counts().begin();
-          it != this->_internal_input_counts().end(); ++it) {
-        target = DatasetVersionSummary_InputCountsEntry_DoNotUse::Funcs::InternalSerialize(1, it->first, it->second, target, stream);
-        Utf8Check::Check(&(*it));
-      }
-    }
+  // uint64 positive_annotations_count = 2;
+  if (this->positive_annotations_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_positive_annotations_count(), target);
+  }
+
+  // uint64 bounding_boxes_count = 3;
+  if (this->bounding_boxes_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(3, this->_internal_bounding_boxes_count(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:clarifai.api.DatasetVersionSummary)
+  // @@protoc_insertion_point(serialize_to_array_end:clarifai.api.DatasetVersionMetrics)
   return target;
 }
 
-size_t DatasetVersionSummary::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:clarifai.api.DatasetVersionSummary)
+size_t DatasetVersionMetrics::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:clarifai.api.DatasetVersionMetrics)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, uint64> input_counts = 1;
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_input_counts_size());
-  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint64 >::const_iterator
-      it = this->_internal_input_counts().begin();
-      it != this->_internal_input_counts().end(); ++it) {
-    total_size += DatasetVersionSummary_InputCountsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  // uint64 inputs_count = 1;
+  if (this->inputs_count() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_inputs_count());
+  }
+
+  // uint64 positive_annotations_count = 2;
+  if (this->positive_annotations_count() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_positive_annotations_count());
+  }
+
+  // uint64 bounding_boxes_count = 3;
+  if (this->bounding_boxes_count() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_bounding_boxes_count());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -20174,56 +20176,66 @@ size_t DatasetVersionSummary::ByteSizeLong() const {
   return total_size;
 }
 
-void DatasetVersionSummary::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:clarifai.api.DatasetVersionSummary)
+void DatasetVersionMetrics::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:clarifai.api.DatasetVersionMetrics)
   GOOGLE_DCHECK_NE(&from, this);
-  const DatasetVersionSummary* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DatasetVersionSummary>(
+  const DatasetVersionMetrics* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DatasetVersionMetrics>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.api.DatasetVersionSummary)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.api.DatasetVersionMetrics)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.api.DatasetVersionSummary)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.api.DatasetVersionMetrics)
     MergeFrom(*source);
   }
 }
 
-void DatasetVersionSummary::MergeFrom(const DatasetVersionSummary& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:clarifai.api.DatasetVersionSummary)
+void DatasetVersionMetrics::MergeFrom(const DatasetVersionMetrics& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:clarifai.api.DatasetVersionMetrics)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  input_counts_.MergeFrom(from.input_counts_);
+  if (from.inputs_count() != 0) {
+    _internal_set_inputs_count(from._internal_inputs_count());
+  }
+  if (from.positive_annotations_count() != 0) {
+    _internal_set_positive_annotations_count(from._internal_positive_annotations_count());
+  }
+  if (from.bounding_boxes_count() != 0) {
+    _internal_set_bounding_boxes_count(from._internal_bounding_boxes_count());
+  }
 }
 
-void DatasetVersionSummary::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:clarifai.api.DatasetVersionSummary)
+void DatasetVersionMetrics::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:clarifai.api.DatasetVersionMetrics)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void DatasetVersionSummary::CopyFrom(const DatasetVersionSummary& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:clarifai.api.DatasetVersionSummary)
+void DatasetVersionMetrics::CopyFrom(const DatasetVersionMetrics& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:clarifai.api.DatasetVersionMetrics)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool DatasetVersionSummary::IsInitialized() const {
+bool DatasetVersionMetrics::IsInitialized() const {
   return true;
 }
 
-void DatasetVersionSummary::InternalSwap(DatasetVersionSummary* other) {
+void DatasetVersionMetrics::InternalSwap(DatasetVersionMetrics* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  input_counts_.Swap(&other->input_counts_);
+  swap(inputs_count_, other->inputs_count_);
+  swap(positive_annotations_count_, other->positive_annotations_count_);
+  swap(bounding_boxes_count_, other->bounding_boxes_count_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata DatasetVersionSummary::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata DatasetVersionMetrics::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -21165,7 +21177,7 @@ Model::Model(const Model& from)
 }
 
 void Model::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   app_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -21208,7 +21220,7 @@ void Model::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 const Model& Model::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Model_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
@@ -21288,7 +21300,7 @@ const char* Model::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // string name = 2;
+      // string name = 2 [deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_name();
@@ -21327,7 +21339,7 @@ const char* Model::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // string display_name = 7;
+      // string display_name = 7 [deprecated = true];
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
           auto str = _internal_mutable_display_name();
@@ -21506,7 +21518,7 @@ failure:
         1, this->_internal_id(), target);
   }
 
-  // string name = 2;
+  // string name = 2 [deprecated = true];
   if (this->name().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
@@ -21550,7 +21562,7 @@ failure:
         6, _Internal::model_version(this), target, stream);
   }
 
-  // string display_name = 7;
+  // string display_name = 7 [deprecated = true];
   if (this->display_name().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_display_name().data(), static_cast<int>(this->_internal_display_name().length()),
@@ -21737,7 +21749,7 @@ size_t Model::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  // string name = 2;
+  // string name = 2 [deprecated = true];
   if (this->name().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -21751,7 +21763,7 @@ size_t Model::ByteSizeLong() const {
         this->_internal_app_id());
   }
 
-  // string display_name = 7;
+  // string display_name = 7 [deprecated = true];
   if (this->display_name().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -22846,14 +22858,6 @@ OutputInfo::OutputInfo(const OutputInfo& from)
   if (!from._internal_message().empty()) {
     message_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.message_);
   }
-  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_type().empty()) {
-    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
-  }
-  type_ext_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_type_ext().empty()) {
-    type_ext_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_ext_);
-  }
   if (from._internal_has_data()) {
     data_ = new ::clarifai::api::Data(*from.data_);
   } else {
@@ -22880,8 +22884,6 @@ OutputInfo::OutputInfo(const OutputInfo& from)
 void OutputInfo::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_OutputInfo_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   message_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_ext_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&data_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&params_) -
       reinterpret_cast<char*>(&data_)) + sizeof(params_));
@@ -22894,8 +22896,6 @@ OutputInfo::~OutputInfo() {
 
 void OutputInfo::SharedDtor() {
   message_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_ext_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete data_;
   if (this != internal_default_instance()) delete output_config_;
   if (this != internal_default_instance()) delete fields_map_;
@@ -22918,8 +22918,6 @@ void OutputInfo::Clear() {
   (void) cached_has_bits;
 
   message_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_ext_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && data_ != nullptr) {
     delete data_;
   }
@@ -22966,24 +22964,6 @@ const char* OutputInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           auto str = _internal_mutable_message();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.OutputInfo.message"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string type = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          auto str = _internal_mutable_type();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.OutputInfo.type"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string type_ext = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
-          auto str = _internal_mutable_type_ext();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.OutputInfo.type_ext"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -23053,26 +23033,6 @@ failure:
         3, this->_internal_message(), target);
   }
 
-  // string type = 4;
-  if (this->type().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_type().data(), static_cast<int>(this->_internal_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "clarifai.api.OutputInfo.type");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_type(), target);
-  }
-
-  // string type_ext = 5;
-  if (this->type_ext().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_type_ext().data(), static_cast<int>(this->_internal_type_ext().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "clarifai.api.OutputInfo.type_ext");
-    target = stream->WriteStringMaybeAliased(
-        5, this->_internal_type_ext(), target);
-  }
-
   // .google.protobuf.Struct fields_map = 6;
   if (this->has_fields_map()) {
     target = stream->EnsureSpace(target);
@@ -23110,20 +23070,6 @@ size_t OutputInfo::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_message());
-  }
-
-  // string type = 4;
-  if (this->type().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_type());
-  }
-
-  // string type_ext = 5;
-  if (this->type_ext().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_type_ext());
   }
 
   // .clarifai.api.Data data = 1;
@@ -23189,14 +23135,6 @@ void OutputInfo::MergeFrom(const OutputInfo& from) {
 
     message_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.message_);
   }
-  if (from.type().size() > 0) {
-
-    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
-  }
-  if (from.type_ext().size() > 0) {
-
-    type_ext_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_ext_);
-  }
   if (from.has_data()) {
     _internal_mutable_data()->::clarifai::api::Data::MergeFrom(from._internal_data());
   }
@@ -23233,10 +23171,6 @@ void OutputInfo::InternalSwap(OutputInfo* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   message_.Swap(&other->message_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  type_.Swap(&other->type_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  type_ext_.Swap(&other->type_ext_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(data_, other->data_);
   swap(output_config_, other->output_config_);
@@ -24602,10 +24536,6 @@ ModelType::ModelType(const ModelType& from)
   if (!from._internal_description().empty()) {
     description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
   }
-  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_type().empty()) {
-    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
-  }
   if (from._internal_has_expected_pretrained_input_fields()) {
     expected_pretrained_input_fields_ = new PROTOBUF_NAMESPACE_ID::Struct(*from.expected_pretrained_input_fields_);
   } else {
@@ -24627,7 +24557,6 @@ void ModelType::SharedCtor() {
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&expected_pretrained_input_fields_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&evaluable_) -
       reinterpret_cast<char*>(&expected_pretrained_input_fields_)) + sizeof(evaluable_));
@@ -24642,7 +24571,6 @@ void ModelType::SharedDtor() {
   id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   title_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   description_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete expected_pretrained_input_fields_;
   if (this != internal_default_instance()) delete expected_pretrained_output_fields_;
 }
@@ -24668,7 +24596,6 @@ void ModelType::Clear() {
   id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   title_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   description_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && expected_pretrained_input_fields_ != nullptr) {
     delete expected_pretrained_input_fields_;
   }
@@ -24714,15 +24641,6 @@ const char* ModelType::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
           auto str = _internal_mutable_description();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.ModelType.description"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string type = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          auto str = _internal_mutable_type();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.ModelType.type"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -24871,16 +24789,6 @@ failure:
         3, this->_internal_description(), target);
   }
 
-  // string type = 4;
-  if (this->type().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_type().data(), static_cast<int>(this->_internal_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "clarifai.api.ModelType.type");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_type(), target);
-  }
-
   // repeated string input_fields = 5;
   for (int i = 0, n = this->_internal_input_fields_size(); i < n; i++) {
     const auto& s = this->_internal_input_fields(i);
@@ -25015,13 +24923,6 @@ size_t ModelType::ByteSizeLong() const {
         this->_internal_description());
   }
 
-  // string type = 4;
-  if (this->type().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_type());
-  }
-
   // .google.protobuf.Struct expected_pretrained_input_fields = 14;
   if (this->has_expected_pretrained_input_fields()) {
     total_size += 1 +
@@ -25107,10 +25008,6 @@ void ModelType::MergeFrom(const ModelType& from) {
 
     description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
   }
-  if (from.type().size() > 0) {
-
-    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
-  }
   if (from.has_expected_pretrained_input_fields()) {
     _internal_mutable_expected_pretrained_input_fields()->PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_expected_pretrained_input_fields());
   }
@@ -25163,8 +25060,6 @@ void ModelType::InternalSwap(ModelType* other) {
   title_.Swap(&other->title_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  type_.Swap(&other->type_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(expected_pretrained_input_fields_, other->expected_pretrained_input_fields_);
   swap(expected_pretrained_output_fields_, other->expected_pretrained_output_fields_);
@@ -25908,7 +25803,8 @@ ModelTypeEnumOption::ModelTypeEnumOption()
 ModelTypeEnumOption::ModelTypeEnumOption(const ModelTypeEnumOption& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr),
-      model_type_fields_(from.model_type_fields_) {
+      model_type_fields_(from.model_type_fields_),
+      aliases_(from.aliases_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_id().empty()) {
@@ -25955,6 +25851,7 @@ void ModelTypeEnumOption::Clear() {
   (void) cached_has_bits;
 
   model_type_fields_.Clear();
+  aliases_.Clear();
   id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   description_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   internal_only_ = false;
@@ -26003,6 +25900,18 @@ const char* ModelTypeEnumOption::_InternalParse(const char* ptr, ::PROTOBUF_NAME
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
           internal_only_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .clarifai.api.ModelTypeEnumOptionAlias aliases = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_aliases(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -26065,6 +25974,14 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(4, this->_internal_internal_only(), target);
   }
 
+  // repeated .clarifai.api.ModelTypeEnumOptionAlias aliases = 5;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_aliases_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, this->_internal_aliases(i), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -26084,6 +26001,13 @@ size_t ModelTypeEnumOption::ByteSizeLong() const {
   // repeated .clarifai.api.ModelTypeField model_type_fields = 3;
   total_size += 1UL * this->_internal_model_type_fields_size();
   for (const auto& msg : this->model_type_fields_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .clarifai.api.ModelTypeEnumOptionAlias aliases = 5;
+  total_size += 1UL * this->_internal_aliases_size();
+  for (const auto& msg : this->aliases_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -26139,6 +26063,7 @@ void ModelTypeEnumOption::MergeFrom(const ModelTypeEnumOption& from) {
   (void) cached_has_bits;
 
   model_type_fields_.MergeFrom(from.model_type_fields_);
+  aliases_.MergeFrom(from.aliases_);
   if (from.id().size() > 0) {
 
     id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
@@ -26174,6 +26099,7 @@ void ModelTypeEnumOption::InternalSwap(ModelTypeEnumOption* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   model_type_fields_.InternalSwap(&other->model_type_fields_);
+  aliases_.InternalSwap(&other->aliases_);
   id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
@@ -26182,6 +26108,192 @@ void ModelTypeEnumOption::InternalSwap(ModelTypeEnumOption* other) {
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ModelTypeEnumOption::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void ModelTypeEnumOptionAlias::InitAsDefaultInstance() {
+}
+class ModelTypeEnumOptionAlias::_Internal {
+ public:
+};
+
+ModelTypeEnumOptionAlias::ModelTypeEnumOptionAlias()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:clarifai.api.ModelTypeEnumOptionAlias)
+}
+ModelTypeEnumOptionAlias::ModelTypeEnumOptionAlias(const ModelTypeEnumOptionAlias& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  id_int_ = from.id_int_;
+  // @@protoc_insertion_point(copy_constructor:clarifai.api.ModelTypeEnumOptionAlias)
+}
+
+void ModelTypeEnumOptionAlias::SharedCtor() {
+  id_int_ = PROTOBUF_LONGLONG(0);
+}
+
+ModelTypeEnumOptionAlias::~ModelTypeEnumOptionAlias() {
+  // @@protoc_insertion_point(destructor:clarifai.api.ModelTypeEnumOptionAlias)
+  SharedDtor();
+}
+
+void ModelTypeEnumOptionAlias::SharedDtor() {
+}
+
+void ModelTypeEnumOptionAlias::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ModelTypeEnumOptionAlias& ModelTypeEnumOptionAlias::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ModelTypeEnumOptionAlias_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ModelTypeEnumOptionAlias::Clear() {
+// @@protoc_insertion_point(message_clear_start:clarifai.api.ModelTypeEnumOptionAlias)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_int_ = PROTOBUF_LONGLONG(0);
+  _internal_metadata_.Clear();
+}
+
+const char* ModelTypeEnumOptionAlias::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int64 id_int = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          id_int_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ModelTypeEnumOptionAlias::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:clarifai.api.ModelTypeEnumOptionAlias)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 id_int = 1;
+  if (this->id_int() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_id_int(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:clarifai.api.ModelTypeEnumOptionAlias)
+  return target;
+}
+
+size_t ModelTypeEnumOptionAlias::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:clarifai.api.ModelTypeEnumOptionAlias)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 id_int = 1;
+  if (this->id_int() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_id_int());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ModelTypeEnumOptionAlias::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:clarifai.api.ModelTypeEnumOptionAlias)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ModelTypeEnumOptionAlias* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ModelTypeEnumOptionAlias>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.api.ModelTypeEnumOptionAlias)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.api.ModelTypeEnumOptionAlias)
+    MergeFrom(*source);
+  }
+}
+
+void ModelTypeEnumOptionAlias::MergeFrom(const ModelTypeEnumOptionAlias& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:clarifai.api.ModelTypeEnumOptionAlias)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.id_int() != 0) {
+    _internal_set_id_int(from._internal_id_int());
+  }
+}
+
+void ModelTypeEnumOptionAlias::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:clarifai.api.ModelTypeEnumOptionAlias)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ModelTypeEnumOptionAlias::CopyFrom(const ModelTypeEnumOptionAlias& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:clarifai.api.ModelTypeEnumOptionAlias)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ModelTypeEnumOptionAlias::IsInitialized() const {
+  return true;
+}
+
+void ModelTypeEnumOptionAlias::InternalSwap(ModelTypeEnumOptionAlias* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(id_int_, other->id_int_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ModelTypeEnumOptionAlias::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -26207,10 +26319,6 @@ ModelQuery::ModelQuery(const ModelQuery& from)
   if (!from._internal_name().empty()) {
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
-  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_type().empty()) {
-    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
-  }
   model_type_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_model_type_id().empty()) {
     model_type_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.model_type_id_);
@@ -26221,7 +26329,6 @@ ModelQuery::ModelQuery(const ModelQuery& from)
 void ModelQuery::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ModelQuery_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   model_type_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -26232,7 +26339,6 @@ ModelQuery::~ModelQuery() {
 
 void ModelQuery::SharedDtor() {
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   model_type_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -26252,7 +26358,6 @@ void ModelQuery::Clear() {
   (void) cached_has_bits;
 
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  type_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   model_type_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   _internal_metadata_.Clear();
 }
@@ -26270,15 +26375,6 @@ const char* ModelQuery::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           auto str = _internal_mutable_name();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.ModelQuery.name"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string type = 2 [deprecated = true];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_type();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.ModelQuery.type"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -26327,16 +26423,6 @@ failure:
         1, this->_internal_name(), target);
   }
 
-  // string type = 2 [deprecated = true];
-  if (this->type().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_type().data(), static_cast<int>(this->_internal_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "clarifai.api.ModelQuery.type");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_type(), target);
-  }
-
   // string model_type_id = 3;
   if (this->model_type_id().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
@@ -26368,13 +26454,6 @@ size_t ModelQuery::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
-  }
-
-  // string type = 2 [deprecated = true];
-  if (this->type().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_type());
   }
 
   // string model_type_id = 3;
@@ -26419,10 +26498,6 @@ void ModelQuery::MergeFrom(const ModelQuery& from) {
 
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
-  if (from.type().size() > 0) {
-
-    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
-  }
   if (from.model_type_id().size() > 0) {
 
     model_type_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.model_type_id_);
@@ -26452,8 +26527,6 @@ void ModelQuery::InternalSwap(ModelQuery* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
   name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  type_.Swap(&other->type_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
   model_type_id_.Swap(&other->model_type_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
 }
@@ -26480,6 +26553,8 @@ void ModelVersion::InitAsDefaultInstance() {
       PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
   ::clarifai::api::_ModelVersion_default_instance_._instance.get_mutable()->metadata_ = const_cast< PROTOBUF_NAMESPACE_ID::Struct*>(
       PROTOBUF_NAMESPACE_ID::Struct::internal_default_instance());
+  ::clarifai::api::_ModelVersion_default_instance_._instance.get_mutable()->dataset_version_ = const_cast< ::clarifai::api::DatasetVersion*>(
+      ::clarifai::api::DatasetVersion::internal_default_instance());
 }
 class ModelVersion::_Internal {
  public:
@@ -26490,6 +26565,7 @@ class ModelVersion::_Internal {
   static const ::clarifai::api::Visibility& visibility(const ModelVersion* msg);
   static const PROTOBUF_NAMESPACE_ID::Timestamp& modified_at(const ModelVersion* msg);
   static const PROTOBUF_NAMESPACE_ID::Struct& metadata(const ModelVersion* msg);
+  static const ::clarifai::api::DatasetVersion& dataset_version(const ModelVersion* msg);
 };
 
 const PROTOBUF_NAMESPACE_ID::Timestamp&
@@ -26519,6 +26595,10 @@ ModelVersion::_Internal::modified_at(const ModelVersion* msg) {
 const PROTOBUF_NAMESPACE_ID::Struct&
 ModelVersion::_Internal::metadata(const ModelVersion* msg) {
   return *msg->metadata_;
+}
+const ::clarifai::api::DatasetVersion&
+ModelVersion::_Internal::dataset_version(const ModelVersion* msg) {
+  return *msg->dataset_version_;
 }
 void ModelVersion::clear_created_at() {
   if (GetArenaNoVirtual() == nullptr && created_at_ != nullptr) {
@@ -26614,6 +26694,11 @@ ModelVersion::ModelVersion(const ModelVersion& from)
   } else {
     metadata_ = nullptr;
   }
+  if (from._internal_has_dataset_version()) {
+    dataset_version_ = new ::clarifai::api::DatasetVersion(*from.dataset_version_);
+  } else {
+    dataset_version_ = nullptr;
+  }
   ::memcpy(&active_concept_count_, &from.active_concept_count_,
     static_cast<size_t>(reinterpret_cast<char*>(&total_input_count_) -
     reinterpret_cast<char*>(&active_concept_count_)) + sizeof(total_input_count_));
@@ -26621,7 +26706,7 @@ ModelVersion::ModelVersion(const ModelVersion& from)
 }
 
 void ModelVersion::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ModelVersion_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   app_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -26650,13 +26735,14 @@ void ModelVersion::SharedDtor() {
   if (this != internal_default_instance()) delete visibility_;
   if (this != internal_default_instance()) delete modified_at_;
   if (this != internal_default_instance()) delete metadata_;
+  if (this != internal_default_instance()) delete dataset_version_;
 }
 
 void ModelVersion::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 const ModelVersion& ModelVersion::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ModelVersion_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
@@ -26700,6 +26786,10 @@ void ModelVersion::Clear() {
     delete metadata_;
   }
   metadata_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && dataset_version_ != nullptr) {
+    delete dataset_version_;
+  }
+  dataset_version_ = nullptr;
   ::memset(&active_concept_count_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&total_input_count_) -
       reinterpret_cast<char*>(&active_concept_count_)) + sizeof(total_input_count_));
@@ -26818,6 +26908,13 @@ const char* ModelVersion::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           auto str = _internal_mutable_license();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.ModelVersion.license"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .clarifai.api.DatasetVersion dataset_version = 18;
+      case 18:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 146)) {
+          ptr = ctx->ParseMessage(_internal_mutable_dataset_version(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -26965,6 +27062,14 @@ failure:
         17, this->_internal_license(), target);
   }
 
+  // .clarifai.api.DatasetVersion dataset_version = 18;
+  if (this->has_dataset_version()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        18, _Internal::dataset_version(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -27065,6 +27170,13 @@ size_t ModelVersion::ByteSizeLong() const {
         *metadata_);
   }
 
+  // .clarifai.api.DatasetVersion dataset_version = 18;
+  if (this->has_dataset_version()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *dataset_version_);
+  }
+
   // uint32 active_concept_count = 4;
   if (this->active_concept_count() != 0) {
     total_size += 1 +
@@ -27151,6 +27263,9 @@ void ModelVersion::MergeFrom(const ModelVersion& from) {
   if (from.has_metadata()) {
     _internal_mutable_metadata()->PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_metadata());
   }
+  if (from.has_dataset_version()) {
+    _internal_mutable_dataset_version()->::clarifai::api::DatasetVersion::MergeFrom(from._internal_dataset_version());
+  }
   if (from.active_concept_count() != 0) {
     _internal_set_active_concept_count(from._internal_active_concept_count());
   }
@@ -27197,11 +27312,882 @@ void ModelVersion::InternalSwap(ModelVersion* other) {
   swap(visibility_, other->visibility_);
   swap(modified_at_, other->modified_at_);
   swap(metadata_, other->metadata_);
+  swap(dataset_version_, other->dataset_version_);
   swap(active_concept_count_, other->active_concept_count_);
   swap(total_input_count_, other->total_input_count_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ModelVersion::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void PretrainedModelConfig::InitAsDefaultInstance() {
+  ::clarifai::api::_PretrainedModelConfig_default_instance_._instance.get_mutable()->input_fields_map_ = const_cast< PROTOBUF_NAMESPACE_ID::Struct*>(
+      PROTOBUF_NAMESPACE_ID::Struct::internal_default_instance());
+  ::clarifai::api::_PretrainedModelConfig_default_instance_._instance.get_mutable()->output_fields_map_ = const_cast< PROTOBUF_NAMESPACE_ID::Struct*>(
+      PROTOBUF_NAMESPACE_ID::Struct::internal_default_instance());
+}
+class PretrainedModelConfig::_Internal {
+ public:
+  static const PROTOBUF_NAMESPACE_ID::Struct& input_fields_map(const PretrainedModelConfig* msg);
+  static const PROTOBUF_NAMESPACE_ID::Struct& output_fields_map(const PretrainedModelConfig* msg);
+};
+
+const PROTOBUF_NAMESPACE_ID::Struct&
+PretrainedModelConfig::_Internal::input_fields_map(const PretrainedModelConfig* msg) {
+  return *msg->input_fields_map_;
+}
+const PROTOBUF_NAMESPACE_ID::Struct&
+PretrainedModelConfig::_Internal::output_fields_map(const PretrainedModelConfig* msg) {
+  return *msg->output_fields_map_;
+}
+void PretrainedModelConfig::clear_input_fields_map() {
+  if (GetArenaNoVirtual() == nullptr && input_fields_map_ != nullptr) {
+    delete input_fields_map_;
+  }
+  input_fields_map_ = nullptr;
+}
+void PretrainedModelConfig::clear_output_fields_map() {
+  if (GetArenaNoVirtual() == nullptr && output_fields_map_ != nullptr) {
+    delete output_fields_map_;
+  }
+  output_fields_map_ = nullptr;
+}
+PretrainedModelConfig::PretrainedModelConfig()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:clarifai.api.PretrainedModelConfig)
+}
+PretrainedModelConfig::PretrainedModelConfig(const PretrainedModelConfig& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_id().empty()) {
+    id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
+  }
+  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_type().empty()) {
+    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
+  }
+  data_provider_params_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_data_provider_params().empty()) {
+    data_provider_params_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.data_provider_params_);
+  }
+  model_zip_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_model_zip_url().empty()) {
+    model_zip_url_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.model_zip_url_);
+  }
+  if (from._internal_has_input_fields_map()) {
+    input_fields_map_ = new PROTOBUF_NAMESPACE_ID::Struct(*from.input_fields_map_);
+  } else {
+    input_fields_map_ = nullptr;
+  }
+  if (from._internal_has_output_fields_map()) {
+    output_fields_map_ = new PROTOBUF_NAMESPACE_ID::Struct(*from.output_fields_map_);
+  } else {
+    output_fields_map_ = nullptr;
+  }
+  overwrite_ = from.overwrite_;
+  // @@protoc_insertion_point(copy_constructor:clarifai.api.PretrainedModelConfig)
+}
+
+void PretrainedModelConfig::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_PretrainedModelConfig_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  data_provider_params_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  model_zip_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&input_fields_map_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&overwrite_) -
+      reinterpret_cast<char*>(&input_fields_map_)) + sizeof(overwrite_));
+}
+
+PretrainedModelConfig::~PretrainedModelConfig() {
+  // @@protoc_insertion_point(destructor:clarifai.api.PretrainedModelConfig)
+  SharedDtor();
+}
+
+void PretrainedModelConfig::SharedDtor() {
+  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  type_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  data_provider_params_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  model_zip_url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete input_fields_map_;
+  if (this != internal_default_instance()) delete output_fields_map_;
+}
+
+void PretrainedModelConfig::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const PretrainedModelConfig& PretrainedModelConfig::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_PretrainedModelConfig_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void PretrainedModelConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:clarifai.api.PretrainedModelConfig)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  type_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  data_provider_params_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  model_zip_url_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == nullptr && input_fields_map_ != nullptr) {
+    delete input_fields_map_;
+  }
+  input_fields_map_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && output_fields_map_ != nullptr) {
+    delete output_fields_map_;
+  }
+  output_fields_map_ = nullptr;
+  overwrite_ = false;
+  _internal_metadata_.Clear();
+}
+
+const char* PretrainedModelConfig::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.PretrainedModelConfig.id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string type = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_type();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.PretrainedModelConfig.type"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct input_fields_map = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_input_fields_map(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct output_fields_map = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_output_fields_map(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string data_provider_params = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_data_provider_params();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.PretrainedModelConfig.data_provider_params"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string model_zip_url = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_model_zip_url();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.PretrainedModelConfig.model_zip_url"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool overwrite = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          overwrite_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* PretrainedModelConfig::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:clarifai.api.PretrainedModelConfig)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (this->id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "clarifai.api.PretrainedModelConfig.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string type = 2;
+  if (this->type().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_type().data(), static_cast<int>(this->_internal_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "clarifai.api.PretrainedModelConfig.type");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_type(), target);
+  }
+
+  // .google.protobuf.Struct input_fields_map = 3;
+  if (this->has_input_fields_map()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::input_fields_map(this), target, stream);
+  }
+
+  // .google.protobuf.Struct output_fields_map = 4;
+  if (this->has_output_fields_map()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        4, _Internal::output_fields_map(this), target, stream);
+  }
+
+  // string data_provider_params = 5;
+  if (this->data_provider_params().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_data_provider_params().data(), static_cast<int>(this->_internal_data_provider_params().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "clarifai.api.PretrainedModelConfig.data_provider_params");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_data_provider_params(), target);
+  }
+
+  // string model_zip_url = 6;
+  if (this->model_zip_url().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_model_zip_url().data(), static_cast<int>(this->_internal_model_zip_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "clarifai.api.PretrainedModelConfig.model_zip_url");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_model_zip_url(), target);
+  }
+
+  // bool overwrite = 7;
+  if (this->overwrite() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(7, this->_internal_overwrite(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:clarifai.api.PretrainedModelConfig)
+  return target;
+}
+
+size_t PretrainedModelConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:clarifai.api.PretrainedModelConfig)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (this->id().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string type = 2;
+  if (this->type().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_type());
+  }
+
+  // string data_provider_params = 5;
+  if (this->data_provider_params().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_data_provider_params());
+  }
+
+  // string model_zip_url = 6;
+  if (this->model_zip_url().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_model_zip_url());
+  }
+
+  // .google.protobuf.Struct input_fields_map = 3;
+  if (this->has_input_fields_map()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *input_fields_map_);
+  }
+
+  // .google.protobuf.Struct output_fields_map = 4;
+  if (this->has_output_fields_map()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *output_fields_map_);
+  }
+
+  // bool overwrite = 7;
+  if (this->overwrite() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void PretrainedModelConfig::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:clarifai.api.PretrainedModelConfig)
+  GOOGLE_DCHECK_NE(&from, this);
+  const PretrainedModelConfig* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<PretrainedModelConfig>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.api.PretrainedModelConfig)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.api.PretrainedModelConfig)
+    MergeFrom(*source);
+  }
+}
+
+void PretrainedModelConfig::MergeFrom(const PretrainedModelConfig& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:clarifai.api.PretrainedModelConfig)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.id().size() > 0) {
+
+    id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.id_);
+  }
+  if (from.type().size() > 0) {
+
+    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
+  }
+  if (from.data_provider_params().size() > 0) {
+
+    data_provider_params_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.data_provider_params_);
+  }
+  if (from.model_zip_url().size() > 0) {
+
+    model_zip_url_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.model_zip_url_);
+  }
+  if (from.has_input_fields_map()) {
+    _internal_mutable_input_fields_map()->PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_input_fields_map());
+  }
+  if (from.has_output_fields_map()) {
+    _internal_mutable_output_fields_map()->PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_output_fields_map());
+  }
+  if (from.overwrite() != 0) {
+    _internal_set_overwrite(from._internal_overwrite());
+  }
+}
+
+void PretrainedModelConfig::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:clarifai.api.PretrainedModelConfig)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void PretrainedModelConfig::CopyFrom(const PretrainedModelConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:clarifai.api.PretrainedModelConfig)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PretrainedModelConfig::IsInitialized() const {
+  return true;
+}
+
+void PretrainedModelConfig::InternalSwap(PretrainedModelConfig* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  type_.Swap(&other->type_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  data_provider_params_.Swap(&other->data_provider_params_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  model_zip_url_.Swap(&other->model_zip_url_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(input_fields_map_, other->input_fields_map_);
+  swap(output_fields_map_, other->output_fields_map_);
+  swap(overwrite_, other->overwrite_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PretrainedModelConfig::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void TrainStats::InitAsDefaultInstance() {
+}
+class TrainStats::_Internal {
+ public:
+};
+
+TrainStats::TrainStats()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:clarifai.api.TrainStats)
+}
+TrainStats::TrainStats(const TrainStats& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      loss_curve_(from.loss_curve_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:clarifai.api.TrainStats)
+}
+
+void TrainStats::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TrainStats_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+}
+
+TrainStats::~TrainStats() {
+  // @@protoc_insertion_point(destructor:clarifai.api.TrainStats)
+  SharedDtor();
+}
+
+void TrainStats::SharedDtor() {
+}
+
+void TrainStats::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const TrainStats& TrainStats::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TrainStats_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void TrainStats::Clear() {
+// @@protoc_insertion_point(message_clear_start:clarifai.api.TrainStats)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  loss_curve_.Clear();
+  _internal_metadata_.Clear();
+}
+
+const char* TrainStats::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated .clarifai.api.LossCurveEntry loss_curve = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_loss_curve(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* TrainStats::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:clarifai.api.TrainStats)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .clarifai.api.LossCurveEntry loss_curve = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_loss_curve_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_loss_curve(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:clarifai.api.TrainStats)
+  return target;
+}
+
+size_t TrainStats::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:clarifai.api.TrainStats)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .clarifai.api.LossCurveEntry loss_curve = 1;
+  total_size += 1UL * this->_internal_loss_curve_size();
+  for (const auto& msg : this->loss_curve_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void TrainStats::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:clarifai.api.TrainStats)
+  GOOGLE_DCHECK_NE(&from, this);
+  const TrainStats* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TrainStats>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.api.TrainStats)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.api.TrainStats)
+    MergeFrom(*source);
+  }
+}
+
+void TrainStats::MergeFrom(const TrainStats& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:clarifai.api.TrainStats)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  loss_curve_.MergeFrom(from.loss_curve_);
+}
+
+void TrainStats::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:clarifai.api.TrainStats)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TrainStats::CopyFrom(const TrainStats& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:clarifai.api.TrainStats)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TrainStats::IsInitialized() const {
+  return true;
+}
+
+void TrainStats::InternalSwap(TrainStats* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  loss_curve_.InternalSwap(&other->loss_curve_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TrainStats::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void LossCurveEntry::InitAsDefaultInstance() {
+}
+class LossCurveEntry::_Internal {
+ public:
+};
+
+LossCurveEntry::LossCurveEntry()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:clarifai.api.LossCurveEntry)
+}
+LossCurveEntry::LossCurveEntry(const LossCurveEntry& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&epoch_, &from.epoch_,
+    static_cast<size_t>(reinterpret_cast<char*>(&cost_) -
+    reinterpret_cast<char*>(&epoch_)) + sizeof(cost_));
+  // @@protoc_insertion_point(copy_constructor:clarifai.api.LossCurveEntry)
+}
+
+void LossCurveEntry::SharedCtor() {
+  ::memset(&epoch_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&cost_) -
+      reinterpret_cast<char*>(&epoch_)) + sizeof(cost_));
+}
+
+LossCurveEntry::~LossCurveEntry() {
+  // @@protoc_insertion_point(destructor:clarifai.api.LossCurveEntry)
+  SharedDtor();
+}
+
+void LossCurveEntry::SharedDtor() {
+}
+
+void LossCurveEntry::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const LossCurveEntry& LossCurveEntry::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_LossCurveEntry_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void LossCurveEntry::Clear() {
+// @@protoc_insertion_point(message_clear_start:clarifai.api.LossCurveEntry)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&epoch_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&cost_) -
+      reinterpret_cast<char*>(&epoch_)) + sizeof(cost_));
+  _internal_metadata_.Clear();
+}
+
+const char* LossCurveEntry::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 epoch = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          epoch_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint32 global_step = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          global_step_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float cost = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          cost_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* LossCurveEntry::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:clarifai.api.LossCurveEntry)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 epoch = 1;
+  if (this->epoch() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_epoch(), target);
+  }
+
+  // uint32 global_step = 2;
+  if (this->global_step() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_global_step(), target);
+  }
+
+  // float cost = 3;
+  if (!(this->cost() <= 0 && this->cost() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_cost(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:clarifai.api.LossCurveEntry)
+  return target;
+}
+
+size_t LossCurveEntry::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:clarifai.api.LossCurveEntry)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint32 epoch = 1;
+  if (this->epoch() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_epoch());
+  }
+
+  // uint32 global_step = 2;
+  if (this->global_step() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_global_step());
+  }
+
+  // float cost = 3;
+  if (!(this->cost() <= 0 && this->cost() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void LossCurveEntry::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:clarifai.api.LossCurveEntry)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LossCurveEntry* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LossCurveEntry>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.api.LossCurveEntry)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.api.LossCurveEntry)
+    MergeFrom(*source);
+  }
+}
+
+void LossCurveEntry::MergeFrom(const LossCurveEntry& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:clarifai.api.LossCurveEntry)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.epoch() != 0) {
+    _internal_set_epoch(from._internal_epoch());
+  }
+  if (from.global_step() != 0) {
+    _internal_set_global_step(from._internal_global_step());
+  }
+  if (!(from.cost() <= 0 && from.cost() >= 0)) {
+    _internal_set_cost(from._internal_cost());
+  }
+}
+
+void LossCurveEntry::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:clarifai.api.LossCurveEntry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LossCurveEntry::CopyFrom(const LossCurveEntry& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:clarifai.api.LossCurveEntry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LossCurveEntry::IsInitialized() const {
+  return true;
+}
+
+void LossCurveEntry::InternalSwap(LossCurveEntry* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(epoch_, other->epoch_);
+  swap(global_step_, other->global_step_);
+  swap(cost_, other->cost_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LossCurveEntry::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -32164,7 +33150,7 @@ Output::Output(const Output& from)
 }
 
 void Output::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&status_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&data_) -
@@ -32189,7 +33175,7 @@ void Output::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 const Output& Output::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Output_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
@@ -33583,7 +34569,7 @@ Query::Query(const Query& from)
 }
 
 void Query::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Query_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   language_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -33600,7 +34586,7 @@ void Query::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 const Query& Query::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Query_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
@@ -33969,7 +34955,7 @@ Search::Search(const Search& from)
 }
 
 void Search::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   application_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -34002,7 +34988,7 @@ void Search::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 const Search& Search::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Search_proto_2fclarifai_2fapi_2fresources_2eproto.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_And_proto_2fclarifai_2fapi_2fresources_2eproto.base);
   return *internal_default_instance();
 }
 
@@ -49273,11 +50259,8 @@ template<> PROTOBUF_NOINLINE ::clarifai::api::DatasetVersion* Arena::CreateMaybe
 template<> PROTOBUF_NOINLINE ::clarifai::api::DatasetVersionDatasetFilterConfig* Arena::CreateMaybeMessage< ::clarifai::api::DatasetVersionDatasetFilterConfig >(Arena* arena) {
   return Arena::CreateInternal< ::clarifai::api::DatasetVersionDatasetFilterConfig >(arena);
 }
-template<> PROTOBUF_NOINLINE ::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse* Arena::CreateMaybeMessage< ::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse >(Arena* arena) {
-  return Arena::CreateInternal< ::clarifai::api::DatasetVersionSummary_InputCountsEntry_DoNotUse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::clarifai::api::DatasetVersionSummary* Arena::CreateMaybeMessage< ::clarifai::api::DatasetVersionSummary >(Arena* arena) {
-  return Arena::CreateInternal< ::clarifai::api::DatasetVersionSummary >(arena);
+template<> PROTOBUF_NOINLINE ::clarifai::api::DatasetVersionMetrics* Arena::CreateMaybeMessage< ::clarifai::api::DatasetVersionMetrics >(Arena* arena) {
+  return Arena::CreateInternal< ::clarifai::api::DatasetVersionMetrics >(arena);
 }
 template<> PROTOBUF_NOINLINE ::clarifai::api::WorkflowResultsSimilarity* Arena::CreateMaybeMessage< ::clarifai::api::WorkflowResultsSimilarity >(Arena* arena) {
   return Arena::CreateInternal< ::clarifai::api::WorkflowResultsSimilarity >(arena);
@@ -49321,11 +50304,23 @@ template<> PROTOBUF_NOINLINE ::clarifai::api::ModelTypeRangeInfo* Arena::CreateM
 template<> PROTOBUF_NOINLINE ::clarifai::api::ModelTypeEnumOption* Arena::CreateMaybeMessage< ::clarifai::api::ModelTypeEnumOption >(Arena* arena) {
   return Arena::CreateInternal< ::clarifai::api::ModelTypeEnumOption >(arena);
 }
+template<> PROTOBUF_NOINLINE ::clarifai::api::ModelTypeEnumOptionAlias* Arena::CreateMaybeMessage< ::clarifai::api::ModelTypeEnumOptionAlias >(Arena* arena) {
+  return Arena::CreateInternal< ::clarifai::api::ModelTypeEnumOptionAlias >(arena);
+}
 template<> PROTOBUF_NOINLINE ::clarifai::api::ModelQuery* Arena::CreateMaybeMessage< ::clarifai::api::ModelQuery >(Arena* arena) {
   return Arena::CreateInternal< ::clarifai::api::ModelQuery >(arena);
 }
 template<> PROTOBUF_NOINLINE ::clarifai::api::ModelVersion* Arena::CreateMaybeMessage< ::clarifai::api::ModelVersion >(Arena* arena) {
   return Arena::CreateInternal< ::clarifai::api::ModelVersion >(arena);
+}
+template<> PROTOBUF_NOINLINE ::clarifai::api::PretrainedModelConfig* Arena::CreateMaybeMessage< ::clarifai::api::PretrainedModelConfig >(Arena* arena) {
+  return Arena::CreateInternal< ::clarifai::api::PretrainedModelConfig >(arena);
+}
+template<> PROTOBUF_NOINLINE ::clarifai::api::TrainStats* Arena::CreateMaybeMessage< ::clarifai::api::TrainStats >(Arena* arena) {
+  return Arena::CreateInternal< ::clarifai::api::TrainStats >(arena);
+}
+template<> PROTOBUF_NOINLINE ::clarifai::api::LossCurveEntry* Arena::CreateMaybeMessage< ::clarifai::api::LossCurveEntry >(Arena* arena) {
+  return Arena::CreateInternal< ::clarifai::api::LossCurveEntry >(arena);
 }
 template<> PROTOBUF_NOINLINE ::clarifai::api::LabelCount* Arena::CreateMaybeMessage< ::clarifai::api::LabelCount >(Arena* arena) {
   return Arena::CreateInternal< ::clarifai::api::LabelCount >(arena);

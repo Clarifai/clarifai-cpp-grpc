@@ -19613,6 +19613,7 @@ class MultiModelTypeResponse :
   enum : int {
     kModelTypesFieldNumber = 2,
     kStatusFieldNumber = 1,
+    kModelImportersFieldNumber = 3,
   };
   // repeated .clarifai.api.ModelType model_types = 2 [(.clarifai.api.utils.cl_show_if_empty) = true];
   int model_types_size() const;
@@ -19647,6 +19648,21 @@ class MultiModelTypeResponse :
   ::clarifai::api::status::Status* _internal_mutable_status();
   public:
 
+  // .clarifai.api.ModelTypeField model_importers = 3;
+  bool has_model_importers() const;
+  private:
+  bool _internal_has_model_importers() const;
+  public:
+  void clear_model_importers();
+  const ::clarifai::api::ModelTypeField& model_importers() const;
+  ::clarifai::api::ModelTypeField* release_model_importers();
+  ::clarifai::api::ModelTypeField* mutable_model_importers();
+  void set_allocated_model_importers(::clarifai::api::ModelTypeField* model_importers);
+  private:
+  const ::clarifai::api::ModelTypeField& _internal_model_importers() const;
+  ::clarifai::api::ModelTypeField* _internal_mutable_model_importers();
+  public:
+
   // @@protoc_insertion_point(class_scope:clarifai.api.MultiModelTypeResponse)
  private:
   class _Internal;
@@ -19654,6 +19670,7 @@ class MultiModelTypeResponse :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelType > model_types_;
   ::clarifai::api::status::Status* status_;
+  ::clarifai::api::ModelTypeField* model_importers_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
 };
@@ -49407,6 +49424,60 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelTy
 MultiModelTypeResponse::model_types() const {
   // @@protoc_insertion_point(field_list:clarifai.api.MultiModelTypeResponse.model_types)
   return model_types_;
+}
+
+// .clarifai.api.ModelTypeField model_importers = 3;
+inline bool MultiModelTypeResponse::_internal_has_model_importers() const {
+  return this != internal_default_instance() && model_importers_ != nullptr;
+}
+inline bool MultiModelTypeResponse::has_model_importers() const {
+  return _internal_has_model_importers();
+}
+inline const ::clarifai::api::ModelTypeField& MultiModelTypeResponse::_internal_model_importers() const {
+  const ::clarifai::api::ModelTypeField* p = model_importers_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::ModelTypeField*>(
+      &::clarifai::api::_ModelTypeField_default_instance_);
+}
+inline const ::clarifai::api::ModelTypeField& MultiModelTypeResponse::model_importers() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiModelTypeResponse.model_importers)
+  return _internal_model_importers();
+}
+inline ::clarifai::api::ModelTypeField* MultiModelTypeResponse::release_model_importers() {
+  // @@protoc_insertion_point(field_release:clarifai.api.MultiModelTypeResponse.model_importers)
+  
+  ::clarifai::api::ModelTypeField* temp = model_importers_;
+  model_importers_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::ModelTypeField* MultiModelTypeResponse::_internal_mutable_model_importers() {
+  
+  if (model_importers_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::ModelTypeField>(GetArenaNoVirtual());
+    model_importers_ = p;
+  }
+  return model_importers_;
+}
+inline ::clarifai::api::ModelTypeField* MultiModelTypeResponse::mutable_model_importers() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiModelTypeResponse.model_importers)
+  return _internal_mutable_model_importers();
+}
+inline void MultiModelTypeResponse::set_allocated_model_importers(::clarifai::api::ModelTypeField* model_importers) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(model_importers_);
+  }
+  if (model_importers) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      model_importers = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, model_importers, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  model_importers_ = model_importers;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.MultiModelTypeResponse.model_importers)
 }
 
 // -------------------------------------------------------------------
