@@ -58,7 +58,7 @@ struct TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[188]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[195]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -97,6 +97,9 @@ extern DeleteInputsRequestDefaultTypeInternal _DeleteInputsRequest_default_insta
 class DeleteKeyRequest;
 class DeleteKeyRequestDefaultTypeInternal;
 extern DeleteKeyRequestDefaultTypeInternal _DeleteKeyRequest_default_instance_;
+class DeleteLabelOrdersRequest;
+class DeleteLabelOrdersRequestDefaultTypeInternal;
+extern DeleteLabelOrdersRequestDefaultTypeInternal _DeleteLabelOrdersRequest_default_instance_;
 class DeleteModelRequest;
 class DeleteModelRequestDefaultTypeInternal;
 extern DeleteModelRequestDefaultTypeInternal _DeleteModelRequest_default_instance_;
@@ -157,6 +160,9 @@ extern GetInputSamplesRequestDefaultTypeInternal _GetInputSamplesRequest_default
 class GetKeyRequest;
 class GetKeyRequestDefaultTypeInternal;
 extern GetKeyRequestDefaultTypeInternal _GetKeyRequest_default_instance_;
+class GetLabelOrderRequest;
+class GetLabelOrderRequestDefaultTypeInternal;
+extern GetLabelOrderRequestDefaultTypeInternal _GetLabelOrderRequest_default_instance_;
 class GetModelRequest;
 class GetModelRequestDefaultTypeInternal;
 extern GetModelRequestDefaultTypeInternal _GetModelRequest_default_instance_;
@@ -232,6 +238,9 @@ extern ListKeysRequestDefaultTypeInternal _ListKeysRequest_default_instance_;
 class ListKnowledgeGraphsRequest;
 class ListKnowledgeGraphsRequestDefaultTypeInternal;
 extern ListKnowledgeGraphsRequestDefaultTypeInternal _ListKnowledgeGraphsRequest_default_instance_;
+class ListLabelOrdersRequest;
+class ListLabelOrdersRequestDefaultTypeInternal;
+extern ListLabelOrdersRequestDefaultTypeInternal _ListLabelOrdersRequest_default_instance_;
 class ListModelInputsRequest;
 class ListModelInputsRequestDefaultTypeInternal;
 extern ListModelInputsRequestDefaultTypeInternal _ListModelInputsRequest_default_instance_;
@@ -331,6 +340,9 @@ extern MultiKeyResponseDefaultTypeInternal _MultiKeyResponse_default_instance_;
 class MultiKnowledgeGraphResponse;
 class MultiKnowledgeGraphResponseDefaultTypeInternal;
 extern MultiKnowledgeGraphResponseDefaultTypeInternal _MultiKnowledgeGraphResponse_default_instance_;
+class MultiLabelOrderResponse;
+class MultiLabelOrderResponseDefaultTypeInternal;
+extern MultiLabelOrderResponseDefaultTypeInternal _MultiLabelOrderResponse_default_instance_;
 class MultiModelLanguageResponse;
 class MultiModelLanguageResponseDefaultTypeInternal;
 extern MultiModelLanguageResponseDefaultTypeInternal _MultiModelLanguageResponse_default_instance_;
@@ -436,6 +448,9 @@ extern PatchInputsRequestDefaultTypeInternal _PatchInputsRequest_default_instanc
 class PatchKeysRequest;
 class PatchKeysRequestDefaultTypeInternal;
 extern PatchKeysRequestDefaultTypeInternal _PatchKeysRequest_default_instance_;
+class PatchLabelOrdersRequest;
+class PatchLabelOrdersRequestDefaultTypeInternal;
+extern PatchLabelOrdersRequestDefaultTypeInternal _PatchLabelOrdersRequest_default_instance_;
 class PatchModelLanguagesRequest;
 class PatchModelLanguagesRequestDefaultTypeInternal;
 extern PatchModelLanguagesRequestDefaultTypeInternal _PatchModelLanguagesRequest_default_instance_;
@@ -511,6 +526,9 @@ extern PostKeysRequestDefaultTypeInternal _PostKeysRequest_default_instance_;
 class PostKnowledgeGraphsRequest;
 class PostKnowledgeGraphsRequestDefaultTypeInternal;
 extern PostKnowledgeGraphsRequestDefaultTypeInternal _PostKnowledgeGraphsRequest_default_instance_;
+class PostLabelOrdersRequest;
+class PostLabelOrdersRequestDefaultTypeInternal;
+extern PostLabelOrdersRequestDefaultTypeInternal _PostLabelOrdersRequest_default_instance_;
 class PostModelOutputsRequest;
 class PostModelOutputsRequestDefaultTypeInternal;
 extern PostModelOutputsRequestDefaultTypeInternal _PostModelOutputsRequest_default_instance_;
@@ -595,6 +613,9 @@ extern SingleInputResponseDefaultTypeInternal _SingleInputResponse_default_insta
 class SingleKeyResponse;
 class SingleKeyResponseDefaultTypeInternal;
 extern SingleKeyResponseDefaultTypeInternal _SingleKeyResponse_default_instance_;
+class SingleLabelOrderResponse;
+class SingleLabelOrderResponseDefaultTypeInternal;
+extern SingleLabelOrderResponseDefaultTypeInternal _SingleLabelOrderResponse_default_instance_;
 class SingleModelResponse;
 class SingleModelResponseDefaultTypeInternal;
 extern SingleModelResponseDefaultTypeInternal _SingleModelResponse_default_instance_;
@@ -644,6 +665,7 @@ template<> ::clarifai::api::DeleteConceptRelationsRequest* Arena::CreateMaybeMes
 template<> ::clarifai::api::DeleteInputRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteInputRequest>(Arena*);
 template<> ::clarifai::api::DeleteInputsRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteInputsRequest>(Arena*);
 template<> ::clarifai::api::DeleteKeyRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteKeyRequest>(Arena*);
+template<> ::clarifai::api::DeleteLabelOrdersRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteLabelOrdersRequest>(Arena*);
 template<> ::clarifai::api::DeleteModelRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteModelRequest>(Arena*);
 template<> ::clarifai::api::DeleteModelVersionRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteModelVersionRequest>(Arena*);
 template<> ::clarifai::api::DeleteModelsRequest* Arena::CreateMaybeMessage<::clarifai::api::DeleteModelsRequest>(Arena*);
@@ -664,6 +686,7 @@ template<> ::clarifai::api::GetInputCountRequest* Arena::CreateMaybeMessage<::cl
 template<> ::clarifai::api::GetInputRequest* Arena::CreateMaybeMessage<::clarifai::api::GetInputRequest>(Arena*);
 template<> ::clarifai::api::GetInputSamplesRequest* Arena::CreateMaybeMessage<::clarifai::api::GetInputSamplesRequest>(Arena*);
 template<> ::clarifai::api::GetKeyRequest* Arena::CreateMaybeMessage<::clarifai::api::GetKeyRequest>(Arena*);
+template<> ::clarifai::api::GetLabelOrderRequest* Arena::CreateMaybeMessage<::clarifai::api::GetLabelOrderRequest>(Arena*);
 template<> ::clarifai::api::GetModelRequest* Arena::CreateMaybeMessage<::clarifai::api::GetModelRequest>(Arena*);
 template<> ::clarifai::api::GetModelTypeRequest* Arena::CreateMaybeMessage<::clarifai::api::GetModelTypeRequest>(Arena*);
 template<> ::clarifai::api::GetModelVersionInputExampleRequest* Arena::CreateMaybeMessage<::clarifai::api::GetModelVersionInputExampleRequest>(Arena*);
@@ -689,6 +712,7 @@ template<> ::clarifai::api::ListConceptsRequest* Arena::CreateMaybeMessage<::cla
 template<> ::clarifai::api::ListInputsRequest* Arena::CreateMaybeMessage<::clarifai::api::ListInputsRequest>(Arena*);
 template<> ::clarifai::api::ListKeysRequest* Arena::CreateMaybeMessage<::clarifai::api::ListKeysRequest>(Arena*);
 template<> ::clarifai::api::ListKnowledgeGraphsRequest* Arena::CreateMaybeMessage<::clarifai::api::ListKnowledgeGraphsRequest>(Arena*);
+template<> ::clarifai::api::ListLabelOrdersRequest* Arena::CreateMaybeMessage<::clarifai::api::ListLabelOrdersRequest>(Arena*);
 template<> ::clarifai::api::ListModelInputsRequest* Arena::CreateMaybeMessage<::clarifai::api::ListModelInputsRequest>(Arena*);
 template<> ::clarifai::api::ListModelReferencesRequest* Arena::CreateMaybeMessage<::clarifai::api::ListModelReferencesRequest>(Arena*);
 template<> ::clarifai::api::ListModelTypesRequest* Arena::CreateMaybeMessage<::clarifai::api::ListModelTypesRequest>(Arena*);
@@ -722,6 +746,7 @@ template<> ::clarifai::api::MultiInputAnnotationResponse* Arena::CreateMaybeMess
 template<> ::clarifai::api::MultiInputResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiInputResponse>(Arena*);
 template<> ::clarifai::api::MultiKeyResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiKeyResponse>(Arena*);
 template<> ::clarifai::api::MultiKnowledgeGraphResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiKnowledgeGraphResponse>(Arena*);
+template<> ::clarifai::api::MultiLabelOrderResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiLabelOrderResponse>(Arena*);
 template<> ::clarifai::api::MultiModelLanguageResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiModelLanguageResponse>(Arena*);
 template<> ::clarifai::api::MultiModelReferenceResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiModelReferenceResponse>(Arena*);
 template<> ::clarifai::api::MultiModelResponse* Arena::CreateMaybeMessage<::clarifai::api::MultiModelResponse>(Arena*);
@@ -757,6 +782,7 @@ template<> ::clarifai::api::PatchConceptLanguagesRequest* Arena::CreateMaybeMess
 template<> ::clarifai::api::PatchConceptsRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchConceptsRequest>(Arena*);
 template<> ::clarifai::api::PatchInputsRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchInputsRequest>(Arena*);
 template<> ::clarifai::api::PatchKeysRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchKeysRequest>(Arena*);
+template<> ::clarifai::api::PatchLabelOrdersRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchLabelOrdersRequest>(Arena*);
 template<> ::clarifai::api::PatchModelLanguagesRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchModelLanguagesRequest>(Arena*);
 template<> ::clarifai::api::PatchModelToolkitsRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchModelToolkitsRequest>(Arena*);
 template<> ::clarifai::api::PatchModelUseCasesRequest* Arena::CreateMaybeMessage<::clarifai::api::PatchModelUseCasesRequest>(Arena*);
@@ -782,6 +808,7 @@ template<> ::clarifai::api::PostInputsRequest* Arena::CreateMaybeMessage<::clari
 template<> ::clarifai::api::PostInputsSearchesRequest* Arena::CreateMaybeMessage<::clarifai::api::PostInputsSearchesRequest>(Arena*);
 template<> ::clarifai::api::PostKeysRequest* Arena::CreateMaybeMessage<::clarifai::api::PostKeysRequest>(Arena*);
 template<> ::clarifai::api::PostKnowledgeGraphsRequest* Arena::CreateMaybeMessage<::clarifai::api::PostKnowledgeGraphsRequest>(Arena*);
+template<> ::clarifai::api::PostLabelOrdersRequest* Arena::CreateMaybeMessage<::clarifai::api::PostLabelOrdersRequest>(Arena*);
 template<> ::clarifai::api::PostModelOutputsRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelOutputsRequest>(Arena*);
 template<> ::clarifai::api::PostModelVersionMetricsRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelVersionMetricsRequest>(Arena*);
 template<> ::clarifai::api::PostModelVersionsPublishRequest* Arena::CreateMaybeMessage<::clarifai::api::PostModelVersionsPublishRequest>(Arena*);
@@ -810,6 +837,7 @@ template<> ::clarifai::api::SingleConceptResponse* Arena::CreateMaybeMessage<::c
 template<> ::clarifai::api::SingleInputCountResponse* Arena::CreateMaybeMessage<::clarifai::api::SingleInputCountResponse>(Arena*);
 template<> ::clarifai::api::SingleInputResponse* Arena::CreateMaybeMessage<::clarifai::api::SingleInputResponse>(Arena*);
 template<> ::clarifai::api::SingleKeyResponse* Arena::CreateMaybeMessage<::clarifai::api::SingleKeyResponse>(Arena*);
+template<> ::clarifai::api::SingleLabelOrderResponse* Arena::CreateMaybeMessage<::clarifai::api::SingleLabelOrderResponse>(Arena*);
 template<> ::clarifai::api::SingleModelResponse* Arena::CreateMaybeMessage<::clarifai::api::SingleModelResponse>(Arena*);
 template<> ::clarifai::api::SingleModelTypeResponse* Arena::CreateMaybeMessage<::clarifai::api::SingleModelTypeResponse>(Arena*);
 template<> ::clarifai::api::SingleModelVersionInputExampleResponse* Arena::CreateMaybeMessage<::clarifai::api::SingleModelVersionInputExampleResponse>(Arena*);
@@ -19613,6 +19641,7 @@ class MultiModelTypeResponse :
   enum : int {
     kModelTypesFieldNumber = 2,
     kStatusFieldNumber = 1,
+    kModelImportersFieldNumber = 3,
   };
   // repeated .clarifai.api.ModelType model_types = 2 [(.clarifai.api.utils.cl_show_if_empty) = true];
   int model_types_size() const;
@@ -19647,6 +19676,21 @@ class MultiModelTypeResponse :
   ::clarifai::api::status::Status* _internal_mutable_status();
   public:
 
+  // .clarifai.api.ModelTypeField model_importers = 3;
+  bool has_model_importers() const;
+  private:
+  bool _internal_has_model_importers() const;
+  public:
+  void clear_model_importers();
+  const ::clarifai::api::ModelTypeField& model_importers() const;
+  ::clarifai::api::ModelTypeField* release_model_importers();
+  ::clarifai::api::ModelTypeField* mutable_model_importers();
+  void set_allocated_model_importers(::clarifai::api::ModelTypeField* model_importers);
+  private:
+  const ::clarifai::api::ModelTypeField& _internal_model_importers() const;
+  ::clarifai::api::ModelTypeField* _internal_mutable_model_importers();
+  public:
+
   // @@protoc_insertion_point(class_scope:clarifai.api.MultiModelTypeResponse)
  private:
   class _Internal;
@@ -19654,6 +19698,7 @@ class MultiModelTypeResponse :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::ModelType > model_types_;
   ::clarifai::api::status::Status* status_;
+  ::clarifai::api::ModelTypeField* model_importers_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
 };
@@ -30307,6 +30352,1105 @@ class SingleTaskCountResponse :
 };
 // -------------------------------------------------------------------
 
+class PostLabelOrdersRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.PostLabelOrdersRequest) */ {
+ public:
+  PostLabelOrdersRequest();
+  virtual ~PostLabelOrdersRequest();
+
+  PostLabelOrdersRequest(const PostLabelOrdersRequest& from);
+  PostLabelOrdersRequest(PostLabelOrdersRequest&& from) noexcept
+    : PostLabelOrdersRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline PostLabelOrdersRequest& operator=(const PostLabelOrdersRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PostLabelOrdersRequest& operator=(PostLabelOrdersRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PostLabelOrdersRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PostLabelOrdersRequest* internal_default_instance() {
+    return reinterpret_cast<const PostLabelOrdersRequest*>(
+               &_PostLabelOrdersRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    174;
+
+  friend void swap(PostLabelOrdersRequest& a, PostLabelOrdersRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PostLabelOrdersRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PostLabelOrdersRequest* New() const final {
+    return CreateMaybeMessage<PostLabelOrdersRequest>(nullptr);
+  }
+
+  PostLabelOrdersRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PostLabelOrdersRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PostLabelOrdersRequest& from);
+  void MergeFrom(const PostLabelOrdersRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PostLabelOrdersRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.PostLabelOrdersRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLabelOrdersFieldNumber = 2,
+    kUserAppIdFieldNumber = 1,
+  };
+  // repeated .clarifai.api.LabelOrder label_orders = 2;
+  int label_orders_size() const;
+  private:
+  int _internal_label_orders_size() const;
+  public:
+  void clear_label_orders();
+  ::clarifai::api::LabelOrder* mutable_label_orders(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >*
+      mutable_label_orders();
+  private:
+  const ::clarifai::api::LabelOrder& _internal_label_orders(int index) const;
+  ::clarifai::api::LabelOrder* _internal_add_label_orders();
+  public:
+  const ::clarifai::api::LabelOrder& label_orders(int index) const;
+  ::clarifai::api::LabelOrder* add_label_orders();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >&
+      label_orders() const;
+
+  // .clarifai.api.UserAppIDSet user_app_id = 1;
+  bool has_user_app_id() const;
+  private:
+  bool _internal_has_user_app_id() const;
+  public:
+  void clear_user_app_id();
+  const ::clarifai::api::UserAppIDSet& user_app_id() const;
+  ::clarifai::api::UserAppIDSet* release_user_app_id();
+  ::clarifai::api::UserAppIDSet* mutable_user_app_id();
+  void set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id);
+  private:
+  const ::clarifai::api::UserAppIDSet& _internal_user_app_id() const;
+  ::clarifai::api::UserAppIDSet* _internal_mutable_user_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.PostLabelOrdersRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder > label_orders_;
+  ::clarifai::api::UserAppIDSet* user_app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetLabelOrderRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.GetLabelOrderRequest) */ {
+ public:
+  GetLabelOrderRequest();
+  virtual ~GetLabelOrderRequest();
+
+  GetLabelOrderRequest(const GetLabelOrderRequest& from);
+  GetLabelOrderRequest(GetLabelOrderRequest&& from) noexcept
+    : GetLabelOrderRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetLabelOrderRequest& operator=(const GetLabelOrderRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetLabelOrderRequest& operator=(GetLabelOrderRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GetLabelOrderRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetLabelOrderRequest* internal_default_instance() {
+    return reinterpret_cast<const GetLabelOrderRequest*>(
+               &_GetLabelOrderRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    175;
+
+  friend void swap(GetLabelOrderRequest& a, GetLabelOrderRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetLabelOrderRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetLabelOrderRequest* New() const final {
+    return CreateMaybeMessage<GetLabelOrderRequest>(nullptr);
+  }
+
+  GetLabelOrderRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetLabelOrderRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GetLabelOrderRequest& from);
+  void MergeFrom(const GetLabelOrderRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetLabelOrderRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.GetLabelOrderRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLabelOrderIdFieldNumber = 2,
+    kUserAppIdFieldNumber = 1,
+  };
+  // string label_order_id = 2;
+  void clear_label_order_id();
+  const std::string& label_order_id() const;
+  void set_label_order_id(const std::string& value);
+  void set_label_order_id(std::string&& value);
+  void set_label_order_id(const char* value);
+  void set_label_order_id(const char* value, size_t size);
+  std::string* mutable_label_order_id();
+  std::string* release_label_order_id();
+  void set_allocated_label_order_id(std::string* label_order_id);
+  private:
+  const std::string& _internal_label_order_id() const;
+  void _internal_set_label_order_id(const std::string& value);
+  std::string* _internal_mutable_label_order_id();
+  public:
+
+  // .clarifai.api.UserAppIDSet user_app_id = 1;
+  bool has_user_app_id() const;
+  private:
+  bool _internal_has_user_app_id() const;
+  public:
+  void clear_user_app_id();
+  const ::clarifai::api::UserAppIDSet& user_app_id() const;
+  ::clarifai::api::UserAppIDSet* release_user_app_id();
+  ::clarifai::api::UserAppIDSet* mutable_user_app_id();
+  void set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id);
+  private:
+  const ::clarifai::api::UserAppIDSet& _internal_user_app_id() const;
+  ::clarifai::api::UserAppIDSet* _internal_mutable_user_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.GetLabelOrderRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr label_order_id_;
+  ::clarifai::api::UserAppIDSet* user_app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListLabelOrdersRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.ListLabelOrdersRequest) */ {
+ public:
+  ListLabelOrdersRequest();
+  virtual ~ListLabelOrdersRequest();
+
+  ListLabelOrdersRequest(const ListLabelOrdersRequest& from);
+  ListLabelOrdersRequest(ListLabelOrdersRequest&& from) noexcept
+    : ListLabelOrdersRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListLabelOrdersRequest& operator=(const ListLabelOrdersRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListLabelOrdersRequest& operator=(ListLabelOrdersRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ListLabelOrdersRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ListLabelOrdersRequest* internal_default_instance() {
+    return reinterpret_cast<const ListLabelOrdersRequest*>(
+               &_ListLabelOrdersRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    176;
+
+  friend void swap(ListLabelOrdersRequest& a, ListLabelOrdersRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListLabelOrdersRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListLabelOrdersRequest* New() const final {
+    return CreateMaybeMessage<ListLabelOrdersRequest>(nullptr);
+  }
+
+  ListLabelOrdersRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ListLabelOrdersRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ListLabelOrdersRequest& from);
+  void MergeFrom(const ListLabelOrdersRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListLabelOrdersRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.ListLabelOrdersRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserAppIdFieldNumber = 1,
+    kPageFieldNumber = 2,
+    kPerPageFieldNumber = 3,
+  };
+  // .clarifai.api.UserAppIDSet user_app_id = 1;
+  bool has_user_app_id() const;
+  private:
+  bool _internal_has_user_app_id() const;
+  public:
+  void clear_user_app_id();
+  const ::clarifai::api::UserAppIDSet& user_app_id() const;
+  ::clarifai::api::UserAppIDSet* release_user_app_id();
+  ::clarifai::api::UserAppIDSet* mutable_user_app_id();
+  void set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id);
+  private:
+  const ::clarifai::api::UserAppIDSet& _internal_user_app_id() const;
+  ::clarifai::api::UserAppIDSet* _internal_mutable_user_app_id();
+  public:
+
+  // uint32 page = 2;
+  void clear_page();
+  ::PROTOBUF_NAMESPACE_ID::uint32 page() const;
+  void set_page(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_page() const;
+  void _internal_set_page(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 per_page = 3;
+  void clear_per_page();
+  ::PROTOBUF_NAMESPACE_ID::uint32 per_page() const;
+  void set_per_page(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_per_page() const;
+  void _internal_set_per_page(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.ListLabelOrdersRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::clarifai::api::UserAppIDSet* user_app_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 page_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 per_page_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PatchLabelOrdersRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.PatchLabelOrdersRequest) */ {
+ public:
+  PatchLabelOrdersRequest();
+  virtual ~PatchLabelOrdersRequest();
+
+  PatchLabelOrdersRequest(const PatchLabelOrdersRequest& from);
+  PatchLabelOrdersRequest(PatchLabelOrdersRequest&& from) noexcept
+    : PatchLabelOrdersRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline PatchLabelOrdersRequest& operator=(const PatchLabelOrdersRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PatchLabelOrdersRequest& operator=(PatchLabelOrdersRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PatchLabelOrdersRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PatchLabelOrdersRequest* internal_default_instance() {
+    return reinterpret_cast<const PatchLabelOrdersRequest*>(
+               &_PatchLabelOrdersRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    177;
+
+  friend void swap(PatchLabelOrdersRequest& a, PatchLabelOrdersRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PatchLabelOrdersRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PatchLabelOrdersRequest* New() const final {
+    return CreateMaybeMessage<PatchLabelOrdersRequest>(nullptr);
+  }
+
+  PatchLabelOrdersRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PatchLabelOrdersRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PatchLabelOrdersRequest& from);
+  void MergeFrom(const PatchLabelOrdersRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PatchLabelOrdersRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.PatchLabelOrdersRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLabelOrdersFieldNumber = 2,
+    kActionFieldNumber = 3,
+    kUserAppIdFieldNumber = 1,
+  };
+  // repeated .clarifai.api.LabelOrder label_orders = 2;
+  int label_orders_size() const;
+  private:
+  int _internal_label_orders_size() const;
+  public:
+  void clear_label_orders();
+  ::clarifai::api::LabelOrder* mutable_label_orders(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >*
+      mutable_label_orders();
+  private:
+  const ::clarifai::api::LabelOrder& _internal_label_orders(int index) const;
+  ::clarifai::api::LabelOrder* _internal_add_label_orders();
+  public:
+  const ::clarifai::api::LabelOrder& label_orders(int index) const;
+  ::clarifai::api::LabelOrder* add_label_orders();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >&
+      label_orders() const;
+
+  // string action = 3;
+  void clear_action();
+  const std::string& action() const;
+  void set_action(const std::string& value);
+  void set_action(std::string&& value);
+  void set_action(const char* value);
+  void set_action(const char* value, size_t size);
+  std::string* mutable_action();
+  std::string* release_action();
+  void set_allocated_action(std::string* action);
+  private:
+  const std::string& _internal_action() const;
+  void _internal_set_action(const std::string& value);
+  std::string* _internal_mutable_action();
+  public:
+
+  // .clarifai.api.UserAppIDSet user_app_id = 1;
+  bool has_user_app_id() const;
+  private:
+  bool _internal_has_user_app_id() const;
+  public:
+  void clear_user_app_id();
+  const ::clarifai::api::UserAppIDSet& user_app_id() const;
+  ::clarifai::api::UserAppIDSet* release_user_app_id();
+  ::clarifai::api::UserAppIDSet* mutable_user_app_id();
+  void set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id);
+  private:
+  const ::clarifai::api::UserAppIDSet& _internal_user_app_id() const;
+  ::clarifai::api::UserAppIDSet* _internal_mutable_user_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.PatchLabelOrdersRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder > label_orders_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr action_;
+  ::clarifai::api::UserAppIDSet* user_app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteLabelOrdersRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.DeleteLabelOrdersRequest) */ {
+ public:
+  DeleteLabelOrdersRequest();
+  virtual ~DeleteLabelOrdersRequest();
+
+  DeleteLabelOrdersRequest(const DeleteLabelOrdersRequest& from);
+  DeleteLabelOrdersRequest(DeleteLabelOrdersRequest&& from) noexcept
+    : DeleteLabelOrdersRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteLabelOrdersRequest& operator=(const DeleteLabelOrdersRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteLabelOrdersRequest& operator=(DeleteLabelOrdersRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DeleteLabelOrdersRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DeleteLabelOrdersRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteLabelOrdersRequest*>(
+               &_DeleteLabelOrdersRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    178;
+
+  friend void swap(DeleteLabelOrdersRequest& a, DeleteLabelOrdersRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteLabelOrdersRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DeleteLabelOrdersRequest* New() const final {
+    return CreateMaybeMessage<DeleteLabelOrdersRequest>(nullptr);
+  }
+
+  DeleteLabelOrdersRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DeleteLabelOrdersRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DeleteLabelOrdersRequest& from);
+  void MergeFrom(const DeleteLabelOrdersRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteLabelOrdersRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.DeleteLabelOrdersRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdsFieldNumber = 2,
+    kUserAppIdFieldNumber = 1,
+  };
+  // repeated string ids = 2;
+  int ids_size() const;
+  private:
+  int _internal_ids_size() const;
+  public:
+  void clear_ids();
+  const std::string& ids(int index) const;
+  std::string* mutable_ids(int index);
+  void set_ids(int index, const std::string& value);
+  void set_ids(int index, std::string&& value);
+  void set_ids(int index, const char* value);
+  void set_ids(int index, const char* value, size_t size);
+  std::string* add_ids();
+  void add_ids(const std::string& value);
+  void add_ids(std::string&& value);
+  void add_ids(const char* value);
+  void add_ids(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_ids();
+  private:
+  const std::string& _internal_ids(int index) const;
+  std::string* _internal_add_ids();
+  public:
+
+  // .clarifai.api.UserAppIDSet user_app_id = 1;
+  bool has_user_app_id() const;
+  private:
+  bool _internal_has_user_app_id() const;
+  public:
+  void clear_user_app_id();
+  const ::clarifai::api::UserAppIDSet& user_app_id() const;
+  ::clarifai::api::UserAppIDSet* release_user_app_id();
+  ::clarifai::api::UserAppIDSet* mutable_user_app_id();
+  void set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id);
+  private:
+  const ::clarifai::api::UserAppIDSet& _internal_user_app_id() const;
+  ::clarifai::api::UserAppIDSet* _internal_mutable_user_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.DeleteLabelOrdersRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> ids_;
+  ::clarifai::api::UserAppIDSet* user_app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MultiLabelOrderResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.MultiLabelOrderResponse) */ {
+ public:
+  MultiLabelOrderResponse();
+  virtual ~MultiLabelOrderResponse();
+
+  MultiLabelOrderResponse(const MultiLabelOrderResponse& from);
+  MultiLabelOrderResponse(MultiLabelOrderResponse&& from) noexcept
+    : MultiLabelOrderResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline MultiLabelOrderResponse& operator=(const MultiLabelOrderResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MultiLabelOrderResponse& operator=(MultiLabelOrderResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MultiLabelOrderResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MultiLabelOrderResponse* internal_default_instance() {
+    return reinterpret_cast<const MultiLabelOrderResponse*>(
+               &_MultiLabelOrderResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    179;
+
+  friend void swap(MultiLabelOrderResponse& a, MultiLabelOrderResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MultiLabelOrderResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MultiLabelOrderResponse* New() const final {
+    return CreateMaybeMessage<MultiLabelOrderResponse>(nullptr);
+  }
+
+  MultiLabelOrderResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MultiLabelOrderResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MultiLabelOrderResponse& from);
+  void MergeFrom(const MultiLabelOrderResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MultiLabelOrderResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.MultiLabelOrderResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLabelOrdersFieldNumber = 2,
+    kStatusFieldNumber = 1,
+  };
+  // repeated .clarifai.api.LabelOrder label_orders = 2 [(.clarifai.api.utils.cl_show_if_empty) = true];
+  int label_orders_size() const;
+  private:
+  int _internal_label_orders_size() const;
+  public:
+  void clear_label_orders();
+  ::clarifai::api::LabelOrder* mutable_label_orders(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >*
+      mutable_label_orders();
+  private:
+  const ::clarifai::api::LabelOrder& _internal_label_orders(int index) const;
+  ::clarifai::api::LabelOrder* _internal_add_label_orders();
+  public:
+  const ::clarifai::api::LabelOrder& label_orders(int index) const;
+  ::clarifai::api::LabelOrder* add_label_orders();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >&
+      label_orders() const;
+
+  // .clarifai.api.status.Status status = 1;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const ::clarifai::api::status::Status& status() const;
+  ::clarifai::api::status::Status* release_status();
+  ::clarifai::api::status::Status* mutable_status();
+  void set_allocated_status(::clarifai::api::status::Status* status);
+  private:
+  const ::clarifai::api::status::Status& _internal_status() const;
+  ::clarifai::api::status::Status* _internal_mutable_status();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.MultiLabelOrderResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder > label_orders_;
+  ::clarifai::api::status::Status* status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SingleLabelOrderResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.SingleLabelOrderResponse) */ {
+ public:
+  SingleLabelOrderResponse();
+  virtual ~SingleLabelOrderResponse();
+
+  SingleLabelOrderResponse(const SingleLabelOrderResponse& from);
+  SingleLabelOrderResponse(SingleLabelOrderResponse&& from) noexcept
+    : SingleLabelOrderResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SingleLabelOrderResponse& operator=(const SingleLabelOrderResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SingleLabelOrderResponse& operator=(SingleLabelOrderResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SingleLabelOrderResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SingleLabelOrderResponse* internal_default_instance() {
+    return reinterpret_cast<const SingleLabelOrderResponse*>(
+               &_SingleLabelOrderResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    180;
+
+  friend void swap(SingleLabelOrderResponse& a, SingleLabelOrderResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SingleLabelOrderResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SingleLabelOrderResponse* New() const final {
+    return CreateMaybeMessage<SingleLabelOrderResponse>(nullptr);
+  }
+
+  SingleLabelOrderResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SingleLabelOrderResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SingleLabelOrderResponse& from);
+  void MergeFrom(const SingleLabelOrderResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SingleLabelOrderResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "clarifai.api.SingleLabelOrderResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto);
+    return ::descriptor_table_proto_2fclarifai_2fapi_2fservice_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStatusFieldNumber = 1,
+    kLabelOrderFieldNumber = 2,
+  };
+  // .clarifai.api.status.Status status = 1;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const ::clarifai::api::status::Status& status() const;
+  ::clarifai::api::status::Status* release_status();
+  ::clarifai::api::status::Status* mutable_status();
+  void set_allocated_status(::clarifai::api::status::Status* status);
+  private:
+  const ::clarifai::api::status::Status& _internal_status() const;
+  ::clarifai::api::status::Status* _internal_mutable_status();
+  public:
+
+  // .clarifai.api.LabelOrder label_order = 2;
+  bool has_label_order() const;
+  private:
+  bool _internal_has_label_order() const;
+  public:
+  void clear_label_order();
+  const ::clarifai::api::LabelOrder& label_order() const;
+  ::clarifai::api::LabelOrder* release_label_order();
+  ::clarifai::api::LabelOrder* mutable_label_order();
+  void set_allocated_label_order(::clarifai::api::LabelOrder* label_order);
+  private:
+  const ::clarifai::api::LabelOrder& _internal_label_order() const;
+  ::clarifai::api::LabelOrder* _internal_mutable_label_order();
+  public:
+
+  // @@protoc_insertion_point(class_scope:clarifai.api.SingleLabelOrderResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::clarifai::api::status::Status* status_;
+  ::clarifai::api::LabelOrder* label_order_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_proto_2fclarifai_2fapi_2fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
 class PostCollectorsRequest :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:clarifai.api.PostCollectorsRequest) */ {
  public:
@@ -30349,7 +31493,7 @@ class PostCollectorsRequest :
                &_PostCollectorsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    174;
+    181;
 
   friend void swap(PostCollectorsRequest& a, PostCollectorsRequest& b) {
     a.Swap(&b);
@@ -30503,7 +31647,7 @@ class PatchCollectorsRequest :
                &_PatchCollectorsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    175;
+    182;
 
   friend void swap(PatchCollectorsRequest& a, PatchCollectorsRequest& b) {
     a.Swap(&b);
@@ -30675,7 +31819,7 @@ class DeleteCollectorsRequest :
                &_DeleteCollectorsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    176;
+    183;
 
   friend void swap(DeleteCollectorsRequest& a, DeleteCollectorsRequest& b) {
     a.Swap(&b);
@@ -30846,7 +31990,7 @@ class GetCollectorRequest :
                &_GetCollectorRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    177;
+    184;
 
   friend void swap(GetCollectorRequest& a, GetCollectorRequest& b) {
     a.Swap(&b);
@@ -30998,7 +32142,7 @@ class ListCollectorsRequest :
                &_ListCollectorsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    178;
+    185;
 
   friend void swap(ListCollectorsRequest& a, ListCollectorsRequest& b) {
     a.Swap(&b);
@@ -31154,7 +32298,7 @@ class MultiCollectorResponse :
                &_MultiCollectorResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    179;
+    186;
 
   friend void swap(MultiCollectorResponse& a, MultiCollectorResponse& b) {
     a.Swap(&b);
@@ -31308,7 +32452,7 @@ class SingleCollectorResponse :
                &_SingleCollectorResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    180;
+    187;
 
   friend void swap(SingleCollectorResponse& a, SingleCollectorResponse& b) {
     a.Swap(&b);
@@ -31459,7 +32603,7 @@ class PostStatValuesRequest :
                &_PostStatValuesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    181;
+    188;
 
   friend void swap(PostStatValuesRequest& a, PostStatValuesRequest& b) {
     a.Swap(&b);
@@ -31613,7 +32757,7 @@ class MultiStatValueResponse :
                &_MultiStatValueResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    182;
+    189;
 
   friend void swap(MultiStatValueResponse& a, MultiStatValueResponse& b) {
     a.Swap(&b);
@@ -31767,7 +32911,7 @@ class PostStatValuesAggregateRequest :
                &_PostStatValuesAggregateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    183;
+    190;
 
   friend void swap(PostStatValuesAggregateRequest& a, PostStatValuesAggregateRequest& b) {
     a.Swap(&b);
@@ -31921,7 +33065,7 @@ class MultiStatValueAggregateResponse :
                &_MultiStatValueAggregateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    184;
+    191;
 
   friend void swap(MultiStatValueAggregateResponse& a, MultiStatValueAggregateResponse& b) {
     a.Swap(&b);
@@ -32075,7 +33219,7 @@ class PostTrendingMetricsViewRequest :
                &_PostTrendingMetricsViewRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    185;
+    192;
 
   friend void swap(PostTrendingMetricsViewRequest& a, PostTrendingMetricsViewRequest& b) {
     a.Swap(&b);
@@ -32245,7 +33389,7 @@ class ListTrendingMetricsViewsRequest :
                &_ListTrendingMetricsViewsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    186;
+    193;
 
   friend void swap(ListTrendingMetricsViewsRequest& a, ListTrendingMetricsViewsRequest& b) {
     a.Swap(&b);
@@ -32419,7 +33563,7 @@ class MultiTrendingMetricsViewResponse :
                &_MultiTrendingMetricsViewResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    187;
+    194;
 
   friend void swap(MultiTrendingMetricsViewResponse& a, MultiTrendingMetricsViewResponse& b) {
     a.Swap(&b);
@@ -49409,6 +50553,60 @@ MultiModelTypeResponse::model_types() const {
   return model_types_;
 }
 
+// .clarifai.api.ModelTypeField model_importers = 3;
+inline bool MultiModelTypeResponse::_internal_has_model_importers() const {
+  return this != internal_default_instance() && model_importers_ != nullptr;
+}
+inline bool MultiModelTypeResponse::has_model_importers() const {
+  return _internal_has_model_importers();
+}
+inline const ::clarifai::api::ModelTypeField& MultiModelTypeResponse::_internal_model_importers() const {
+  const ::clarifai::api::ModelTypeField* p = model_importers_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::ModelTypeField*>(
+      &::clarifai::api::_ModelTypeField_default_instance_);
+}
+inline const ::clarifai::api::ModelTypeField& MultiModelTypeResponse::model_importers() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiModelTypeResponse.model_importers)
+  return _internal_model_importers();
+}
+inline ::clarifai::api::ModelTypeField* MultiModelTypeResponse::release_model_importers() {
+  // @@protoc_insertion_point(field_release:clarifai.api.MultiModelTypeResponse.model_importers)
+  
+  ::clarifai::api::ModelTypeField* temp = model_importers_;
+  model_importers_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::ModelTypeField* MultiModelTypeResponse::_internal_mutable_model_importers() {
+  
+  if (model_importers_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::ModelTypeField>(GetArenaNoVirtual());
+    model_importers_ = p;
+  }
+  return model_importers_;
+}
+inline ::clarifai::api::ModelTypeField* MultiModelTypeResponse::mutable_model_importers() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiModelTypeResponse.model_importers)
+  return _internal_mutable_model_importers();
+}
+inline void MultiModelTypeResponse::set_allocated_model_importers(::clarifai::api::ModelTypeField* model_importers) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(model_importers_);
+  }
+  if (model_importers) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      model_importers = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, model_importers, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  model_importers_ = model_importers;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.MultiModelTypeResponse.model_importers)
+}
+
 // -------------------------------------------------------------------
 
 // GetModelVersionInputExampleRequest
@@ -58930,6 +60128,808 @@ SingleTaskCountResponse::counts() const {
 
 // -------------------------------------------------------------------
 
+// PostLabelOrdersRequest
+
+// .clarifai.api.UserAppIDSet user_app_id = 1;
+inline bool PostLabelOrdersRequest::_internal_has_user_app_id() const {
+  return this != internal_default_instance() && user_app_id_ != nullptr;
+}
+inline bool PostLabelOrdersRequest::has_user_app_id() const {
+  return _internal_has_user_app_id();
+}
+inline const ::clarifai::api::UserAppIDSet& PostLabelOrdersRequest::_internal_user_app_id() const {
+  const ::clarifai::api::UserAppIDSet* p = user_app_id_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::UserAppIDSet*>(
+      &::clarifai::api::_UserAppIDSet_default_instance_);
+}
+inline const ::clarifai::api::UserAppIDSet& PostLabelOrdersRequest::user_app_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.PostLabelOrdersRequest.user_app_id)
+  return _internal_user_app_id();
+}
+inline ::clarifai::api::UserAppIDSet* PostLabelOrdersRequest::release_user_app_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.PostLabelOrdersRequest.user_app_id)
+  
+  ::clarifai::api::UserAppIDSet* temp = user_app_id_;
+  user_app_id_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::UserAppIDSet* PostLabelOrdersRequest::_internal_mutable_user_app_id() {
+  
+  if (user_app_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::UserAppIDSet>(GetArenaNoVirtual());
+    user_app_id_ = p;
+  }
+  return user_app_id_;
+}
+inline ::clarifai::api::UserAppIDSet* PostLabelOrdersRequest::mutable_user_app_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.PostLabelOrdersRequest.user_app_id)
+  return _internal_mutable_user_app_id();
+}
+inline void PostLabelOrdersRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_app_id_);
+  }
+  if (user_app_id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user_app_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_app_id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_app_id_ = user_app_id;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.PostLabelOrdersRequest.user_app_id)
+}
+
+// repeated .clarifai.api.LabelOrder label_orders = 2;
+inline int PostLabelOrdersRequest::_internal_label_orders_size() const {
+  return label_orders_.size();
+}
+inline int PostLabelOrdersRequest::label_orders_size() const {
+  return _internal_label_orders_size();
+}
+inline ::clarifai::api::LabelOrder* PostLabelOrdersRequest::mutable_label_orders(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.PostLabelOrdersRequest.label_orders)
+  return label_orders_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >*
+PostLabelOrdersRequest::mutable_label_orders() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.PostLabelOrdersRequest.label_orders)
+  return &label_orders_;
+}
+inline const ::clarifai::api::LabelOrder& PostLabelOrdersRequest::_internal_label_orders(int index) const {
+  return label_orders_.Get(index);
+}
+inline const ::clarifai::api::LabelOrder& PostLabelOrdersRequest::label_orders(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.PostLabelOrdersRequest.label_orders)
+  return _internal_label_orders(index);
+}
+inline ::clarifai::api::LabelOrder* PostLabelOrdersRequest::_internal_add_label_orders() {
+  return label_orders_.Add();
+}
+inline ::clarifai::api::LabelOrder* PostLabelOrdersRequest::add_label_orders() {
+  // @@protoc_insertion_point(field_add:clarifai.api.PostLabelOrdersRequest.label_orders)
+  return _internal_add_label_orders();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >&
+PostLabelOrdersRequest::label_orders() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.PostLabelOrdersRequest.label_orders)
+  return label_orders_;
+}
+
+// -------------------------------------------------------------------
+
+// GetLabelOrderRequest
+
+// .clarifai.api.UserAppIDSet user_app_id = 1;
+inline bool GetLabelOrderRequest::_internal_has_user_app_id() const {
+  return this != internal_default_instance() && user_app_id_ != nullptr;
+}
+inline bool GetLabelOrderRequest::has_user_app_id() const {
+  return _internal_has_user_app_id();
+}
+inline const ::clarifai::api::UserAppIDSet& GetLabelOrderRequest::_internal_user_app_id() const {
+  const ::clarifai::api::UserAppIDSet* p = user_app_id_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::UserAppIDSet*>(
+      &::clarifai::api::_UserAppIDSet_default_instance_);
+}
+inline const ::clarifai::api::UserAppIDSet& GetLabelOrderRequest::user_app_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.GetLabelOrderRequest.user_app_id)
+  return _internal_user_app_id();
+}
+inline ::clarifai::api::UserAppIDSet* GetLabelOrderRequest::release_user_app_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.GetLabelOrderRequest.user_app_id)
+  
+  ::clarifai::api::UserAppIDSet* temp = user_app_id_;
+  user_app_id_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::UserAppIDSet* GetLabelOrderRequest::_internal_mutable_user_app_id() {
+  
+  if (user_app_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::UserAppIDSet>(GetArenaNoVirtual());
+    user_app_id_ = p;
+  }
+  return user_app_id_;
+}
+inline ::clarifai::api::UserAppIDSet* GetLabelOrderRequest::mutable_user_app_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.GetLabelOrderRequest.user_app_id)
+  return _internal_mutable_user_app_id();
+}
+inline void GetLabelOrderRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_app_id_);
+  }
+  if (user_app_id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user_app_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_app_id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_app_id_ = user_app_id;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.GetLabelOrderRequest.user_app_id)
+}
+
+// string label_order_id = 2;
+inline void GetLabelOrderRequest::clear_label_order_id() {
+  label_order_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& GetLabelOrderRequest::label_order_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.GetLabelOrderRequest.label_order_id)
+  return _internal_label_order_id();
+}
+inline void GetLabelOrderRequest::set_label_order_id(const std::string& value) {
+  _internal_set_label_order_id(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.GetLabelOrderRequest.label_order_id)
+}
+inline std::string* GetLabelOrderRequest::mutable_label_order_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.GetLabelOrderRequest.label_order_id)
+  return _internal_mutable_label_order_id();
+}
+inline const std::string& GetLabelOrderRequest::_internal_label_order_id() const {
+  return label_order_id_.GetNoArena();
+}
+inline void GetLabelOrderRequest::_internal_set_label_order_id(const std::string& value) {
+  
+  label_order_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void GetLabelOrderRequest::set_label_order_id(std::string&& value) {
+  
+  label_order_id_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.GetLabelOrderRequest.label_order_id)
+}
+inline void GetLabelOrderRequest::set_label_order_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  label_order_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.GetLabelOrderRequest.label_order_id)
+}
+inline void GetLabelOrderRequest::set_label_order_id(const char* value, size_t size) {
+  
+  label_order_id_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.GetLabelOrderRequest.label_order_id)
+}
+inline std::string* GetLabelOrderRequest::_internal_mutable_label_order_id() {
+  
+  return label_order_id_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* GetLabelOrderRequest::release_label_order_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.GetLabelOrderRequest.label_order_id)
+  
+  return label_order_id_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void GetLabelOrderRequest::set_allocated_label_order_id(std::string* label_order_id) {
+  if (label_order_id != nullptr) {
+    
+  } else {
+    
+  }
+  label_order_id_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), label_order_id);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.GetLabelOrderRequest.label_order_id)
+}
+
+// -------------------------------------------------------------------
+
+// ListLabelOrdersRequest
+
+// .clarifai.api.UserAppIDSet user_app_id = 1;
+inline bool ListLabelOrdersRequest::_internal_has_user_app_id() const {
+  return this != internal_default_instance() && user_app_id_ != nullptr;
+}
+inline bool ListLabelOrdersRequest::has_user_app_id() const {
+  return _internal_has_user_app_id();
+}
+inline const ::clarifai::api::UserAppIDSet& ListLabelOrdersRequest::_internal_user_app_id() const {
+  const ::clarifai::api::UserAppIDSet* p = user_app_id_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::UserAppIDSet*>(
+      &::clarifai::api::_UserAppIDSet_default_instance_);
+}
+inline const ::clarifai::api::UserAppIDSet& ListLabelOrdersRequest::user_app_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ListLabelOrdersRequest.user_app_id)
+  return _internal_user_app_id();
+}
+inline ::clarifai::api::UserAppIDSet* ListLabelOrdersRequest::release_user_app_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.ListLabelOrdersRequest.user_app_id)
+  
+  ::clarifai::api::UserAppIDSet* temp = user_app_id_;
+  user_app_id_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::UserAppIDSet* ListLabelOrdersRequest::_internal_mutable_user_app_id() {
+  
+  if (user_app_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::UserAppIDSet>(GetArenaNoVirtual());
+    user_app_id_ = p;
+  }
+  return user_app_id_;
+}
+inline ::clarifai::api::UserAppIDSet* ListLabelOrdersRequest::mutable_user_app_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.ListLabelOrdersRequest.user_app_id)
+  return _internal_mutable_user_app_id();
+}
+inline void ListLabelOrdersRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_app_id_);
+  }
+  if (user_app_id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user_app_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_app_id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_app_id_ = user_app_id;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.ListLabelOrdersRequest.user_app_id)
+}
+
+// uint32 page = 2;
+inline void ListLabelOrdersRequest::clear_page() {
+  page_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 ListLabelOrdersRequest::_internal_page() const {
+  return page_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 ListLabelOrdersRequest::page() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ListLabelOrdersRequest.page)
+  return _internal_page();
+}
+inline void ListLabelOrdersRequest::_internal_set_page(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  page_ = value;
+}
+inline void ListLabelOrdersRequest::set_page(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_page(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.ListLabelOrdersRequest.page)
+}
+
+// uint32 per_page = 3;
+inline void ListLabelOrdersRequest::clear_per_page() {
+  per_page_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 ListLabelOrdersRequest::_internal_per_page() const {
+  return per_page_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 ListLabelOrdersRequest::per_page() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.ListLabelOrdersRequest.per_page)
+  return _internal_per_page();
+}
+inline void ListLabelOrdersRequest::_internal_set_per_page(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  per_page_ = value;
+}
+inline void ListLabelOrdersRequest::set_per_page(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_per_page(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.ListLabelOrdersRequest.per_page)
+}
+
+// -------------------------------------------------------------------
+
+// PatchLabelOrdersRequest
+
+// .clarifai.api.UserAppIDSet user_app_id = 1;
+inline bool PatchLabelOrdersRequest::_internal_has_user_app_id() const {
+  return this != internal_default_instance() && user_app_id_ != nullptr;
+}
+inline bool PatchLabelOrdersRequest::has_user_app_id() const {
+  return _internal_has_user_app_id();
+}
+inline const ::clarifai::api::UserAppIDSet& PatchLabelOrdersRequest::_internal_user_app_id() const {
+  const ::clarifai::api::UserAppIDSet* p = user_app_id_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::UserAppIDSet*>(
+      &::clarifai::api::_UserAppIDSet_default_instance_);
+}
+inline const ::clarifai::api::UserAppIDSet& PatchLabelOrdersRequest::user_app_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.PatchLabelOrdersRequest.user_app_id)
+  return _internal_user_app_id();
+}
+inline ::clarifai::api::UserAppIDSet* PatchLabelOrdersRequest::release_user_app_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.PatchLabelOrdersRequest.user_app_id)
+  
+  ::clarifai::api::UserAppIDSet* temp = user_app_id_;
+  user_app_id_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::UserAppIDSet* PatchLabelOrdersRequest::_internal_mutable_user_app_id() {
+  
+  if (user_app_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::UserAppIDSet>(GetArenaNoVirtual());
+    user_app_id_ = p;
+  }
+  return user_app_id_;
+}
+inline ::clarifai::api::UserAppIDSet* PatchLabelOrdersRequest::mutable_user_app_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.PatchLabelOrdersRequest.user_app_id)
+  return _internal_mutable_user_app_id();
+}
+inline void PatchLabelOrdersRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_app_id_);
+  }
+  if (user_app_id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user_app_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_app_id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_app_id_ = user_app_id;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.PatchLabelOrdersRequest.user_app_id)
+}
+
+// repeated .clarifai.api.LabelOrder label_orders = 2;
+inline int PatchLabelOrdersRequest::_internal_label_orders_size() const {
+  return label_orders_.size();
+}
+inline int PatchLabelOrdersRequest::label_orders_size() const {
+  return _internal_label_orders_size();
+}
+inline ::clarifai::api::LabelOrder* PatchLabelOrdersRequest::mutable_label_orders(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.PatchLabelOrdersRequest.label_orders)
+  return label_orders_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >*
+PatchLabelOrdersRequest::mutable_label_orders() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.PatchLabelOrdersRequest.label_orders)
+  return &label_orders_;
+}
+inline const ::clarifai::api::LabelOrder& PatchLabelOrdersRequest::_internal_label_orders(int index) const {
+  return label_orders_.Get(index);
+}
+inline const ::clarifai::api::LabelOrder& PatchLabelOrdersRequest::label_orders(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.PatchLabelOrdersRequest.label_orders)
+  return _internal_label_orders(index);
+}
+inline ::clarifai::api::LabelOrder* PatchLabelOrdersRequest::_internal_add_label_orders() {
+  return label_orders_.Add();
+}
+inline ::clarifai::api::LabelOrder* PatchLabelOrdersRequest::add_label_orders() {
+  // @@protoc_insertion_point(field_add:clarifai.api.PatchLabelOrdersRequest.label_orders)
+  return _internal_add_label_orders();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >&
+PatchLabelOrdersRequest::label_orders() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.PatchLabelOrdersRequest.label_orders)
+  return label_orders_;
+}
+
+// string action = 3;
+inline void PatchLabelOrdersRequest::clear_action() {
+  action_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& PatchLabelOrdersRequest::action() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.PatchLabelOrdersRequest.action)
+  return _internal_action();
+}
+inline void PatchLabelOrdersRequest::set_action(const std::string& value) {
+  _internal_set_action(value);
+  // @@protoc_insertion_point(field_set:clarifai.api.PatchLabelOrdersRequest.action)
+}
+inline std::string* PatchLabelOrdersRequest::mutable_action() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.PatchLabelOrdersRequest.action)
+  return _internal_mutable_action();
+}
+inline const std::string& PatchLabelOrdersRequest::_internal_action() const {
+  return action_.GetNoArena();
+}
+inline void PatchLabelOrdersRequest::_internal_set_action(const std::string& value) {
+  
+  action_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void PatchLabelOrdersRequest::set_action(std::string&& value) {
+  
+  action_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:clarifai.api.PatchLabelOrdersRequest.action)
+}
+inline void PatchLabelOrdersRequest::set_action(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  action_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:clarifai.api.PatchLabelOrdersRequest.action)
+}
+inline void PatchLabelOrdersRequest::set_action(const char* value, size_t size) {
+  
+  action_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.PatchLabelOrdersRequest.action)
+}
+inline std::string* PatchLabelOrdersRequest::_internal_mutable_action() {
+  
+  return action_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* PatchLabelOrdersRequest::release_action() {
+  // @@protoc_insertion_point(field_release:clarifai.api.PatchLabelOrdersRequest.action)
+  
+  return action_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void PatchLabelOrdersRequest::set_allocated_action(std::string* action) {
+  if (action != nullptr) {
+    
+  } else {
+    
+  }
+  action_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), action);
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.PatchLabelOrdersRequest.action)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteLabelOrdersRequest
+
+// .clarifai.api.UserAppIDSet user_app_id = 1;
+inline bool DeleteLabelOrdersRequest::_internal_has_user_app_id() const {
+  return this != internal_default_instance() && user_app_id_ != nullptr;
+}
+inline bool DeleteLabelOrdersRequest::has_user_app_id() const {
+  return _internal_has_user_app_id();
+}
+inline const ::clarifai::api::UserAppIDSet& DeleteLabelOrdersRequest::_internal_user_app_id() const {
+  const ::clarifai::api::UserAppIDSet* p = user_app_id_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::UserAppIDSet*>(
+      &::clarifai::api::_UserAppIDSet_default_instance_);
+}
+inline const ::clarifai::api::UserAppIDSet& DeleteLabelOrdersRequest::user_app_id() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.DeleteLabelOrdersRequest.user_app_id)
+  return _internal_user_app_id();
+}
+inline ::clarifai::api::UserAppIDSet* DeleteLabelOrdersRequest::release_user_app_id() {
+  // @@protoc_insertion_point(field_release:clarifai.api.DeleteLabelOrdersRequest.user_app_id)
+  
+  ::clarifai::api::UserAppIDSet* temp = user_app_id_;
+  user_app_id_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::UserAppIDSet* DeleteLabelOrdersRequest::_internal_mutable_user_app_id() {
+  
+  if (user_app_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::UserAppIDSet>(GetArenaNoVirtual());
+    user_app_id_ = p;
+  }
+  return user_app_id_;
+}
+inline ::clarifai::api::UserAppIDSet* DeleteLabelOrdersRequest::mutable_user_app_id() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.DeleteLabelOrdersRequest.user_app_id)
+  return _internal_mutable_user_app_id();
+}
+inline void DeleteLabelOrdersRequest::set_allocated_user_app_id(::clarifai::api::UserAppIDSet* user_app_id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(user_app_id_);
+  }
+  if (user_app_id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user_app_id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user_app_id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_app_id_ = user_app_id;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.DeleteLabelOrdersRequest.user_app_id)
+}
+
+// repeated string ids = 2;
+inline int DeleteLabelOrdersRequest::_internal_ids_size() const {
+  return ids_.size();
+}
+inline int DeleteLabelOrdersRequest::ids_size() const {
+  return _internal_ids_size();
+}
+inline void DeleteLabelOrdersRequest::clear_ids() {
+  ids_.Clear();
+}
+inline std::string* DeleteLabelOrdersRequest::add_ids() {
+  // @@protoc_insertion_point(field_add_mutable:clarifai.api.DeleteLabelOrdersRequest.ids)
+  return _internal_add_ids();
+}
+inline const std::string& DeleteLabelOrdersRequest::_internal_ids(int index) const {
+  return ids_.Get(index);
+}
+inline const std::string& DeleteLabelOrdersRequest::ids(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.DeleteLabelOrdersRequest.ids)
+  return _internal_ids(index);
+}
+inline std::string* DeleteLabelOrdersRequest::mutable_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.DeleteLabelOrdersRequest.ids)
+  return ids_.Mutable(index);
+}
+inline void DeleteLabelOrdersRequest::set_ids(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.DeleteLabelOrdersRequest.ids)
+  ids_.Mutable(index)->assign(value);
+}
+inline void DeleteLabelOrdersRequest::set_ids(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:clarifai.api.DeleteLabelOrdersRequest.ids)
+  ids_.Mutable(index)->assign(std::move(value));
+}
+inline void DeleteLabelOrdersRequest::set_ids(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:clarifai.api.DeleteLabelOrdersRequest.ids)
+}
+inline void DeleteLabelOrdersRequest::set_ids(int index, const char* value, size_t size) {
+  ids_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:clarifai.api.DeleteLabelOrdersRequest.ids)
+}
+inline std::string* DeleteLabelOrdersRequest::_internal_add_ids() {
+  return ids_.Add();
+}
+inline void DeleteLabelOrdersRequest::add_ids(const std::string& value) {
+  ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:clarifai.api.DeleteLabelOrdersRequest.ids)
+}
+inline void DeleteLabelOrdersRequest::add_ids(std::string&& value) {
+  ids_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:clarifai.api.DeleteLabelOrdersRequest.ids)
+}
+inline void DeleteLabelOrdersRequest::add_ids(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:clarifai.api.DeleteLabelOrdersRequest.ids)
+}
+inline void DeleteLabelOrdersRequest::add_ids(const char* value, size_t size) {
+  ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:clarifai.api.DeleteLabelOrdersRequest.ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+DeleteLabelOrdersRequest::ids() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.DeleteLabelOrdersRequest.ids)
+  return ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+DeleteLabelOrdersRequest::mutable_ids() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.DeleteLabelOrdersRequest.ids)
+  return &ids_;
+}
+
+// -------------------------------------------------------------------
+
+// MultiLabelOrderResponse
+
+// .clarifai.api.status.Status status = 1;
+inline bool MultiLabelOrderResponse::_internal_has_status() const {
+  return this != internal_default_instance() && status_ != nullptr;
+}
+inline bool MultiLabelOrderResponse::has_status() const {
+  return _internal_has_status();
+}
+inline const ::clarifai::api::status::Status& MultiLabelOrderResponse::_internal_status() const {
+  const ::clarifai::api::status::Status* p = status_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::status::Status*>(
+      &::clarifai::api::status::_Status_default_instance_);
+}
+inline const ::clarifai::api::status::Status& MultiLabelOrderResponse::status() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiLabelOrderResponse.status)
+  return _internal_status();
+}
+inline ::clarifai::api::status::Status* MultiLabelOrderResponse::release_status() {
+  // @@protoc_insertion_point(field_release:clarifai.api.MultiLabelOrderResponse.status)
+  
+  ::clarifai::api::status::Status* temp = status_;
+  status_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::status::Status* MultiLabelOrderResponse::_internal_mutable_status() {
+  
+  if (status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::status::Status>(GetArenaNoVirtual());
+    status_ = p;
+  }
+  return status_;
+}
+inline ::clarifai::api::status::Status* MultiLabelOrderResponse::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiLabelOrderResponse.status)
+  return _internal_mutable_status();
+}
+inline void MultiLabelOrderResponse::set_allocated_status(::clarifai::api::status::Status* status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(status_);
+  }
+  if (status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  status_ = status;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.MultiLabelOrderResponse.status)
+}
+
+// repeated .clarifai.api.LabelOrder label_orders = 2 [(.clarifai.api.utils.cl_show_if_empty) = true];
+inline int MultiLabelOrderResponse::_internal_label_orders_size() const {
+  return label_orders_.size();
+}
+inline int MultiLabelOrderResponse::label_orders_size() const {
+  return _internal_label_orders_size();
+}
+inline ::clarifai::api::LabelOrder* MultiLabelOrderResponse::mutable_label_orders(int index) {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.MultiLabelOrderResponse.label_orders)
+  return label_orders_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >*
+MultiLabelOrderResponse::mutable_label_orders() {
+  // @@protoc_insertion_point(field_mutable_list:clarifai.api.MultiLabelOrderResponse.label_orders)
+  return &label_orders_;
+}
+inline const ::clarifai::api::LabelOrder& MultiLabelOrderResponse::_internal_label_orders(int index) const {
+  return label_orders_.Get(index);
+}
+inline const ::clarifai::api::LabelOrder& MultiLabelOrderResponse::label_orders(int index) const {
+  // @@protoc_insertion_point(field_get:clarifai.api.MultiLabelOrderResponse.label_orders)
+  return _internal_label_orders(index);
+}
+inline ::clarifai::api::LabelOrder* MultiLabelOrderResponse::_internal_add_label_orders() {
+  return label_orders_.Add();
+}
+inline ::clarifai::api::LabelOrder* MultiLabelOrderResponse::add_label_orders() {
+  // @@protoc_insertion_point(field_add:clarifai.api.MultiLabelOrderResponse.label_orders)
+  return _internal_add_label_orders();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::clarifai::api::LabelOrder >&
+MultiLabelOrderResponse::label_orders() const {
+  // @@protoc_insertion_point(field_list:clarifai.api.MultiLabelOrderResponse.label_orders)
+  return label_orders_;
+}
+
+// -------------------------------------------------------------------
+
+// SingleLabelOrderResponse
+
+// .clarifai.api.status.Status status = 1;
+inline bool SingleLabelOrderResponse::_internal_has_status() const {
+  return this != internal_default_instance() && status_ != nullptr;
+}
+inline bool SingleLabelOrderResponse::has_status() const {
+  return _internal_has_status();
+}
+inline const ::clarifai::api::status::Status& SingleLabelOrderResponse::_internal_status() const {
+  const ::clarifai::api::status::Status* p = status_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::status::Status*>(
+      &::clarifai::api::status::_Status_default_instance_);
+}
+inline const ::clarifai::api::status::Status& SingleLabelOrderResponse::status() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.SingleLabelOrderResponse.status)
+  return _internal_status();
+}
+inline ::clarifai::api::status::Status* SingleLabelOrderResponse::release_status() {
+  // @@protoc_insertion_point(field_release:clarifai.api.SingleLabelOrderResponse.status)
+  
+  ::clarifai::api::status::Status* temp = status_;
+  status_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::status::Status* SingleLabelOrderResponse::_internal_mutable_status() {
+  
+  if (status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::status::Status>(GetArenaNoVirtual());
+    status_ = p;
+  }
+  return status_;
+}
+inline ::clarifai::api::status::Status* SingleLabelOrderResponse::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.SingleLabelOrderResponse.status)
+  return _internal_mutable_status();
+}
+inline void SingleLabelOrderResponse::set_allocated_status(::clarifai::api::status::Status* status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(status_);
+  }
+  if (status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  status_ = status;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.SingleLabelOrderResponse.status)
+}
+
+// .clarifai.api.LabelOrder label_order = 2;
+inline bool SingleLabelOrderResponse::_internal_has_label_order() const {
+  return this != internal_default_instance() && label_order_ != nullptr;
+}
+inline bool SingleLabelOrderResponse::has_label_order() const {
+  return _internal_has_label_order();
+}
+inline const ::clarifai::api::LabelOrder& SingleLabelOrderResponse::_internal_label_order() const {
+  const ::clarifai::api::LabelOrder* p = label_order_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::clarifai::api::LabelOrder*>(
+      &::clarifai::api::_LabelOrder_default_instance_);
+}
+inline const ::clarifai::api::LabelOrder& SingleLabelOrderResponse::label_order() const {
+  // @@protoc_insertion_point(field_get:clarifai.api.SingleLabelOrderResponse.label_order)
+  return _internal_label_order();
+}
+inline ::clarifai::api::LabelOrder* SingleLabelOrderResponse::release_label_order() {
+  // @@protoc_insertion_point(field_release:clarifai.api.SingleLabelOrderResponse.label_order)
+  
+  ::clarifai::api::LabelOrder* temp = label_order_;
+  label_order_ = nullptr;
+  return temp;
+}
+inline ::clarifai::api::LabelOrder* SingleLabelOrderResponse::_internal_mutable_label_order() {
+  
+  if (label_order_ == nullptr) {
+    auto* p = CreateMaybeMessage<::clarifai::api::LabelOrder>(GetArenaNoVirtual());
+    label_order_ = p;
+  }
+  return label_order_;
+}
+inline ::clarifai::api::LabelOrder* SingleLabelOrderResponse::mutable_label_order() {
+  // @@protoc_insertion_point(field_mutable:clarifai.api.SingleLabelOrderResponse.label_order)
+  return _internal_mutable_label_order();
+}
+inline void SingleLabelOrderResponse::set_allocated_label_order(::clarifai::api::LabelOrder* label_order) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(label_order_);
+  }
+  if (label_order) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      label_order = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, label_order, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  label_order_ = label_order;
+  // @@protoc_insertion_point(field_set_allocated:clarifai.api.SingleLabelOrderResponse.label_order)
+}
+
+// -------------------------------------------------------------------
+
 // PostCollectorsRequest
 
 // .clarifai.api.UserAppIDSet user_app_id = 1;
@@ -60559,6 +62559,20 @@ MultiTrendingMetricsViewResponse::metrics() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

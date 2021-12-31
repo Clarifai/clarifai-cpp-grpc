@@ -1010,6 +1010,47 @@ class V2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteTasks(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteTasksRaw(context, request, cq));
     }
+    // Add Label orders.
+    virtual ::grpc::Status PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>> AsyncPostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>>(AsyncPostLabelOrdersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>> PrepareAsyncPostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>>(PrepareAsyncPostLabelOrdersRaw(context, request, cq));
+    }
+    // Get a label order.
+    virtual ::grpc::Status GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::clarifai::api::SingleLabelOrderResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleLabelOrderResponse>> AsyncGetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleLabelOrderResponse>>(AsyncGetLabelOrderRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleLabelOrderResponse>> PrepareAsyncGetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleLabelOrderResponse>>(PrepareAsyncGetLabelOrderRaw(context, request, cq));
+    }
+    // List label orders.
+    virtual ::grpc::Status ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>> AsyncListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>>(AsyncListLabelOrdersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>> PrepareAsyncListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>>(PrepareAsyncListLabelOrdersRaw(context, request, cq));
+    }
+    // Patch one or more label orders.
+    virtual ::grpc::Status PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>> AsyncPatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>>(AsyncPatchLabelOrdersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>> PrepareAsyncPatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>>(PrepareAsyncPatchLabelOrdersRaw(context, request, cq));
+    }
+    // Delete multiple label orders in one request.
+    // this do not change task status
+    virtual ::grpc::Status DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::clarifai::api::status::BaseResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> AsyncDeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(AsyncDeleteLabelOrdersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteLabelOrdersRaw(context, request, cq));
+    }
     // Add a list of Collectors to an app.
     // In the handler of this endpoint we also check for all the scopes of the  POST /inputs
     // endpoint.
@@ -2643,6 +2684,72 @@ class V2 final {
       #else
       virtual void DeleteTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      // Add Label orders.
+      virtual void PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Get a label order.
+      virtual void GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // List label orders.
+      virtual void ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Patch one or more label orders.
+      virtual void PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Delete multiple label orders in one request.
+      // this do not change task status
+      virtual void DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Add a list of Collectors to an app.
       // In the handler of this endpoint we also check for all the scopes of the  POST /inputs
       // endpoint.
@@ -3009,6 +3116,16 @@ class V2 final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiTaskResponse>* PrepareAsyncPatchTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* AsyncDeleteTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>* AsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>* PrepareAsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleLabelOrderResponse>* AsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleLabelOrderResponse>* PrepareAsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>* AsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>* PrepareAsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>* AsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiLabelOrderResponse>* PrepareAsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* AsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiCollectorResponse>* AsyncPostCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::MultiCollectorResponse>* PrepareAsyncPostCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::clarifai::api::SingleCollectorResponse>* AsyncGetCollectorRaw(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -3849,6 +3966,41 @@ class V2 final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteTasks(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteTasksRaw(context, request, cq));
+    }
+    ::grpc::Status PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>> AsyncPostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>>(AsyncPostLabelOrdersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>> PrepareAsyncPostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>>(PrepareAsyncPostLabelOrdersRaw(context, request, cq));
+    }
+    ::grpc::Status GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::clarifai::api::SingleLabelOrderResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>> AsyncGetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>>(AsyncGetLabelOrderRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>> PrepareAsyncGetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>>(PrepareAsyncGetLabelOrderRaw(context, request, cq));
+    }
+    ::grpc::Status ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>> AsyncListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>>(AsyncListLabelOrdersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>> PrepareAsyncListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>>(PrepareAsyncListLabelOrdersRaw(context, request, cq));
+    }
+    ::grpc::Status PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>> AsyncPatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>>(AsyncPatchLabelOrdersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>> PrepareAsyncPatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>>(PrepareAsyncPatchLabelOrdersRaw(context, request, cq));
+    }
+    ::grpc::Status DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::clarifai::api::status::BaseResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> AsyncDeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(AsyncDeleteLabelOrdersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>> PrepareAsyncDeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>>(PrepareAsyncDeleteLabelOrdersRaw(context, request, cq));
     }
     ::grpc::Status PostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::clarifai::api::MultiCollectorResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>> AsyncPostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -5320,6 +5472,66 @@ class V2 final {
       #else
       void DeleteTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      void PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) override;
+      void PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) override;
+      void PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void PostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)>) override;
       void PostCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -5673,6 +5885,16 @@ class V2 final {
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* PrepareAsyncPatchTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* AsyncDeleteTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* AsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* PrepareAsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>* AsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>* PrepareAsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* AsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* PrepareAsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* AsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* PrepareAsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* AsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* PrepareAsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* AsyncPostCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* PrepareAsyncPostCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleCollectorResponse>* AsyncGetCollectorRaw(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -5808,6 +6030,11 @@ class V2 final {
     const ::grpc::internal::RpcMethod rpcmethod_ListTasks_;
     const ::grpc::internal::RpcMethod rpcmethod_PatchTasks_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteTasks_;
+    const ::grpc::internal::RpcMethod rpcmethod_PostLabelOrders_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetLabelOrder_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListLabelOrders_;
+    const ::grpc::internal::RpcMethod rpcmethod_PatchLabelOrders_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteLabelOrders_;
     const ::grpc::internal::RpcMethod rpcmethod_PostCollectors_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCollector_;
     const ::grpc::internal::RpcMethod rpcmethod_ListCollectors_;
@@ -6089,6 +6316,17 @@ class V2 final {
     virtual ::grpc::Status PatchTasks(::grpc::ServerContext* context, const ::clarifai::api::PatchTasksRequest* request, ::clarifai::api::MultiTaskResponse* response);
     // Delete multiple tasks in one request.
     virtual ::grpc::Status DeleteTasks(::grpc::ServerContext* context, const ::clarifai::api::DeleteTasksRequest* request, ::clarifai::api::status::BaseResponse* response);
+    // Add Label orders.
+    virtual ::grpc::Status PostLabelOrders(::grpc::ServerContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response);
+    // Get a label order.
+    virtual ::grpc::Status GetLabelOrder(::grpc::ServerContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response);
+    // List label orders.
+    virtual ::grpc::Status ListLabelOrders(::grpc::ServerContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response);
+    // Patch one or more label orders.
+    virtual ::grpc::Status PatchLabelOrders(::grpc::ServerContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response);
+    // Delete multiple label orders in one request.
+    // this do not change task status
+    virtual ::grpc::Status DeleteLabelOrders(::grpc::ServerContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response);
     // Add a list of Collectors to an app.
     // In the handler of this endpoint we also check for all the scopes of the  POST /inputs
     // endpoint.
@@ -8455,12 +8693,112 @@ class V2 final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_PostLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PostLabelOrders() {
+      ::grpc::Service::MarkMethodAsync(117);
+    }
+    ~WithAsyncMethod_PostLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPostLabelOrders(::grpc::ServerContext* context, ::clarifai::api::PostLabelOrdersRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiLabelOrderResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(117, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetLabelOrder : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetLabelOrder() {
+      ::grpc::Service::MarkMethodAsync(118);
+    }
+    ~WithAsyncMethod_GetLabelOrder() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLabelOrder(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetLabelOrderRequest* /*request*/, ::clarifai::api::SingleLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetLabelOrder(::grpc::ServerContext* context, ::clarifai::api::GetLabelOrderRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleLabelOrderResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(118, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListLabelOrders() {
+      ::grpc::Service::MarkMethodAsync(119);
+    }
+    ~WithAsyncMethod_ListLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListLabelOrders(::grpc::ServerContext* context, ::clarifai::api::ListLabelOrdersRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiLabelOrderResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(119, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PatchLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PatchLabelOrders() {
+      ::grpc::Service::MarkMethodAsync(120);
+    }
+    ~WithAsyncMethod_PatchLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPatchLabelOrders(::grpc::ServerContext* context, ::clarifai::api::PatchLabelOrdersRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiLabelOrderResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(120, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DeleteLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DeleteLabelOrders() {
+      ::grpc::Service::MarkMethodAsync(121);
+    }
+    ~WithAsyncMethod_DeleteLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::DeleteLabelOrdersRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteLabelOrders(::grpc::ServerContext* context, ::clarifai::api::DeleteLabelOrdersRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(121, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_PostCollectors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostCollectors() {
-      ::grpc::Service::MarkMethodAsync(117);
+      ::grpc::Service::MarkMethodAsync(122);
     }
     ~WithAsyncMethod_PostCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8471,7 +8809,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostCollectors(::grpc::ServerContext* context, ::clarifai::api::PostCollectorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(117, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(122, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -8480,7 +8818,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetCollector() {
-      ::grpc::Service::MarkMethodAsync(118);
+      ::grpc::Service::MarkMethodAsync(123);
     }
     ~WithAsyncMethod_GetCollector() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8491,7 +8829,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollector(::grpc::ServerContext* context, ::clarifai::api::GetCollectorRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::SingleCollectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(118, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(123, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -8500,7 +8838,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListCollectors() {
-      ::grpc::Service::MarkMethodAsync(119);
+      ::grpc::Service::MarkMethodAsync(124);
     }
     ~WithAsyncMethod_ListCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8511,7 +8849,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListCollectors(::grpc::ServerContext* context, ::clarifai::api::ListCollectorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(119, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(124, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -8520,7 +8858,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PatchCollectors() {
-      ::grpc::Service::MarkMethodAsync(120);
+      ::grpc::Service::MarkMethodAsync(125);
     }
     ~WithAsyncMethod_PatchCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8531,7 +8869,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchCollectors(::grpc::ServerContext* context, ::clarifai::api::PatchCollectorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiCollectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(120, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(125, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -8540,7 +8878,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteCollectors() {
-      ::grpc::Service::MarkMethodAsync(121);
+      ::grpc::Service::MarkMethodAsync(126);
     }
     ~WithAsyncMethod_DeleteCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8551,7 +8889,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteCollectors(::grpc::ServerContext* context, ::clarifai::api::DeleteCollectorsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(121, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(126, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -8560,7 +8898,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostStatValues() {
-      ::grpc::Service::MarkMethodAsync(122);
+      ::grpc::Service::MarkMethodAsync(127);
     }
     ~WithAsyncMethod_PostStatValues() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8571,7 +8909,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostStatValues(::grpc::ServerContext* context, ::clarifai::api::PostStatValuesRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiStatValueResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(122, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(127, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -8580,7 +8918,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostStatValuesAggregate() {
-      ::grpc::Service::MarkMethodAsync(123);
+      ::grpc::Service::MarkMethodAsync(128);
     }
     ~WithAsyncMethod_PostStatValuesAggregate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8591,7 +8929,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostStatValuesAggregate(::grpc::ServerContext* context, ::clarifai::api::PostStatValuesAggregateRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiStatValueAggregateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(123, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(128, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -8600,7 +8938,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PostTrendingMetricsView() {
-      ::grpc::Service::MarkMethodAsync(124);
+      ::grpc::Service::MarkMethodAsync(129);
     }
     ~WithAsyncMethod_PostTrendingMetricsView() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8611,7 +8949,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostTrendingMetricsView(::grpc::ServerContext* context, ::clarifai::api::PostTrendingMetricsViewRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::status::BaseResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(124, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(129, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -8620,7 +8958,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListTrendingMetricsViews() {
-      ::grpc::Service::MarkMethodAsync(125);
+      ::grpc::Service::MarkMethodAsync(130);
     }
     ~WithAsyncMethod_ListTrendingMetricsViews() override {
       BaseClassMustBeDerivedFromService(this);
@@ -8631,10 +8969,10 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListTrendingMetricsViews(::grpc::ServerContext* context, ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::grpc::ServerAsyncResponseWriter< ::clarifai::api::MultiTrendingMetricsViewResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(125, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(130, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_ListConceptRelations<WithAsyncMethod_PostConceptRelations<WithAsyncMethod_DeleteConceptRelations<WithAsyncMethod_GetConceptCounts<WithAsyncMethod_GetConcept<WithAsyncMethod_ListConcepts<WithAsyncMethod_PostConceptsSearches<WithAsyncMethod_PostConcepts<WithAsyncMethod_PatchConcepts<WithAsyncMethod_GetConceptLanguage<WithAsyncMethod_ListConceptLanguages<WithAsyncMethod_PostConceptLanguages<WithAsyncMethod_PatchConceptLanguages<WithAsyncMethod_ListKnowledgeGraphs<WithAsyncMethod_PostKnowledgeGraphs<WithAsyncMethod_PostConceptMappingJobs<WithAsyncMethod_GetAnnotation<WithAsyncMethod_ListAnnotations<WithAsyncMethod_PostAnnotations<WithAsyncMethod_PatchAnnotations<WithAsyncMethod_PatchAnnotationsStatus<WithAsyncMethod_DeleteAnnotation<WithAsyncMethod_DeleteAnnotations<WithAsyncMethod_PostAnnotationsSearches<WithAsyncMethod_GetInputCount<WithAsyncMethod_StreamInputs<WithAsyncMethod_GetInputSamples<WithAsyncMethod_GetInput<WithAsyncMethod_ListInputs<WithAsyncMethod_PostInputs<WithAsyncMethod_PatchInputs<WithAsyncMethod_DeleteInput<WithAsyncMethod_DeleteInputs<WithAsyncMethod_PostInputsSearches<WithAsyncMethod_PostModelOutputs<WithAsyncMethod_GetModelType<WithAsyncMethod_ListOpenSourceLicenses<WithAsyncMethod_ListModelTypes<WithAsyncMethod_GetModel<WithAsyncMethod_GetModelOutputInfo<WithAsyncMethod_ListModels<WithAsyncMethod_PostModelsSearches<WithAsyncMethod_PostModels<WithAsyncMethod_PatchModels<WithAsyncMethod_DeleteModel<WithAsyncMethod_DeleteModels<WithAsyncMethod_PatchModelToolkits<WithAsyncMethod_PatchModelUseCases<WithAsyncMethod_PatchModelLanguages<WithAsyncMethod_ListModelInputs<WithAsyncMethod_GetModelVersion<WithAsyncMethod_ListModelVersions<WithAsyncMethod_PostModelVersionsPublish<WithAsyncMethod_PostModelVersionsUnPublish<WithAsyncMethod_PostModelVersions<WithAsyncMethod_PatchModelVersions<WithAsyncMethod_DeleteModelVersion<WithAsyncMethod_GetModelVersionMetrics<WithAsyncMethod_PostModelVersionMetrics<WithAsyncMethod_ListModelReferences<WithAsyncMethod_GetModelVersionInputExample<WithAsyncMethod_ListModelVersionInputExamples<WithAsyncMethod_GetWorkflow<WithAsyncMethod_ListWorkflows<WithAsyncMethod_PostWorkflows<WithAsyncMethod_PatchWorkflows<WithAsyncMethod_DeleteWorkflow<WithAsyncMethod_DeleteWorkflows<WithAsyncMethod_PostWorkflowResults<WithAsyncMethod_PostWorkflowResultsSimilarity<WithAsyncMethod_ListWorkflowVersions<WithAsyncMethod_GetWorkflowVersion<WithAsyncMethod_DeleteWorkflowVersions<WithAsyncMethod_PatchWorkflowVersions<WithAsyncMethod_GetKey<WithAsyncMethod_ListKeys<WithAsyncMethod_ListAppKeys<WithAsyncMethod_DeleteKey<WithAsyncMethod_PostKeys<WithAsyncMethod_PatchKeys<WithAsyncMethod_MyScopes<WithAsyncMethod_MyScopesUser<WithAsyncMethod_MyScopesRoot<WithAsyncMethod_ListScopes<WithAsyncMethod_GetApp<WithAsyncMethod_ListApps<WithAsyncMethod_DeleteApp<WithAsyncMethod_PostApps<WithAsyncMethod_PatchApps<WithAsyncMethod_PostAppsSearches<WithAsyncMethod_PostValidatePassword<WithAsyncMethod_GetSearch<WithAsyncMethod_ListSearches<WithAsyncMethod_PostSearches<WithAsyncMethod_PostSearchesByID<WithAsyncMethod_PostAnnotationSearchMetrics<WithAsyncMethod_GetAnnotationSearchMetrics<WithAsyncMethod_ListAnnotationSearchMetrics<WithAsyncMethod_DeleteAnnotationSearchMetrics<WithAsyncMethod_DeleteSearch<WithAsyncMethod_ListStatusCodes<WithAsyncMethod_GetStatusCode<WithAsyncMethod_ListCollaborators<WithAsyncMethod_PostCollaborators<WithAsyncMethod_PatchCollaborators<WithAsyncMethod_DeleteCollaborators<WithAsyncMethod_ListCollaborations<WithAsyncMethod_PostAppDuplications<WithAsyncMethod_ListAppDuplications<WithAsyncMethod_GetAppDuplication<WithAsyncMethod_PostTasks<WithAsyncMethod_GetTaskAnnotationCount<WithAsyncMethod_GetTaskInputCount<WithAsyncMethod_GetTask<WithAsyncMethod_ListTasks<WithAsyncMethod_PatchTasks<WithAsyncMethod_DeleteTasks<WithAsyncMethod_PostCollectors<WithAsyncMethod_GetCollector<WithAsyncMethod_ListCollectors<WithAsyncMethod_PatchCollectors<WithAsyncMethod_DeleteCollectors<WithAsyncMethod_PostStatValues<WithAsyncMethod_PostStatValuesAggregate<WithAsyncMethod_PostTrendingMetricsView<WithAsyncMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_ListConceptRelations<WithAsyncMethod_PostConceptRelations<WithAsyncMethod_DeleteConceptRelations<WithAsyncMethod_GetConceptCounts<WithAsyncMethod_GetConcept<WithAsyncMethod_ListConcepts<WithAsyncMethod_PostConceptsSearches<WithAsyncMethod_PostConcepts<WithAsyncMethod_PatchConcepts<WithAsyncMethod_GetConceptLanguage<WithAsyncMethod_ListConceptLanguages<WithAsyncMethod_PostConceptLanguages<WithAsyncMethod_PatchConceptLanguages<WithAsyncMethod_ListKnowledgeGraphs<WithAsyncMethod_PostKnowledgeGraphs<WithAsyncMethod_PostConceptMappingJobs<WithAsyncMethod_GetAnnotation<WithAsyncMethod_ListAnnotations<WithAsyncMethod_PostAnnotations<WithAsyncMethod_PatchAnnotations<WithAsyncMethod_PatchAnnotationsStatus<WithAsyncMethod_DeleteAnnotation<WithAsyncMethod_DeleteAnnotations<WithAsyncMethod_PostAnnotationsSearches<WithAsyncMethod_GetInputCount<WithAsyncMethod_StreamInputs<WithAsyncMethod_GetInputSamples<WithAsyncMethod_GetInput<WithAsyncMethod_ListInputs<WithAsyncMethod_PostInputs<WithAsyncMethod_PatchInputs<WithAsyncMethod_DeleteInput<WithAsyncMethod_DeleteInputs<WithAsyncMethod_PostInputsSearches<WithAsyncMethod_PostModelOutputs<WithAsyncMethod_GetModelType<WithAsyncMethod_ListOpenSourceLicenses<WithAsyncMethod_ListModelTypes<WithAsyncMethod_GetModel<WithAsyncMethod_GetModelOutputInfo<WithAsyncMethod_ListModels<WithAsyncMethod_PostModelsSearches<WithAsyncMethod_PostModels<WithAsyncMethod_PatchModels<WithAsyncMethod_DeleteModel<WithAsyncMethod_DeleteModels<WithAsyncMethod_PatchModelToolkits<WithAsyncMethod_PatchModelUseCases<WithAsyncMethod_PatchModelLanguages<WithAsyncMethod_ListModelInputs<WithAsyncMethod_GetModelVersion<WithAsyncMethod_ListModelVersions<WithAsyncMethod_PostModelVersionsPublish<WithAsyncMethod_PostModelVersionsUnPublish<WithAsyncMethod_PostModelVersions<WithAsyncMethod_PatchModelVersions<WithAsyncMethod_DeleteModelVersion<WithAsyncMethod_GetModelVersionMetrics<WithAsyncMethod_PostModelVersionMetrics<WithAsyncMethod_ListModelReferences<WithAsyncMethod_GetModelVersionInputExample<WithAsyncMethod_ListModelVersionInputExamples<WithAsyncMethod_GetWorkflow<WithAsyncMethod_ListWorkflows<WithAsyncMethod_PostWorkflows<WithAsyncMethod_PatchWorkflows<WithAsyncMethod_DeleteWorkflow<WithAsyncMethod_DeleteWorkflows<WithAsyncMethod_PostWorkflowResults<WithAsyncMethod_PostWorkflowResultsSimilarity<WithAsyncMethod_ListWorkflowVersions<WithAsyncMethod_GetWorkflowVersion<WithAsyncMethod_DeleteWorkflowVersions<WithAsyncMethod_PatchWorkflowVersions<WithAsyncMethod_GetKey<WithAsyncMethod_ListKeys<WithAsyncMethod_ListAppKeys<WithAsyncMethod_DeleteKey<WithAsyncMethod_PostKeys<WithAsyncMethod_PatchKeys<WithAsyncMethod_MyScopes<WithAsyncMethod_MyScopesUser<WithAsyncMethod_MyScopesRoot<WithAsyncMethod_ListScopes<WithAsyncMethod_GetApp<WithAsyncMethod_ListApps<WithAsyncMethod_DeleteApp<WithAsyncMethod_PostApps<WithAsyncMethod_PatchApps<WithAsyncMethod_PostAppsSearches<WithAsyncMethod_PostValidatePassword<WithAsyncMethod_GetSearch<WithAsyncMethod_ListSearches<WithAsyncMethod_PostSearches<WithAsyncMethod_PostSearchesByID<WithAsyncMethod_PostAnnotationSearchMetrics<WithAsyncMethod_GetAnnotationSearchMetrics<WithAsyncMethod_ListAnnotationSearchMetrics<WithAsyncMethod_DeleteAnnotationSearchMetrics<WithAsyncMethod_DeleteSearch<WithAsyncMethod_ListStatusCodes<WithAsyncMethod_GetStatusCode<WithAsyncMethod_ListCollaborators<WithAsyncMethod_PostCollaborators<WithAsyncMethod_PatchCollaborators<WithAsyncMethod_DeleteCollaborators<WithAsyncMethod_ListCollaborations<WithAsyncMethod_PostAppDuplications<WithAsyncMethod_ListAppDuplications<WithAsyncMethod_GetAppDuplication<WithAsyncMethod_PostTasks<WithAsyncMethod_GetTaskAnnotationCount<WithAsyncMethod_GetTaskInputCount<WithAsyncMethod_GetTask<WithAsyncMethod_ListTasks<WithAsyncMethod_PatchTasks<WithAsyncMethod_DeleteTasks<WithAsyncMethod_PostLabelOrders<WithAsyncMethod_GetLabelOrder<WithAsyncMethod_ListLabelOrders<WithAsyncMethod_PatchLabelOrders<WithAsyncMethod_DeleteLabelOrders<WithAsyncMethod_PostCollectors<WithAsyncMethod_GetCollector<WithAsyncMethod_ListCollectors<WithAsyncMethod_PatchCollectors<WithAsyncMethod_DeleteCollectors<WithAsyncMethod_PostStatValues<WithAsyncMethod_PostStatValuesAggregate<WithAsyncMethod_PostTrendingMetricsView<WithAsyncMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_ListConceptRelations : public BaseClass {
    private:
@@ -14135,6 +14473,241 @@ class V2 final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithCallbackMethod_PostLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_PostLabelOrders() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(117,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response) { return this->PostLabelOrders(context, request, response); }));}
+    void SetMessageAllocatorFor_PostLabelOrders(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(117);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(117);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_PostLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PostLabelOrders(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PostLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PostLabelOrders(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PostLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetLabelOrder : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetLabelOrder() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(118,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response) { return this->GetLabelOrder(context, request, response); }));}
+    void SetMessageAllocatorFor_GetLabelOrder(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(118);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(118);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_GetLabelOrder() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLabelOrder(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetLabelOrderRequest* /*request*/, ::clarifai::api::SingleLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetLabelOrder(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::GetLabelOrderRequest* /*request*/, ::clarifai::api::SingleLabelOrderResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetLabelOrder(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::GetLabelOrderRequest* /*request*/, ::clarifai::api::SingleLabelOrderResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_ListLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_ListLabelOrders() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(119,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response) { return this->ListLabelOrders(context, request, response); }));}
+    void SetMessageAllocatorFor_ListLabelOrders(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(119);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(119);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_ListLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListLabelOrders(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::ListLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListLabelOrders(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::ListLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_PatchLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_PatchLabelOrders() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(120,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response) { return this->PatchLabelOrders(context, request, response); }));}
+    void SetMessageAllocatorFor_PatchLabelOrders(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(120);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(120);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_PatchLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PatchLabelOrders(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::PatchLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PatchLabelOrders(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::PatchLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_DeleteLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_DeleteLabelOrders() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(121,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response) { return this->DeleteLabelOrders(context, request, response); }));}
+    void SetMessageAllocatorFor_DeleteLabelOrders(
+        ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(121);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(121);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_DeleteLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::DeleteLabelOrdersRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* DeleteLabelOrders(
+      ::grpc::CallbackServerContext* /*context*/, const ::clarifai::api::DeleteLabelOrdersRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DeleteLabelOrders(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::clarifai::api::DeleteLabelOrdersRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class ExperimentalWithCallbackMethod_PostCollectors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -14145,7 +14718,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(117,
+        MarkMethodCallback(122,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14157,9 +14730,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostCollectors(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(117);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(122);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(117);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(122);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14192,7 +14765,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(118,
+        MarkMethodCallback(123,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14204,9 +14777,9 @@ class V2 final {
     void SetMessageAllocatorFor_GetCollector(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(118);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(123);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(118);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(123);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14239,7 +14812,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(119,
+        MarkMethodCallback(124,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14251,9 +14824,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListCollectors(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(119);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(124);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(119);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(124);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14286,7 +14859,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(120,
+        MarkMethodCallback(125,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14298,9 +14871,9 @@ class V2 final {
     void SetMessageAllocatorFor_PatchCollectors(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(120);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(125);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(120);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(125);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14333,7 +14906,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(121,
+        MarkMethodCallback(126,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14345,9 +14918,9 @@ class V2 final {
     void SetMessageAllocatorFor_DeleteCollectors(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(121);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(126);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(121);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(126);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14380,7 +14953,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(122,
+        MarkMethodCallback(127,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14392,9 +14965,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostStatValues(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(122);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(127);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(122);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(127);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14427,7 +15000,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(123,
+        MarkMethodCallback(128,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14439,9 +15012,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostStatValuesAggregate(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(123);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(128);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(123);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(128);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14474,7 +15047,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(124,
+        MarkMethodCallback(129,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14486,9 +15059,9 @@ class V2 final {
     void SetMessageAllocatorFor_PostTrendingMetricsView(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(124);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(129);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(124);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(129);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14521,7 +15094,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(125,
+        MarkMethodCallback(130,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -14533,9 +15106,9 @@ class V2 final {
     void SetMessageAllocatorFor_ListTrendingMetricsViews(
         ::grpc::experimental::MessageAllocator< ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(125);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(130);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(125);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(130);
     #endif
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -14558,10 +15131,10 @@ class V2 final {
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_ListConceptRelations<ExperimentalWithCallbackMethod_PostConceptRelations<ExperimentalWithCallbackMethod_DeleteConceptRelations<ExperimentalWithCallbackMethod_GetConceptCounts<ExperimentalWithCallbackMethod_GetConcept<ExperimentalWithCallbackMethod_ListConcepts<ExperimentalWithCallbackMethod_PostConceptsSearches<ExperimentalWithCallbackMethod_PostConcepts<ExperimentalWithCallbackMethod_PatchConcepts<ExperimentalWithCallbackMethod_GetConceptLanguage<ExperimentalWithCallbackMethod_ListConceptLanguages<ExperimentalWithCallbackMethod_PostConceptLanguages<ExperimentalWithCallbackMethod_PatchConceptLanguages<ExperimentalWithCallbackMethod_ListKnowledgeGraphs<ExperimentalWithCallbackMethod_PostKnowledgeGraphs<ExperimentalWithCallbackMethod_PostConceptMappingJobs<ExperimentalWithCallbackMethod_GetAnnotation<ExperimentalWithCallbackMethod_ListAnnotations<ExperimentalWithCallbackMethod_PostAnnotations<ExperimentalWithCallbackMethod_PatchAnnotations<ExperimentalWithCallbackMethod_PatchAnnotationsStatus<ExperimentalWithCallbackMethod_DeleteAnnotation<ExperimentalWithCallbackMethod_DeleteAnnotations<ExperimentalWithCallbackMethod_PostAnnotationsSearches<ExperimentalWithCallbackMethod_GetInputCount<ExperimentalWithCallbackMethod_StreamInputs<ExperimentalWithCallbackMethod_GetInputSamples<ExperimentalWithCallbackMethod_GetInput<ExperimentalWithCallbackMethod_ListInputs<ExperimentalWithCallbackMethod_PostInputs<ExperimentalWithCallbackMethod_PatchInputs<ExperimentalWithCallbackMethod_DeleteInput<ExperimentalWithCallbackMethod_DeleteInputs<ExperimentalWithCallbackMethod_PostInputsSearches<ExperimentalWithCallbackMethod_PostModelOutputs<ExperimentalWithCallbackMethod_GetModelType<ExperimentalWithCallbackMethod_ListOpenSourceLicenses<ExperimentalWithCallbackMethod_ListModelTypes<ExperimentalWithCallbackMethod_GetModel<ExperimentalWithCallbackMethod_GetModelOutputInfo<ExperimentalWithCallbackMethod_ListModels<ExperimentalWithCallbackMethod_PostModelsSearches<ExperimentalWithCallbackMethod_PostModels<ExperimentalWithCallbackMethod_PatchModels<ExperimentalWithCallbackMethod_DeleteModel<ExperimentalWithCallbackMethod_DeleteModels<ExperimentalWithCallbackMethod_PatchModelToolkits<ExperimentalWithCallbackMethod_PatchModelUseCases<ExperimentalWithCallbackMethod_PatchModelLanguages<ExperimentalWithCallbackMethod_ListModelInputs<ExperimentalWithCallbackMethod_GetModelVersion<ExperimentalWithCallbackMethod_ListModelVersions<ExperimentalWithCallbackMethod_PostModelVersionsPublish<ExperimentalWithCallbackMethod_PostModelVersionsUnPublish<ExperimentalWithCallbackMethod_PostModelVersions<ExperimentalWithCallbackMethod_PatchModelVersions<ExperimentalWithCallbackMethod_DeleteModelVersion<ExperimentalWithCallbackMethod_GetModelVersionMetrics<ExperimentalWithCallbackMethod_PostModelVersionMetrics<ExperimentalWithCallbackMethod_ListModelReferences<ExperimentalWithCallbackMethod_GetModelVersionInputExample<ExperimentalWithCallbackMethod_ListModelVersionInputExamples<ExperimentalWithCallbackMethod_GetWorkflow<ExperimentalWithCallbackMethod_ListWorkflows<ExperimentalWithCallbackMethod_PostWorkflows<ExperimentalWithCallbackMethod_PatchWorkflows<ExperimentalWithCallbackMethod_DeleteWorkflow<ExperimentalWithCallbackMethod_DeleteWorkflows<ExperimentalWithCallbackMethod_PostWorkflowResults<ExperimentalWithCallbackMethod_PostWorkflowResultsSimilarity<ExperimentalWithCallbackMethod_ListWorkflowVersions<ExperimentalWithCallbackMethod_GetWorkflowVersion<ExperimentalWithCallbackMethod_DeleteWorkflowVersions<ExperimentalWithCallbackMethod_PatchWorkflowVersions<ExperimentalWithCallbackMethod_GetKey<ExperimentalWithCallbackMethod_ListKeys<ExperimentalWithCallbackMethod_ListAppKeys<ExperimentalWithCallbackMethod_DeleteKey<ExperimentalWithCallbackMethod_PostKeys<ExperimentalWithCallbackMethod_PatchKeys<ExperimentalWithCallbackMethod_MyScopes<ExperimentalWithCallbackMethod_MyScopesUser<ExperimentalWithCallbackMethod_MyScopesRoot<ExperimentalWithCallbackMethod_ListScopes<ExperimentalWithCallbackMethod_GetApp<ExperimentalWithCallbackMethod_ListApps<ExperimentalWithCallbackMethod_DeleteApp<ExperimentalWithCallbackMethod_PostApps<ExperimentalWithCallbackMethod_PatchApps<ExperimentalWithCallbackMethod_PostAppsSearches<ExperimentalWithCallbackMethod_PostValidatePassword<ExperimentalWithCallbackMethod_GetSearch<ExperimentalWithCallbackMethod_ListSearches<ExperimentalWithCallbackMethod_PostSearches<ExperimentalWithCallbackMethod_PostSearchesByID<ExperimentalWithCallbackMethod_PostAnnotationSearchMetrics<ExperimentalWithCallbackMethod_GetAnnotationSearchMetrics<ExperimentalWithCallbackMethod_ListAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteSearch<ExperimentalWithCallbackMethod_ListStatusCodes<ExperimentalWithCallbackMethod_GetStatusCode<ExperimentalWithCallbackMethod_ListCollaborators<ExperimentalWithCallbackMethod_PostCollaborators<ExperimentalWithCallbackMethod_PatchCollaborators<ExperimentalWithCallbackMethod_DeleteCollaborators<ExperimentalWithCallbackMethod_ListCollaborations<ExperimentalWithCallbackMethod_PostAppDuplications<ExperimentalWithCallbackMethod_ListAppDuplications<ExperimentalWithCallbackMethod_GetAppDuplication<ExperimentalWithCallbackMethod_PostTasks<ExperimentalWithCallbackMethod_GetTaskAnnotationCount<ExperimentalWithCallbackMethod_GetTaskInputCount<ExperimentalWithCallbackMethod_GetTask<ExperimentalWithCallbackMethod_ListTasks<ExperimentalWithCallbackMethod_PatchTasks<ExperimentalWithCallbackMethod_DeleteTasks<ExperimentalWithCallbackMethod_PostCollectors<ExperimentalWithCallbackMethod_GetCollector<ExperimentalWithCallbackMethod_ListCollectors<ExperimentalWithCallbackMethod_PatchCollectors<ExperimentalWithCallbackMethod_DeleteCollectors<ExperimentalWithCallbackMethod_PostStatValues<ExperimentalWithCallbackMethod_PostStatValuesAggregate<ExperimentalWithCallbackMethod_PostTrendingMetricsView<ExperimentalWithCallbackMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_ListConceptRelations<ExperimentalWithCallbackMethod_PostConceptRelations<ExperimentalWithCallbackMethod_DeleteConceptRelations<ExperimentalWithCallbackMethod_GetConceptCounts<ExperimentalWithCallbackMethod_GetConcept<ExperimentalWithCallbackMethod_ListConcepts<ExperimentalWithCallbackMethod_PostConceptsSearches<ExperimentalWithCallbackMethod_PostConcepts<ExperimentalWithCallbackMethod_PatchConcepts<ExperimentalWithCallbackMethod_GetConceptLanguage<ExperimentalWithCallbackMethod_ListConceptLanguages<ExperimentalWithCallbackMethod_PostConceptLanguages<ExperimentalWithCallbackMethod_PatchConceptLanguages<ExperimentalWithCallbackMethod_ListKnowledgeGraphs<ExperimentalWithCallbackMethod_PostKnowledgeGraphs<ExperimentalWithCallbackMethod_PostConceptMappingJobs<ExperimentalWithCallbackMethod_GetAnnotation<ExperimentalWithCallbackMethod_ListAnnotations<ExperimentalWithCallbackMethod_PostAnnotations<ExperimentalWithCallbackMethod_PatchAnnotations<ExperimentalWithCallbackMethod_PatchAnnotationsStatus<ExperimentalWithCallbackMethod_DeleteAnnotation<ExperimentalWithCallbackMethod_DeleteAnnotations<ExperimentalWithCallbackMethod_PostAnnotationsSearches<ExperimentalWithCallbackMethod_GetInputCount<ExperimentalWithCallbackMethod_StreamInputs<ExperimentalWithCallbackMethod_GetInputSamples<ExperimentalWithCallbackMethod_GetInput<ExperimentalWithCallbackMethod_ListInputs<ExperimentalWithCallbackMethod_PostInputs<ExperimentalWithCallbackMethod_PatchInputs<ExperimentalWithCallbackMethod_DeleteInput<ExperimentalWithCallbackMethod_DeleteInputs<ExperimentalWithCallbackMethod_PostInputsSearches<ExperimentalWithCallbackMethod_PostModelOutputs<ExperimentalWithCallbackMethod_GetModelType<ExperimentalWithCallbackMethod_ListOpenSourceLicenses<ExperimentalWithCallbackMethod_ListModelTypes<ExperimentalWithCallbackMethod_GetModel<ExperimentalWithCallbackMethod_GetModelOutputInfo<ExperimentalWithCallbackMethod_ListModels<ExperimentalWithCallbackMethod_PostModelsSearches<ExperimentalWithCallbackMethod_PostModels<ExperimentalWithCallbackMethod_PatchModels<ExperimentalWithCallbackMethod_DeleteModel<ExperimentalWithCallbackMethod_DeleteModels<ExperimentalWithCallbackMethod_PatchModelToolkits<ExperimentalWithCallbackMethod_PatchModelUseCases<ExperimentalWithCallbackMethod_PatchModelLanguages<ExperimentalWithCallbackMethod_ListModelInputs<ExperimentalWithCallbackMethod_GetModelVersion<ExperimentalWithCallbackMethod_ListModelVersions<ExperimentalWithCallbackMethod_PostModelVersionsPublish<ExperimentalWithCallbackMethod_PostModelVersionsUnPublish<ExperimentalWithCallbackMethod_PostModelVersions<ExperimentalWithCallbackMethod_PatchModelVersions<ExperimentalWithCallbackMethod_DeleteModelVersion<ExperimentalWithCallbackMethod_GetModelVersionMetrics<ExperimentalWithCallbackMethod_PostModelVersionMetrics<ExperimentalWithCallbackMethod_ListModelReferences<ExperimentalWithCallbackMethod_GetModelVersionInputExample<ExperimentalWithCallbackMethod_ListModelVersionInputExamples<ExperimentalWithCallbackMethod_GetWorkflow<ExperimentalWithCallbackMethod_ListWorkflows<ExperimentalWithCallbackMethod_PostWorkflows<ExperimentalWithCallbackMethod_PatchWorkflows<ExperimentalWithCallbackMethod_DeleteWorkflow<ExperimentalWithCallbackMethod_DeleteWorkflows<ExperimentalWithCallbackMethod_PostWorkflowResults<ExperimentalWithCallbackMethod_PostWorkflowResultsSimilarity<ExperimentalWithCallbackMethod_ListWorkflowVersions<ExperimentalWithCallbackMethod_GetWorkflowVersion<ExperimentalWithCallbackMethod_DeleteWorkflowVersions<ExperimentalWithCallbackMethod_PatchWorkflowVersions<ExperimentalWithCallbackMethod_GetKey<ExperimentalWithCallbackMethod_ListKeys<ExperimentalWithCallbackMethod_ListAppKeys<ExperimentalWithCallbackMethod_DeleteKey<ExperimentalWithCallbackMethod_PostKeys<ExperimentalWithCallbackMethod_PatchKeys<ExperimentalWithCallbackMethod_MyScopes<ExperimentalWithCallbackMethod_MyScopesUser<ExperimentalWithCallbackMethod_MyScopesRoot<ExperimentalWithCallbackMethod_ListScopes<ExperimentalWithCallbackMethod_GetApp<ExperimentalWithCallbackMethod_ListApps<ExperimentalWithCallbackMethod_DeleteApp<ExperimentalWithCallbackMethod_PostApps<ExperimentalWithCallbackMethod_PatchApps<ExperimentalWithCallbackMethod_PostAppsSearches<ExperimentalWithCallbackMethod_PostValidatePassword<ExperimentalWithCallbackMethod_GetSearch<ExperimentalWithCallbackMethod_ListSearches<ExperimentalWithCallbackMethod_PostSearches<ExperimentalWithCallbackMethod_PostSearchesByID<ExperimentalWithCallbackMethod_PostAnnotationSearchMetrics<ExperimentalWithCallbackMethod_GetAnnotationSearchMetrics<ExperimentalWithCallbackMethod_ListAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteSearch<ExperimentalWithCallbackMethod_ListStatusCodes<ExperimentalWithCallbackMethod_GetStatusCode<ExperimentalWithCallbackMethod_ListCollaborators<ExperimentalWithCallbackMethod_PostCollaborators<ExperimentalWithCallbackMethod_PatchCollaborators<ExperimentalWithCallbackMethod_DeleteCollaborators<ExperimentalWithCallbackMethod_ListCollaborations<ExperimentalWithCallbackMethod_PostAppDuplications<ExperimentalWithCallbackMethod_ListAppDuplications<ExperimentalWithCallbackMethod_GetAppDuplication<ExperimentalWithCallbackMethod_PostTasks<ExperimentalWithCallbackMethod_GetTaskAnnotationCount<ExperimentalWithCallbackMethod_GetTaskInputCount<ExperimentalWithCallbackMethod_GetTask<ExperimentalWithCallbackMethod_ListTasks<ExperimentalWithCallbackMethod_PatchTasks<ExperimentalWithCallbackMethod_DeleteTasks<ExperimentalWithCallbackMethod_PostLabelOrders<ExperimentalWithCallbackMethod_GetLabelOrder<ExperimentalWithCallbackMethod_ListLabelOrders<ExperimentalWithCallbackMethod_PatchLabelOrders<ExperimentalWithCallbackMethod_DeleteLabelOrders<ExperimentalWithCallbackMethod_PostCollectors<ExperimentalWithCallbackMethod_GetCollector<ExperimentalWithCallbackMethod_ListCollectors<ExperimentalWithCallbackMethod_PatchCollectors<ExperimentalWithCallbackMethod_DeleteCollectors<ExperimentalWithCallbackMethod_PostStatValues<ExperimentalWithCallbackMethod_PostStatValuesAggregate<ExperimentalWithCallbackMethod_PostTrendingMetricsView<ExperimentalWithCallbackMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_ListConceptRelations<ExperimentalWithCallbackMethod_PostConceptRelations<ExperimentalWithCallbackMethod_DeleteConceptRelations<ExperimentalWithCallbackMethod_GetConceptCounts<ExperimentalWithCallbackMethod_GetConcept<ExperimentalWithCallbackMethod_ListConcepts<ExperimentalWithCallbackMethod_PostConceptsSearches<ExperimentalWithCallbackMethod_PostConcepts<ExperimentalWithCallbackMethod_PatchConcepts<ExperimentalWithCallbackMethod_GetConceptLanguage<ExperimentalWithCallbackMethod_ListConceptLanguages<ExperimentalWithCallbackMethod_PostConceptLanguages<ExperimentalWithCallbackMethod_PatchConceptLanguages<ExperimentalWithCallbackMethod_ListKnowledgeGraphs<ExperimentalWithCallbackMethod_PostKnowledgeGraphs<ExperimentalWithCallbackMethod_PostConceptMappingJobs<ExperimentalWithCallbackMethod_GetAnnotation<ExperimentalWithCallbackMethod_ListAnnotations<ExperimentalWithCallbackMethod_PostAnnotations<ExperimentalWithCallbackMethod_PatchAnnotations<ExperimentalWithCallbackMethod_PatchAnnotationsStatus<ExperimentalWithCallbackMethod_DeleteAnnotation<ExperimentalWithCallbackMethod_DeleteAnnotations<ExperimentalWithCallbackMethod_PostAnnotationsSearches<ExperimentalWithCallbackMethod_GetInputCount<ExperimentalWithCallbackMethod_StreamInputs<ExperimentalWithCallbackMethod_GetInputSamples<ExperimentalWithCallbackMethod_GetInput<ExperimentalWithCallbackMethod_ListInputs<ExperimentalWithCallbackMethod_PostInputs<ExperimentalWithCallbackMethod_PatchInputs<ExperimentalWithCallbackMethod_DeleteInput<ExperimentalWithCallbackMethod_DeleteInputs<ExperimentalWithCallbackMethod_PostInputsSearches<ExperimentalWithCallbackMethod_PostModelOutputs<ExperimentalWithCallbackMethod_GetModelType<ExperimentalWithCallbackMethod_ListOpenSourceLicenses<ExperimentalWithCallbackMethod_ListModelTypes<ExperimentalWithCallbackMethod_GetModel<ExperimentalWithCallbackMethod_GetModelOutputInfo<ExperimentalWithCallbackMethod_ListModels<ExperimentalWithCallbackMethod_PostModelsSearches<ExperimentalWithCallbackMethod_PostModels<ExperimentalWithCallbackMethod_PatchModels<ExperimentalWithCallbackMethod_DeleteModel<ExperimentalWithCallbackMethod_DeleteModels<ExperimentalWithCallbackMethod_PatchModelToolkits<ExperimentalWithCallbackMethod_PatchModelUseCases<ExperimentalWithCallbackMethod_PatchModelLanguages<ExperimentalWithCallbackMethod_ListModelInputs<ExperimentalWithCallbackMethod_GetModelVersion<ExperimentalWithCallbackMethod_ListModelVersions<ExperimentalWithCallbackMethod_PostModelVersionsPublish<ExperimentalWithCallbackMethod_PostModelVersionsUnPublish<ExperimentalWithCallbackMethod_PostModelVersions<ExperimentalWithCallbackMethod_PatchModelVersions<ExperimentalWithCallbackMethod_DeleteModelVersion<ExperimentalWithCallbackMethod_GetModelVersionMetrics<ExperimentalWithCallbackMethod_PostModelVersionMetrics<ExperimentalWithCallbackMethod_ListModelReferences<ExperimentalWithCallbackMethod_GetModelVersionInputExample<ExperimentalWithCallbackMethod_ListModelVersionInputExamples<ExperimentalWithCallbackMethod_GetWorkflow<ExperimentalWithCallbackMethod_ListWorkflows<ExperimentalWithCallbackMethod_PostWorkflows<ExperimentalWithCallbackMethod_PatchWorkflows<ExperimentalWithCallbackMethod_DeleteWorkflow<ExperimentalWithCallbackMethod_DeleteWorkflows<ExperimentalWithCallbackMethod_PostWorkflowResults<ExperimentalWithCallbackMethod_PostWorkflowResultsSimilarity<ExperimentalWithCallbackMethod_ListWorkflowVersions<ExperimentalWithCallbackMethod_GetWorkflowVersion<ExperimentalWithCallbackMethod_DeleteWorkflowVersions<ExperimentalWithCallbackMethod_PatchWorkflowVersions<ExperimentalWithCallbackMethod_GetKey<ExperimentalWithCallbackMethod_ListKeys<ExperimentalWithCallbackMethod_ListAppKeys<ExperimentalWithCallbackMethod_DeleteKey<ExperimentalWithCallbackMethod_PostKeys<ExperimentalWithCallbackMethod_PatchKeys<ExperimentalWithCallbackMethod_MyScopes<ExperimentalWithCallbackMethod_MyScopesUser<ExperimentalWithCallbackMethod_MyScopesRoot<ExperimentalWithCallbackMethod_ListScopes<ExperimentalWithCallbackMethod_GetApp<ExperimentalWithCallbackMethod_ListApps<ExperimentalWithCallbackMethod_DeleteApp<ExperimentalWithCallbackMethod_PostApps<ExperimentalWithCallbackMethod_PatchApps<ExperimentalWithCallbackMethod_PostAppsSearches<ExperimentalWithCallbackMethod_PostValidatePassword<ExperimentalWithCallbackMethod_GetSearch<ExperimentalWithCallbackMethod_ListSearches<ExperimentalWithCallbackMethod_PostSearches<ExperimentalWithCallbackMethod_PostSearchesByID<ExperimentalWithCallbackMethod_PostAnnotationSearchMetrics<ExperimentalWithCallbackMethod_GetAnnotationSearchMetrics<ExperimentalWithCallbackMethod_ListAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteSearch<ExperimentalWithCallbackMethod_ListStatusCodes<ExperimentalWithCallbackMethod_GetStatusCode<ExperimentalWithCallbackMethod_ListCollaborators<ExperimentalWithCallbackMethod_PostCollaborators<ExperimentalWithCallbackMethod_PatchCollaborators<ExperimentalWithCallbackMethod_DeleteCollaborators<ExperimentalWithCallbackMethod_ListCollaborations<ExperimentalWithCallbackMethod_PostAppDuplications<ExperimentalWithCallbackMethod_ListAppDuplications<ExperimentalWithCallbackMethod_GetAppDuplication<ExperimentalWithCallbackMethod_PostTasks<ExperimentalWithCallbackMethod_GetTaskAnnotationCount<ExperimentalWithCallbackMethod_GetTaskInputCount<ExperimentalWithCallbackMethod_GetTask<ExperimentalWithCallbackMethod_ListTasks<ExperimentalWithCallbackMethod_PatchTasks<ExperimentalWithCallbackMethod_DeleteTasks<ExperimentalWithCallbackMethod_PostCollectors<ExperimentalWithCallbackMethod_GetCollector<ExperimentalWithCallbackMethod_ListCollectors<ExperimentalWithCallbackMethod_PatchCollectors<ExperimentalWithCallbackMethod_DeleteCollectors<ExperimentalWithCallbackMethod_PostStatValues<ExperimentalWithCallbackMethod_PostStatValuesAggregate<ExperimentalWithCallbackMethod_PostTrendingMetricsView<ExperimentalWithCallbackMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_ListConceptRelations<ExperimentalWithCallbackMethod_PostConceptRelations<ExperimentalWithCallbackMethod_DeleteConceptRelations<ExperimentalWithCallbackMethod_GetConceptCounts<ExperimentalWithCallbackMethod_GetConcept<ExperimentalWithCallbackMethod_ListConcepts<ExperimentalWithCallbackMethod_PostConceptsSearches<ExperimentalWithCallbackMethod_PostConcepts<ExperimentalWithCallbackMethod_PatchConcepts<ExperimentalWithCallbackMethod_GetConceptLanguage<ExperimentalWithCallbackMethod_ListConceptLanguages<ExperimentalWithCallbackMethod_PostConceptLanguages<ExperimentalWithCallbackMethod_PatchConceptLanguages<ExperimentalWithCallbackMethod_ListKnowledgeGraphs<ExperimentalWithCallbackMethod_PostKnowledgeGraphs<ExperimentalWithCallbackMethod_PostConceptMappingJobs<ExperimentalWithCallbackMethod_GetAnnotation<ExperimentalWithCallbackMethod_ListAnnotations<ExperimentalWithCallbackMethod_PostAnnotations<ExperimentalWithCallbackMethod_PatchAnnotations<ExperimentalWithCallbackMethod_PatchAnnotationsStatus<ExperimentalWithCallbackMethod_DeleteAnnotation<ExperimentalWithCallbackMethod_DeleteAnnotations<ExperimentalWithCallbackMethod_PostAnnotationsSearches<ExperimentalWithCallbackMethod_GetInputCount<ExperimentalWithCallbackMethod_StreamInputs<ExperimentalWithCallbackMethod_GetInputSamples<ExperimentalWithCallbackMethod_GetInput<ExperimentalWithCallbackMethod_ListInputs<ExperimentalWithCallbackMethod_PostInputs<ExperimentalWithCallbackMethod_PatchInputs<ExperimentalWithCallbackMethod_DeleteInput<ExperimentalWithCallbackMethod_DeleteInputs<ExperimentalWithCallbackMethod_PostInputsSearches<ExperimentalWithCallbackMethod_PostModelOutputs<ExperimentalWithCallbackMethod_GetModelType<ExperimentalWithCallbackMethod_ListOpenSourceLicenses<ExperimentalWithCallbackMethod_ListModelTypes<ExperimentalWithCallbackMethod_GetModel<ExperimentalWithCallbackMethod_GetModelOutputInfo<ExperimentalWithCallbackMethod_ListModels<ExperimentalWithCallbackMethod_PostModelsSearches<ExperimentalWithCallbackMethod_PostModels<ExperimentalWithCallbackMethod_PatchModels<ExperimentalWithCallbackMethod_DeleteModel<ExperimentalWithCallbackMethod_DeleteModels<ExperimentalWithCallbackMethod_PatchModelToolkits<ExperimentalWithCallbackMethod_PatchModelUseCases<ExperimentalWithCallbackMethod_PatchModelLanguages<ExperimentalWithCallbackMethod_ListModelInputs<ExperimentalWithCallbackMethod_GetModelVersion<ExperimentalWithCallbackMethod_ListModelVersions<ExperimentalWithCallbackMethod_PostModelVersionsPublish<ExperimentalWithCallbackMethod_PostModelVersionsUnPublish<ExperimentalWithCallbackMethod_PostModelVersions<ExperimentalWithCallbackMethod_PatchModelVersions<ExperimentalWithCallbackMethod_DeleteModelVersion<ExperimentalWithCallbackMethod_GetModelVersionMetrics<ExperimentalWithCallbackMethod_PostModelVersionMetrics<ExperimentalWithCallbackMethod_ListModelReferences<ExperimentalWithCallbackMethod_GetModelVersionInputExample<ExperimentalWithCallbackMethod_ListModelVersionInputExamples<ExperimentalWithCallbackMethod_GetWorkflow<ExperimentalWithCallbackMethod_ListWorkflows<ExperimentalWithCallbackMethod_PostWorkflows<ExperimentalWithCallbackMethod_PatchWorkflows<ExperimentalWithCallbackMethod_DeleteWorkflow<ExperimentalWithCallbackMethod_DeleteWorkflows<ExperimentalWithCallbackMethod_PostWorkflowResults<ExperimentalWithCallbackMethod_PostWorkflowResultsSimilarity<ExperimentalWithCallbackMethod_ListWorkflowVersions<ExperimentalWithCallbackMethod_GetWorkflowVersion<ExperimentalWithCallbackMethod_DeleteWorkflowVersions<ExperimentalWithCallbackMethod_PatchWorkflowVersions<ExperimentalWithCallbackMethod_GetKey<ExperimentalWithCallbackMethod_ListKeys<ExperimentalWithCallbackMethod_ListAppKeys<ExperimentalWithCallbackMethod_DeleteKey<ExperimentalWithCallbackMethod_PostKeys<ExperimentalWithCallbackMethod_PatchKeys<ExperimentalWithCallbackMethod_MyScopes<ExperimentalWithCallbackMethod_MyScopesUser<ExperimentalWithCallbackMethod_MyScopesRoot<ExperimentalWithCallbackMethod_ListScopes<ExperimentalWithCallbackMethod_GetApp<ExperimentalWithCallbackMethod_ListApps<ExperimentalWithCallbackMethod_DeleteApp<ExperimentalWithCallbackMethod_PostApps<ExperimentalWithCallbackMethod_PatchApps<ExperimentalWithCallbackMethod_PostAppsSearches<ExperimentalWithCallbackMethod_PostValidatePassword<ExperimentalWithCallbackMethod_GetSearch<ExperimentalWithCallbackMethod_ListSearches<ExperimentalWithCallbackMethod_PostSearches<ExperimentalWithCallbackMethod_PostSearchesByID<ExperimentalWithCallbackMethod_PostAnnotationSearchMetrics<ExperimentalWithCallbackMethod_GetAnnotationSearchMetrics<ExperimentalWithCallbackMethod_ListAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteAnnotationSearchMetrics<ExperimentalWithCallbackMethod_DeleteSearch<ExperimentalWithCallbackMethod_ListStatusCodes<ExperimentalWithCallbackMethod_GetStatusCode<ExperimentalWithCallbackMethod_ListCollaborators<ExperimentalWithCallbackMethod_PostCollaborators<ExperimentalWithCallbackMethod_PatchCollaborators<ExperimentalWithCallbackMethod_DeleteCollaborators<ExperimentalWithCallbackMethod_ListCollaborations<ExperimentalWithCallbackMethod_PostAppDuplications<ExperimentalWithCallbackMethod_ListAppDuplications<ExperimentalWithCallbackMethod_GetAppDuplication<ExperimentalWithCallbackMethod_PostTasks<ExperimentalWithCallbackMethod_GetTaskAnnotationCount<ExperimentalWithCallbackMethod_GetTaskInputCount<ExperimentalWithCallbackMethod_GetTask<ExperimentalWithCallbackMethod_ListTasks<ExperimentalWithCallbackMethod_PatchTasks<ExperimentalWithCallbackMethod_DeleteTasks<ExperimentalWithCallbackMethod_PostLabelOrders<ExperimentalWithCallbackMethod_GetLabelOrder<ExperimentalWithCallbackMethod_ListLabelOrders<ExperimentalWithCallbackMethod_PatchLabelOrders<ExperimentalWithCallbackMethod_DeleteLabelOrders<ExperimentalWithCallbackMethod_PostCollectors<ExperimentalWithCallbackMethod_GetCollector<ExperimentalWithCallbackMethod_ListCollectors<ExperimentalWithCallbackMethod_PatchCollectors<ExperimentalWithCallbackMethod_DeleteCollectors<ExperimentalWithCallbackMethod_PostStatValues<ExperimentalWithCallbackMethod_PostStatValuesAggregate<ExperimentalWithCallbackMethod_PostTrendingMetricsView<ExperimentalWithCallbackMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_ListConceptRelations : public BaseClass {
    private:
@@ -16552,12 +17125,97 @@ class V2 final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_PostLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PostLabelOrders() {
+      ::grpc::Service::MarkMethodGeneric(117);
+    }
+    ~WithGenericMethod_PostLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetLabelOrder : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetLabelOrder() {
+      ::grpc::Service::MarkMethodGeneric(118);
+    }
+    ~WithGenericMethod_GetLabelOrder() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLabelOrder(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetLabelOrderRequest* /*request*/, ::clarifai::api::SingleLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListLabelOrders() {
+      ::grpc::Service::MarkMethodGeneric(119);
+    }
+    ~WithGenericMethod_ListLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_PatchLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PatchLabelOrders() {
+      ::grpc::Service::MarkMethodGeneric(120);
+    }
+    ~WithGenericMethod_PatchLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DeleteLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DeleteLabelOrders() {
+      ::grpc::Service::MarkMethodGeneric(121);
+    }
+    ~WithGenericMethod_DeleteLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::DeleteLabelOrdersRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_PostCollectors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostCollectors() {
-      ::grpc::Service::MarkMethodGeneric(117);
+      ::grpc::Service::MarkMethodGeneric(122);
     }
     ~WithGenericMethod_PostCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16574,7 +17232,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetCollector() {
-      ::grpc::Service::MarkMethodGeneric(118);
+      ::grpc::Service::MarkMethodGeneric(123);
     }
     ~WithGenericMethod_GetCollector() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16591,7 +17249,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListCollectors() {
-      ::grpc::Service::MarkMethodGeneric(119);
+      ::grpc::Service::MarkMethodGeneric(124);
     }
     ~WithGenericMethod_ListCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16608,7 +17266,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PatchCollectors() {
-      ::grpc::Service::MarkMethodGeneric(120);
+      ::grpc::Service::MarkMethodGeneric(125);
     }
     ~WithGenericMethod_PatchCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16625,7 +17283,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteCollectors() {
-      ::grpc::Service::MarkMethodGeneric(121);
+      ::grpc::Service::MarkMethodGeneric(126);
     }
     ~WithGenericMethod_DeleteCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16642,7 +17300,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostStatValues() {
-      ::grpc::Service::MarkMethodGeneric(122);
+      ::grpc::Service::MarkMethodGeneric(127);
     }
     ~WithGenericMethod_PostStatValues() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16659,7 +17317,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostStatValuesAggregate() {
-      ::grpc::Service::MarkMethodGeneric(123);
+      ::grpc::Service::MarkMethodGeneric(128);
     }
     ~WithGenericMethod_PostStatValuesAggregate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16676,7 +17334,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PostTrendingMetricsView() {
-      ::grpc::Service::MarkMethodGeneric(124);
+      ::grpc::Service::MarkMethodGeneric(129);
     }
     ~WithGenericMethod_PostTrendingMetricsView() override {
       BaseClassMustBeDerivedFromService(this);
@@ -16693,7 +17351,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListTrendingMetricsViews() {
-      ::grpc::Service::MarkMethodGeneric(125);
+      ::grpc::Service::MarkMethodGeneric(130);
     }
     ~WithGenericMethod_ListTrendingMetricsViews() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19045,12 +19703,112 @@ class V2 final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_PostLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PostLabelOrders() {
+      ::grpc::Service::MarkMethodRaw(117);
+    }
+    ~WithRawMethod_PostLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPostLabelOrders(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(117, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetLabelOrder : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetLabelOrder() {
+      ::grpc::Service::MarkMethodRaw(118);
+    }
+    ~WithRawMethod_GetLabelOrder() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLabelOrder(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetLabelOrderRequest* /*request*/, ::clarifai::api::SingleLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetLabelOrder(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(118, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListLabelOrders() {
+      ::grpc::Service::MarkMethodRaw(119);
+    }
+    ~WithRawMethod_ListLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListLabelOrders(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(119, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_PatchLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PatchLabelOrders() {
+      ::grpc::Service::MarkMethodRaw(120);
+    }
+    ~WithRawMethod_PatchLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPatchLabelOrders(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(120, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DeleteLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DeleteLabelOrders() {
+      ::grpc::Service::MarkMethodRaw(121);
+    }
+    ~WithRawMethod_DeleteLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::DeleteLabelOrdersRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteLabelOrders(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(121, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_PostCollectors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostCollectors() {
-      ::grpc::Service::MarkMethodRaw(117);
+      ::grpc::Service::MarkMethodRaw(122);
     }
     ~WithRawMethod_PostCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19061,7 +19819,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostCollectors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(117, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(122, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -19070,7 +19828,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetCollector() {
-      ::grpc::Service::MarkMethodRaw(118);
+      ::grpc::Service::MarkMethodRaw(123);
     }
     ~WithRawMethod_GetCollector() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19081,7 +19839,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollector(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(118, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(123, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -19090,7 +19848,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListCollectors() {
-      ::grpc::Service::MarkMethodRaw(119);
+      ::grpc::Service::MarkMethodRaw(124);
     }
     ~WithRawMethod_ListCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19101,7 +19859,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListCollectors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(119, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(124, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -19110,7 +19868,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PatchCollectors() {
-      ::grpc::Service::MarkMethodRaw(120);
+      ::grpc::Service::MarkMethodRaw(125);
     }
     ~WithRawMethod_PatchCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19121,7 +19879,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPatchCollectors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(120, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(125, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -19130,7 +19888,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteCollectors() {
-      ::grpc::Service::MarkMethodRaw(121);
+      ::grpc::Service::MarkMethodRaw(126);
     }
     ~WithRawMethod_DeleteCollectors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19141,7 +19899,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteCollectors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(121, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(126, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -19150,7 +19908,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostStatValues() {
-      ::grpc::Service::MarkMethodRaw(122);
+      ::grpc::Service::MarkMethodRaw(127);
     }
     ~WithRawMethod_PostStatValues() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19161,7 +19919,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostStatValues(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(122, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(127, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -19170,7 +19928,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostStatValuesAggregate() {
-      ::grpc::Service::MarkMethodRaw(123);
+      ::grpc::Service::MarkMethodRaw(128);
     }
     ~WithRawMethod_PostStatValuesAggregate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19181,7 +19939,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostStatValuesAggregate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(123, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(128, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -19190,7 +19948,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PostTrendingMetricsView() {
-      ::grpc::Service::MarkMethodRaw(124);
+      ::grpc::Service::MarkMethodRaw(129);
     }
     ~WithRawMethod_PostTrendingMetricsView() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19201,7 +19959,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPostTrendingMetricsView(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(124, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(129, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -19210,7 +19968,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListTrendingMetricsViews() {
-      ::grpc::Service::MarkMethodRaw(125);
+      ::grpc::Service::MarkMethodRaw(130);
     }
     ~WithRawMethod_ListTrendingMetricsViews() override {
       BaseClassMustBeDerivedFromService(this);
@@ -19221,7 +19979,7 @@ class V2 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListTrendingMetricsViews(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(125, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(130, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -23671,6 +24429,196 @@ class V2 final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_PostLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_PostLabelOrders() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(117,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PostLabelOrders(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_PostLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PostLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PostLabelOrders(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PostLabelOrders(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetLabelOrder : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetLabelOrder() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(118,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLabelOrder(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetLabelOrder() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLabelOrder(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetLabelOrderRequest* /*request*/, ::clarifai::api::SingleLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetLabelOrder(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetLabelOrder(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_ListLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_ListLabelOrders() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(119,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListLabelOrders(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_ListLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListLabelOrders(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListLabelOrders(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_PatchLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_PatchLabelOrders() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(120,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PatchLabelOrders(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_PatchLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PatchLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* PatchLabelOrders(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* PatchLabelOrders(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_DeleteLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_DeleteLabelOrders() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(121,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteLabelOrders(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_DeleteLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::DeleteLabelOrdersRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* DeleteLabelOrders(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DeleteLabelOrders(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_PostCollectors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -23681,7 +24629,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(117,
+        MarkMethodRawCallback(122,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -23719,7 +24667,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(118,
+        MarkMethodRawCallback(123,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -23757,7 +24705,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(119,
+        MarkMethodRawCallback(124,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -23795,7 +24743,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(120,
+        MarkMethodRawCallback(125,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -23833,7 +24781,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(121,
+        MarkMethodRawCallback(126,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -23871,7 +24819,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(122,
+        MarkMethodRawCallback(127,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -23909,7 +24857,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(123,
+        MarkMethodRawCallback(128,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -23947,7 +24895,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(124,
+        MarkMethodRawCallback(129,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -23985,7 +24933,7 @@ class V2 final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(125,
+        MarkMethodRawCallback(130,
           new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -26353,12 +27301,112 @@ class V2 final {
     virtual ::grpc::Status StreamedDeleteTasks(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::DeleteTasksRequest,::clarifai::api::status::BaseResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_PostLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PostLabelOrders() {
+      ::grpc::Service::MarkMethodStreamed(117,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(std::bind(&WithStreamedUnaryMethod_PostLabelOrders<BaseClass>::StreamedPostLabelOrders, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_PostLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PostLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PostLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPostLabelOrders(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PostLabelOrdersRequest,::clarifai::api::MultiLabelOrderResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetLabelOrder : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetLabelOrder() {
+      ::grpc::Service::MarkMethodStreamed(118,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse>(std::bind(&WithStreamedUnaryMethod_GetLabelOrder<BaseClass>::StreamedGetLabelOrder, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetLabelOrder() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetLabelOrder(::grpc::ServerContext* /*context*/, const ::clarifai::api::GetLabelOrderRequest* /*request*/, ::clarifai::api::SingleLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetLabelOrder(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::GetLabelOrderRequest,::clarifai::api::SingleLabelOrderResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListLabelOrders() {
+      ::grpc::Service::MarkMethodStreamed(119,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(std::bind(&WithStreamedUnaryMethod_ListLabelOrders<BaseClass>::StreamedListLabelOrders, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_ListLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::ListLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListLabelOrders(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::ListLabelOrdersRequest,::clarifai::api::MultiLabelOrderResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_PatchLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PatchLabelOrders() {
+      ::grpc::Service::MarkMethodStreamed(120,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(std::bind(&WithStreamedUnaryMethod_PatchLabelOrders<BaseClass>::StreamedPatchLabelOrders, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_PatchLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PatchLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::PatchLabelOrdersRequest* /*request*/, ::clarifai::api::MultiLabelOrderResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPatchLabelOrders(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::PatchLabelOrdersRequest,::clarifai::api::MultiLabelOrderResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DeleteLabelOrders : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DeleteLabelOrders() {
+      ::grpc::Service::MarkMethodStreamed(121,
+        new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteLabelOrders<BaseClass>::StreamedDeleteLabelOrders, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_DeleteLabelOrders() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DeleteLabelOrders(::grpc::ServerContext* /*context*/, const ::clarifai::api::DeleteLabelOrdersRequest* /*request*/, ::clarifai::api::status::BaseResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDeleteLabelOrders(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::DeleteLabelOrdersRequest,::clarifai::api::status::BaseResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_PostCollectors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostCollectors() {
-      ::grpc::Service::MarkMethodStreamed(117,
+      ::grpc::Service::MarkMethodStreamed(122,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(std::bind(&WithStreamedUnaryMethod_PostCollectors<BaseClass>::StreamedPostCollectors, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostCollectors() override {
@@ -26378,7 +27426,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetCollector() {
-      ::grpc::Service::MarkMethodStreamed(118,
+      ::grpc::Service::MarkMethodStreamed(123,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>(std::bind(&WithStreamedUnaryMethod_GetCollector<BaseClass>::StreamedGetCollector, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetCollector() override {
@@ -26398,7 +27446,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListCollectors() {
-      ::grpc::Service::MarkMethodStreamed(119,
+      ::grpc::Service::MarkMethodStreamed(124,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(std::bind(&WithStreamedUnaryMethod_ListCollectors<BaseClass>::StreamedListCollectors, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListCollectors() override {
@@ -26418,7 +27466,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PatchCollectors() {
-      ::grpc::Service::MarkMethodStreamed(120,
+      ::grpc::Service::MarkMethodStreamed(125,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(std::bind(&WithStreamedUnaryMethod_PatchCollectors<BaseClass>::StreamedPatchCollectors, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PatchCollectors() override {
@@ -26438,7 +27486,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteCollectors() {
-      ::grpc::Service::MarkMethodStreamed(121,
+      ::grpc::Service::MarkMethodStreamed(126,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_DeleteCollectors<BaseClass>::StreamedDeleteCollectors, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_DeleteCollectors() override {
@@ -26458,7 +27506,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostStatValues() {
-      ::grpc::Service::MarkMethodStreamed(122,
+      ::grpc::Service::MarkMethodStreamed(127,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>(std::bind(&WithStreamedUnaryMethod_PostStatValues<BaseClass>::StreamedPostStatValues, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostStatValues() override {
@@ -26478,7 +27526,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostStatValuesAggregate() {
-      ::grpc::Service::MarkMethodStreamed(123,
+      ::grpc::Service::MarkMethodStreamed(128,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>(std::bind(&WithStreamedUnaryMethod_PostStatValuesAggregate<BaseClass>::StreamedPostStatValuesAggregate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostStatValuesAggregate() override {
@@ -26498,7 +27546,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PostTrendingMetricsView() {
-      ::grpc::Service::MarkMethodStreamed(124,
+      ::grpc::Service::MarkMethodStreamed(129,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse>(std::bind(&WithStreamedUnaryMethod_PostTrendingMetricsView<BaseClass>::StreamedPostTrendingMetricsView, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PostTrendingMetricsView() override {
@@ -26518,7 +27566,7 @@ class V2 final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListTrendingMetricsViews() {
-      ::grpc::Service::MarkMethodStreamed(125,
+      ::grpc::Service::MarkMethodStreamed(130,
         new ::grpc::internal::StreamedUnaryHandler< ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse>(std::bind(&WithStreamedUnaryMethod_ListTrendingMetricsViews<BaseClass>::StreamedListTrendingMetricsViews, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_ListTrendingMetricsViews() override {
@@ -26532,9 +27580,9 @@ class V2 final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedListTrendingMetricsViews(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::clarifai::api::ListTrendingMetricsViewsRequest,::clarifai::api::MultiTrendingMetricsViewResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_ListConceptRelations<WithStreamedUnaryMethod_PostConceptRelations<WithStreamedUnaryMethod_DeleteConceptRelations<WithStreamedUnaryMethod_GetConceptCounts<WithStreamedUnaryMethod_GetConcept<WithStreamedUnaryMethod_ListConcepts<WithStreamedUnaryMethod_PostConceptsSearches<WithStreamedUnaryMethod_PostConcepts<WithStreamedUnaryMethod_PatchConcepts<WithStreamedUnaryMethod_GetConceptLanguage<WithStreamedUnaryMethod_ListConceptLanguages<WithStreamedUnaryMethod_PostConceptLanguages<WithStreamedUnaryMethod_PatchConceptLanguages<WithStreamedUnaryMethod_ListKnowledgeGraphs<WithStreamedUnaryMethod_PostKnowledgeGraphs<WithStreamedUnaryMethod_PostConceptMappingJobs<WithStreamedUnaryMethod_GetAnnotation<WithStreamedUnaryMethod_ListAnnotations<WithStreamedUnaryMethod_PostAnnotations<WithStreamedUnaryMethod_PatchAnnotations<WithStreamedUnaryMethod_PatchAnnotationsStatus<WithStreamedUnaryMethod_DeleteAnnotation<WithStreamedUnaryMethod_DeleteAnnotations<WithStreamedUnaryMethod_PostAnnotationsSearches<WithStreamedUnaryMethod_GetInputCount<WithStreamedUnaryMethod_StreamInputs<WithStreamedUnaryMethod_GetInputSamples<WithStreamedUnaryMethod_GetInput<WithStreamedUnaryMethod_ListInputs<WithStreamedUnaryMethod_PostInputs<WithStreamedUnaryMethod_PatchInputs<WithStreamedUnaryMethod_DeleteInput<WithStreamedUnaryMethod_DeleteInputs<WithStreamedUnaryMethod_PostInputsSearches<WithStreamedUnaryMethod_PostModelOutputs<WithStreamedUnaryMethod_GetModelType<WithStreamedUnaryMethod_ListOpenSourceLicenses<WithStreamedUnaryMethod_ListModelTypes<WithStreamedUnaryMethod_GetModel<WithStreamedUnaryMethod_GetModelOutputInfo<WithStreamedUnaryMethod_ListModels<WithStreamedUnaryMethod_PostModelsSearches<WithStreamedUnaryMethod_PostModels<WithStreamedUnaryMethod_PatchModels<WithStreamedUnaryMethod_DeleteModel<WithStreamedUnaryMethod_DeleteModels<WithStreamedUnaryMethod_PatchModelToolkits<WithStreamedUnaryMethod_PatchModelUseCases<WithStreamedUnaryMethod_PatchModelLanguages<WithStreamedUnaryMethod_ListModelInputs<WithStreamedUnaryMethod_GetModelVersion<WithStreamedUnaryMethod_ListModelVersions<WithStreamedUnaryMethod_PostModelVersionsPublish<WithStreamedUnaryMethod_PostModelVersionsUnPublish<WithStreamedUnaryMethod_PostModelVersions<WithStreamedUnaryMethod_PatchModelVersions<WithStreamedUnaryMethod_DeleteModelVersion<WithStreamedUnaryMethod_GetModelVersionMetrics<WithStreamedUnaryMethod_PostModelVersionMetrics<WithStreamedUnaryMethod_ListModelReferences<WithStreamedUnaryMethod_GetModelVersionInputExample<WithStreamedUnaryMethod_ListModelVersionInputExamples<WithStreamedUnaryMethod_GetWorkflow<WithStreamedUnaryMethod_ListWorkflows<WithStreamedUnaryMethod_PostWorkflows<WithStreamedUnaryMethod_PatchWorkflows<WithStreamedUnaryMethod_DeleteWorkflow<WithStreamedUnaryMethod_DeleteWorkflows<WithStreamedUnaryMethod_PostWorkflowResults<WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<WithStreamedUnaryMethod_ListWorkflowVersions<WithStreamedUnaryMethod_GetWorkflowVersion<WithStreamedUnaryMethod_DeleteWorkflowVersions<WithStreamedUnaryMethod_PatchWorkflowVersions<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_ListAppKeys<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_PostKeys<WithStreamedUnaryMethod_PatchKeys<WithStreamedUnaryMethod_MyScopes<WithStreamedUnaryMethod_MyScopesUser<WithStreamedUnaryMethod_MyScopesRoot<WithStreamedUnaryMethod_ListScopes<WithStreamedUnaryMethod_GetApp<WithStreamedUnaryMethod_ListApps<WithStreamedUnaryMethod_DeleteApp<WithStreamedUnaryMethod_PostApps<WithStreamedUnaryMethod_PatchApps<WithStreamedUnaryMethod_PostAppsSearches<WithStreamedUnaryMethod_PostValidatePassword<WithStreamedUnaryMethod_GetSearch<WithStreamedUnaryMethod_ListSearches<WithStreamedUnaryMethod_PostSearches<WithStreamedUnaryMethod_PostSearchesByID<WithStreamedUnaryMethod_PostAnnotationSearchMetrics<WithStreamedUnaryMethod_GetAnnotationSearchMetrics<WithStreamedUnaryMethod_ListAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteSearch<WithStreamedUnaryMethod_ListStatusCodes<WithStreamedUnaryMethod_GetStatusCode<WithStreamedUnaryMethod_ListCollaborators<WithStreamedUnaryMethod_PostCollaborators<WithStreamedUnaryMethod_PatchCollaborators<WithStreamedUnaryMethod_DeleteCollaborators<WithStreamedUnaryMethod_ListCollaborations<WithStreamedUnaryMethod_PostAppDuplications<WithStreamedUnaryMethod_ListAppDuplications<WithStreamedUnaryMethod_GetAppDuplication<WithStreamedUnaryMethod_PostTasks<WithStreamedUnaryMethod_GetTaskAnnotationCount<WithStreamedUnaryMethod_GetTaskInputCount<WithStreamedUnaryMethod_GetTask<WithStreamedUnaryMethod_ListTasks<WithStreamedUnaryMethod_PatchTasks<WithStreamedUnaryMethod_DeleteTasks<WithStreamedUnaryMethod_PostCollectors<WithStreamedUnaryMethod_GetCollector<WithStreamedUnaryMethod_ListCollectors<WithStreamedUnaryMethod_PatchCollectors<WithStreamedUnaryMethod_DeleteCollectors<WithStreamedUnaryMethod_PostStatValues<WithStreamedUnaryMethod_PostStatValuesAggregate<WithStreamedUnaryMethod_PostTrendingMetricsView<WithStreamedUnaryMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_ListConceptRelations<WithStreamedUnaryMethod_PostConceptRelations<WithStreamedUnaryMethod_DeleteConceptRelations<WithStreamedUnaryMethod_GetConceptCounts<WithStreamedUnaryMethod_GetConcept<WithStreamedUnaryMethod_ListConcepts<WithStreamedUnaryMethod_PostConceptsSearches<WithStreamedUnaryMethod_PostConcepts<WithStreamedUnaryMethod_PatchConcepts<WithStreamedUnaryMethod_GetConceptLanguage<WithStreamedUnaryMethod_ListConceptLanguages<WithStreamedUnaryMethod_PostConceptLanguages<WithStreamedUnaryMethod_PatchConceptLanguages<WithStreamedUnaryMethod_ListKnowledgeGraphs<WithStreamedUnaryMethod_PostKnowledgeGraphs<WithStreamedUnaryMethod_PostConceptMappingJobs<WithStreamedUnaryMethod_GetAnnotation<WithStreamedUnaryMethod_ListAnnotations<WithStreamedUnaryMethod_PostAnnotations<WithStreamedUnaryMethod_PatchAnnotations<WithStreamedUnaryMethod_PatchAnnotationsStatus<WithStreamedUnaryMethod_DeleteAnnotation<WithStreamedUnaryMethod_DeleteAnnotations<WithStreamedUnaryMethod_PostAnnotationsSearches<WithStreamedUnaryMethod_GetInputCount<WithStreamedUnaryMethod_StreamInputs<WithStreamedUnaryMethod_GetInputSamples<WithStreamedUnaryMethod_GetInput<WithStreamedUnaryMethod_ListInputs<WithStreamedUnaryMethod_PostInputs<WithStreamedUnaryMethod_PatchInputs<WithStreamedUnaryMethod_DeleteInput<WithStreamedUnaryMethod_DeleteInputs<WithStreamedUnaryMethod_PostInputsSearches<WithStreamedUnaryMethod_PostModelOutputs<WithStreamedUnaryMethod_GetModelType<WithStreamedUnaryMethod_ListOpenSourceLicenses<WithStreamedUnaryMethod_ListModelTypes<WithStreamedUnaryMethod_GetModel<WithStreamedUnaryMethod_GetModelOutputInfo<WithStreamedUnaryMethod_ListModels<WithStreamedUnaryMethod_PostModelsSearches<WithStreamedUnaryMethod_PostModels<WithStreamedUnaryMethod_PatchModels<WithStreamedUnaryMethod_DeleteModel<WithStreamedUnaryMethod_DeleteModels<WithStreamedUnaryMethod_PatchModelToolkits<WithStreamedUnaryMethod_PatchModelUseCases<WithStreamedUnaryMethod_PatchModelLanguages<WithStreamedUnaryMethod_ListModelInputs<WithStreamedUnaryMethod_GetModelVersion<WithStreamedUnaryMethod_ListModelVersions<WithStreamedUnaryMethod_PostModelVersionsPublish<WithStreamedUnaryMethod_PostModelVersionsUnPublish<WithStreamedUnaryMethod_PostModelVersions<WithStreamedUnaryMethod_PatchModelVersions<WithStreamedUnaryMethod_DeleteModelVersion<WithStreamedUnaryMethod_GetModelVersionMetrics<WithStreamedUnaryMethod_PostModelVersionMetrics<WithStreamedUnaryMethod_ListModelReferences<WithStreamedUnaryMethod_GetModelVersionInputExample<WithStreamedUnaryMethod_ListModelVersionInputExamples<WithStreamedUnaryMethod_GetWorkflow<WithStreamedUnaryMethod_ListWorkflows<WithStreamedUnaryMethod_PostWorkflows<WithStreamedUnaryMethod_PatchWorkflows<WithStreamedUnaryMethod_DeleteWorkflow<WithStreamedUnaryMethod_DeleteWorkflows<WithStreamedUnaryMethod_PostWorkflowResults<WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<WithStreamedUnaryMethod_ListWorkflowVersions<WithStreamedUnaryMethod_GetWorkflowVersion<WithStreamedUnaryMethod_DeleteWorkflowVersions<WithStreamedUnaryMethod_PatchWorkflowVersions<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_ListAppKeys<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_PostKeys<WithStreamedUnaryMethod_PatchKeys<WithStreamedUnaryMethod_MyScopes<WithStreamedUnaryMethod_MyScopesUser<WithStreamedUnaryMethod_MyScopesRoot<WithStreamedUnaryMethod_ListScopes<WithStreamedUnaryMethod_GetApp<WithStreamedUnaryMethod_ListApps<WithStreamedUnaryMethod_DeleteApp<WithStreamedUnaryMethod_PostApps<WithStreamedUnaryMethod_PatchApps<WithStreamedUnaryMethod_PostAppsSearches<WithStreamedUnaryMethod_PostValidatePassword<WithStreamedUnaryMethod_GetSearch<WithStreamedUnaryMethod_ListSearches<WithStreamedUnaryMethod_PostSearches<WithStreamedUnaryMethod_PostSearchesByID<WithStreamedUnaryMethod_PostAnnotationSearchMetrics<WithStreamedUnaryMethod_GetAnnotationSearchMetrics<WithStreamedUnaryMethod_ListAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteSearch<WithStreamedUnaryMethod_ListStatusCodes<WithStreamedUnaryMethod_GetStatusCode<WithStreamedUnaryMethod_ListCollaborators<WithStreamedUnaryMethod_PostCollaborators<WithStreamedUnaryMethod_PatchCollaborators<WithStreamedUnaryMethod_DeleteCollaborators<WithStreamedUnaryMethod_ListCollaborations<WithStreamedUnaryMethod_PostAppDuplications<WithStreamedUnaryMethod_ListAppDuplications<WithStreamedUnaryMethod_GetAppDuplication<WithStreamedUnaryMethod_PostTasks<WithStreamedUnaryMethod_GetTaskAnnotationCount<WithStreamedUnaryMethod_GetTaskInputCount<WithStreamedUnaryMethod_GetTask<WithStreamedUnaryMethod_ListTasks<WithStreamedUnaryMethod_PatchTasks<WithStreamedUnaryMethod_DeleteTasks<WithStreamedUnaryMethod_PostLabelOrders<WithStreamedUnaryMethod_GetLabelOrder<WithStreamedUnaryMethod_ListLabelOrders<WithStreamedUnaryMethod_PatchLabelOrders<WithStreamedUnaryMethod_DeleteLabelOrders<WithStreamedUnaryMethod_PostCollectors<WithStreamedUnaryMethod_GetCollector<WithStreamedUnaryMethod_ListCollectors<WithStreamedUnaryMethod_PatchCollectors<WithStreamedUnaryMethod_DeleteCollectors<WithStreamedUnaryMethod_PostStatValues<WithStreamedUnaryMethod_PostStatValuesAggregate<WithStreamedUnaryMethod_PostTrendingMetricsView<WithStreamedUnaryMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_ListConceptRelations<WithStreamedUnaryMethod_PostConceptRelations<WithStreamedUnaryMethod_DeleteConceptRelations<WithStreamedUnaryMethod_GetConceptCounts<WithStreamedUnaryMethod_GetConcept<WithStreamedUnaryMethod_ListConcepts<WithStreamedUnaryMethod_PostConceptsSearches<WithStreamedUnaryMethod_PostConcepts<WithStreamedUnaryMethod_PatchConcepts<WithStreamedUnaryMethod_GetConceptLanguage<WithStreamedUnaryMethod_ListConceptLanguages<WithStreamedUnaryMethod_PostConceptLanguages<WithStreamedUnaryMethod_PatchConceptLanguages<WithStreamedUnaryMethod_ListKnowledgeGraphs<WithStreamedUnaryMethod_PostKnowledgeGraphs<WithStreamedUnaryMethod_PostConceptMappingJobs<WithStreamedUnaryMethod_GetAnnotation<WithStreamedUnaryMethod_ListAnnotations<WithStreamedUnaryMethod_PostAnnotations<WithStreamedUnaryMethod_PatchAnnotations<WithStreamedUnaryMethod_PatchAnnotationsStatus<WithStreamedUnaryMethod_DeleteAnnotation<WithStreamedUnaryMethod_DeleteAnnotations<WithStreamedUnaryMethod_PostAnnotationsSearches<WithStreamedUnaryMethod_GetInputCount<WithStreamedUnaryMethod_StreamInputs<WithStreamedUnaryMethod_GetInputSamples<WithStreamedUnaryMethod_GetInput<WithStreamedUnaryMethod_ListInputs<WithStreamedUnaryMethod_PostInputs<WithStreamedUnaryMethod_PatchInputs<WithStreamedUnaryMethod_DeleteInput<WithStreamedUnaryMethod_DeleteInputs<WithStreamedUnaryMethod_PostInputsSearches<WithStreamedUnaryMethod_PostModelOutputs<WithStreamedUnaryMethod_GetModelType<WithStreamedUnaryMethod_ListOpenSourceLicenses<WithStreamedUnaryMethod_ListModelTypes<WithStreamedUnaryMethod_GetModel<WithStreamedUnaryMethod_GetModelOutputInfo<WithStreamedUnaryMethod_ListModels<WithStreamedUnaryMethod_PostModelsSearches<WithStreamedUnaryMethod_PostModels<WithStreamedUnaryMethod_PatchModels<WithStreamedUnaryMethod_DeleteModel<WithStreamedUnaryMethod_DeleteModels<WithStreamedUnaryMethod_PatchModelToolkits<WithStreamedUnaryMethod_PatchModelUseCases<WithStreamedUnaryMethod_PatchModelLanguages<WithStreamedUnaryMethod_ListModelInputs<WithStreamedUnaryMethod_GetModelVersion<WithStreamedUnaryMethod_ListModelVersions<WithStreamedUnaryMethod_PostModelVersionsPublish<WithStreamedUnaryMethod_PostModelVersionsUnPublish<WithStreamedUnaryMethod_PostModelVersions<WithStreamedUnaryMethod_PatchModelVersions<WithStreamedUnaryMethod_DeleteModelVersion<WithStreamedUnaryMethod_GetModelVersionMetrics<WithStreamedUnaryMethod_PostModelVersionMetrics<WithStreamedUnaryMethod_ListModelReferences<WithStreamedUnaryMethod_GetModelVersionInputExample<WithStreamedUnaryMethod_ListModelVersionInputExamples<WithStreamedUnaryMethod_GetWorkflow<WithStreamedUnaryMethod_ListWorkflows<WithStreamedUnaryMethod_PostWorkflows<WithStreamedUnaryMethod_PatchWorkflows<WithStreamedUnaryMethod_DeleteWorkflow<WithStreamedUnaryMethod_DeleteWorkflows<WithStreamedUnaryMethod_PostWorkflowResults<WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<WithStreamedUnaryMethod_ListWorkflowVersions<WithStreamedUnaryMethod_GetWorkflowVersion<WithStreamedUnaryMethod_DeleteWorkflowVersions<WithStreamedUnaryMethod_PatchWorkflowVersions<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_ListAppKeys<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_PostKeys<WithStreamedUnaryMethod_PatchKeys<WithStreamedUnaryMethod_MyScopes<WithStreamedUnaryMethod_MyScopesUser<WithStreamedUnaryMethod_MyScopesRoot<WithStreamedUnaryMethod_ListScopes<WithStreamedUnaryMethod_GetApp<WithStreamedUnaryMethod_ListApps<WithStreamedUnaryMethod_DeleteApp<WithStreamedUnaryMethod_PostApps<WithStreamedUnaryMethod_PatchApps<WithStreamedUnaryMethod_PostAppsSearches<WithStreamedUnaryMethod_PostValidatePassword<WithStreamedUnaryMethod_GetSearch<WithStreamedUnaryMethod_ListSearches<WithStreamedUnaryMethod_PostSearches<WithStreamedUnaryMethod_PostSearchesByID<WithStreamedUnaryMethod_PostAnnotationSearchMetrics<WithStreamedUnaryMethod_GetAnnotationSearchMetrics<WithStreamedUnaryMethod_ListAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteSearch<WithStreamedUnaryMethod_ListStatusCodes<WithStreamedUnaryMethod_GetStatusCode<WithStreamedUnaryMethod_ListCollaborators<WithStreamedUnaryMethod_PostCollaborators<WithStreamedUnaryMethod_PatchCollaborators<WithStreamedUnaryMethod_DeleteCollaborators<WithStreamedUnaryMethod_ListCollaborations<WithStreamedUnaryMethod_PostAppDuplications<WithStreamedUnaryMethod_ListAppDuplications<WithStreamedUnaryMethod_GetAppDuplication<WithStreamedUnaryMethod_PostTasks<WithStreamedUnaryMethod_GetTaskAnnotationCount<WithStreamedUnaryMethod_GetTaskInputCount<WithStreamedUnaryMethod_GetTask<WithStreamedUnaryMethod_ListTasks<WithStreamedUnaryMethod_PatchTasks<WithStreamedUnaryMethod_DeleteTasks<WithStreamedUnaryMethod_PostCollectors<WithStreamedUnaryMethod_GetCollector<WithStreamedUnaryMethod_ListCollectors<WithStreamedUnaryMethod_PatchCollectors<WithStreamedUnaryMethod_DeleteCollectors<WithStreamedUnaryMethod_PostStatValues<WithStreamedUnaryMethod_PostStatValuesAggregate<WithStreamedUnaryMethod_PostTrendingMetricsView<WithStreamedUnaryMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_ListConceptRelations<WithStreamedUnaryMethod_PostConceptRelations<WithStreamedUnaryMethod_DeleteConceptRelations<WithStreamedUnaryMethod_GetConceptCounts<WithStreamedUnaryMethod_GetConcept<WithStreamedUnaryMethod_ListConcepts<WithStreamedUnaryMethod_PostConceptsSearches<WithStreamedUnaryMethod_PostConcepts<WithStreamedUnaryMethod_PatchConcepts<WithStreamedUnaryMethod_GetConceptLanguage<WithStreamedUnaryMethod_ListConceptLanguages<WithStreamedUnaryMethod_PostConceptLanguages<WithStreamedUnaryMethod_PatchConceptLanguages<WithStreamedUnaryMethod_ListKnowledgeGraphs<WithStreamedUnaryMethod_PostKnowledgeGraphs<WithStreamedUnaryMethod_PostConceptMappingJobs<WithStreamedUnaryMethod_GetAnnotation<WithStreamedUnaryMethod_ListAnnotations<WithStreamedUnaryMethod_PostAnnotations<WithStreamedUnaryMethod_PatchAnnotations<WithStreamedUnaryMethod_PatchAnnotationsStatus<WithStreamedUnaryMethod_DeleteAnnotation<WithStreamedUnaryMethod_DeleteAnnotations<WithStreamedUnaryMethod_PostAnnotationsSearches<WithStreamedUnaryMethod_GetInputCount<WithStreamedUnaryMethod_StreamInputs<WithStreamedUnaryMethod_GetInputSamples<WithStreamedUnaryMethod_GetInput<WithStreamedUnaryMethod_ListInputs<WithStreamedUnaryMethod_PostInputs<WithStreamedUnaryMethod_PatchInputs<WithStreamedUnaryMethod_DeleteInput<WithStreamedUnaryMethod_DeleteInputs<WithStreamedUnaryMethod_PostInputsSearches<WithStreamedUnaryMethod_PostModelOutputs<WithStreamedUnaryMethod_GetModelType<WithStreamedUnaryMethod_ListOpenSourceLicenses<WithStreamedUnaryMethod_ListModelTypes<WithStreamedUnaryMethod_GetModel<WithStreamedUnaryMethod_GetModelOutputInfo<WithStreamedUnaryMethod_ListModels<WithStreamedUnaryMethod_PostModelsSearches<WithStreamedUnaryMethod_PostModels<WithStreamedUnaryMethod_PatchModels<WithStreamedUnaryMethod_DeleteModel<WithStreamedUnaryMethod_DeleteModels<WithStreamedUnaryMethod_PatchModelToolkits<WithStreamedUnaryMethod_PatchModelUseCases<WithStreamedUnaryMethod_PatchModelLanguages<WithStreamedUnaryMethod_ListModelInputs<WithStreamedUnaryMethod_GetModelVersion<WithStreamedUnaryMethod_ListModelVersions<WithStreamedUnaryMethod_PostModelVersionsPublish<WithStreamedUnaryMethod_PostModelVersionsUnPublish<WithStreamedUnaryMethod_PostModelVersions<WithStreamedUnaryMethod_PatchModelVersions<WithStreamedUnaryMethod_DeleteModelVersion<WithStreamedUnaryMethod_GetModelVersionMetrics<WithStreamedUnaryMethod_PostModelVersionMetrics<WithStreamedUnaryMethod_ListModelReferences<WithStreamedUnaryMethod_GetModelVersionInputExample<WithStreamedUnaryMethod_ListModelVersionInputExamples<WithStreamedUnaryMethod_GetWorkflow<WithStreamedUnaryMethod_ListWorkflows<WithStreamedUnaryMethod_PostWorkflows<WithStreamedUnaryMethod_PatchWorkflows<WithStreamedUnaryMethod_DeleteWorkflow<WithStreamedUnaryMethod_DeleteWorkflows<WithStreamedUnaryMethod_PostWorkflowResults<WithStreamedUnaryMethod_PostWorkflowResultsSimilarity<WithStreamedUnaryMethod_ListWorkflowVersions<WithStreamedUnaryMethod_GetWorkflowVersion<WithStreamedUnaryMethod_DeleteWorkflowVersions<WithStreamedUnaryMethod_PatchWorkflowVersions<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_ListAppKeys<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_PostKeys<WithStreamedUnaryMethod_PatchKeys<WithStreamedUnaryMethod_MyScopes<WithStreamedUnaryMethod_MyScopesUser<WithStreamedUnaryMethod_MyScopesRoot<WithStreamedUnaryMethod_ListScopes<WithStreamedUnaryMethod_GetApp<WithStreamedUnaryMethod_ListApps<WithStreamedUnaryMethod_DeleteApp<WithStreamedUnaryMethod_PostApps<WithStreamedUnaryMethod_PatchApps<WithStreamedUnaryMethod_PostAppsSearches<WithStreamedUnaryMethod_PostValidatePassword<WithStreamedUnaryMethod_GetSearch<WithStreamedUnaryMethod_ListSearches<WithStreamedUnaryMethod_PostSearches<WithStreamedUnaryMethod_PostSearchesByID<WithStreamedUnaryMethod_PostAnnotationSearchMetrics<WithStreamedUnaryMethod_GetAnnotationSearchMetrics<WithStreamedUnaryMethod_ListAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteAnnotationSearchMetrics<WithStreamedUnaryMethod_DeleteSearch<WithStreamedUnaryMethod_ListStatusCodes<WithStreamedUnaryMethod_GetStatusCode<WithStreamedUnaryMethod_ListCollaborators<WithStreamedUnaryMethod_PostCollaborators<WithStreamedUnaryMethod_PatchCollaborators<WithStreamedUnaryMethod_DeleteCollaborators<WithStreamedUnaryMethod_ListCollaborations<WithStreamedUnaryMethod_PostAppDuplications<WithStreamedUnaryMethod_ListAppDuplications<WithStreamedUnaryMethod_GetAppDuplication<WithStreamedUnaryMethod_PostTasks<WithStreamedUnaryMethod_GetTaskAnnotationCount<WithStreamedUnaryMethod_GetTaskInputCount<WithStreamedUnaryMethod_GetTask<WithStreamedUnaryMethod_ListTasks<WithStreamedUnaryMethod_PatchTasks<WithStreamedUnaryMethod_DeleteTasks<WithStreamedUnaryMethod_PostLabelOrders<WithStreamedUnaryMethod_GetLabelOrder<WithStreamedUnaryMethod_ListLabelOrders<WithStreamedUnaryMethod_PatchLabelOrders<WithStreamedUnaryMethod_DeleteLabelOrders<WithStreamedUnaryMethod_PostCollectors<WithStreamedUnaryMethod_GetCollector<WithStreamedUnaryMethod_ListCollectors<WithStreamedUnaryMethod_PatchCollectors<WithStreamedUnaryMethod_DeleteCollectors<WithStreamedUnaryMethod_PostStatValues<WithStreamedUnaryMethod_PostStatValuesAggregate<WithStreamedUnaryMethod_PostTrendingMetricsView<WithStreamedUnaryMethod_ListTrendingMetricsViews<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace api

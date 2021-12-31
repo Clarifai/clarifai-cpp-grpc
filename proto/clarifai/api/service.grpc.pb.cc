@@ -140,6 +140,11 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/ListTasks",
   "/clarifai.api.V2/PatchTasks",
   "/clarifai.api.V2/DeleteTasks",
+  "/clarifai.api.V2/PostLabelOrders",
+  "/clarifai.api.V2/GetLabelOrder",
+  "/clarifai.api.V2/ListLabelOrders",
+  "/clarifai.api.V2/PatchLabelOrders",
+  "/clarifai.api.V2/DeleteLabelOrders",
   "/clarifai.api.V2/PostCollectors",
   "/clarifai.api.V2/GetCollector",
   "/clarifai.api.V2/ListCollectors",
@@ -275,15 +280,20 @@ V2::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_ListTasks_(V2_method_names[114], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_PatchTasks_(V2_method_names[115], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DeleteTasks_(V2_method_names[116], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostCollectors_(V2_method_names[117], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollector_(V2_method_names[118], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListCollectors_(V2_method_names[119], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchCollectors_(V2_method_names[120], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteCollectors_(V2_method_names[121], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostStatValues_(V2_method_names[122], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostStatValuesAggregate_(V2_method_names[123], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostTrendingMetricsView_(V2_method_names[124], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListTrendingMetricsViews_(V2_method_names[125], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostLabelOrders_(V2_method_names[117], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLabelOrder_(V2_method_names[118], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListLabelOrders_(V2_method_names[119], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchLabelOrders_(V2_method_names[120], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteLabelOrders_(V2_method_names[121], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostCollectors_(V2_method_names[122], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollector_(V2_method_names[123], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListCollectors_(V2_method_names[124], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchCollectors_(V2_method_names[125], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteCollectors_(V2_method_names[126], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostStatValues_(V2_method_names[127], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostStatValuesAggregate_(V2_method_names[128], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostTrendingMetricsView_(V2_method_names[129], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListTrendingMetricsViews_(V2_method_names[130], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status V2::Stub::ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) {
@@ -3562,6 +3572,146 @@ void V2::Stub::experimental_async::DeleteTasks(::grpc::ClientContext* context, c
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteTasks_, context, request, false);
 }
 
+::grpc::Status V2::Stub::PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostLabelOrders_, context, request, response);
+}
+
+void V2::Stub::experimental_async::PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, reactor);
+}
+
+void V2::Stub::experimental_async::PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_PostLabelOrders_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::PrepareAsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_PostLabelOrders_, context, request, false);
+}
+
+::grpc::Status V2::Stub::GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::clarifai::api::SingleLabelOrderResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetLabelOrder_, context, request, response);
+}
+
+void V2::Stub::experimental_async::GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, reactor);
+}
+
+void V2::Stub::experimental_async::GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>* V2::Stub::AsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_GetLabelOrder_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>* V2::Stub::PrepareAsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_GetLabelOrder_, context, request, false);
+}
+
+::grpc::Status V2::Stub::ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListLabelOrders_, context, request, response);
+}
+
+void V2::Stub::experimental_async::ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, reactor);
+}
+
+void V2::Stub::experimental_async::ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_ListLabelOrders_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::PrepareAsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_ListLabelOrders_, context, request, false);
+}
+
+::grpc::Status V2::Stub::PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchLabelOrders_, context, request, response);
+}
+
+void V2::Stub::experimental_async::PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, reactor);
+}
+
+void V2::Stub::experimental_async::PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_PatchLabelOrders_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::PrepareAsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_PatchLabelOrders_, context, request, false);
+}
+
+::grpc::Status V2::Stub::DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteLabelOrders_, context, request, response);
+}
+
+void V2::Stub::experimental_async::DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, std::move(f));
+}
+
+void V2::Stub::experimental_async::DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, reactor);
+}
+
+void V2::Stub::experimental_async::DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteLabelOrders_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteLabelOrders_, context, request, false);
+}
+
 ::grpc::Status V2::Stub::PostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::clarifai::api::MultiCollectorResponse* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostCollectors_, context, request, response);
 }
@@ -4403,45 +4553,70 @@ V2::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[117],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
+          std::mem_fn(&V2::Service::PostLabelOrders), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[118],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse>(
+          std::mem_fn(&V2::Service::GetLabelOrder), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[119],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
+          std::mem_fn(&V2::Service::ListLabelOrders), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[120],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
+          std::mem_fn(&V2::Service::PatchLabelOrders), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[121],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse>(
+          std::mem_fn(&V2::Service::DeleteLabelOrders), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[122],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
           std::mem_fn(&V2::Service::PostCollectors), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[118],
+      V2_method_names[123],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>(
           std::mem_fn(&V2::Service::GetCollector), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[119],
+      V2_method_names[124],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
           std::mem_fn(&V2::Service::ListCollectors), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[120],
+      V2_method_names[125],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
           std::mem_fn(&V2::Service::PatchCollectors), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[121],
+      V2_method_names[126],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::DeleteCollectors), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[122],
+      V2_method_names[127],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>(
           std::mem_fn(&V2::Service::PostStatValues), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[123],
+      V2_method_names[128],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>(
           std::mem_fn(&V2::Service::PostStatValuesAggregate), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[124],
+      V2_method_names[129],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse>(
           std::mem_fn(&V2::Service::PostTrendingMetricsView), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      V2_method_names[125],
+      V2_method_names[130],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse>(
           std::mem_fn(&V2::Service::ListTrendingMetricsViews), this)));
@@ -5263,6 +5438,41 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::DeleteTasks(::grpc::ServerContext* context, const ::clarifai::api::DeleteTasksRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostLabelOrders(::grpc::ServerContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetLabelOrder(::grpc::ServerContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListLabelOrders(::grpc::ServerContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchLabelOrders(::grpc::ServerContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteLabelOrders(::grpc::ServerContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response) {
   (void) context;
   (void) request;
   (void) response;
