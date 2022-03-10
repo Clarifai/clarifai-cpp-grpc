@@ -76,7 +76,6 @@ enum S : int {
   undef = 0,
   All = 1,
   Predict = 2,
-  Search = 3,
   Inputs_Add = 4,
   Inputs_Get = 5,
   Inputs_Patch PROTOBUF_DEPRECATED_ENUM = 7,
@@ -133,12 +132,16 @@ enum S : int {
   FindDuplicateAnnotationsJobs_Add = 102,
   FindDuplicateAnnotationsJobs_Get = 103,
   FindDuplicateAnnotationsJobs_Delete = 104,
+  Search = 3,
+  SavedSearch_Get = 114,
+  SavedSearch_Add = 115,
+  SavedSearch_Delete = 116,
   S_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   S_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool S_IsValid(int value);
 constexpr S S_MIN = undef;
-constexpr S S_MAX = FindDuplicateAnnotationsJobs_Delete;
+constexpr S S_MAX = SavedSearch_Delete;
 constexpr int S_ARRAYSIZE = S_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* S_descriptor();
