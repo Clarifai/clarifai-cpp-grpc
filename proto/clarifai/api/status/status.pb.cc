@@ -14,60 +14,57 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto;
+
+PROTOBUF_PRAGMA_INIT_SEG
 namespace clarifai {
 namespace api {
 namespace status {
-class StatusDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Status> _instance;
-} _Status_default_instance_;
-class BaseResponseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<BaseResponse> _instance;
-} _BaseResponse_default_instance_;
+constexpr Status::Status(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : stack_trace_()
+  , description_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , details_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , req_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , internal_details_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , code_(0)
+
+  , percent_completed_(0u)
+  , time_remaining_(0u){}
+struct StatusDefaultTypeInternal {
+  constexpr StatusDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~StatusDefaultTypeInternal() {}
+  union {
+    Status _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StatusDefaultTypeInternal _Status_default_instance_;
+constexpr BaseResponse::BaseResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : status_(nullptr){}
+struct BaseResponseDefaultTypeInternal {
+  constexpr BaseResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~BaseResponseDefaultTypeInternal() {}
+  union {
+    BaseResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT BaseResponseDefaultTypeInternal _BaseResponse_default_instance_;
 }  // namespace status
 }  // namespace api
 }  // namespace clarifai
-static void InitDefaultsscc_info_BaseResponse_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::status::_BaseResponse_default_instance_;
-    new (ptr) ::clarifai::api::status::BaseResponse();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::status::BaseResponse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_BaseResponse_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_BaseResponse_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto}, {
-      &scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base,}};
-
-static void InitDefaultsscc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::api::status::_Status_default_instance_;
-    new (ptr) ::clarifai::api::status::Status();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::api::status::Status::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto}, {}};
-
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto = nullptr;
 
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+const uint32_t TableStruct_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::status::Status, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::status::Status, code_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::status::Status, description_),
   PROTOBUF_FIELD_OFFSET(::clarifai::api::status::Status, details_),
@@ -81,11 +78,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2fstatu
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::clarifai::api::status::BaseResponse, status_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::clarifai::api::status::Status)},
-  { 13, -1, sizeof(::clarifai::api::status::BaseResponse)},
+  { 0, -1, -1, sizeof(::clarifai::api::status::Status)},
+  { 14, -1, -1, sizeof(::clarifai::api::status::BaseResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -113,58 +111,74 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
   &::descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_5fcode_2eproto,
   &::descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_sccs[2] = {
-  &scc_info_BaseResponse_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base,
-  &scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base,
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_once;
-static bool descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto, "proto/clarifai/api/status/status.proto", 544,
-  &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_sccs, descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_deps, 2, 2,
+  false, false, 544, descriptor_table_protodef_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto, "proto/clarifai/api/status/status.proto", 
+  &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_deps, 2, 2,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto::offsets,
-  file_level_metadata_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto, 2, file_level_enum_descriptors_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto,
+  file_level_metadata_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto, file_level_enum_descriptors_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto,
 };
+PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable* descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_getter() {
+  return &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto;
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto(&descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto);
 namespace clarifai {
 namespace api {
 namespace status {
 
 // ===================================================================
 
-void Status::InitAsDefaultInstance() {
-}
 class Status::_Internal {
  public:
 };
 
-Status::Status()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+Status::Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  stack_trace_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:clarifai.api.status.Status)
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:clarifai.api.status.Status)
 }
 Status::Status(const Status& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       stack_trace_(from.stack_trace_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    description_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_description().empty()) {
-    description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
+    description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_description(), 
+      GetArenaForAllocation());
   }
   details_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    details_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_details().empty()) {
-    details_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.details_);
+    details_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_details(), 
+      GetArenaForAllocation());
   }
   req_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    req_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_req_id().empty()) {
-    req_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.req_id_);
+    req_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_req_id(), 
+      GetArenaForAllocation());
   }
   internal_details_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    internal_details_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_internal_details().empty()) {
-    internal_details_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.internal_details_);
+    internal_details_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_internal_details(), 
+      GetArenaForAllocation());
   }
   ::memcpy(&code_, &from.code_,
     static_cast<size_t>(reinterpret_cast<char*>(&time_remaining_) -
@@ -172,91 +186,109 @@ Status::Status(const Status& from)
   // @@protoc_insertion_point(copy_constructor:clarifai.api.status.Status)
 }
 
-void Status::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base);
-  description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  details_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  req_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  internal_details_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&code_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&time_remaining_) -
-      reinterpret_cast<char*>(&code_)) + sizeof(time_remaining_));
+inline void Status::SharedCtor() {
+description_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  description_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+details_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  details_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+req_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  req_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+internal_details_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  internal_details_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&code_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&time_remaining_) -
+    reinterpret_cast<char*>(&code_)) + sizeof(time_remaining_));
 }
 
 Status::~Status() {
   // @@protoc_insertion_point(destructor:clarifai.api.status.Status)
+  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void Status::SharedDtor() {
+inline void Status::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   description_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   details_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   req_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   internal_details_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void Status::ArenaDtor(void* object) {
+  Status* _this = reinterpret_cast< Status* >(object);
+  (void)_this;
+}
+void Status::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void Status::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Status& Status::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Status_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void Status::Clear() {
 // @@protoc_insertion_point(message_clear_start:clarifai.api.status.Status)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   stack_trace_.Clear();
-  description_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  details_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  req_id_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  internal_details_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  description_.ClearToEmpty();
+  details_.ClearToEmpty();
+  req_id_.ClearToEmpty();
+  internal_details_.ClearToEmpty();
   ::memset(&code_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&time_remaining_) -
       reinterpret_cast<char*>(&code_)) + sizeof(time_remaining_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Status::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    uint32_t tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
     switch (tag >> 3) {
       // .clarifai.api.status.StatusCode code = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_code(static_cast<::clarifai::api::status::StatusCode>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // string description = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_description();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.status.Status.description"));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // string details = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_details();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.status.Status.details"));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated string stack_trace = 4 [(.clarifai.auth.util.cl_private_field) = true];
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -266,75 +298,83 @@ const char* Status::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 percent_completed = 5;
       case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          percent_completed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          percent_completed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // uint32 time_remaining = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
-          time_remaining_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          time_remaining_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // string req_id = 7;
       case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           auto str = _internal_mutable_req_id();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.status.Status.req_id"));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // string internal_details = 8 [(.clarifai.auth.util.cl_private_field) = true];
       case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
           auto str = _internal_mutable_internal_details();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "clarifai.api.status.Status.internal_details"));
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Status::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* Status::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:clarifai.api.status.Status)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .clarifai.api.status.StatusCode code = 1;
-  if (this->code() != 0) {
+  if (this->_internal_code() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       1, this->_internal_code(), target);
   }
 
   // string description = 2;
-  if (this->description().size() > 0) {
+  if (!this->_internal_description().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_description().data(), static_cast<int>(this->_internal_description().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -344,7 +384,7 @@ failure:
   }
 
   // string details = 3;
-  if (this->details().size() > 0) {
+  if (!this->_internal_details().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_details().data(), static_cast<int>(this->_internal_details().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -364,19 +404,19 @@ failure:
   }
 
   // uint32 percent_completed = 5;
-  if (this->percent_completed() != 0) {
+  if (this->_internal_percent_completed() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(5, this->_internal_percent_completed(), target);
   }
 
   // uint32 time_remaining = 6;
-  if (this->time_remaining() != 0) {
+  if (this->_internal_time_remaining() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(6, this->_internal_time_remaining(), target);
   }
 
   // string req_id = 7;
-  if (this->req_id().size() > 0) {
+  if (!this->_internal_req_id().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_req_id().data(), static_cast<int>(this->_internal_req_id().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -386,7 +426,7 @@ failure:
   }
 
   // string internal_details = 8 [(.clarifai.auth.util.cl_private_field) = true];
-  if (this->internal_details().size() > 0) {
+  if (!this->_internal_internal_details().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_internal_details().data(), static_cast<int>(this->_internal_internal_details().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -397,7 +437,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:clarifai.api.status.Status)
   return target;
@@ -407,7 +447,7 @@ size_t Status::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:clarifai.api.status.Status)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -420,117 +460,94 @@ size_t Status::ByteSizeLong() const {
   }
 
   // string description = 2;
-  if (this->description().size() > 0) {
+  if (!this->_internal_description().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_description());
   }
 
   // string details = 3;
-  if (this->details().size() > 0) {
+  if (!this->_internal_details().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_details());
   }
 
   // string req_id = 7;
-  if (this->req_id().size() > 0) {
+  if (!this->_internal_req_id().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_req_id());
   }
 
   // string internal_details = 8 [(.clarifai.auth.util.cl_private_field) = true];
-  if (this->internal_details().size() > 0) {
+  if (!this->_internal_internal_details().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_internal_details());
   }
 
   // .clarifai.api.status.StatusCode code = 1;
-  if (this->code() != 0) {
+  if (this->_internal_code() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_code());
   }
 
   // uint32 percent_completed = 5;
-  if (this->percent_completed() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-        this->_internal_percent_completed());
+  if (this->_internal_percent_completed() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_percent_completed());
   }
 
   // uint32 time_remaining = 6;
-  if (this->time_remaining() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-        this->_internal_time_remaining());
+  if (this->_internal_time_remaining() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_time_remaining());
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-void Status::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:clarifai.api.status.Status)
-  GOOGLE_DCHECK_NE(&from, this);
-  const Status* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Status>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.api.status.Status)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.api.status.Status)
-    MergeFrom(*source);
-  }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Status::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Status::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Status::GetClassData() const { return &_class_data_; }
+
+void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Status *>(to)->MergeFrom(
+      static_cast<const Status &>(from));
 }
+
 
 void Status::MergeFrom(const Status& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:clarifai.api.status.Status)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   stack_trace_.MergeFrom(from.stack_trace_);
-  if (from.description().size() > 0) {
-
-    description_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.description_);
+  if (!from._internal_description().empty()) {
+    _internal_set_description(from._internal_description());
   }
-  if (from.details().size() > 0) {
-
-    details_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.details_);
+  if (!from._internal_details().empty()) {
+    _internal_set_details(from._internal_details());
   }
-  if (from.req_id().size() > 0) {
-
-    req_id_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.req_id_);
+  if (!from._internal_req_id().empty()) {
+    _internal_set_req_id(from._internal_req_id());
   }
-  if (from.internal_details().size() > 0) {
-
-    internal_details_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.internal_details_);
+  if (!from._internal_internal_details().empty()) {
+    _internal_set_internal_details(from._internal_internal_details());
   }
-  if (from.code() != 0) {
+  if (from._internal_code() != 0) {
     _internal_set_code(from._internal_code());
   }
-  if (from.percent_completed() != 0) {
+  if (from._internal_percent_completed() != 0) {
     _internal_set_percent_completed(from._internal_percent_completed());
   }
-  if (from.time_remaining() != 0) {
+  if (from._internal_time_remaining() != 0) {
     _internal_set_time_remaining(from._internal_time_remaining());
   }
-}
-
-void Status::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:clarifai.api.status.Status)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Status::CopyFrom(const Status& from) {
@@ -546,32 +563,46 @@ bool Status::IsInitialized() const {
 
 void Status::InternalSwap(Status* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   stack_trace_.InternalSwap(&other->stack_trace_);
-  description_.Swap(&other->description_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  details_.Swap(&other->details_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  req_id_.Swap(&other->req_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  internal_details_.Swap(&other->internal_details_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(code_, other->code_);
-  swap(percent_completed_, other->percent_completed_);
-  swap(time_remaining_, other->time_remaining_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &description_, lhs_arena,
+      &other->description_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &details_, lhs_arena,
+      &other->details_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &req_id_, lhs_arena,
+      &other->req_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &internal_details_, lhs_arena,
+      &other->internal_details_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Status, time_remaining_)
+      + sizeof(Status::time_remaining_)
+      - PROTOBUF_FIELD_OFFSET(Status, code_)>(
+          reinterpret_cast<char*>(&code_),
+          reinterpret_cast<char*>(&other->code_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Status::GetMetadata() const {
-  return GetMetadataStatic();
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_getter, &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_once,
+      file_level_metadata_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto[0]);
 }
-
 
 // ===================================================================
 
-void BaseResponse::InitAsDefaultInstance() {
-  ::clarifai::api::status::_BaseResponse_default_instance_._instance.get_mutable()->status_ = const_cast< ::clarifai::api::status::Status*>(
-      ::clarifai::api::status::Status::internal_default_instance());
-}
 class BaseResponse::_Internal {
  public:
   static const ::clarifai::api::status::Status& status(const BaseResponse* msg);
@@ -581,15 +612,18 @@ const ::clarifai::api::status::Status&
 BaseResponse::_Internal::status(const BaseResponse* msg) {
   return *msg->status_;
 }
-BaseResponse::BaseResponse()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+BaseResponse::BaseResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:clarifai.api.status.BaseResponse)
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:clarifai.api.status.BaseResponse)
 }
 BaseResponse::BaseResponse(const BaseResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_status()) {
     status_ = new ::clarifai::api::status::Status(*from.status_);
   } else {
@@ -598,84 +632,90 @@ BaseResponse::BaseResponse(const BaseResponse& from)
   // @@protoc_insertion_point(copy_constructor:clarifai.api.status.BaseResponse)
 }
 
-void BaseResponse::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_BaseResponse_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base);
-  status_ = nullptr;
+inline void BaseResponse::SharedCtor() {
+status_ = nullptr;
 }
 
 BaseResponse::~BaseResponse() {
   // @@protoc_insertion_point(destructor:clarifai.api.status.BaseResponse)
+  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void BaseResponse::SharedDtor() {
+inline void BaseResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete status_;
 }
 
+void BaseResponse::ArenaDtor(void* object) {
+  BaseResponse* _this = reinterpret_cast< BaseResponse* >(object);
+  (void)_this;
+}
+void BaseResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void BaseResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const BaseResponse& BaseResponse::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_BaseResponse_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void BaseResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:clarifai.api.status.BaseResponse)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaNoVirtual() == nullptr && status_ != nullptr) {
+  if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
     delete status_;
   }
   status_ = nullptr;
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* BaseResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    uint32_t tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
     switch (tag >> 3) {
       // .clarifai.api.status.Status status = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_status(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* BaseResponse::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* BaseResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:clarifai.api.status.BaseResponse)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // .clarifai.api.status.Status status = 1;
-  if (this->has_status()) {
+  if (this->_internal_has_status()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -684,7 +724,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:clarifai.api.status.BaseResponse)
   return target;
@@ -694,58 +734,43 @@ size_t BaseResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:clarifai.api.status.BaseResponse)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .clarifai.api.status.Status status = 1;
-  if (this->has_status()) {
+  if (this->_internal_has_status()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *status_);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-void BaseResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:clarifai.api.status.BaseResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const BaseResponse* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<BaseResponse>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.api.status.BaseResponse)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.api.status.BaseResponse)
-    MergeFrom(*source);
-  }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BaseResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    BaseResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BaseResponse::GetClassData() const { return &_class_data_; }
+
+void BaseResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<BaseResponse *>(to)->MergeFrom(
+      static_cast<const BaseResponse &>(from));
 }
+
 
 void BaseResponse::MergeFrom(const BaseResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:clarifai.api.status.BaseResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.has_status()) {
+  if (from._internal_has_status()) {
     _internal_mutable_status()->::clarifai::api::status::Status::MergeFrom(from._internal_status());
   }
-}
-
-void BaseResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:clarifai.api.status.BaseResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void BaseResponse::CopyFrom(const BaseResponse& from) {
@@ -761,14 +786,15 @@ bool BaseResponse::IsInitialized() const {
 
 void BaseResponse::InternalSwap(BaseResponse* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(status_, other->status_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata BaseResponse::GetMetadata() const {
-  return GetMetadataStatic();
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_getter, &descriptor_table_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto_once,
+      file_level_metadata_proto_2fclarifai_2fapi_2fstatus_2fstatus_2eproto[1]);
 }
-
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace status
@@ -776,10 +802,10 @@ void BaseResponse::InternalSwap(BaseResponse* other) {
 }  // namespace clarifai
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::clarifai::api::status::Status* Arena::CreateMaybeMessage< ::clarifai::api::status::Status >(Arena* arena) {
-  return Arena::CreateInternal< ::clarifai::api::status::Status >(arena);
+  return Arena::CreateMessageInternal< ::clarifai::api::status::Status >(arena);
 }
 template<> PROTOBUF_NOINLINE ::clarifai::api::status::BaseResponse* Arena::CreateMaybeMessage< ::clarifai::api::status::BaseResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::clarifai::api::status::BaseResponse >(arena);
+  return Arena::CreateMessageInternal< ::clarifai::api::status::BaseResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
