@@ -14,16 +14,17 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+
+PROTOBUF_PRAGMA_INIT_SEG
 namespace clarifai {
 namespace api {
 namespace utils {
 }  // namespace utils
 }  // namespace api
 }  // namespace clarifai
-static constexpr ::PROTOBUF_NAMESPACE_ID::Metadata* file_level_metadata_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto = nullptr;
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto::offsets[1] = {};
+const uint32_t TableStruct_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto::offsets[1] = {};
 static constexpr ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema* schemas = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::Message* const* file_default_instances = nullptr;
 
@@ -42,30 +43,30 @@ const char descriptor_table_protodef_proto_2fclarifai_2fapi_2futils_2fextensions
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_sccs[1] = {
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_once;
-static bool descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto, "proto/clarifai/api/utils/extensions.proto", 380,
-  &descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_sccs, descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_deps, 0, 1,
+  false, false, 380, descriptor_table_protodef_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto, "proto/clarifai/api/utils/extensions.proto", 
+  &descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_once, descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_deps, 1, 0,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto::offsets,
-  file_level_metadata_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto, 0, file_level_enum_descriptors_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto,
+  nullptr, file_level_enum_descriptors_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto, file_level_service_descriptors_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto,
 };
+PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable* descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto_getter() {
+  return &descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto;
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto(&descriptor_table_proto_2fclarifai_2fapi_2futils_2fextensions_2eproto);
 namespace clarifai {
 namespace api {
 namespace utils {
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::FieldOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false >
   cl_show_if_empty(kClShowIfEmptyFieldNumber, false);
 const std::string cl_moretags_default("");
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::FieldOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::StringTypeTraits, 9, false >
   cl_moretags(kClMoretagsFieldNumber, cl_moretags_default);
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::FieldOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< float >, 2, false >
   cl_default_float(kClDefaultFloatFieldNumber, 0);
 
