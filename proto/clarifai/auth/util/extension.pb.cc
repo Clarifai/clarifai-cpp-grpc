@@ -14,16 +14,17 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+
+PROTOBUF_PRAGMA_INIT_SEG
 namespace clarifai {
 namespace auth {
 namespace util {
 }  // namespace util
 }  // namespace auth
 }  // namespace clarifai
-static constexpr ::PROTOBUF_NAMESPACE_ID::Metadata* file_level_metadata_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = nullptr;
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fauth_2futil_2fextension_2eproto::offsets[1] = {};
+const uint32_t TableStruct_proto_2fclarifai_2fauth_2futil_2fextension_2eproto::offsets[1] = {};
 static constexpr ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema* schemas = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::Message* const* file_default_instances = nullptr;
 
@@ -50,35 +51,35 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
   &::descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto,
   &::descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_sccs[1] = {
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_once;
-static bool descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fauth_2futil_2fextension_2eproto, "proto/clarifai/auth/util/extension.proto", 639,
-  &descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_once, descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_sccs, descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_deps, 0, 3,
+  false, false, 639, descriptor_table_protodef_proto_2fclarifai_2fauth_2futil_2fextension_2eproto, "proto/clarifai/auth/util/extension.proto", 
+  &descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_once, descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_deps, 3, 0,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fauth_2futil_2fextension_2eproto::offsets,
-  file_level_metadata_proto_2fclarifai_2fauth_2futil_2fextension_2eproto, 0, file_level_enum_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto, file_level_service_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto,
+  nullptr, file_level_enum_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto, file_level_service_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto,
 };
+PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable* descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_getter() {
+  return &descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto;
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_proto_2fclarifai_2fauth_2futil_2fextension_2eproto(&descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto);
 namespace clarifai {
 namespace auth {
 namespace util {
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::FieldOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false >
   cl_private_field(kClPrivateFieldFieldNumber, false);
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false >
   cl_private_rpc(kClPrivateRpcFieldNumber, false);
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::RepeatedEnumTypeTraits< ::clarifai::auth::scope::S, ::clarifai::auth::scope::S_IsValid>, 14, false >
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::RepeatedEnumTypeTraits< ::clarifai::auth::scope::S, ::clarifai::auth::scope::S_IsValid>, 14, true >
   cl_depending_scopes(kClDependingScopesFieldNumber, static_cast< ::clarifai::auth::scope::S >(0));
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::EnumTypeTraits< ::clarifai::auth::types::AuthType, ::clarifai::auth::types::AuthType_IsValid>, 14, false >
   cl_auth_type(kClAuthTypeFieldNumber, static_cast< ::clarifai::auth::types::AuthType >(0));
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MessageOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false >
   cl_private_message(kClPrivateMessageFieldNumber, false);
 

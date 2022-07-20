@@ -46,6 +46,7 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/PatchAnnotationsStatus",
   "/clarifai.api.V2/DeleteAnnotation",
   "/clarifai.api.V2/DeleteAnnotations",
+  "/clarifai.api.V2/PatchAnnotationsSearches",
   "/clarifai.api.V2/PostAnnotationsSearches",
   "/clarifai.api.V2/GetInputCount",
   "/clarifai.api.V2/StreamInputs",
@@ -56,8 +57,24 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/PatchInputs",
   "/clarifai.api.V2/DeleteInput",
   "/clarifai.api.V2/DeleteInputs",
+  "/clarifai.api.V2/PatchInputsSearches",
   "/clarifai.api.V2/PostInputsSearches",
   "/clarifai.api.V2/PostModelOutputs",
+  "/clarifai.api.V2/ListDatasets",
+  "/clarifai.api.V2/GetDataset",
+  "/clarifai.api.V2/PostDatasets",
+  "/clarifai.api.V2/PatchDatasets",
+  "/clarifai.api.V2/DeleteDatasets",
+  "/clarifai.api.V2/ListDatasetInputs",
+  "/clarifai.api.V2/GetDatasetInput",
+  "/clarifai.api.V2/PostDatasetInputs",
+  "/clarifai.api.V2/DeleteDatasetInputs",
+  "/clarifai.api.V2/ListDatasetVersions",
+  "/clarifai.api.V2/GetDatasetVersion",
+  "/clarifai.api.V2/ListDatasetVersionMetricsGroups",
+  "/clarifai.api.V2/PostDatasetVersions",
+  "/clarifai.api.V2/PatchDatasetVersions",
+  "/clarifai.api.V2/DeleteDatasetVersions",
   "/clarifai.api.V2/GetModelType",
   "/clarifai.api.V2/ListOpenSourceLicenses",
   "/clarifai.api.V2/ListModelTypes",
@@ -67,14 +84,18 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/PostModelsSearches",
   "/clarifai.api.V2/PostModels",
   "/clarifai.api.V2/PatchModels",
+  "/clarifai.api.V2/PatchModelIds",
   "/clarifai.api.V2/DeleteModel",
   "/clarifai.api.V2/DeleteModels",
+  "/clarifai.api.V2/PatchModelCheckConsents",
   "/clarifai.api.V2/PatchModelToolkits",
   "/clarifai.api.V2/PatchModelUseCases",
   "/clarifai.api.V2/PatchModelLanguages",
   "/clarifai.api.V2/ListModelInputs",
   "/clarifai.api.V2/GetModelVersion",
   "/clarifai.api.V2/ListModelVersions",
+  "/clarifai.api.V2/PostWorkflowVersionsUnPublish",
+  "/clarifai.api.V2/PostWorkflowVersionsPublish",
   "/clarifai.api.V2/PostModelVersionsPublish",
   "/clarifai.api.V2/PostModelVersionsUnPublish",
   "/clarifai.api.V2/PostModelVersions",
@@ -112,10 +133,13 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/DeleteApp",
   "/clarifai.api.V2/PostApps",
   "/clarifai.api.V2/PatchApps",
+  "/clarifai.api.V2/PatchAppsIds",
+  "/clarifai.api.V2/PatchApp",
   "/clarifai.api.V2/PostAppsSearches",
   "/clarifai.api.V2/PostValidatePassword",
   "/clarifai.api.V2/GetSearch",
   "/clarifai.api.V2/ListSearches",
+  "/clarifai.api.V2/PatchSearches",
   "/clarifai.api.V2/PostSearches",
   "/clarifai.api.V2/PostSearchesByID",
   "/clarifai.api.V2/PostAnnotationSearchMetrics",
@@ -123,6 +147,11 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/ListAnnotationSearchMetrics",
   "/clarifai.api.V2/DeleteAnnotationSearchMetrics",
   "/clarifai.api.V2/DeleteSearch",
+  "/clarifai.api.V2/ListAnnotationFilters",
+  "/clarifai.api.V2/GetAnnotationFilter",
+  "/clarifai.api.V2/PostAnnotationFilters",
+  "/clarifai.api.V2/PatchAnnotationFilters",
+  "/clarifai.api.V2/DeleteAnnotationFilters",
   "/clarifai.api.V2/ListStatusCodes",
   "/clarifai.api.V2/GetStatusCode",
   "/clarifai.api.V2/ListCollaborators",
@@ -154,4472 +183,6088 @@ static const char* V2_method_names[] = {
   "/clarifai.api.V2/PostStatValuesAggregate",
   "/clarifai.api.V2/PostTrendingMetricsView",
   "/clarifai.api.V2/ListTrendingMetricsViews",
+  "/clarifai.api.V2/GetModule",
+  "/clarifai.api.V2/ListModules",
+  "/clarifai.api.V2/PostModules",
+  "/clarifai.api.V2/PatchModules",
+  "/clarifai.api.V2/DeleteModules",
+  "/clarifai.api.V2/GetModuleVersion",
+  "/clarifai.api.V2/ListModuleVersions",
+  "/clarifai.api.V2/PostModuleVersions",
+  "/clarifai.api.V2/DeleteModuleVersions",
+  "/clarifai.api.V2/ListInstalledModuleVersions",
+  "/clarifai.api.V2/PostInstalledModuleVersions",
+  "/clarifai.api.V2/DeleteInstalledModuleVersions",
+  "/clarifai.api.V2/PostBulkOperations",
+  "/clarifai.api.V2/ListBulkOperations",
+  "/clarifai.api.V2/GetBulkOperation",
+  "/clarifai.api.V2/CancelBulkOperations",
+  "/clarifai.api.V2/DeleteBulkOperations",
+  "/clarifai.api.V2/GetDatasetInputsSearchAddJob",
 };
 
 std::unique_ptr< V2::Stub> V2::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< V2::Stub> stub(new V2::Stub(channel));
+  std::unique_ptr< V2::Stub> stub(new V2::Stub(channel, options));
   return stub;
 }
 
-V2::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_ListConceptRelations_(V2_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostConceptRelations_(V2_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteConceptRelations_(V2_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetConceptCounts_(V2_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetConcept_(V2_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListConcepts_(V2_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostConceptsSearches_(V2_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostConcepts_(V2_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchConcepts_(V2_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetConceptLanguage_(V2_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListConceptLanguages_(V2_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostConceptLanguages_(V2_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchConceptLanguages_(V2_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListKnowledgeGraphs_(V2_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostKnowledgeGraphs_(V2_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostConceptMappingJobs_(V2_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAnnotation_(V2_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAnnotations_(V2_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostAnnotations_(V2_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchAnnotations_(V2_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchAnnotationsStatus_(V2_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteAnnotation_(V2_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteAnnotations_(V2_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostAnnotationsSearches_(V2_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetInputCount_(V2_method_names[24], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StreamInputs_(V2_method_names[25], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetInputSamples_(V2_method_names[26], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetInput_(V2_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListInputs_(V2_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostInputs_(V2_method_names[29], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchInputs_(V2_method_names[30], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteInput_(V2_method_names[31], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteInputs_(V2_method_names[32], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostInputsSearches_(V2_method_names[33], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostModelOutputs_(V2_method_names[34], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetModelType_(V2_method_names[35], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListOpenSourceLicenses_(V2_method_names[36], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModelTypes_(V2_method_names[37], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetModel_(V2_method_names[38], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetModelOutputInfo_(V2_method_names[39], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModels_(V2_method_names[40], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostModelsSearches_(V2_method_names[41], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostModels_(V2_method_names[42], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchModels_(V2_method_names[43], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteModel_(V2_method_names[44], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteModels_(V2_method_names[45], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchModelToolkits_(V2_method_names[46], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchModelUseCases_(V2_method_names[47], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchModelLanguages_(V2_method_names[48], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModelInputs_(V2_method_names[49], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetModelVersion_(V2_method_names[50], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModelVersions_(V2_method_names[51], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostModelVersionsPublish_(V2_method_names[52], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostModelVersionsUnPublish_(V2_method_names[53], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostModelVersions_(V2_method_names[54], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchModelVersions_(V2_method_names[55], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteModelVersion_(V2_method_names[56], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetModelVersionMetrics_(V2_method_names[57], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostModelVersionMetrics_(V2_method_names[58], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModelReferences_(V2_method_names[59], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetModelVersionInputExample_(V2_method_names[60], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModelVersionInputExamples_(V2_method_names[61], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetWorkflow_(V2_method_names[62], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListWorkflows_(V2_method_names[63], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostWorkflows_(V2_method_names[64], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchWorkflows_(V2_method_names[65], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteWorkflow_(V2_method_names[66], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteWorkflows_(V2_method_names[67], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostWorkflowResults_(V2_method_names[68], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostWorkflowResultsSimilarity_(V2_method_names[69], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListWorkflowVersions_(V2_method_names[70], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetWorkflowVersion_(V2_method_names[71], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteWorkflowVersions_(V2_method_names[72], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchWorkflowVersions_(V2_method_names[73], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKey_(V2_method_names[74], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListKeys_(V2_method_names[75], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAppKeys_(V2_method_names[76], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteKey_(V2_method_names[77], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostKeys_(V2_method_names[78], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchKeys_(V2_method_names[79], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MyScopes_(V2_method_names[80], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MyScopesUser_(V2_method_names[81], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MyScopesRoot_(V2_method_names[82], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListScopes_(V2_method_names[83], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetApp_(V2_method_names[84], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListApps_(V2_method_names[85], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteApp_(V2_method_names[86], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostApps_(V2_method_names[87], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchApps_(V2_method_names[88], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostAppsSearches_(V2_method_names[89], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostValidatePassword_(V2_method_names[90], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSearch_(V2_method_names[91], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListSearches_(V2_method_names[92], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostSearches_(V2_method_names[93], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostSearchesByID_(V2_method_names[94], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostAnnotationSearchMetrics_(V2_method_names[95], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAnnotationSearchMetrics_(V2_method_names[96], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAnnotationSearchMetrics_(V2_method_names[97], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteAnnotationSearchMetrics_(V2_method_names[98], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteSearch_(V2_method_names[99], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListStatusCodes_(V2_method_names[100], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatusCode_(V2_method_names[101], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListCollaborators_(V2_method_names[102], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostCollaborators_(V2_method_names[103], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchCollaborators_(V2_method_names[104], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteCollaborators_(V2_method_names[105], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListCollaborations_(V2_method_names[106], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostAppDuplications_(V2_method_names[107], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAppDuplications_(V2_method_names[108], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAppDuplication_(V2_method_names[109], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostTasks_(V2_method_names[110], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTaskAnnotationCount_(V2_method_names[111], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTaskInputCount_(V2_method_names[112], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTask_(V2_method_names[113], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListTasks_(V2_method_names[114], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchTasks_(V2_method_names[115], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteTasks_(V2_method_names[116], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostLabelOrders_(V2_method_names[117], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetLabelOrder_(V2_method_names[118], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListLabelOrders_(V2_method_names[119], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchLabelOrders_(V2_method_names[120], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteLabelOrders_(V2_method_names[121], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostCollectors_(V2_method_names[122], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollector_(V2_method_names[123], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListCollectors_(V2_method_names[124], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PatchCollectors_(V2_method_names[125], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteCollectors_(V2_method_names[126], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostStatValues_(V2_method_names[127], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostStatValuesAggregate_(V2_method_names[128], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PostTrendingMetricsView_(V2_method_names[129], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListTrendingMetricsViews_(V2_method_names[130], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+V2::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_ListConceptRelations_(V2_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostConceptRelations_(V2_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteConceptRelations_(V2_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConceptCounts_(V2_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConcept_(V2_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListConcepts_(V2_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostConceptsSearches_(V2_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostConcepts_(V2_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchConcepts_(V2_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConceptLanguage_(V2_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListConceptLanguages_(V2_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostConceptLanguages_(V2_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchConceptLanguages_(V2_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListKnowledgeGraphs_(V2_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostKnowledgeGraphs_(V2_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostConceptMappingJobs_(V2_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAnnotation_(V2_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAnnotations_(V2_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAnnotations_(V2_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchAnnotations_(V2_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchAnnotationsStatus_(V2_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteAnnotation_(V2_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteAnnotations_(V2_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchAnnotationsSearches_(V2_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAnnotationsSearches_(V2_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetInputCount_(V2_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamInputs_(V2_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetInputSamples_(V2_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetInput_(V2_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListInputs_(V2_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostInputs_(V2_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchInputs_(V2_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteInput_(V2_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteInputs_(V2_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchInputsSearches_(V2_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostInputsSearches_(V2_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModelOutputs_(V2_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListDatasets_(V2_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDataset_(V2_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostDatasets_(V2_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchDatasets_(V2_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteDatasets_(V2_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListDatasetInputs_(V2_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDatasetInput_(V2_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostDatasetInputs_(V2_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteDatasetInputs_(V2_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListDatasetVersions_(V2_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDatasetVersion_(V2_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListDatasetVersionMetricsGroups_(V2_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostDatasetVersions_(V2_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchDatasetVersions_(V2_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteDatasetVersions_(V2_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModelType_(V2_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListOpenSourceLicenses_(V2_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModelTypes_(V2_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModel_(V2_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModelOutputInfo_(V2_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModels_(V2_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModelsSearches_(V2_method_names[58], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModels_(V2_method_names[59], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModels_(V2_method_names[60], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModelIds_(V2_method_names[61], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteModel_(V2_method_names[62], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteModels_(V2_method_names[63], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModelCheckConsents_(V2_method_names[64], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModelToolkits_(V2_method_names[65], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModelUseCases_(V2_method_names[66], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModelLanguages_(V2_method_names[67], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModelInputs_(V2_method_names[68], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModelVersion_(V2_method_names[69], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModelVersions_(V2_method_names[70], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostWorkflowVersionsUnPublish_(V2_method_names[71], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostWorkflowVersionsPublish_(V2_method_names[72], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModelVersionsPublish_(V2_method_names[73], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModelVersionsUnPublish_(V2_method_names[74], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModelVersions_(V2_method_names[75], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModelVersions_(V2_method_names[76], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteModelVersion_(V2_method_names[77], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModelVersionMetrics_(V2_method_names[78], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModelVersionMetrics_(V2_method_names[79], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModelReferences_(V2_method_names[80], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModelVersionInputExample_(V2_method_names[81], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModelVersionInputExamples_(V2_method_names[82], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetWorkflow_(V2_method_names[83], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListWorkflows_(V2_method_names[84], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostWorkflows_(V2_method_names[85], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchWorkflows_(V2_method_names[86], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteWorkflow_(V2_method_names[87], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteWorkflows_(V2_method_names[88], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostWorkflowResults_(V2_method_names[89], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostWorkflowResultsSimilarity_(V2_method_names[90], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListWorkflowVersions_(V2_method_names[91], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetWorkflowVersion_(V2_method_names[92], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteWorkflowVersions_(V2_method_names[93], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchWorkflowVersions_(V2_method_names[94], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKey_(V2_method_names[95], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListKeys_(V2_method_names[96], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAppKeys_(V2_method_names[97], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteKey_(V2_method_names[98], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostKeys_(V2_method_names[99], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchKeys_(V2_method_names[100], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MyScopes_(V2_method_names[101], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MyScopesUser_(V2_method_names[102], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MyScopesRoot_(V2_method_names[103], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListScopes_(V2_method_names[104], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetApp_(V2_method_names[105], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListApps_(V2_method_names[106], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteApp_(V2_method_names[107], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostApps_(V2_method_names[108], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchApps_(V2_method_names[109], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchAppsIds_(V2_method_names[110], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchApp_(V2_method_names[111], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAppsSearches_(V2_method_names[112], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostValidatePassword_(V2_method_names[113], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSearch_(V2_method_names[114], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListSearches_(V2_method_names[115], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchSearches_(V2_method_names[116], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostSearches_(V2_method_names[117], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostSearchesByID_(V2_method_names[118], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAnnotationSearchMetrics_(V2_method_names[119], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAnnotationSearchMetrics_(V2_method_names[120], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAnnotationSearchMetrics_(V2_method_names[121], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteAnnotationSearchMetrics_(V2_method_names[122], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteSearch_(V2_method_names[123], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAnnotationFilters_(V2_method_names[124], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAnnotationFilter_(V2_method_names[125], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAnnotationFilters_(V2_method_names[126], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchAnnotationFilters_(V2_method_names[127], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteAnnotationFilters_(V2_method_names[128], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListStatusCodes_(V2_method_names[129], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatusCode_(V2_method_names[130], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListCollaborators_(V2_method_names[131], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostCollaborators_(V2_method_names[132], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchCollaborators_(V2_method_names[133], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteCollaborators_(V2_method_names[134], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListCollaborations_(V2_method_names[135], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostAppDuplications_(V2_method_names[136], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAppDuplications_(V2_method_names[137], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAppDuplication_(V2_method_names[138], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostTasks_(V2_method_names[139], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTaskAnnotationCount_(V2_method_names[140], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTaskInputCount_(V2_method_names[141], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTask_(V2_method_names[142], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListTasks_(V2_method_names[143], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchTasks_(V2_method_names[144], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteTasks_(V2_method_names[145], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostLabelOrders_(V2_method_names[146], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLabelOrder_(V2_method_names[147], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListLabelOrders_(V2_method_names[148], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchLabelOrders_(V2_method_names[149], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteLabelOrders_(V2_method_names[150], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostCollectors_(V2_method_names[151], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollector_(V2_method_names[152], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListCollectors_(V2_method_names[153], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchCollectors_(V2_method_names[154], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteCollectors_(V2_method_names[155], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostStatValues_(V2_method_names[156], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostStatValuesAggregate_(V2_method_names[157], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostTrendingMetricsView_(V2_method_names[158], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListTrendingMetricsViews_(V2_method_names[159], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModule_(V2_method_names[160], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModules_(V2_method_names[161], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModules_(V2_method_names[162], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PatchModules_(V2_method_names[163], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteModules_(V2_method_names[164], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModuleVersion_(V2_method_names[165], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModuleVersions_(V2_method_names[166], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostModuleVersions_(V2_method_names[167], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteModuleVersions_(V2_method_names[168], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListInstalledModuleVersions_(V2_method_names[169], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostInstalledModuleVersions_(V2_method_names[170], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteInstalledModuleVersions_(V2_method_names[171], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PostBulkOperations_(V2_method_names[172], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListBulkOperations_(V2_method_names[173], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBulkOperation_(V2_method_names[174], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CancelBulkOperations_(V2_method_names[175], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteBulkOperations_(V2_method_names[176], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDatasetInputsSearchAddJob_(V2_method_names[177], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status V2::Stub::ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListConceptRelations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListConceptRelations_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListConceptRelations_, context, request, response, std::move(f));
+void V2::Stub::async::ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListConceptRelations_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListConceptRelations_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListConceptRelations_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListConceptRelations_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* V2::Stub::AsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptRelationResponse>::Create(channel_.get(), cq, rpcmethod_ListConceptRelations_, context, request, true);
+void V2::Stub::async::ListConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListConceptRelations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* V2::Stub::PrepareAsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptRelationResponse>::Create(channel_.get(), cq, rpcmethod_ListConceptRelations_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptRelationResponse, ::clarifai::api::ListConceptRelationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListConceptRelations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* V2::Stub::AsyncListConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListConceptRelationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::clarifai::api::MultiConceptRelationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostConceptRelations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostConceptRelations_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConceptRelations_, context, request, response, std::move(f));
+void V2::Stub::async::PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConceptRelations_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConceptRelations_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConceptRelations_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConceptRelations_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* V2::Stub::AsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptRelationResponse>::Create(channel_.get(), cq, rpcmethod_PostConceptRelations_, context, request, true);
+void V2::Stub::async::PostConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest* request, ::clarifai::api::MultiConceptRelationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConceptRelations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* V2::Stub::PrepareAsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptRelationResponse>::Create(channel_.get(), cq, rpcmethod_PostConceptRelations_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptRelationResponse, ::clarifai::api::PostConceptRelationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostConceptRelations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptRelationResponse>* V2::Stub::AsyncPostConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostConceptRelationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteConceptRelations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteConceptRelationsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteConceptRelations_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteConceptRelations_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteConceptRelationsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteConceptRelations_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteConceptRelations_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteConceptRelations_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteConceptRelations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteConceptRelations_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteConceptRelations_, context, request, true);
+void V2::Stub::async::DeleteConceptRelations(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteConceptRelations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteConceptRelations_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteConceptRelationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteConceptRelations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteConceptRelationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteConceptRelationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteConceptRelationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::clarifai::api::MultiConceptCountResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetConceptCounts_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetConceptCounts_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConceptCounts_, context, request, response, std::move(f));
+void V2::Stub::async::GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConceptCounts_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetConceptCounts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptCountResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConceptCounts_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConceptCounts_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetConceptCounts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConceptCounts_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptCountResponse>* V2::Stub::AsyncGetConceptCountsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptCountResponse>::Create(channel_.get(), cq, rpcmethod_GetConceptCounts_, context, request, true);
+void V2::Stub::async::GetConceptCounts(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest* request, ::clarifai::api::MultiConceptCountResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConceptCounts_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptCountResponse>* V2::Stub::PrepareAsyncGetConceptCountsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptCountResponse>::Create(channel_.get(), cq, rpcmethod_GetConceptCounts_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptCountResponse, ::clarifai::api::GetConceptCountsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetConceptCounts_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptCountResponse>* V2::Stub::AsyncGetConceptCountsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptCountsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetConceptCountsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetConcept(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest& request, ::clarifai::api::SingleConceptResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetConcept_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetConcept_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetConcept(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest* request, ::clarifai::api::SingleConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConcept_, context, request, response, std::move(f));
+void V2::Stub::async::GetConcept(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest* request, ::clarifai::api::SingleConceptResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConcept_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetConcept(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConcept_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetConcept(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest* request, ::clarifai::api::SingleConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConcept_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetConcept(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConcept_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleConceptResponse>* V2::Stub::AsyncGetConceptRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleConceptResponse>::Create(channel_.get(), cq, rpcmethod_GetConcept_, context, request, true);
+void V2::Stub::async::GetConcept(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest* request, ::clarifai::api::SingleConceptResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConcept_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleConceptResponse>* V2::Stub::PrepareAsyncGetConceptRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleConceptResponse>::Create(channel_.get(), cq, rpcmethod_GetConcept_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleConceptResponse, ::clarifai::api::GetConceptRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetConcept_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleConceptResponse>* V2::Stub::AsyncGetConceptRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetConceptRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListConcepts(::grpc::ClientContext* context, const ::clarifai::api::ListConceptsRequest& request, ::clarifai::api::MultiConceptResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListConcepts_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListConcepts_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListConcepts(::grpc::ClientContext* context, const ::clarifai::api::ListConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListConcepts_, context, request, response, std::move(f));
+void V2::Stub::async::ListConcepts(::grpc::ClientContext* context, const ::clarifai::api::ListConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListConcepts_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListConcepts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListConcepts_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListConcepts(::grpc::ClientContext* context, const ::clarifai::api::ListConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListConcepts_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListConcepts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListConcepts_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::AsyncListConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptResponse>::Create(channel_.get(), cq, rpcmethod_ListConcepts_, context, request, true);
+void V2::Stub::async::ListConcepts(::grpc::ClientContext* context, const ::clarifai::api::ListConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListConcepts_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::PrepareAsyncListConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptResponse>::Create(channel_.get(), cq, rpcmethod_ListConcepts_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptResponse, ::clarifai::api::ListConceptsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListConcepts_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::AsyncListConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListConceptsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostConceptsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsSearchesRequest& request, ::clarifai::api::MultiConceptResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostConceptsSearches_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostConceptsSearches_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostConceptsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsSearchesRequest* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConceptsSearches_, context, request, response, std::move(f));
+void V2::Stub::async::PostConceptsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsSearchesRequest* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConceptsSearches_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostConceptsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConceptsSearches_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostConceptsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsSearchesRequest* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConceptsSearches_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostConceptsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConceptsSearches_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::AsyncPostConceptsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptResponse>::Create(channel_.get(), cq, rpcmethod_PostConceptsSearches_, context, request, true);
+void V2::Stub::async::PostConceptsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsSearchesRequest* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConceptsSearches_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::PrepareAsyncPostConceptsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptResponse>::Create(channel_.get(), cq, rpcmethod_PostConceptsSearches_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptResponse, ::clarifai::api::PostConceptsSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostConceptsSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::AsyncPostConceptsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostConceptsSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostConcepts(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsRequest& request, ::clarifai::api::MultiConceptResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostConcepts_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostConcepts_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostConcepts(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConcepts_, context, request, response, std::move(f));
+void V2::Stub::async::PostConcepts(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConcepts_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostConcepts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConcepts_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostConcepts(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConcepts_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostConcepts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConcepts_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::AsyncPostConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptResponse>::Create(channel_.get(), cq, rpcmethod_PostConcepts_, context, request, true);
+void V2::Stub::async::PostConcepts(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConcepts_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::PrepareAsyncPostConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptResponse>::Create(channel_.get(), cq, rpcmethod_PostConcepts_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptResponse, ::clarifai::api::PostConceptsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostConcepts_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::AsyncPostConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostConceptsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchConcepts(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest& request, ::clarifai::api::MultiConceptResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchConcepts_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchConcepts_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchConcepts(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchConcepts_, context, request, response, std::move(f));
+void V2::Stub::async::PatchConcepts(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchConcepts_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchConcepts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchConcepts_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchConcepts(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchConcepts_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchConcepts(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchConcepts_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::AsyncPatchConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptResponse>::Create(channel_.get(), cq, rpcmethod_PatchConcepts_, context, request, true);
+void V2::Stub::async::PatchConcepts(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest* request, ::clarifai::api::MultiConceptResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchConcepts_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::PrepareAsyncPatchConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptResponse>::Create(channel_.get(), cq, rpcmethod_PatchConcepts_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptResponse, ::clarifai::api::PatchConceptsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchConcepts_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptResponse>* V2::Stub::AsyncPatchConceptsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchConceptsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetConceptLanguage(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest& request, ::clarifai::api::SingleConceptLanguageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetConceptLanguage_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetConceptLanguage_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetConceptLanguage(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest* request, ::clarifai::api::SingleConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConceptLanguage_, context, request, response, std::move(f));
+void V2::Stub::async::GetConceptLanguage(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest* request, ::clarifai::api::SingleConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConceptLanguage_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetConceptLanguage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConceptLanguage_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetConceptLanguage(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest* request, ::clarifai::api::SingleConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConceptLanguage_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetConceptLanguage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConceptLanguage_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleConceptLanguageResponse>* V2::Stub::AsyncGetConceptLanguageRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleConceptLanguageResponse>::Create(channel_.get(), cq, rpcmethod_GetConceptLanguage_, context, request, true);
+void V2::Stub::async::GetConceptLanguage(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest* request, ::clarifai::api::SingleConceptLanguageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConceptLanguage_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleConceptLanguageResponse>* V2::Stub::PrepareAsyncGetConceptLanguageRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleConceptLanguageResponse>::Create(channel_.get(), cq, rpcmethod_GetConceptLanguage_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleConceptLanguageResponse, ::clarifai::api::GetConceptLanguageRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetConceptLanguage_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleConceptLanguageResponse>* V2::Stub::AsyncGetConceptLanguageRaw(::grpc::ClientContext* context, const ::clarifai::api::GetConceptLanguageRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetConceptLanguageRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest& request, ::clarifai::api::MultiConceptLanguageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListConceptLanguages_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListConceptLanguages_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListConceptLanguages_, context, request, response, std::move(f));
+void V2::Stub::async::ListConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListConceptLanguages_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListConceptLanguages_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListConceptLanguages_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListConceptLanguages_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::AsyncListConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptLanguageResponse>::Create(channel_.get(), cq, rpcmethod_ListConceptLanguages_, context, request, true);
+void V2::Stub::async::ListConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListConceptLanguages_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::PrepareAsyncListConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptLanguageResponse>::Create(channel_.get(), cq, rpcmethod_ListConceptLanguages_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptLanguageResponse, ::clarifai::api::ListConceptLanguagesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListConceptLanguages_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::AsyncListConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListConceptLanguagesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest& request, ::clarifai::api::MultiConceptLanguageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostConceptLanguages_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostConceptLanguages_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConceptLanguages_, context, request, response, std::move(f));
+void V2::Stub::async::PostConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConceptLanguages_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConceptLanguages_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConceptLanguages_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConceptLanguages_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::AsyncPostConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptLanguageResponse>::Create(channel_.get(), cq, rpcmethod_PostConceptLanguages_, context, request, true);
+void V2::Stub::async::PostConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConceptLanguages_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::PrepareAsyncPostConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptLanguageResponse>::Create(channel_.get(), cq, rpcmethod_PostConceptLanguages_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptLanguageResponse, ::clarifai::api::PostConceptLanguagesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostConceptLanguages_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::AsyncPostConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostConceptLanguagesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::clarifai::api::MultiConceptLanguageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchConceptLanguages_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchConceptLanguages_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchConceptLanguages_, context, request, response, std::move(f));
+void V2::Stub::async::PatchConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchConceptLanguages_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchConceptLanguages_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchConceptLanguages_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchConceptLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchConceptLanguages_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::AsyncPatchConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptLanguageResponse>::Create(channel_.get(), cq, rpcmethod_PatchConceptLanguages_, context, request, true);
+void V2::Stub::async::PatchConceptLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest* request, ::clarifai::api::MultiConceptLanguageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchConceptLanguages_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::PrepareAsyncPatchConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptLanguageResponse>::Create(channel_.get(), cq, rpcmethod_PatchConceptLanguages_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptLanguageResponse, ::clarifai::api::PatchConceptLanguagesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchConceptLanguages_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptLanguageResponse>* V2::Stub::AsyncPatchConceptLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchConceptLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchConceptLanguagesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::clarifai::api::MultiKnowledgeGraphResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListKnowledgeGraphs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListKnowledgeGraphsRequest, ::clarifai::api::MultiKnowledgeGraphResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListKnowledgeGraphs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListKnowledgeGraphs_, context, request, response, std::move(f));
+void V2::Stub::async::ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListKnowledgeGraphsRequest, ::clarifai::api::MultiKnowledgeGraphResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListKnowledgeGraphs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListKnowledgeGraphs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListKnowledgeGraphs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListKnowledgeGraphs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListKnowledgeGraphs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListKnowledgeGraphs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* V2::Stub::AsyncListKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKnowledgeGraphResponse>::Create(channel_.get(), cq, rpcmethod_ListKnowledgeGraphs_, context, request, true);
+void V2::Stub::async::ListKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListKnowledgeGraphs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* V2::Stub::PrepareAsyncListKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKnowledgeGraphResponse>::Create(channel_.get(), cq, rpcmethod_ListKnowledgeGraphs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiKnowledgeGraphResponse, ::clarifai::api::ListKnowledgeGraphsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListKnowledgeGraphs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* V2::Stub::AsyncListKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListKnowledgeGraphsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest& request, ::clarifai::api::MultiKnowledgeGraphResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostKnowledgeGraphs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostKnowledgeGraphsRequest, ::clarifai::api::MultiKnowledgeGraphResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostKnowledgeGraphs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostKnowledgeGraphs_, context, request, response, std::move(f));
+void V2::Stub::async::PostKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostKnowledgeGraphsRequest, ::clarifai::api::MultiKnowledgeGraphResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostKnowledgeGraphs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostKnowledgeGraphs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostKnowledgeGraphs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostKnowledgeGraphs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostKnowledgeGraphs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostKnowledgeGraphs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* V2::Stub::AsyncPostKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKnowledgeGraphResponse>::Create(channel_.get(), cq, rpcmethod_PostKnowledgeGraphs_, context, request, true);
+void V2::Stub::async::PostKnowledgeGraphs(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest* request, ::clarifai::api::MultiKnowledgeGraphResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostKnowledgeGraphs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* V2::Stub::PrepareAsyncPostKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKnowledgeGraphResponse>::Create(channel_.get(), cq, rpcmethod_PostKnowledgeGraphs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiKnowledgeGraphResponse, ::clarifai::api::PostKnowledgeGraphsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostKnowledgeGraphs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKnowledgeGraphResponse>* V2::Stub::AsyncPostKnowledgeGraphsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostKnowledgeGraphsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostKnowledgeGraphsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostConceptMappingJobs(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest& request, ::clarifai::api::MultiConceptMappingJobResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostConceptMappingJobs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostConceptMappingJobsRequest, ::clarifai::api::MultiConceptMappingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostConceptMappingJobs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostConceptMappingJobs(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest* request, ::clarifai::api::MultiConceptMappingJobResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConceptMappingJobs_, context, request, response, std::move(f));
+void V2::Stub::async::PostConceptMappingJobs(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest* request, ::clarifai::api::MultiConceptMappingJobResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostConceptMappingJobsRequest, ::clarifai::api::MultiConceptMappingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConceptMappingJobs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostConceptMappingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptMappingJobResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostConceptMappingJobs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostConceptMappingJobs(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest* request, ::clarifai::api::MultiConceptMappingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConceptMappingJobs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostConceptMappingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiConceptMappingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostConceptMappingJobs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptMappingJobResponse>* V2::Stub::AsyncPostConceptMappingJobsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptMappingJobResponse>::Create(channel_.get(), cq, rpcmethod_PostConceptMappingJobs_, context, request, true);
+void V2::Stub::async::PostConceptMappingJobs(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest* request, ::clarifai::api::MultiConceptMappingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostConceptMappingJobs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptMappingJobResponse>* V2::Stub::PrepareAsyncPostConceptMappingJobsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiConceptMappingJobResponse>::Create(channel_.get(), cq, rpcmethod_PostConceptMappingJobs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiConceptMappingJobResponse, ::clarifai::api::PostConceptMappingJobsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostConceptMappingJobs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiConceptMappingJobResponse>* V2::Stub::AsyncPostConceptMappingJobsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostConceptMappingJobsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostConceptMappingJobsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetAnnotation(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest& request, ::clarifai::api::SingleAnnotationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetAnnotation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetAnnotationRequest, ::clarifai::api::SingleAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAnnotation_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetAnnotation(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest* request, ::clarifai::api::SingleAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAnnotation_, context, request, response, std::move(f));
+void V2::Stub::async::GetAnnotation(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest* request, ::clarifai::api::SingleAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetAnnotationRequest, ::clarifai::api::SingleAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAnnotation_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetAnnotation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAnnotation_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetAnnotation(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest* request, ::clarifai::api::SingleAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAnnotation_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetAnnotation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAnnotation_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAnnotationResponse>* V2::Stub::AsyncGetAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_GetAnnotation_, context, request, true);
+void V2::Stub::async::GetAnnotation(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest* request, ::clarifai::api::SingleAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAnnotation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAnnotationResponse>* V2::Stub::PrepareAsyncGetAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_GetAnnotation_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleAnnotationResponse, ::clarifai::api::GetAnnotationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAnnotation_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAnnotationResponse>* V2::Stub::AsyncGetAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAnnotationRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListAnnotations(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationsRequest& request, ::clarifai::api::MultiAnnotationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListAnnotations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListAnnotations_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListAnnotations(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAnnotations_, context, request, response, std::move(f));
+void V2::Stub::async::ListAnnotations(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAnnotations_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAnnotations_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListAnnotations(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAnnotations_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAnnotations_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::AsyncListAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_ListAnnotations_, context, request, true);
+void V2::Stub::async::ListAnnotations(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAnnotations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::PrepareAsyncListAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_ListAnnotations_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationResponse, ::clarifai::api::ListAnnotationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListAnnotations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::AsyncListAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListAnnotationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest& request, ::clarifai::api::MultiAnnotationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostAnnotations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostAnnotations_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAnnotations_, context, request, response, std::move(f));
+void V2::Stub::async::PostAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAnnotations_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAnnotations_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAnnotations_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAnnotations_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::AsyncPostAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_PostAnnotations_, context, request, true);
+void V2::Stub::async::PostAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAnnotations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::PrepareAsyncPostAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_PostAnnotations_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationResponse, ::clarifai::api::PostAnnotationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostAnnotations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::AsyncPostAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostAnnotationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::clarifai::api::MultiAnnotationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchAnnotations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchAnnotations_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotations_, context, request, response, std::move(f));
+void V2::Stub::async::PatchAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotations_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotations_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotations_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotations_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::AsyncPatchAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_PatchAnnotations_, context, request, true);
+void V2::Stub::async::PatchAnnotations(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest* request, ::clarifai::api::MultiAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::PrepareAsyncPatchAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_PatchAnnotations_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationResponse, ::clarifai::api::PatchAnnotationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchAnnotations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationResponse>* V2::Stub::AsyncPatchAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchAnnotationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::clarifai::api::PatchAnnotationsStatusResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchAnnotationsStatus_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::PatchAnnotationsStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchAnnotationsStatus_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationsStatus_, context, request, response, std::move(f));
+void V2::Stub::async::PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::PatchAnnotationsStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationsStatus_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationsStatus_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationsStatus_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchAnnotationsStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationsStatus_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>* V2::Stub::AsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::PatchAnnotationsStatusResponse>::Create(channel_.get(), cq, rpcmethod_PatchAnnotationsStatus_, context, request, true);
+void V2::Stub::async::PatchAnnotationsStatus(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest* request, ::clarifai::api::PatchAnnotationsStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationsStatus_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>* V2::Stub::PrepareAsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::PatchAnnotationsStatusResponse>::Create(channel_.get(), cq, rpcmethod_PatchAnnotationsStatus_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::PatchAnnotationsStatusResponse, ::clarifai::api::PatchAnnotationsStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchAnnotationsStatus_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::PatchAnnotationsStatusResponse>* V2::Stub::AsyncPatchAnnotationsStatusRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchAnnotationsStatusRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteAnnotation_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteAnnotationRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteAnnotation_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotation_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteAnnotationRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotation_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteAnnotation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotation_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotation_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteAnnotation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotation_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteAnnotation_, context, request, true);
+void V2::Stub::async::DeleteAnnotation(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotation_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteAnnotation_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteAnnotationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteAnnotation_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAnnotationRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteAnnotationRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteAnnotations(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteAnnotations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteAnnotationsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteAnnotations_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteAnnotations(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotations_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteAnnotations(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteAnnotationsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotations_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotations_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteAnnotations(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotations_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteAnnotations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotations_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteAnnotations_, context, request, true);
+void V2::Stub::async::DeleteAnnotations(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteAnnotations_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteAnnotationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteAnnotations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAnnotationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteAnnotationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsSearchesRequest& request, ::clarifai::api::MultiSearchResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchAnnotationsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchAnnotationsSearches_, context, request, response);
+}
+
+void V2::Stub::async::PatchAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchAnnotationsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationsSearches_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationsSearches_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::PrepareAsyncPatchAnnotationsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiSearchResponse, ::clarifai::api::PatchAnnotationsSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchAnnotationsSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPatchAnnotationsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchAnnotationsSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest& request, ::clarifai::api::MultiSearchResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostAnnotationsSearches_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostAnnotationsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostAnnotationsSearches_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationsSearches_, context, request, response, std::move(f));
+void V2::Stub::async::PostAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostAnnotationsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationsSearches_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostAnnotationsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationsSearches_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationsSearches_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostAnnotationsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationsSearches_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPostAnnotationsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_PostAnnotationsSearches_, context, request, true);
+void V2::Stub::async::PostAnnotationsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationsSearches_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::PrepareAsyncPostAnnotationsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_PostAnnotationsSearches_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiSearchResponse, ::clarifai::api::PostAnnotationsSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostAnnotationsSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPostAnnotationsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostAnnotationsSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::clarifai::api::SingleInputCountResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetInputCount_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetInputCountRequest, ::clarifai::api::SingleInputCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetInputCount_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest* request, ::clarifai::api::SingleInputCountResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetInputCount_, context, request, response, std::move(f));
+void V2::Stub::async::GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest* request, ::clarifai::api::SingleInputCountResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetInputCountRequest, ::clarifai::api::SingleInputCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInputCount_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleInputCountResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetInputCount_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest* request, ::clarifai::api::SingleInputCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetInputCount_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleInputCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetInputCount_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputCountResponse>* V2::Stub::AsyncGetInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleInputCountResponse>::Create(channel_.get(), cq, rpcmethod_GetInputCount_, context, request, true);
+void V2::Stub::async::GetInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest* request, ::clarifai::api::SingleInputCountResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInputCount_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputCountResponse>* V2::Stub::PrepareAsyncGetInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleInputCountResponse>::Create(channel_.get(), cq, rpcmethod_GetInputCount_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleInputCountResponse, ::clarifai::api::GetInputCountRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetInputCount_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputCountResponse>* V2::Stub::AsyncGetInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputCountRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetInputCountRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::StreamInputs(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::clarifai::api::MultiInputResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_StreamInputs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::StreamInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StreamInputs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::StreamInputs(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StreamInputs_, context, request, response, std::move(f));
+void V2::Stub::async::StreamInputs(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::StreamInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StreamInputs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::StreamInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StreamInputs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::StreamInputs(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StreamInputs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::StreamInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StreamInputs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncStreamInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_StreamInputs_, context, request, true);
+void V2::Stub::async::StreamInputs(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StreamInputs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::PrepareAsyncStreamInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_StreamInputs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiInputResponse, ::clarifai::api::StreamInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StreamInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncStreamInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::StreamInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncStreamInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::clarifai::api::MultiInputAnnotationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetInputSamples_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetInputSamplesRequest, ::clarifai::api::MultiInputAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetInputSamples_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetInputSamples_, context, request, response, std::move(f));
+void V2::Stub::async::GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetInputSamplesRequest, ::clarifai::api::MultiInputAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInputSamples_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetInputSamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputAnnotationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetInputSamples_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetInputSamples_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetInputSamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetInputSamples_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>* V2::Stub::AsyncGetInputSamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_GetInputSamples_, context, request, true);
+void V2::Stub::async::GetInputSamples(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest* request, ::clarifai::api::MultiInputAnnotationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInputSamples_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>* V2::Stub::PrepareAsyncGetInputSamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputAnnotationResponse>::Create(channel_.get(), cq, rpcmethod_GetInputSamples_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiInputAnnotationResponse, ::clarifai::api::GetInputSamplesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetInputSamples_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputAnnotationResponse>* V2::Stub::AsyncGetInputSamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputSamplesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetInputSamplesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::clarifai::api::SingleInputResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetInput_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetInputRequest, ::clarifai::api::SingleInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetInput_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest* request, ::clarifai::api::SingleInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetInput_, context, request, response, std::move(f));
+void V2::Stub::async::GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest* request, ::clarifai::api::SingleInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetInputRequest, ::clarifai::api::SingleInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInput_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetInput(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetInput_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest* request, ::clarifai::api::SingleInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetInput_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetInput(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetInput_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputResponse>* V2::Stub::AsyncGetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleInputResponse>::Create(channel_.get(), cq, rpcmethod_GetInput_, context, request, true);
+void V2::Stub::async::GetInput(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest* request, ::clarifai::api::SingleInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInput_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputResponse>* V2::Stub::PrepareAsyncGetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleInputResponse>::Create(channel_.get(), cq, rpcmethod_GetInput_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleInputResponse, ::clarifai::api::GetInputRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetInput_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleInputResponse>* V2::Stub::AsyncGetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetInputRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetInputRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListInputs(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest& request, ::clarifai::api::MultiInputResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListInputs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListInputs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListInputs(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListInputs_, context, request, response, std::move(f));
+void V2::Stub::async::ListInputs(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListInputs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListInputs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListInputs(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListInputs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListInputs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncListInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_ListInputs_, context, request, true);
+void V2::Stub::async::ListInputs(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListInputs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::PrepareAsyncListInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_ListInputs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiInputResponse, ::clarifai::api::ListInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncListInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostInputs(::grpc::ClientContext* context, const ::clarifai::api::PostInputsRequest& request, ::clarifai::api::MultiInputResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostInputs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostInputs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostInputs(::grpc::ClientContext* context, const ::clarifai::api::PostInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostInputs_, context, request, response, std::move(f));
+void V2::Stub::async::PostInputs(::grpc::ClientContext* context, const ::clarifai::api::PostInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostInputs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostInputs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostInputs(::grpc::ClientContext* context, const ::clarifai::api::PostInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostInputs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostInputs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncPostInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_PostInputs_, context, request, true);
+void V2::Stub::async::PostInputs(::grpc::ClientContext* context, const ::clarifai::api::PostInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostInputs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::PrepareAsyncPostInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_PostInputs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiInputResponse, ::clarifai::api::PostInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncPostInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchInputs(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsRequest& request, ::clarifai::api::MultiInputResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchInputs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchInputs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchInputs(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchInputs_, context, request, response, std::move(f));
+void V2::Stub::async::PatchInputs(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchInputs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchInputs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchInputs(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchInputs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchInputs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncPatchInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_PatchInputs_, context, request, true);
+void V2::Stub::async::PatchInputs(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchInputs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::PrepareAsyncPatchInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_PatchInputs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiInputResponse, ::clarifai::api::PatchInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncPatchInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteInput(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteInput_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteInputRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteInput_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteInput(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteInput_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteInput(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteInputRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteInput_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteInput(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteInput_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteInput(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteInput_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteInput(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteInput_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteInputRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteInput_, context, request, true);
+void V2::Stub::async::DeleteInput(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteInput_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteInputRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteInput_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteInputRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteInput_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteInputRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteInputRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteInputs(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteInputs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteInputsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteInputs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteInputs(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteInputs_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteInputs(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteInputsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteInputs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteInputs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteInputs(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteInputs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteInputs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteInputs_, context, request, true);
+void V2::Stub::async::DeleteInputs(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteInputs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteInputs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchInputsSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsSearchesRequest& request, ::clarifai::api::MultiSearchResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchInputsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchInputsSearches_, context, request, response);
+}
+
+void V2::Stub::async::PatchInputsSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchInputsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchInputsSearches_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchInputsSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchInputsSearches_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::PrepareAsyncPatchInputsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiSearchResponse, ::clarifai::api::PatchInputsSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchInputsSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPatchInputsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchInputsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchInputsSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostInputsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostInputsSearchesRequest& request, ::clarifai::api::MultiSearchResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostInputsSearches_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostInputsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostInputsSearches_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostInputsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostInputsSearches_, context, request, response, std::move(f));
+void V2::Stub::async::PostInputsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostInputsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostInputsSearches_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostInputsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostInputsSearches_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostInputsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostInputsSearches_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostInputsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostInputsSearches_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPostInputsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostInputsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_PostInputsSearches_, context, request, true);
+void V2::Stub::async::PostInputsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostInputsSearches_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::PrepareAsyncPostInputsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostInputsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_PostInputsSearches_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiSearchResponse, ::clarifai::api::PostInputsSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostInputsSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPostInputsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostInputsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostInputsSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostModelOutputs(::grpc::ClientContext* context, const ::clarifai::api::PostModelOutputsRequest& request, ::clarifai::api::MultiOutputResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostModelOutputs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModelOutputsRequest, ::clarifai::api::MultiOutputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModelOutputs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostModelOutputs(::grpc::ClientContext* context, const ::clarifai::api::PostModelOutputsRequest* request, ::clarifai::api::MultiOutputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelOutputs_, context, request, response, std::move(f));
+void V2::Stub::async::PostModelOutputs(::grpc::ClientContext* context, const ::clarifai::api::PostModelOutputsRequest* request, ::clarifai::api::MultiOutputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModelOutputsRequest, ::clarifai::api::MultiOutputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelOutputs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostModelOutputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiOutputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelOutputs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostModelOutputs(::grpc::ClientContext* context, const ::clarifai::api::PostModelOutputsRequest* request, ::clarifai::api::MultiOutputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelOutputs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostModelOutputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiOutputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelOutputs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiOutputResponse>* V2::Stub::AsyncPostModelOutputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelOutputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiOutputResponse>::Create(channel_.get(), cq, rpcmethod_PostModelOutputs_, context, request, true);
+void V2::Stub::async::PostModelOutputs(::grpc::ClientContext* context, const ::clarifai::api::PostModelOutputsRequest* request, ::clarifai::api::MultiOutputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelOutputs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiOutputResponse>* V2::Stub::PrepareAsyncPostModelOutputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelOutputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiOutputResponse>::Create(channel_.get(), cq, rpcmethod_PostModelOutputs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiOutputResponse, ::clarifai::api::PostModelOutputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModelOutputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiOutputResponse>* V2::Stub::AsyncPostModelOutputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelOutputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModelOutputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListDatasets(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetsRequest& request, ::clarifai::api::MultiDatasetResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListDatasets_, context, request, response);
+}
+
+void V2::Stub::async::ListDatasets(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDatasets_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListDatasets(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDatasets_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetResponse>* V2::Stub::PrepareAsyncListDatasetsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetResponse, ::clarifai::api::ListDatasetsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListDatasets_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetResponse>* V2::Stub::AsyncListDatasetsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListDatasetsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::GetDataset(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetRequest& request, ::clarifai::api::SingleDatasetResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetDatasetRequest, ::clarifai::api::SingleDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDataset_, context, request, response);
+}
+
+void V2::Stub::async::GetDataset(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetRequest* request, ::clarifai::api::SingleDatasetResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetDatasetRequest, ::clarifai::api::SingleDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDataset_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::GetDataset(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetRequest* request, ::clarifai::api::SingleDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDataset_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleDatasetResponse>* V2::Stub::PrepareAsyncGetDatasetRaw(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleDatasetResponse, ::clarifai::api::GetDatasetRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDataset_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleDatasetResponse>* V2::Stub::AsyncGetDatasetRaw(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetDatasetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostDatasets(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetsRequest& request, ::clarifai::api::MultiDatasetResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostDatasets_, context, request, response);
+}
+
+void V2::Stub::async::PostDatasets(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostDatasets_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostDatasets(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostDatasets_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetResponse>* V2::Stub::PrepareAsyncPostDatasetsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetResponse, ::clarifai::api::PostDatasetsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostDatasets_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetResponse>* V2::Stub::AsyncPostDatasetsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostDatasetsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchDatasets(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetsRequest& request, ::clarifai::api::MultiDatasetResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchDatasets_, context, request, response);
+}
+
+void V2::Stub::async::PatchDatasets(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchDatasets_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchDatasets(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchDatasets_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetResponse>* V2::Stub::PrepareAsyncPatchDatasetsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetResponse, ::clarifai::api::PatchDatasetsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchDatasets_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetResponse>* V2::Stub::AsyncPatchDatasetsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchDatasetsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::DeleteDatasets(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetsRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteDatasetsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteDatasets_, context, request, response);
+}
+
+void V2::Stub::async::DeleteDatasets(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteDatasetsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDatasets_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::DeleteDatasets(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDatasets_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteDatasetsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteDatasetsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteDatasets_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteDatasetsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteDatasetsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetInputsRequest& request, ::clarifai::api::MultiDatasetInputResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListDatasetInputsRequest, ::clarifai::api::MultiDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListDatasetInputs_, context, request, response);
+}
+
+void V2::Stub::async::ListDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetInputsRequest* request, ::clarifai::api::MultiDatasetInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListDatasetInputsRequest, ::clarifai::api::MultiDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDatasetInputs_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetInputsRequest* request, ::clarifai::api::MultiDatasetInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDatasetInputs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetInputResponse>* V2::Stub::PrepareAsyncListDatasetInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetInputResponse, ::clarifai::api::ListDatasetInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListDatasetInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetInputResponse>* V2::Stub::AsyncListDatasetInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListDatasetInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::GetDatasetInput(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputRequest& request, ::clarifai::api::SingleDatasetInputResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetDatasetInputRequest, ::clarifai::api::SingleDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDatasetInput_, context, request, response);
+}
+
+void V2::Stub::async::GetDatasetInput(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputRequest* request, ::clarifai::api::SingleDatasetInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetDatasetInputRequest, ::clarifai::api::SingleDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDatasetInput_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::GetDatasetInput(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputRequest* request, ::clarifai::api::SingleDatasetInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDatasetInput_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleDatasetInputResponse>* V2::Stub::PrepareAsyncGetDatasetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleDatasetInputResponse, ::clarifai::api::GetDatasetInputRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDatasetInput_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleDatasetInputResponse>* V2::Stub::AsyncGetDatasetInputRaw(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetDatasetInputRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetInputsRequest& request, ::clarifai::api::MultiDatasetInputResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostDatasetInputsRequest, ::clarifai::api::MultiDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostDatasetInputs_, context, request, response);
+}
+
+void V2::Stub::async::PostDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetInputsRequest* request, ::clarifai::api::MultiDatasetInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostDatasetInputsRequest, ::clarifai::api::MultiDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostDatasetInputs_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetInputsRequest* request, ::clarifai::api::MultiDatasetInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostDatasetInputs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetInputResponse>* V2::Stub::PrepareAsyncPostDatasetInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetInputResponse, ::clarifai::api::PostDatasetInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostDatasetInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetInputResponse>* V2::Stub::AsyncPostDatasetInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostDatasetInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::DeleteDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetInputsRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteDatasetInputsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteDatasetInputs_, context, request, response);
+}
+
+void V2::Stub::async::DeleteDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetInputsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteDatasetInputsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDatasetInputs_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::DeleteDatasetInputs(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetInputsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDatasetInputs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteDatasetInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteDatasetInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteDatasetInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteDatasetInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteDatasetInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionsRequest& request, ::clarifai::api::MultiDatasetVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListDatasetVersions_, context, request, response);
+}
+
+void V2::Stub::async::ListDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDatasetVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDatasetVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetVersionResponse>* V2::Stub::PrepareAsyncListDatasetVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetVersionResponse, ::clarifai::api::ListDatasetVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListDatasetVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetVersionResponse>* V2::Stub::AsyncListDatasetVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListDatasetVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::GetDatasetVersion(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetVersionRequest& request, ::clarifai::api::SingleDatasetVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetDatasetVersionRequest, ::clarifai::api::SingleDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDatasetVersion_, context, request, response);
+}
+
+void V2::Stub::async::GetDatasetVersion(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetVersionRequest* request, ::clarifai::api::SingleDatasetVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetDatasetVersionRequest, ::clarifai::api::SingleDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDatasetVersion_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::GetDatasetVersion(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetVersionRequest* request, ::clarifai::api::SingleDatasetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDatasetVersion_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleDatasetVersionResponse>* V2::Stub::PrepareAsyncGetDatasetVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetVersionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleDatasetVersionResponse, ::clarifai::api::GetDatasetVersionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDatasetVersion_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleDatasetVersionResponse>* V2::Stub::AsyncGetDatasetVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetVersionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetDatasetVersionRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListDatasetVersionMetricsGroups(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionMetricsGroupsRequest& request, ::clarifai::api::MultiDatasetVersionMetricsGroupResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListDatasetVersionMetricsGroupsRequest, ::clarifai::api::MultiDatasetVersionMetricsGroupResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListDatasetVersionMetricsGroups_, context, request, response);
+}
+
+void V2::Stub::async::ListDatasetVersionMetricsGroups(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionMetricsGroupsRequest* request, ::clarifai::api::MultiDatasetVersionMetricsGroupResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListDatasetVersionMetricsGroupsRequest, ::clarifai::api::MultiDatasetVersionMetricsGroupResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDatasetVersionMetricsGroups_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListDatasetVersionMetricsGroups(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionMetricsGroupsRequest* request, ::clarifai::api::MultiDatasetVersionMetricsGroupResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListDatasetVersionMetricsGroups_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetVersionMetricsGroupResponse>* V2::Stub::PrepareAsyncListDatasetVersionMetricsGroupsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionMetricsGroupsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetVersionMetricsGroupResponse, ::clarifai::api::ListDatasetVersionMetricsGroupsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListDatasetVersionMetricsGroups_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetVersionMetricsGroupResponse>* V2::Stub::AsyncListDatasetVersionMetricsGroupsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListDatasetVersionMetricsGroupsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListDatasetVersionMetricsGroupsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetVersionsRequest& request, ::clarifai::api::MultiDatasetVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostDatasetVersions_, context, request, response);
+}
+
+void V2::Stub::async::PostDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostDatasetVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostDatasetVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetVersionResponse>* V2::Stub::PrepareAsyncPostDatasetVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetVersionResponse, ::clarifai::api::PostDatasetVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostDatasetVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetVersionResponse>* V2::Stub::AsyncPostDatasetVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostDatasetVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostDatasetVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetVersionsRequest& request, ::clarifai::api::MultiDatasetVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchDatasetVersions_, context, request, response);
+}
+
+void V2::Stub::async::PatchDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchDatasetVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchDatasetVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetVersionResponse>* V2::Stub::PrepareAsyncPatchDatasetVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiDatasetVersionResponse, ::clarifai::api::PatchDatasetVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchDatasetVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiDatasetVersionResponse>* V2::Stub::AsyncPatchDatasetVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchDatasetVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchDatasetVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::DeleteDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetVersionsRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteDatasetVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteDatasetVersions_, context, request, response);
+}
+
+void V2::Stub::async::DeleteDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteDatasetVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDatasetVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::DeleteDatasetVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDatasetVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteDatasetVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteDatasetVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteDatasetVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteDatasetVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteDatasetVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteDatasetVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetModelType(::grpc::ClientContext* context, const ::clarifai::api::GetModelTypeRequest& request, ::clarifai::api::SingleModelTypeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetModelType_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetModelTypeRequest, ::clarifai::api::SingleModelTypeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModelType_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetModelType(::grpc::ClientContext* context, const ::clarifai::api::GetModelTypeRequest* request, ::clarifai::api::SingleModelTypeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelType_, context, request, response, std::move(f));
+void V2::Stub::async::GetModelType(::grpc::ClientContext* context, const ::clarifai::api::GetModelTypeRequest* request, ::clarifai::api::SingleModelTypeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetModelTypeRequest, ::clarifai::api::SingleModelTypeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelType_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetModelType(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelTypeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelType_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetModelType(::grpc::ClientContext* context, const ::clarifai::api::GetModelTypeRequest* request, ::clarifai::api::SingleModelTypeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelType_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetModelType(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelTypeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelType_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelTypeResponse>* V2::Stub::AsyncGetModelTypeRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelTypeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelTypeResponse>::Create(channel_.get(), cq, rpcmethod_GetModelType_, context, request, true);
+void V2::Stub::async::GetModelType(::grpc::ClientContext* context, const ::clarifai::api::GetModelTypeRequest* request, ::clarifai::api::SingleModelTypeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelType_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelTypeResponse>* V2::Stub::PrepareAsyncGetModelTypeRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelTypeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelTypeResponse>::Create(channel_.get(), cq, rpcmethod_GetModelType_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelTypeResponse, ::clarifai::api::GetModelTypeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModelType_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelTypeResponse>* V2::Stub::AsyncGetModelTypeRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelTypeRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetModelTypeRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListOpenSourceLicenses(::grpc::ClientContext* context, const ::clarifai::api::ListOpenSourceLicensesRequest& request, ::clarifai::api::ListOpenSourceLicensesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListOpenSourceLicenses_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListOpenSourceLicensesRequest, ::clarifai::api::ListOpenSourceLicensesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListOpenSourceLicenses_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListOpenSourceLicenses(::grpc::ClientContext* context, const ::clarifai::api::ListOpenSourceLicensesRequest* request, ::clarifai::api::ListOpenSourceLicensesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOpenSourceLicenses_, context, request, response, std::move(f));
+void V2::Stub::async::ListOpenSourceLicenses(::grpc::ClientContext* context, const ::clarifai::api::ListOpenSourceLicensesRequest* request, ::clarifai::api::ListOpenSourceLicensesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListOpenSourceLicensesRequest, ::clarifai::api::ListOpenSourceLicensesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListOpenSourceLicenses_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListOpenSourceLicenses(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::ListOpenSourceLicensesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListOpenSourceLicenses_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListOpenSourceLicenses(::grpc::ClientContext* context, const ::clarifai::api::ListOpenSourceLicensesRequest* request, ::clarifai::api::ListOpenSourceLicensesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOpenSourceLicenses_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListOpenSourceLicenses(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::ListOpenSourceLicensesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListOpenSourceLicenses_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::ListOpenSourceLicensesResponse>* V2::Stub::AsyncListOpenSourceLicensesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListOpenSourceLicensesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::ListOpenSourceLicensesResponse>::Create(channel_.get(), cq, rpcmethod_ListOpenSourceLicenses_, context, request, true);
+void V2::Stub::async::ListOpenSourceLicenses(::grpc::ClientContext* context, const ::clarifai::api::ListOpenSourceLicensesRequest* request, ::clarifai::api::ListOpenSourceLicensesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListOpenSourceLicenses_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::ListOpenSourceLicensesResponse>* V2::Stub::PrepareAsyncListOpenSourceLicensesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListOpenSourceLicensesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::ListOpenSourceLicensesResponse>::Create(channel_.get(), cq, rpcmethod_ListOpenSourceLicenses_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::ListOpenSourceLicensesResponse, ::clarifai::api::ListOpenSourceLicensesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListOpenSourceLicenses_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::ListOpenSourceLicensesResponse>* V2::Stub::AsyncListOpenSourceLicensesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListOpenSourceLicensesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListOpenSourceLicensesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListModelTypes(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest& request, ::clarifai::api::MultiModelTypeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListModelTypes_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListModelTypesRequest, ::clarifai::api::MultiModelTypeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModelTypes_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListModelTypes(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest* request, ::clarifai::api::MultiModelTypeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelTypes_, context, request, response, std::move(f));
+void V2::Stub::async::ListModelTypes(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest* request, ::clarifai::api::MultiModelTypeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListModelTypesRequest, ::clarifai::api::MultiModelTypeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelTypes_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListModelTypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelTypeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelTypes_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListModelTypes(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest* request, ::clarifai::api::MultiModelTypeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelTypes_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListModelTypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelTypeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelTypes_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelTypeResponse>* V2::Stub::AsyncListModelTypesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelTypeResponse>::Create(channel_.get(), cq, rpcmethod_ListModelTypes_, context, request, true);
+void V2::Stub::async::ListModelTypes(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest* request, ::clarifai::api::MultiModelTypeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelTypes_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelTypeResponse>* V2::Stub::PrepareAsyncListModelTypesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelTypeResponse>::Create(channel_.get(), cq, rpcmethod_ListModelTypes_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelTypeResponse, ::clarifai::api::ListModelTypesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModelTypes_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelTypeResponse>* V2::Stub::AsyncListModelTypesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelTypesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListModelTypesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetModel(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest& request, ::clarifai::api::SingleModelResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetModel_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModel_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetModel(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModel_, context, request, response, std::move(f));
+void V2::Stub::async::GetModel(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModel_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetModel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModel_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetModel(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModel_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetModel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModel_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::AsyncGetModelRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_GetModel_, context, request, true);
+void V2::Stub::async::GetModel(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModel_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::PrepareAsyncGetModelRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_GetModel_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelResponse, ::clarifai::api::GetModelRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModel_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::AsyncGetModelRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetModelRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetModelOutputInfo(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest& request, ::clarifai::api::SingleModelResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetModelOutputInfo_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModelOutputInfo_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetModelOutputInfo(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelOutputInfo_, context, request, response, std::move(f));
+void V2::Stub::async::GetModelOutputInfo(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelOutputInfo_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetModelOutputInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelOutputInfo_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetModelOutputInfo(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelOutputInfo_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetModelOutputInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelOutputInfo_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::AsyncGetModelOutputInfoRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_GetModelOutputInfo_, context, request, true);
+void V2::Stub::async::GetModelOutputInfo(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest* request, ::clarifai::api::SingleModelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelOutputInfo_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::PrepareAsyncGetModelOutputInfoRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_GetModelOutputInfo_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelResponse, ::clarifai::api::GetModelRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModelOutputInfo_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::AsyncGetModelOutputInfoRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetModelOutputInfoRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListModels(::grpc::ClientContext* context, const ::clarifai::api::ListModelsRequest& request, ::clarifai::api::MultiModelResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListModels_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListModelsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModels_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListModels(::grpc::ClientContext* context, const ::clarifai::api::ListModelsRequest* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModels_, context, request, response, std::move(f));
+void V2::Stub::async::ListModels(::grpc::ClientContext* context, const ::clarifai::api::ListModelsRequest* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListModelsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModels_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModels_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListModels(::grpc::ClientContext* context, const ::clarifai::api::ListModelsRequest* request, ::clarifai::api::MultiModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModels_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModels_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::AsyncListModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelResponse>::Create(channel_.get(), cq, rpcmethod_ListModels_, context, request, true);
+void V2::Stub::async::ListModels(::grpc::ClientContext* context, const ::clarifai::api::ListModelsRequest* request, ::clarifai::api::MultiModelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModels_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::PrepareAsyncListModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelResponse>::Create(channel_.get(), cq, rpcmethod_ListModels_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelResponse, ::clarifai::api::ListModelsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModels_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::AsyncListModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListModelsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostModelsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostModelsSearchesRequest& request, ::clarifai::api::MultiModelResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostModelsSearches_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModelsSearchesRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModelsSearches_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostModelsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostModelsSearchesRequest* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelsSearches_, context, request, response, std::move(f));
+void V2::Stub::async::PostModelsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostModelsSearchesRequest* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModelsSearchesRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelsSearches_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostModelsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelsSearches_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostModelsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostModelsSearchesRequest* request, ::clarifai::api::MultiModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelsSearches_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostModelsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelsSearches_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::AsyncPostModelsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelResponse>::Create(channel_.get(), cq, rpcmethod_PostModelsSearches_, context, request, true);
+void V2::Stub::async::PostModelsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostModelsSearchesRequest* request, ::clarifai::api::MultiModelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelsSearches_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::PrepareAsyncPostModelsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelResponse>::Create(channel_.get(), cq, rpcmethod_PostModelsSearches_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelResponse, ::clarifai::api::PostModelsSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModelsSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::AsyncPostModelsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModelsSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostModels(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest& request, ::clarifai::api::SingleModelResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostModels_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModelsRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModels_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostModels(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModels_, context, request, response, std::move(f));
+void V2::Stub::async::PostModels(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModelsRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModels_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModels_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostModels(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModels_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModels_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::AsyncPostModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_PostModels_, context, request, true);
+void V2::Stub::async::PostModels(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest* request, ::clarifai::api::SingleModelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModels_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::PrepareAsyncPostModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_PostModels_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelResponse, ::clarifai::api::PostModelsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModels_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::AsyncPostModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModelsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchModels(::grpc::ClientContext* context, const ::clarifai::api::PatchModelsRequest& request, ::clarifai::api::MultiModelResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchModels_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchModelsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchModels_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchModels(::grpc::ClientContext* context, const ::clarifai::api::PatchModelsRequest* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModels_, context, request, response, std::move(f));
+void V2::Stub::async::PatchModels(::grpc::ClientContext* context, const ::clarifai::api::PatchModelsRequest* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchModelsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModels_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModels_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchModels(::grpc::ClientContext* context, const ::clarifai::api::PatchModelsRequest* request, ::clarifai::api::MultiModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModels_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModels_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::AsyncPatchModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelResponse>::Create(channel_.get(), cq, rpcmethod_PatchModels_, context, request, true);
+void V2::Stub::async::PatchModels(::grpc::ClientContext* context, const ::clarifai::api::PatchModelsRequest* request, ::clarifai::api::MultiModelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModels_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::PrepareAsyncPatchModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelResponse>::Create(channel_.get(), cq, rpcmethod_PatchModels_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelResponse, ::clarifai::api::PatchModelsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchModels_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::AsyncPatchModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchModelsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchModelIds(::grpc::ClientContext* context, const ::clarifai::api::PatchModelIdsRequest& request, ::clarifai::api::MultiModelResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchModelIdsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchModelIds_, context, request, response);
+}
+
+void V2::Stub::async::PatchModelIds(::grpc::ClientContext* context, const ::clarifai::api::PatchModelIdsRequest* request, ::clarifai::api::MultiModelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchModelIdsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelIds_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchModelIds(::grpc::ClientContext* context, const ::clarifai::api::PatchModelIdsRequest* request, ::clarifai::api::MultiModelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelIds_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::PrepareAsyncPatchModelIdsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelIdsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelResponse, ::clarifai::api::PatchModelIdsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchModelIds_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelResponse>* V2::Stub::AsyncPatchModelIdsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelIdsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchModelIdsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteModel(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteModel_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteModelRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteModel_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteModel(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteModel_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteModel(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteModelRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModel_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteModel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteModel_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteModel(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteModel_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteModel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteModel_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteModelRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteModel_, context, request, true);
+void V2::Stub::async::DeleteModel(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModel_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteModelRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteModel_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteModelRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteModel_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteModelRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteModelRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteModels(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteModels_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteModelsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteModels_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteModels(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteModels_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteModels(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteModelsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModels_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteModels_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteModels(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteModels_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteModels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteModels_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteModels_, context, request, true);
+void V2::Stub::async::DeleteModels(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModels_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteModels_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteModelsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteModels_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteModelsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteModelsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchModelCheckConsents(::grpc::ClientContext* context, const ::clarifai::api::PatchModelCheckConsentsRequest& request, ::clarifai::api::MultiModelCheckConsentResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchModelCheckConsentsRequest, ::clarifai::api::MultiModelCheckConsentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchModelCheckConsents_, context, request, response);
+}
+
+void V2::Stub::async::PatchModelCheckConsents(::grpc::ClientContext* context, const ::clarifai::api::PatchModelCheckConsentsRequest* request, ::clarifai::api::MultiModelCheckConsentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchModelCheckConsentsRequest, ::clarifai::api::MultiModelCheckConsentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelCheckConsents_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchModelCheckConsents(::grpc::ClientContext* context, const ::clarifai::api::PatchModelCheckConsentsRequest* request, ::clarifai::api::MultiModelCheckConsentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelCheckConsents_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelCheckConsentResponse>* V2::Stub::PrepareAsyncPatchModelCheckConsentsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelCheckConsentsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelCheckConsentResponse, ::clarifai::api::PatchModelCheckConsentsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchModelCheckConsents_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelCheckConsentResponse>* V2::Stub::AsyncPatchModelCheckConsentsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelCheckConsentsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchModelCheckConsentsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchModelToolkits(::grpc::ClientContext* context, const ::clarifai::api::PatchModelToolkitsRequest& request, ::clarifai::api::MultiModelToolkitResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchModelToolkits_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchModelToolkitsRequest, ::clarifai::api::MultiModelToolkitResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchModelToolkits_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchModelToolkits(::grpc::ClientContext* context, const ::clarifai::api::PatchModelToolkitsRequest* request, ::clarifai::api::MultiModelToolkitResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelToolkits_, context, request, response, std::move(f));
+void V2::Stub::async::PatchModelToolkits(::grpc::ClientContext* context, const ::clarifai::api::PatchModelToolkitsRequest* request, ::clarifai::api::MultiModelToolkitResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchModelToolkitsRequest, ::clarifai::api::MultiModelToolkitResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelToolkits_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchModelToolkits(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelToolkitResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelToolkits_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchModelToolkits(::grpc::ClientContext* context, const ::clarifai::api::PatchModelToolkitsRequest* request, ::clarifai::api::MultiModelToolkitResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelToolkits_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchModelToolkits(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelToolkitResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelToolkits_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelToolkitResponse>* V2::Stub::AsyncPatchModelToolkitsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelToolkitsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelToolkitResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelToolkits_, context, request, true);
+void V2::Stub::async::PatchModelToolkits(::grpc::ClientContext* context, const ::clarifai::api::PatchModelToolkitsRequest* request, ::clarifai::api::MultiModelToolkitResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelToolkits_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelToolkitResponse>* V2::Stub::PrepareAsyncPatchModelToolkitsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelToolkitsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelToolkitResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelToolkits_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelToolkitResponse, ::clarifai::api::PatchModelToolkitsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchModelToolkits_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelToolkitResponse>* V2::Stub::AsyncPatchModelToolkitsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelToolkitsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchModelToolkitsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchModelUseCases(::grpc::ClientContext* context, const ::clarifai::api::PatchModelUseCasesRequest& request, ::clarifai::api::MultiModelUseCaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchModelUseCases_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchModelUseCasesRequest, ::clarifai::api::MultiModelUseCaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchModelUseCases_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchModelUseCases(::grpc::ClientContext* context, const ::clarifai::api::PatchModelUseCasesRequest* request, ::clarifai::api::MultiModelUseCaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelUseCases_, context, request, response, std::move(f));
+void V2::Stub::async::PatchModelUseCases(::grpc::ClientContext* context, const ::clarifai::api::PatchModelUseCasesRequest* request, ::clarifai::api::MultiModelUseCaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchModelUseCasesRequest, ::clarifai::api::MultiModelUseCaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelUseCases_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchModelUseCases(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelUseCaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelUseCases_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchModelUseCases(::grpc::ClientContext* context, const ::clarifai::api::PatchModelUseCasesRequest* request, ::clarifai::api::MultiModelUseCaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelUseCases_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchModelUseCases(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelUseCaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelUseCases_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelUseCaseResponse>* V2::Stub::AsyncPatchModelUseCasesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelUseCasesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelUseCaseResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelUseCases_, context, request, true);
+void V2::Stub::async::PatchModelUseCases(::grpc::ClientContext* context, const ::clarifai::api::PatchModelUseCasesRequest* request, ::clarifai::api::MultiModelUseCaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelUseCases_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelUseCaseResponse>* V2::Stub::PrepareAsyncPatchModelUseCasesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelUseCasesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelUseCaseResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelUseCases_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelUseCaseResponse, ::clarifai::api::PatchModelUseCasesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchModelUseCases_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelUseCaseResponse>* V2::Stub::AsyncPatchModelUseCasesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelUseCasesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchModelUseCasesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchModelLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchModelLanguagesRequest& request, ::clarifai::api::MultiModelLanguageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchModelLanguages_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchModelLanguagesRequest, ::clarifai::api::MultiModelLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchModelLanguages_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchModelLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchModelLanguagesRequest* request, ::clarifai::api::MultiModelLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelLanguages_, context, request, response, std::move(f));
+void V2::Stub::async::PatchModelLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchModelLanguagesRequest* request, ::clarifai::api::MultiModelLanguageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchModelLanguagesRequest, ::clarifai::api::MultiModelLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelLanguages_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchModelLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelLanguageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelLanguages_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchModelLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchModelLanguagesRequest* request, ::clarifai::api::MultiModelLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelLanguages_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchModelLanguages(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelLanguageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelLanguages_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelLanguageResponse>* V2::Stub::AsyncPatchModelLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelLanguageResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelLanguages_, context, request, true);
+void V2::Stub::async::PatchModelLanguages(::grpc::ClientContext* context, const ::clarifai::api::PatchModelLanguagesRequest* request, ::clarifai::api::MultiModelLanguageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelLanguages_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelLanguageResponse>* V2::Stub::PrepareAsyncPatchModelLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelLanguageResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelLanguages_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelLanguageResponse, ::clarifai::api::PatchModelLanguagesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchModelLanguages_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelLanguageResponse>* V2::Stub::AsyncPatchModelLanguagesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelLanguagesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchModelLanguagesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListModelInputs(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest& request, ::clarifai::api::MultiInputResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListModelInputs_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListModelInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModelInputs_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListModelInputs(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelInputs_, context, request, response, std::move(f));
+void V2::Stub::async::ListModelInputs(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListModelInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelInputs_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListModelInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelInputs_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListModelInputs(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelInputs_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListModelInputs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiInputResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelInputs_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncListModelInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_ListModelInputs_, context, request, true);
+void V2::Stub::async::ListModelInputs(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest* request, ::clarifai::api::MultiInputResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelInputs_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::PrepareAsyncListModelInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiInputResponse>::Create(channel_.get(), cq, rpcmethod_ListModelInputs_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiInputResponse, ::clarifai::api::ListModelInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModelInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInputResponse>* V2::Stub::AsyncListModelInputsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListModelInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetModelVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest& request, ::clarifai::api::SingleModelVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetModelVersion_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetModelVersionRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModelVersion_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetModelVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelVersion_, context, request, response, std::move(f));
+void V2::Stub::async::GetModelVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetModelVersionRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelVersion_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetModelVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelVersion_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetModelVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelVersion_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetModelVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelVersion_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::AsyncGetModelVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_GetModelVersion_, context, request, true);
+void V2::Stub::async::GetModelVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelVersion_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::PrepareAsyncGetModelVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_GetModelVersion_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelVersionResponse, ::clarifai::api::GetModelVersionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModelVersion_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::AsyncGetModelVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetModelVersionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListModelVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest& request, ::clarifai::api::MultiModelVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListModelVersions_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModelVersions_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListModelVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelVersions_, context, request, response, std::move(f));
+void V2::Stub::async::ListModelVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelVersions_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelVersions_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListModelVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelVersions_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelVersions_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionResponse>* V2::Stub::AsyncListModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_ListModelVersions_, context, request, true);
+void V2::Stub::async::ListModelVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelVersions_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionResponse>* V2::Stub::PrepareAsyncListModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_ListModelVersions_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelVersionResponse, ::clarifai::api::ListModelVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModelVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionResponse>* V2::Stub::AsyncListModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListModelVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostWorkflowVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsUnPublishRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostWorkflowVersionsUnPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostWorkflowVersionsUnPublish_, context, request, response);
+}
+
+void V2::Stub::async::PostWorkflowVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostWorkflowVersionsUnPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowVersionsUnPublish_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostWorkflowVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowVersionsUnPublish_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncPostWorkflowVersionsUnPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsUnPublishRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::PostWorkflowVersionsUnPublishRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostWorkflowVersionsUnPublish_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncPostWorkflowVersionsUnPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsUnPublishRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostWorkflowVersionsUnPublishRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostWorkflowVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsPublishRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostWorkflowVersionsPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostWorkflowVersionsPublish_, context, request, response);
+}
+
+void V2::Stub::async::PostWorkflowVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostWorkflowVersionsPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowVersionsPublish_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostWorkflowVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowVersionsPublish_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncPostWorkflowVersionsPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsPublishRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::PostWorkflowVersionsPublishRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostWorkflowVersionsPublish_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncPostWorkflowVersionsPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowVersionsPublishRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostWorkflowVersionsPublishRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostModelVersionsPublish_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModelVersionsPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModelVersionsPublish_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsPublish_, context, request, response, std::move(f));
+void V2::Stub::async::PostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModelVersionsPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsPublish_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostModelVersionsPublish(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsPublish_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsPublish_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostModelVersionsPublish(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsPublish_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncPostModelVersionsPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersionsPublish_, context, request, true);
+void V2::Stub::async::PostModelVersionsPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsPublish_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncPostModelVersionsPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersionsPublish_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::PostModelVersionsPublishRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModelVersionsPublish_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncPostModelVersionsPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsPublishRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModelVersionsPublishRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostModelVersionsUnPublish_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModelVersionsUnPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModelVersionsUnPublish_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsUnPublish_, context, request, response, std::move(f));
+void V2::Stub::async::PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModelVersionsUnPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsUnPublish_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsUnPublish_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsUnPublish_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsUnPublish_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncPostModelVersionsUnPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersionsUnPublish_, context, request, true);
+void V2::Stub::async::PostModelVersionsUnPublish(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionsUnPublish_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncPostModelVersionsUnPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersionsUnPublish_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::PostModelVersionsUnPublishRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModelVersionsUnPublish_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncPostModelVersionsUnPublishRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsUnPublishRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModelVersionsUnPublishRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest& request, ::clarifai::api::SingleModelResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostModelVersions_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModelVersionsRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModelVersions_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelVersions_, context, request, response, std::move(f));
+void V2::Stub::async::PostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModelVersionsRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelVersions_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelVersions_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelVersions_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelVersions_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::AsyncPostModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersions_, context, request, true);
+void V2::Stub::async::PostModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest* request, ::clarifai::api::SingleModelResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelVersions_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::PrepareAsyncPostModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersions_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelResponse, ::clarifai::api::PostModelVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModelVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelResponse>* V2::Stub::AsyncPostModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModelVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::clarifai::api::MultiModelVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchModelVersions_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchModelVersions_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, std::move(f));
+void V2::Stub::async::PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchModelVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionResponse>* V2::Stub::AsyncPatchModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelVersions_, context, request, true);
+void V2::Stub::async::PatchModelVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModelVersions_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionResponse>* V2::Stub::PrepareAsyncPatchModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_PatchModelVersions_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelVersionResponse, ::clarifai::api::PatchModelVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchModelVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionResponse>* V2::Stub::AsyncPatchModelVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModelVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchModelVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteModelVersion(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteModelVersion_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteModelVersion_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteModelVersion(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteModelVersion_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteModelVersion(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModelVersion_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteModelVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteModelVersion_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteModelVersion(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteModelVersion_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteModelVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteModelVersion_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteModelVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteModelVersion_, context, request, true);
+void V2::Stub::async::DeleteModelVersion(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModelVersion_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteModelVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteModelVersion_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteModelVersionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteModelVersion_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteModelVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModelVersionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteModelVersionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionMetricsRequest& request, ::clarifai::api::SingleModelVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetModelVersionMetrics_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModelVersionMetrics_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionMetrics_, context, request, response, std::move(f));
+void V2::Stub::async::GetModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionMetrics_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetModelVersionMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionMetrics_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionMetrics_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetModelVersionMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionMetrics_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::AsyncGetModelVersionMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_GetModelVersionMetrics_, context, request, true);
+void V2::Stub::async::GetModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionMetrics_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::PrepareAsyncGetModelVersionMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_GetModelVersionMetrics_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelVersionResponse, ::clarifai::api::GetModelVersionMetricsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModelVersionMetrics_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::AsyncGetModelVersionMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionMetricsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetModelVersionMetricsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest& request, ::clarifai::api::SingleModelVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostModelVersionMetrics_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModelVersionMetrics_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionMetrics_, context, request, response, std::move(f));
+void V2::Stub::async::PostModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionMetrics_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostModelVersionMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionMetrics_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionMetrics_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostModelVersionMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionMetrics_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::AsyncPostModelVersionMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersionMetrics_, context, request, true);
+void V2::Stub::async::PostModelVersionMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest* request, ::clarifai::api::SingleModelVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModelVersionMetrics_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::PrepareAsyncPostModelVersionMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelVersionResponse>::Create(channel_.get(), cq, rpcmethod_PostModelVersionMetrics_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelVersionResponse, ::clarifai::api::PostModelVersionMetricsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModelVersionMetrics_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionResponse>* V2::Stub::AsyncPostModelVersionMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModelVersionMetricsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModelVersionMetricsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest& request, ::clarifai::api::MultiModelReferenceResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListModelReferences_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListModelReferencesRequest, ::clarifai::api::MultiModelReferenceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModelReferences_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest* request, ::clarifai::api::MultiModelReferenceResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelReferences_, context, request, response, std::move(f));
+void V2::Stub::async::ListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest* request, ::clarifai::api::MultiModelReferenceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListModelReferencesRequest, ::clarifai::api::MultiModelReferenceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelReferences_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListModelReferences(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelReferenceResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelReferences_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest* request, ::clarifai::api::MultiModelReferenceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelReferences_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListModelReferences(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelReferenceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelReferences_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelReferenceResponse>* V2::Stub::AsyncListModelReferencesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelReferenceResponse>::Create(channel_.get(), cq, rpcmethod_ListModelReferences_, context, request, true);
+void V2::Stub::async::ListModelReferences(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest* request, ::clarifai::api::MultiModelReferenceResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelReferences_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelReferenceResponse>* V2::Stub::PrepareAsyncListModelReferencesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelReferenceResponse>::Create(channel_.get(), cq, rpcmethod_ListModelReferences_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelReferenceResponse, ::clarifai::api::ListModelReferencesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModelReferences_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelReferenceResponse>* V2::Stub::AsyncListModelReferencesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelReferencesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListModelReferencesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest& request, ::clarifai::api::SingleModelVersionInputExampleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetModelVersionInputExample_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetModelVersionInputExampleRequest, ::clarifai::api::SingleModelVersionInputExampleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModelVersionInputExample_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionInputExample_, context, request, response, std::move(f));
+void V2::Stub::async::GetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetModelVersionInputExampleRequest, ::clarifai::api::SingleModelVersionInputExampleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionInputExample_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetModelVersionInputExample(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionInputExample_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionInputExample_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetModelVersionInputExample(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionInputExample_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionInputExampleResponse>* V2::Stub::AsyncGetModelVersionInputExampleRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelVersionInputExampleResponse>::Create(channel_.get(), cq, rpcmethod_GetModelVersionInputExample_, context, request, true);
+void V2::Stub::async::GetModelVersionInputExample(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest* request, ::clarifai::api::SingleModelVersionInputExampleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelVersionInputExample_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionInputExampleResponse>* V2::Stub::PrepareAsyncGetModelVersionInputExampleRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleModelVersionInputExampleResponse>::Create(channel_.get(), cq, rpcmethod_GetModelVersionInputExample_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModelVersionInputExampleResponse, ::clarifai::api::GetModelVersionInputExampleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModelVersionInputExample_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModelVersionInputExampleResponse>* V2::Stub::AsyncGetModelVersionInputExampleRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModelVersionInputExampleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetModelVersionInputExampleRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListModelVersionInputExamples(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest& request, ::clarifai::api::MultiModelVersionInputExampleResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListModelVersionInputExamples_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListModelVersionInputExamplesRequest, ::clarifai::api::MultiModelVersionInputExampleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModelVersionInputExamples_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListModelVersionInputExamples(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelVersionInputExamples_, context, request, response, std::move(f));
+void V2::Stub::async::ListModelVersionInputExamples(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListModelVersionInputExamplesRequest, ::clarifai::api::MultiModelVersionInputExampleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelVersionInputExamples_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListModelVersionInputExamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListModelVersionInputExamples_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListModelVersionInputExamples(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelVersionInputExamples_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListModelVersionInputExamples(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListModelVersionInputExamples_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionInputExampleResponse>* V2::Stub::AsyncListModelVersionInputExamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelVersionInputExampleResponse>::Create(channel_.get(), cq, rpcmethod_ListModelVersionInputExamples_, context, request, true);
+void V2::Stub::async::ListModelVersionInputExamples(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest* request, ::clarifai::api::MultiModelVersionInputExampleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModelVersionInputExamples_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionInputExampleResponse>* V2::Stub::PrepareAsyncListModelVersionInputExamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiModelVersionInputExampleResponse>::Create(channel_.get(), cq, rpcmethod_ListModelVersionInputExamples_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModelVersionInputExampleResponse, ::clarifai::api::ListModelVersionInputExamplesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModelVersionInputExamples_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModelVersionInputExampleResponse>* V2::Stub::AsyncListModelVersionInputExamplesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModelVersionInputExamplesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListModelVersionInputExamplesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetWorkflow(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowRequest& request, ::clarifai::api::SingleWorkflowResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetWorkflow_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetWorkflow_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetWorkflow(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowRequest* request, ::clarifai::api::SingleWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetWorkflow_, context, request, response, std::move(f));
+void V2::Stub::async::GetWorkflow(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowRequest* request, ::clarifai::api::SingleWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWorkflow_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetWorkflow(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetWorkflow_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetWorkflow(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowRequest* request, ::clarifai::api::SingleWorkflowResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetWorkflow_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetWorkflow(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleWorkflowResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetWorkflow_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleWorkflowResponse>* V2::Stub::AsyncGetWorkflowRaw(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleWorkflowResponse>::Create(channel_.get(), cq, rpcmethod_GetWorkflow_, context, request, true);
+void V2::Stub::async::GetWorkflow(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowRequest* request, ::clarifai::api::SingleWorkflowResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWorkflow_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleWorkflowResponse>* V2::Stub::PrepareAsyncGetWorkflowRaw(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleWorkflowResponse>::Create(channel_.get(), cq, rpcmethod_GetWorkflow_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleWorkflowResponse, ::clarifai::api::GetWorkflowRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetWorkflow_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleWorkflowResponse>* V2::Stub::AsyncGetWorkflowRaw(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetWorkflowRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListWorkflows(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowsRequest& request, ::clarifai::api::MultiWorkflowResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListWorkflows_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListWorkflows_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListWorkflows(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListWorkflows_, context, request, response, std::move(f));
+void V2::Stub::async::ListWorkflows(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListWorkflows_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListWorkflows(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListWorkflows_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListWorkflows(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListWorkflows_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListWorkflows(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListWorkflows_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::AsyncListWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowResponse>::Create(channel_.get(), cq, rpcmethod_ListWorkflows_, context, request, true);
+void V2::Stub::async::ListWorkflows(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListWorkflows_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::PrepareAsyncListWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowResponse>::Create(channel_.get(), cq, rpcmethod_ListWorkflows_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiWorkflowResponse, ::clarifai::api::ListWorkflowsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListWorkflows_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::AsyncListWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListWorkflowsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowsRequest& request, ::clarifai::api::MultiWorkflowResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostWorkflows_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostWorkflows_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostWorkflows_, context, request, response, std::move(f));
+void V2::Stub::async::PostWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflows_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostWorkflows(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostWorkflows_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostWorkflows_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostWorkflows(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostWorkflows_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::AsyncPostWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowResponse>::Create(channel_.get(), cq, rpcmethod_PostWorkflows_, context, request, true);
+void V2::Stub::async::PostWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflows_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::PrepareAsyncPostWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowResponse>::Create(channel_.get(), cq, rpcmethod_PostWorkflows_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiWorkflowResponse, ::clarifai::api::PostWorkflowsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostWorkflows_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::AsyncPostWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostWorkflowsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowsRequest& request, ::clarifai::api::MultiWorkflowResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchWorkflows_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchWorkflows_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflows_, context, request, response, std::move(f));
+void V2::Stub::async::PatchWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflows_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchWorkflows(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflows_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflows_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchWorkflows(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflows_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::AsyncPatchWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowResponse>::Create(channel_.get(), cq, rpcmethod_PatchWorkflows_, context, request, true);
+void V2::Stub::async::PatchWorkflows(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowsRequest* request, ::clarifai::api::MultiWorkflowResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflows_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::PrepareAsyncPatchWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowResponse>::Create(channel_.get(), cq, rpcmethod_PatchWorkflows_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiWorkflowResponse, ::clarifai::api::PatchWorkflowsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchWorkflows_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowResponse>* V2::Stub::AsyncPatchWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchWorkflowsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteWorkflow(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteWorkflow_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteWorkflow_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteWorkflow(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflow_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteWorkflow(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflow_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteWorkflow(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflow_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteWorkflow(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflow_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteWorkflow(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflow_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteWorkflowRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteWorkflow_, context, request, true);
+void V2::Stub::async::DeleteWorkflow(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflow_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteWorkflowRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteWorkflow_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteWorkflowRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteWorkflow_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteWorkflowRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteWorkflowRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteWorkflows(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteWorkflows_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteWorkflows_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteWorkflows(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflows_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteWorkflows(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflows_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteWorkflows(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflows_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteWorkflows(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflows_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteWorkflows(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflows_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteWorkflows_, context, request, true);
+void V2::Stub::async::DeleteWorkflows(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflows_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteWorkflows_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteWorkflowsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteWorkflows_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteWorkflowsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteWorkflowsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostWorkflowResults(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsRequest& request, ::clarifai::api::PostWorkflowResultsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostWorkflowResults_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostWorkflowResults_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostWorkflowResults(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsRequest* request, ::clarifai::api::PostWorkflowResultsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResults_, context, request, response, std::move(f));
+void V2::Stub::async::PostWorkflowResults(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsRequest* request, ::clarifai::api::PostWorkflowResultsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResults_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostWorkflowResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PostWorkflowResultsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResults_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostWorkflowResults(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsRequest* request, ::clarifai::api::PostWorkflowResultsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResults_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostWorkflowResults(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PostWorkflowResultsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResults_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::PostWorkflowResultsResponse>* V2::Stub::AsyncPostWorkflowResultsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::PostWorkflowResultsResponse>::Create(channel_.get(), cq, rpcmethod_PostWorkflowResults_, context, request, true);
+void V2::Stub::async::PostWorkflowResults(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsRequest* request, ::clarifai::api::PostWorkflowResultsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResults_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::PostWorkflowResultsResponse>* V2::Stub::PrepareAsyncPostWorkflowResultsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::PostWorkflowResultsResponse>::Create(channel_.get(), cq, rpcmethod_PostWorkflowResults_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::PostWorkflowResultsResponse, ::clarifai::api::PostWorkflowResultsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostWorkflowResults_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::PostWorkflowResultsResponse>* V2::Stub::AsyncPostWorkflowResultsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostWorkflowResultsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest& request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostWorkflowResultsSimilarity_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostWorkflowResultsSimilarity_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResultsSimilarity_, context, request, response, std::move(f));
+void V2::Stub::async::PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResultsSimilarity_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResultsSimilarity_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResultsSimilarity_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResultsSimilarity_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::PostWorkflowResultsSimilarityResponse>* V2::Stub::AsyncPostWorkflowResultsSimilarityRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::PostWorkflowResultsSimilarityResponse>::Create(channel_.get(), cq, rpcmethod_PostWorkflowResultsSimilarity_, context, request, true);
+void V2::Stub::async::PostWorkflowResultsSimilarity(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest* request, ::clarifai::api::PostWorkflowResultsSimilarityResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostWorkflowResultsSimilarity_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::PostWorkflowResultsSimilarityResponse>* V2::Stub::PrepareAsyncPostWorkflowResultsSimilarityRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::PostWorkflowResultsSimilarityResponse>::Create(channel_.get(), cq, rpcmethod_PostWorkflowResultsSimilarity_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::PostWorkflowResultsSimilarityResponse, ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostWorkflowResultsSimilarity_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::PostWorkflowResultsSimilarityResponse>* V2::Stub::AsyncPostWorkflowResultsSimilarityRaw(::grpc::ClientContext* context, const ::clarifai::api::PostWorkflowResultsSimilarityRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostWorkflowResultsSimilarityRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest& request, ::clarifai::api::MultiWorkflowVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListWorkflowVersions_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListWorkflowVersionsRequest, ::clarifai::api::MultiWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListWorkflowVersions_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListWorkflowVersions_, context, request, response, std::move(f));
+void V2::Stub::async::ListWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListWorkflowVersionsRequest, ::clarifai::api::MultiWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListWorkflowVersions_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListWorkflowVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListWorkflowVersions_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListWorkflowVersions_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListWorkflowVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListWorkflowVersions_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowVersionResponse>* V2::Stub::AsyncListWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowVersionResponse>::Create(channel_.get(), cq, rpcmethod_ListWorkflowVersions_, context, request, true);
+void V2::Stub::async::ListWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListWorkflowVersions_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowVersionResponse>* V2::Stub::PrepareAsyncListWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowVersionResponse>::Create(channel_.get(), cq, rpcmethod_ListWorkflowVersions_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiWorkflowVersionResponse, ::clarifai::api::ListWorkflowVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListWorkflowVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowVersionResponse>* V2::Stub::AsyncListWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListWorkflowVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetWorkflowVersion(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowVersionRequest& request, ::clarifai::api::SingleWorkflowVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetWorkflowVersion_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetWorkflowVersionRequest, ::clarifai::api::SingleWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetWorkflowVersion_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetWorkflowVersion(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowVersionRequest* request, ::clarifai::api::SingleWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetWorkflowVersion_, context, request, response, std::move(f));
+void V2::Stub::async::GetWorkflowVersion(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowVersionRequest* request, ::clarifai::api::SingleWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetWorkflowVersionRequest, ::clarifai::api::SingleWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWorkflowVersion_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetWorkflowVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetWorkflowVersion_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetWorkflowVersion(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowVersionRequest* request, ::clarifai::api::SingleWorkflowVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetWorkflowVersion_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetWorkflowVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleWorkflowVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetWorkflowVersion_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleWorkflowVersionResponse>* V2::Stub::AsyncGetWorkflowVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowVersionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleWorkflowVersionResponse>::Create(channel_.get(), cq, rpcmethod_GetWorkflowVersion_, context, request, true);
+void V2::Stub::async::GetWorkflowVersion(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowVersionRequest* request, ::clarifai::api::SingleWorkflowVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWorkflowVersion_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleWorkflowVersionResponse>* V2::Stub::PrepareAsyncGetWorkflowVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowVersionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleWorkflowVersionResponse>::Create(channel_.get(), cq, rpcmethod_GetWorkflowVersion_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleWorkflowVersionResponse, ::clarifai::api::GetWorkflowVersionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetWorkflowVersion_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleWorkflowVersionResponse>* V2::Stub::AsyncGetWorkflowVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetWorkflowVersionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetWorkflowVersionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteWorkflowVersions_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteWorkflowVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteWorkflowVersions_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflowVersions_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteWorkflowVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflowVersions_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteWorkflowVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflowVersions_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflowVersions_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteWorkflowVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflowVersions_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteWorkflowVersions_, context, request, true);
+void V2::Stub::async::DeleteWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteWorkflowVersions_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteWorkflowVersions_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteWorkflowVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteWorkflowVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteWorkflowVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest& request, ::clarifai::api::MultiWorkflowVersionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchWorkflowVersions_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchWorkflowVersionsRequest, ::clarifai::api::MultiWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchWorkflowVersions_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflowVersions_, context, request, response, std::move(f));
+void V2::Stub::async::PatchWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchWorkflowVersionsRequest, ::clarifai::api::MultiWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflowVersions_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchWorkflowVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowVersionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflowVersions_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflowVersions_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchWorkflowVersions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiWorkflowVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflowVersions_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowVersionResponse>* V2::Stub::AsyncPatchWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowVersionResponse>::Create(channel_.get(), cq, rpcmethod_PatchWorkflowVersions_, context, request, true);
+void V2::Stub::async::PatchWorkflowVersions(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest* request, ::clarifai::api::MultiWorkflowVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchWorkflowVersions_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowVersionResponse>* V2::Stub::PrepareAsyncPatchWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiWorkflowVersionResponse>::Create(channel_.get(), cq, rpcmethod_PatchWorkflowVersions_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiWorkflowVersionResponse, ::clarifai::api::PatchWorkflowVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchWorkflowVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiWorkflowVersionResponse>* V2::Stub::AsyncPatchWorkflowVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchWorkflowVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchWorkflowVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetKey(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest& request, ::clarifai::api::SingleKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetKey_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetKey_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetKey(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest* request, ::clarifai::api::SingleKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetKey_, context, request, response, std::move(f));
+void V2::Stub::async::GetKey(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest* request, ::clarifai::api::SingleKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetKey_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetKey_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetKey(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest* request, ::clarifai::api::SingleKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetKey_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetKey_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleKeyResponse>* V2::Stub::AsyncGetKeyRaw(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleKeyResponse>::Create(channel_.get(), cq, rpcmethod_GetKey_, context, request, true);
+void V2::Stub::async::GetKey(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest* request, ::clarifai::api::SingleKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetKey_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleKeyResponse>* V2::Stub::PrepareAsyncGetKeyRaw(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleKeyResponse>::Create(channel_.get(), cq, rpcmethod_GetKey_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleKeyResponse, ::clarifai::api::GetKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetKey_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleKeyResponse>* V2::Stub::AsyncGetKeyRaw(::grpc::ClientContext* context, const ::clarifai::api::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetKeyRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListKeys(::grpc::ClientContext* context, const ::clarifai::api::ListKeysRequest& request, ::clarifai::api::MultiKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListKeys_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListKeys_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListKeys(::grpc::ClientContext* context, const ::clarifai::api::ListKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, std::move(f));
+void V2::Stub::async::ListKeys(::grpc::ClientContext* context, const ::clarifai::api::ListKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListKeys(::grpc::ClientContext* context, const ::clarifai::api::ListKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::AsyncListKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKeyResponse>::Create(channel_.get(), cq, rpcmethod_ListKeys_, context, request, true);
+void V2::Stub::async::ListKeys(::grpc::ClientContext* context, const ::clarifai::api::ListKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::PrepareAsyncListKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKeyResponse>::Create(channel_.get(), cq, rpcmethod_ListKeys_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiKeyResponse, ::clarifai::api::ListKeysRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListKeys_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::AsyncListKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::ListKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListKeysRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListAppKeys(::grpc::ClientContext* context, const ::clarifai::api::ListAppKeysRequest& request, ::clarifai::api::MultiKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListAppKeys_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListAppKeys_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListAppKeys(::grpc::ClientContext* context, const ::clarifai::api::ListAppKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAppKeys_, context, request, response, std::move(f));
+void V2::Stub::async::ListAppKeys(::grpc::ClientContext* context, const ::clarifai::api::ListAppKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAppKeys_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListAppKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAppKeys_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListAppKeys(::grpc::ClientContext* context, const ::clarifai::api::ListAppKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAppKeys_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListAppKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAppKeys_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::AsyncListAppKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKeyResponse>::Create(channel_.get(), cq, rpcmethod_ListAppKeys_, context, request, true);
+void V2::Stub::async::ListAppKeys(::grpc::ClientContext* context, const ::clarifai::api::ListAppKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAppKeys_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::PrepareAsyncListAppKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKeyResponse>::Create(channel_.get(), cq, rpcmethod_ListAppKeys_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiKeyResponse, ::clarifai::api::ListAppKeysRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListAppKeys_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::AsyncListAppKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListAppKeysRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteKey(::grpc::ClientContext* context, const ::clarifai::api::DeleteKeyRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteKey_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteKey_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteKey(::grpc::ClientContext* context, const ::clarifai::api::DeleteKeyRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteKey(::grpc::ClientContext* context, const ::clarifai::api::DeleteKeyRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteKey(::grpc::ClientContext* context, const ::clarifai::api::DeleteKeyRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteKey(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteKey_, context, request, true);
+void V2::Stub::async::DeleteKey(::grpc::ClientContext* context, const ::clarifai::api::DeleteKeyRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteKey_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteKey_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteKeyRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostKeys(::grpc::ClientContext* context, const ::clarifai::api::PostKeysRequest& request, ::clarifai::api::MultiKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostKeys_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostKeys_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostKeys(::grpc::ClientContext* context, const ::clarifai::api::PostKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostKeys_, context, request, response, std::move(f));
+void V2::Stub::async::PostKeys(::grpc::ClientContext* context, const ::clarifai::api::PostKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostKeys_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostKeys_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostKeys(::grpc::ClientContext* context, const ::clarifai::api::PostKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostKeys_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostKeys_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::AsyncPostKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::PostKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKeyResponse>::Create(channel_.get(), cq, rpcmethod_PostKeys_, context, request, true);
+void V2::Stub::async::PostKeys(::grpc::ClientContext* context, const ::clarifai::api::PostKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostKeys_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::PrepareAsyncPostKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::PostKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKeyResponse>::Create(channel_.get(), cq, rpcmethod_PostKeys_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiKeyResponse, ::clarifai::api::PostKeysRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostKeys_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::AsyncPostKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::PostKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostKeysRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchKeys(::grpc::ClientContext* context, const ::clarifai::api::PatchKeysRequest& request, ::clarifai::api::MultiKeyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchKeys_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchKeys_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchKeys(::grpc::ClientContext* context, const ::clarifai::api::PatchKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchKeys_, context, request, response, std::move(f));
+void V2::Stub::async::PatchKeys(::grpc::ClientContext* context, const ::clarifai::api::PatchKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchKeys_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKeyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchKeys_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchKeys(::grpc::ClientContext* context, const ::clarifai::api::PatchKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchKeys_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchKeys(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchKeys_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::AsyncPatchKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKeyResponse>::Create(channel_.get(), cq, rpcmethod_PatchKeys_, context, request, true);
+void V2::Stub::async::PatchKeys(::grpc::ClientContext* context, const ::clarifai::api::PatchKeysRequest* request, ::clarifai::api::MultiKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchKeys_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::PrepareAsyncPatchKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchKeysRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiKeyResponse>::Create(channel_.get(), cq, rpcmethod_PatchKeys_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiKeyResponse, ::clarifai::api::PatchKeysRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchKeys_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiKeyResponse>* V2::Stub::AsyncPatchKeysRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchKeysRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::MyScopes(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRequest& request, ::clarifai::api::MultiScopeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MyScopes_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MyScopes_, context, request, response);
 }
 
-void V2::Stub::experimental_async::MyScopes(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRequest* request, ::clarifai::api::MultiScopeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MyScopes_, context, request, response, std::move(f));
+void V2::Stub::async::MyScopes(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRequest* request, ::clarifai::api::MultiScopeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MyScopes_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::MyScopes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MyScopes_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::MyScopes(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRequest* request, ::clarifai::api::MultiScopeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MyScopes_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::MyScopes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MyScopes_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeResponse>* V2::Stub::AsyncMyScopesRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiScopeResponse>::Create(channel_.get(), cq, rpcmethod_MyScopes_, context, request, true);
+void V2::Stub::async::MyScopes(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRequest* request, ::clarifai::api::MultiScopeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MyScopes_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeResponse>* V2::Stub::PrepareAsyncMyScopesRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiScopeResponse>::Create(channel_.get(), cq, rpcmethod_MyScopes_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiScopeResponse, ::clarifai::api::MyScopesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MyScopes_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeResponse>* V2::Stub::AsyncMyScopesRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMyScopesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::MyScopesUser(::grpc::ClientContext* context, const ::clarifai::api::MyScopesUserRequest& request, ::clarifai::api::MultiScopeUserResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MyScopesUser_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::MyScopesUserRequest, ::clarifai::api::MultiScopeUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MyScopesUser_, context, request, response);
 }
 
-void V2::Stub::experimental_async::MyScopesUser(::grpc::ClientContext* context, const ::clarifai::api::MyScopesUserRequest* request, ::clarifai::api::MultiScopeUserResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MyScopesUser_, context, request, response, std::move(f));
+void V2::Stub::async::MyScopesUser(::grpc::ClientContext* context, const ::clarifai::api::MyScopesUserRequest* request, ::clarifai::api::MultiScopeUserResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::MyScopesUserRequest, ::clarifai::api::MultiScopeUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MyScopesUser_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::MyScopesUser(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeUserResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MyScopesUser_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::MyScopesUser(::grpc::ClientContext* context, const ::clarifai::api::MyScopesUserRequest* request, ::clarifai::api::MultiScopeUserResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MyScopesUser_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::MyScopesUser(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeUserResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MyScopesUser_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeUserResponse>* V2::Stub::AsyncMyScopesUserRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesUserRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiScopeUserResponse>::Create(channel_.get(), cq, rpcmethod_MyScopesUser_, context, request, true);
+void V2::Stub::async::MyScopesUser(::grpc::ClientContext* context, const ::clarifai::api::MyScopesUserRequest* request, ::clarifai::api::MultiScopeUserResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MyScopesUser_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeUserResponse>* V2::Stub::PrepareAsyncMyScopesUserRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesUserRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiScopeUserResponse>::Create(channel_.get(), cq, rpcmethod_MyScopesUser_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiScopeUserResponse, ::clarifai::api::MyScopesUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MyScopesUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeUserResponse>* V2::Stub::AsyncMyScopesUserRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMyScopesUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::MyScopesRoot(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRootRequest& request, ::clarifai::api::MultiScopeRootResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_MyScopesRoot_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::MyScopesRootRequest, ::clarifai::api::MultiScopeRootResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MyScopesRoot_, context, request, response);
 }
 
-void V2::Stub::experimental_async::MyScopesRoot(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRootRequest* request, ::clarifai::api::MultiScopeRootResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MyScopesRoot_, context, request, response, std::move(f));
+void V2::Stub::async::MyScopesRoot(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRootRequest* request, ::clarifai::api::MultiScopeRootResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::MyScopesRootRequest, ::clarifai::api::MultiScopeRootResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MyScopesRoot_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::MyScopesRoot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeRootResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_MyScopesRoot_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::MyScopesRoot(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRootRequest* request, ::clarifai::api::MultiScopeRootResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MyScopesRoot_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::MyScopesRoot(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeRootResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_MyScopesRoot_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeRootResponse>* V2::Stub::AsyncMyScopesRootRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRootRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiScopeRootResponse>::Create(channel_.get(), cq, rpcmethod_MyScopesRoot_, context, request, true);
+void V2::Stub::async::MyScopesRoot(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRootRequest* request, ::clarifai::api::MultiScopeRootResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MyScopesRoot_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeRootResponse>* V2::Stub::PrepareAsyncMyScopesRootRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRootRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiScopeRootResponse>::Create(channel_.get(), cq, rpcmethod_MyScopesRoot_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiScopeRootResponse, ::clarifai::api::MyScopesRootRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MyScopesRoot_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeRootResponse>* V2::Stub::AsyncMyScopesRootRaw(::grpc::ClientContext* context, const ::clarifai::api::MyScopesRootRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMyScopesRootRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListScopes(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest& request, ::clarifai::api::MultiScopeDepsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListScopes_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListScopes_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListScopes(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest* request, ::clarifai::api::MultiScopeDepsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListScopes_, context, request, response, std::move(f));
+void V2::Stub::async::ListScopes(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest* request, ::clarifai::api::MultiScopeDepsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListScopes_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListScopes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeDepsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListScopes_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListScopes(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest* request, ::clarifai::api::MultiScopeDepsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListScopes_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListScopes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiScopeDepsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListScopes_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeDepsResponse>* V2::Stub::AsyncListScopesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiScopeDepsResponse>::Create(channel_.get(), cq, rpcmethod_ListScopes_, context, request, true);
+void V2::Stub::async::ListScopes(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest* request, ::clarifai::api::MultiScopeDepsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListScopes_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeDepsResponse>* V2::Stub::PrepareAsyncListScopesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiScopeDepsResponse>::Create(channel_.get(), cq, rpcmethod_ListScopes_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiScopeDepsResponse, ::clarifai::api::ListScopesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListScopes_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiScopeDepsResponse>* V2::Stub::AsyncListScopesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListScopesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListScopesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetApp(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest& request, ::clarifai::api::SingleAppResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetApp_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetApp_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetApp(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest* request, ::clarifai::api::SingleAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetApp_, context, request, response, std::move(f));
+void V2::Stub::async::GetApp(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest* request, ::clarifai::api::SingleAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetApp_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetApp_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetApp(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest* request, ::clarifai::api::SingleAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetApp_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetApp_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppResponse>* V2::Stub::AsyncGetAppRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleAppResponse>::Create(channel_.get(), cq, rpcmethod_GetApp_, context, request, true);
+void V2::Stub::async::GetApp(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest* request, ::clarifai::api::SingleAppResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetApp_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppResponse>* V2::Stub::PrepareAsyncGetAppRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleAppResponse>::Create(channel_.get(), cq, rpcmethod_GetApp_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleAppResponse, ::clarifai::api::GetAppRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetApp_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppResponse>* V2::Stub::AsyncGetAppRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAppRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAppRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListApps(::grpc::ClientContext* context, const ::clarifai::api::ListAppsRequest& request, ::clarifai::api::MultiAppResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListApps_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListApps_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListApps(::grpc::ClientContext* context, const ::clarifai::api::ListAppsRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListApps_, context, request, response, std::move(f));
+void V2::Stub::async::ListApps(::grpc::ClientContext* context, const ::clarifai::api::ListAppsRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListApps_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListApps(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListApps_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListApps(::grpc::ClientContext* context, const ::clarifai::api::ListAppsRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListApps_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListApps(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListApps_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncListAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppResponse>::Create(channel_.get(), cq, rpcmethod_ListApps_, context, request, true);
+void V2::Stub::async::ListApps(::grpc::ClientContext* context, const ::clarifai::api::ListAppsRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListApps_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::PrepareAsyncListAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppResponse>::Create(channel_.get(), cq, rpcmethod_ListApps_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAppResponse, ::clarifai::api::ListAppsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListApps_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncListAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListAppsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteApp(::grpc::ClientContext* context, const ::clarifai::api::DeleteAppRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteApp_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteApp_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteApp(::grpc::ClientContext* context, const ::clarifai::api::DeleteAppRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteApp_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteApp(::grpc::ClientContext* context, const ::clarifai::api::DeleteAppRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteApp_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteApp_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteApp(::grpc::ClientContext* context, const ::clarifai::api::DeleteAppRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteApp_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteApp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteApp_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAppRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAppRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteApp_, context, request, true);
+void V2::Stub::async::DeleteApp(::grpc::ClientContext* context, const ::clarifai::api::DeleteAppRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteApp_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteAppRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAppRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteApp_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteAppRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteApp_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAppRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAppRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteAppRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostApps(::grpc::ClientContext* context, const ::clarifai::api::PostAppsRequest& request, ::clarifai::api::MultiAppResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostApps_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostApps_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostApps(::grpc::ClientContext* context, const ::clarifai::api::PostAppsRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostApps_, context, request, response, std::move(f));
+void V2::Stub::async::PostApps(::grpc::ClientContext* context, const ::clarifai::api::PostAppsRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostApps_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostApps(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostApps_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostApps(::grpc::ClientContext* context, const ::clarifai::api::PostAppsRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostApps_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostApps(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostApps_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncPostAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppResponse>::Create(channel_.get(), cq, rpcmethod_PostApps_, context, request, true);
+void V2::Stub::async::PostApps(::grpc::ClientContext* context, const ::clarifai::api::PostAppsRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostApps_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::PrepareAsyncPostAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppResponse>::Create(channel_.get(), cq, rpcmethod_PostApps_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAppResponse, ::clarifai::api::PostAppsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostApps_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncPostAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostAppsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchApps(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsRequest& request, ::clarifai::api::MultiAppResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchApps_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchApps_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchApps(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchApps_, context, request, response, std::move(f));
+void V2::Stub::async::PatchApps(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchApps_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchApps(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchApps_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchApps(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchApps_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchApps(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchApps_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncPatchAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppResponse>::Create(channel_.get(), cq, rpcmethod_PatchApps_, context, request, true);
+void V2::Stub::async::PatchApps(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchApps_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::PrepareAsyncPatchAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppResponse>::Create(channel_.get(), cq, rpcmethod_PatchApps_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAppResponse, ::clarifai::api::PatchAppsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchApps_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncPatchAppsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchAppsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchAppsIds(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsIdsRequest& request, ::clarifai::api::MultiAppResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchAppsIdsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchAppsIds_, context, request, response);
+}
+
+void V2::Stub::async::PatchAppsIds(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsIdsRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchAppsIdsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAppsIds_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchAppsIds(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsIdsRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAppsIds_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::PrepareAsyncPatchAppsIdsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsIdsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAppResponse, ::clarifai::api::PatchAppsIdsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchAppsIds_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncPatchAppsIdsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAppsIdsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchAppsIdsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchApp(::grpc::ClientContext* context, const ::clarifai::api::PatchAppRequest& request, ::clarifai::api::SingleAppResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchAppRequest, ::clarifai::api::SingleAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchApp_, context, request, response);
+}
+
+void V2::Stub::async::PatchApp(::grpc::ClientContext* context, const ::clarifai::api::PatchAppRequest* request, ::clarifai::api::SingleAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchAppRequest, ::clarifai::api::SingleAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchApp_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchApp(::grpc::ClientContext* context, const ::clarifai::api::PatchAppRequest* request, ::clarifai::api::SingleAppResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchApp_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppResponse>* V2::Stub::PrepareAsyncPatchAppRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAppRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleAppResponse, ::clarifai::api::PatchAppRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchApp_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppResponse>* V2::Stub::AsyncPatchAppRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAppRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchAppRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostAppsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest& request, ::clarifai::api::MultiAppResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostAppsSearches_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostAppsSearches_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostAppsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAppsSearches_, context, request, response, std::move(f));
+void V2::Stub::async::PostAppsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAppsSearches_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostAppsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAppsSearches_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostAppsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAppsSearches_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostAppsSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAppsSearches_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncPostAppsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppResponse>::Create(channel_.get(), cq, rpcmethod_PostAppsSearches_, context, request, true);
+void V2::Stub::async::PostAppsSearches(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest* request, ::clarifai::api::MultiAppResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAppsSearches_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::PrepareAsyncPostAppsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppResponse>::Create(channel_.get(), cq, rpcmethod_PostAppsSearches_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAppResponse, ::clarifai::api::PostAppsSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostAppsSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppResponse>* V2::Stub::AsyncPostAppsSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppsSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostAppsSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest& request, ::clarifai::api::SinglePasswordValidationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostValidatePassword_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostValidatePassword_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest* request, ::clarifai::api::SinglePasswordValidationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostValidatePassword_, context, request, response, std::move(f));
+void V2::Stub::async::PostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest* request, ::clarifai::api::SinglePasswordValidationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostValidatePassword_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostValidatePassword(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SinglePasswordValidationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostValidatePassword_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest* request, ::clarifai::api::SinglePasswordValidationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostValidatePassword_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostValidatePassword(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SinglePasswordValidationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostValidatePassword_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SinglePasswordValidationResponse>* V2::Stub::AsyncPostValidatePasswordRaw(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SinglePasswordValidationResponse>::Create(channel_.get(), cq, rpcmethod_PostValidatePassword_, context, request, true);
+void V2::Stub::async::PostValidatePassword(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest* request, ::clarifai::api::SinglePasswordValidationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostValidatePassword_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SinglePasswordValidationResponse>* V2::Stub::PrepareAsyncPostValidatePasswordRaw(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SinglePasswordValidationResponse>::Create(channel_.get(), cq, rpcmethod_PostValidatePassword_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SinglePasswordValidationResponse, ::clarifai::api::PostValidatePasswordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostValidatePassword_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SinglePasswordValidationResponse>* V2::Stub::AsyncPostValidatePasswordRaw(::grpc::ClientContext* context, const ::clarifai::api::PostValidatePasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostValidatePasswordRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetSearch(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest& request, ::clarifai::api::SingleSearchResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSearch_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSearch_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetSearch(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest* request, ::clarifai::api::SingleSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSearch_, context, request, response, std::move(f));
+void V2::Stub::async::GetSearch(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest* request, ::clarifai::api::SingleSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSearch_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetSearch(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSearch_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetSearch(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest* request, ::clarifai::api::SingleSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSearch_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetSearch(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSearch_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleSearchResponse>* V2::Stub::AsyncGetSearchRaw(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleSearchResponse>::Create(channel_.get(), cq, rpcmethod_GetSearch_, context, request, true);
+void V2::Stub::async::GetSearch(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest* request, ::clarifai::api::SingleSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSearch_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleSearchResponse>* V2::Stub::PrepareAsyncGetSearchRaw(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleSearchResponse>::Create(channel_.get(), cq, rpcmethod_GetSearch_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleSearchResponse, ::clarifai::api::GetSearchRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSearch_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleSearchResponse>* V2::Stub::AsyncGetSearchRaw(::grpc::ClientContext* context, const ::clarifai::api::GetSearchRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetSearchRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListSearches(::grpc::ClientContext* context, const ::clarifai::api::ListSearchesRequest& request, ::clarifai::api::MultiSearchResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListSearches_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListSearches_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListSearches(::grpc::ClientContext* context, const ::clarifai::api::ListSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListSearches_, context, request, response, std::move(f));
+void V2::Stub::async::ListSearches(::grpc::ClientContext* context, const ::clarifai::api::ListSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListSearches_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListSearches_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListSearches(::grpc::ClientContext* context, const ::clarifai::api::ListSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListSearches_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListSearches_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncListSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_ListSearches_, context, request, true);
+void V2::Stub::async::ListSearches(::grpc::ClientContext* context, const ::clarifai::api::ListSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListSearches_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::PrepareAsyncListSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_ListSearches_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiSearchResponse, ::clarifai::api::ListSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncListSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchSearchesRequest& request, ::clarifai::api::MultiSearchResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchSearches_, context, request, response);
+}
+
+void V2::Stub::async::PatchSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchSearches_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchSearches(::grpc::ClientContext* context, const ::clarifai::api::PatchSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchSearches_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::PrepareAsyncPatchSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiSearchResponse, ::clarifai::api::PatchSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPatchSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostSearches(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesRequest& request, ::clarifai::api::MultiSearchResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostSearches_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostSearches_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostSearches(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostSearches_, context, request, response, std::move(f));
+void V2::Stub::async::PostSearches(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostSearches_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostSearches_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostSearches(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostSearches_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostSearches(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostSearches_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPostSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_PostSearches_, context, request, true);
+void V2::Stub::async::PostSearches(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostSearches_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::PrepareAsyncPostSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_PostSearches_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiSearchResponse, ::clarifai::api::PostSearchesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostSearches_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPostSearchesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostSearchesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostSearchesByID(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesByIDRequest& request, ::clarifai::api::MultiSearchResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostSearchesByID_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostSearchesByID_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostSearchesByID(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesByIDRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostSearchesByID_, context, request, response, std::move(f));
+void V2::Stub::async::PostSearchesByID(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesByIDRequest* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostSearchesByID_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostSearchesByID(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostSearchesByID_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostSearchesByID(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesByIDRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostSearchesByID_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostSearchesByID(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostSearchesByID_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPostSearchesByIDRaw(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesByIDRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_PostSearchesByID_, context, request, true);
+void V2::Stub::async::PostSearchesByID(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesByIDRequest* request, ::clarifai::api::MultiSearchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostSearchesByID_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::PrepareAsyncPostSearchesByIDRaw(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesByIDRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiSearchResponse>::Create(channel_.get(), cq, rpcmethod_PostSearchesByID_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiSearchResponse, ::clarifai::api::PostSearchesByIDRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostSearchesByID_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiSearchResponse>* V2::Stub::AsyncPostSearchesByIDRaw(::grpc::ClientContext* context, const ::clarifai::api::PostSearchesByIDRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostSearchesByIDRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationSearchMetricsRequest& request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostAnnotationSearchMetrics_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostAnnotationSearchMetrics_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationSearchMetrics_, context, request, response, std::move(f));
+void V2::Stub::async::PostAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationSearchMetrics_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationSearchMetrics_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationSearchMetrics_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationSearchMetrics_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::AsyncPostAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationSearchMetricsResponse>::Create(channel_.get(), cq, rpcmethod_PostAnnotationSearchMetrics_, context, request, true);
+void V2::Stub::async::PostAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationSearchMetrics_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::PrepareAsyncPostAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationSearchMetricsResponse>::Create(channel_.get(), cq, rpcmethod_PostAnnotationSearchMetrics_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::clarifai::api::PostAnnotationSearchMetricsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostAnnotationSearchMetrics_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::AsyncPostAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostAnnotationSearchMetricsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest& request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetAnnotationSearchMetrics_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAnnotationSearchMetrics_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAnnotationSearchMetrics_, context, request, response, std::move(f));
+void V2::Stub::async::GetAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAnnotationSearchMetrics_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAnnotationSearchMetrics_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAnnotationSearchMetrics_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAnnotationSearchMetrics_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::AsyncGetAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationSearchMetricsResponse>::Create(channel_.get(), cq, rpcmethod_GetAnnotationSearchMetrics_, context, request, true);
+void V2::Stub::async::GetAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAnnotationSearchMetrics_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::PrepareAsyncGetAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationSearchMetricsResponse>::Create(channel_.get(), cq, rpcmethod_GetAnnotationSearchMetrics_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::clarifai::api::GetAnnotationSearchMetricsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAnnotationSearchMetrics_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::AsyncGetAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAnnotationSearchMetricsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest& request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListAnnotationSearchMetrics_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListAnnotationSearchMetrics_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAnnotationSearchMetrics_, context, request, response, std::move(f));
+void V2::Stub::async::ListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAnnotationSearchMetrics_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAnnotationSearchMetrics_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAnnotationSearchMetrics_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAnnotationSearchMetrics_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::AsyncListAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationSearchMetricsResponse>::Create(channel_.get(), cq, rpcmethod_ListAnnotationSearchMetrics_, context, request, true);
+void V2::Stub::async::ListAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest* request, ::clarifai::api::MultiAnnotationSearchMetricsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAnnotationSearchMetrics_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::PrepareAsyncListAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAnnotationSearchMetricsResponse>::Create(channel_.get(), cq, rpcmethod_ListAnnotationSearchMetrics_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::clarifai::api::ListAnnotationSearchMetricsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListAnnotationSearchMetrics_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationSearchMetricsResponse>* V2::Stub::AsyncListAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListAnnotationSearchMetricsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteAnnotationSearchMetrics_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteAnnotationSearchMetrics_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotationSearchMetrics_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotationSearchMetrics_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotationSearchMetrics_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotationSearchMetrics_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotationSearchMetrics_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteAnnotationSearchMetrics_, context, request, true);
+void V2::Stub::async::DeleteAnnotationSearchMetrics(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotationSearchMetrics_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteAnnotationSearchMetrics_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteAnnotationSearchMetrics_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAnnotationSearchMetricsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationSearchMetricsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteAnnotationSearchMetricsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteSearch(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteSearch_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteSearch_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteSearch(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteSearch_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteSearch(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteSearch_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteSearch(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteSearch_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteSearch(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteSearch_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteSearch(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteSearch_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteSearchRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteSearch_, context, request, true);
+void V2::Stub::async::DeleteSearch(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteSearch_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteSearchRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteSearch_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteSearchRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteSearch_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteSearchRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteSearchRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteSearchRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationFiltersRequest& request, ::clarifai::api::MultiAnnotationFilterResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListAnnotationFilters_, context, request, response);
+}
+
+void V2::Stub::async::ListAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAnnotationFilters_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAnnotationFilters_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationFilterResponse>* V2::Stub::PrepareAsyncListAnnotationFiltersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationFiltersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationFilterResponse, ::clarifai::api::ListAnnotationFiltersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListAnnotationFilters_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationFilterResponse>* V2::Stub::AsyncListAnnotationFiltersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAnnotationFiltersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListAnnotationFiltersRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::GetAnnotationFilter(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationFilterRequest& request, ::clarifai::api::SingleAnnotationFilterResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetAnnotationFilterRequest, ::clarifai::api::SingleAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAnnotationFilter_, context, request, response);
+}
+
+void V2::Stub::async::GetAnnotationFilter(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationFilterRequest* request, ::clarifai::api::SingleAnnotationFilterResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetAnnotationFilterRequest, ::clarifai::api::SingleAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAnnotationFilter_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::GetAnnotationFilter(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationFilterRequest* request, ::clarifai::api::SingleAnnotationFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAnnotationFilter_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAnnotationFilterResponse>* V2::Stub::PrepareAsyncGetAnnotationFilterRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleAnnotationFilterResponse, ::clarifai::api::GetAnnotationFilterRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAnnotationFilter_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAnnotationFilterResponse>* V2::Stub::AsyncGetAnnotationFilterRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAnnotationFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAnnotationFilterRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationFiltersRequest& request, ::clarifai::api::MultiAnnotationFilterResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostAnnotationFilters_, context, request, response);
+}
+
+void V2::Stub::async::PostAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationFilters_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAnnotationFilters_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationFilterResponse>* V2::Stub::PrepareAsyncPostAnnotationFiltersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationFiltersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationFilterResponse, ::clarifai::api::PostAnnotationFiltersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostAnnotationFilters_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationFilterResponse>* V2::Stub::AsyncPostAnnotationFiltersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAnnotationFiltersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostAnnotationFiltersRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationFiltersRequest& request, ::clarifai::api::MultiAnnotationFilterResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchAnnotationFilters_, context, request, response);
+}
+
+void V2::Stub::async::PatchAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationFilters_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchAnnotationFilters_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationFilterResponse>* V2::Stub::PrepareAsyncPatchAnnotationFiltersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationFiltersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAnnotationFilterResponse, ::clarifai::api::PatchAnnotationFiltersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchAnnotationFilters_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAnnotationFilterResponse>* V2::Stub::AsyncPatchAnnotationFiltersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchAnnotationFiltersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchAnnotationFiltersRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::DeleteAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationFiltersRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteAnnotationFiltersRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteAnnotationFilters_, context, request, response);
+}
+
+void V2::Stub::async::DeleteAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationFiltersRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteAnnotationFiltersRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotationFilters_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::DeleteAnnotationFilters(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationFiltersRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteAnnotationFilters_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteAnnotationFiltersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationFiltersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteAnnotationFiltersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteAnnotationFilters_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteAnnotationFiltersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteAnnotationFiltersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteAnnotationFiltersRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListStatusCodes(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest& request, ::clarifai::api::MultiStatusCodeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListStatusCodes_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListStatusCodes_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListStatusCodes(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest* request, ::clarifai::api::MultiStatusCodeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListStatusCodes_, context, request, response, std::move(f));
+void V2::Stub::async::ListStatusCodes(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest* request, ::clarifai::api::MultiStatusCodeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListStatusCodes_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListStatusCodes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatusCodeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListStatusCodes_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListStatusCodes(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest* request, ::clarifai::api::MultiStatusCodeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListStatusCodes_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListStatusCodes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatusCodeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListStatusCodes_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatusCodeResponse>* V2::Stub::AsyncListStatusCodesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiStatusCodeResponse>::Create(channel_.get(), cq, rpcmethod_ListStatusCodes_, context, request, true);
+void V2::Stub::async::ListStatusCodes(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest* request, ::clarifai::api::MultiStatusCodeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListStatusCodes_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatusCodeResponse>* V2::Stub::PrepareAsyncListStatusCodesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiStatusCodeResponse>::Create(channel_.get(), cq, rpcmethod_ListStatusCodes_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiStatusCodeResponse, ::clarifai::api::ListStatusCodesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListStatusCodes_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatusCodeResponse>* V2::Stub::AsyncListStatusCodesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListStatusCodesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListStatusCodesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetStatusCode(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest& request, ::clarifai::api::SingleStatusCodeResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetStatusCode_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetStatusCode_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetStatusCode(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest* request, ::clarifai::api::SingleStatusCodeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetStatusCode_, context, request, response, std::move(f));
+void V2::Stub::async::GetStatusCode(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest* request, ::clarifai::api::SingleStatusCodeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatusCode_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetStatusCode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleStatusCodeResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetStatusCode_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetStatusCode(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest* request, ::clarifai::api::SingleStatusCodeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetStatusCode_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetStatusCode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleStatusCodeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetStatusCode_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleStatusCodeResponse>* V2::Stub::AsyncGetStatusCodeRaw(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleStatusCodeResponse>::Create(channel_.get(), cq, rpcmethod_GetStatusCode_, context, request, true);
+void V2::Stub::async::GetStatusCode(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest* request, ::clarifai::api::SingleStatusCodeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatusCode_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleStatusCodeResponse>* V2::Stub::PrepareAsyncGetStatusCodeRaw(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleStatusCodeResponse>::Create(channel_.get(), cq, rpcmethod_GetStatusCode_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleStatusCodeResponse, ::clarifai::api::GetStatusCodeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetStatusCode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleStatusCodeResponse>* V2::Stub::AsyncGetStatusCodeRaw(::grpc::ClientContext* context, const ::clarifai::api::GetStatusCodeRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetStatusCodeRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListCollaborators(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest& request, ::clarifai::api::MultiCollaboratorsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListCollaborators_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListCollaborators_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListCollaborators(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListCollaborators_, context, request, response, std::move(f));
+void V2::Stub::async::ListCollaborators(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListCollaborators_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListCollaborators_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListCollaborators(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListCollaborators_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListCollaborators_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::AsyncListCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollaboratorsResponse>::Create(channel_.get(), cq, rpcmethod_ListCollaborators_, context, request, true);
+void V2::Stub::async::ListCollaborators(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListCollaborators_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::PrepareAsyncListCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollaboratorsResponse>::Create(channel_.get(), cq, rpcmethod_ListCollaborators_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiCollaboratorsResponse, ::clarifai::api::ListCollaboratorsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListCollaborators_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::AsyncListCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListCollaboratorsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PostCollaboratorsRequest& request, ::clarifai::api::MultiCollaboratorsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostCollaborators_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostCollaborators_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PostCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostCollaborators_, context, request, response, std::move(f));
+void V2::Stub::async::PostCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PostCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostCollaborators_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostCollaborators_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PostCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostCollaborators_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostCollaborators_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::AsyncPostCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollaboratorsResponse>::Create(channel_.get(), cq, rpcmethod_PostCollaborators_, context, request, true);
+void V2::Stub::async::PostCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PostCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostCollaborators_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::PrepareAsyncPostCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollaboratorsResponse>::Create(channel_.get(), cq, rpcmethod_PostCollaborators_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiCollaboratorsResponse, ::clarifai::api::PostCollaboratorsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostCollaborators_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::AsyncPostCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostCollaboratorsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PatchCollaboratorsRequest& request, ::clarifai::api::MultiCollaboratorsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchCollaborators_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchCollaborators_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PatchCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchCollaborators_, context, request, response, std::move(f));
+void V2::Stub::async::PatchCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PatchCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchCollaborators_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaboratorsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchCollaborators_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PatchCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchCollaborators_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchCollaborators_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::AsyncPatchCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollaboratorsResponse>::Create(channel_.get(), cq, rpcmethod_PatchCollaborators_, context, request, true);
+void V2::Stub::async::PatchCollaborators(::grpc::ClientContext* context, const ::clarifai::api::PatchCollaboratorsRequest* request, ::clarifai::api::MultiCollaboratorsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchCollaborators_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::PrepareAsyncPatchCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollaboratorsResponse>::Create(channel_.get(), cq, rpcmethod_PatchCollaborators_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiCollaboratorsResponse, ::clarifai::api::PatchCollaboratorsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchCollaborators_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaboratorsResponse>* V2::Stub::AsyncPatchCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchCollaboratorsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteCollaborators(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollaboratorsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteCollaborators_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteCollaborators_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteCollaborators(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollaboratorsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteCollaborators_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteCollaborators(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollaboratorsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteCollaborators_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteCollaborators_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteCollaborators(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollaboratorsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteCollaborators_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteCollaborators(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteCollaborators_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteCollaborators_, context, request, true);
+void V2::Stub::async::DeleteCollaborators(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollaboratorsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteCollaborators_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteCollaborators_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteCollaboratorsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteCollaborators_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteCollaboratorsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollaboratorsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteCollaboratorsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListCollaborations(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest& request, ::clarifai::api::MultiCollaborationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListCollaborations_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListCollaborations_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListCollaborations(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest* request, ::clarifai::api::MultiCollaborationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListCollaborations_, context, request, response, std::move(f));
+void V2::Stub::async::ListCollaborations(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest* request, ::clarifai::api::MultiCollaborationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListCollaborations_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListCollaborations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaborationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListCollaborations_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListCollaborations(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest* request, ::clarifai::api::MultiCollaborationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListCollaborations_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListCollaborations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollaborationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListCollaborations_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaborationsResponse>* V2::Stub::AsyncListCollaborationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollaborationsResponse>::Create(channel_.get(), cq, rpcmethod_ListCollaborations_, context, request, true);
+void V2::Stub::async::ListCollaborations(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest* request, ::clarifai::api::MultiCollaborationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListCollaborations_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaborationsResponse>* V2::Stub::PrepareAsyncListCollaborationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollaborationsResponse>::Create(channel_.get(), cq, rpcmethod_ListCollaborations_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiCollaborationsResponse, ::clarifai::api::ListCollaborationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListCollaborations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollaborationsResponse>* V2::Stub::AsyncListCollaborationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollaborationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListCollaborationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest& request, ::clarifai::api::MultiAppDuplicationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostAppDuplications_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostAppDuplications_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAppDuplications_, context, request, response, std::move(f));
+void V2::Stub::async::PostAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAppDuplications_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostAppDuplications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppDuplicationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostAppDuplications_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAppDuplications_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostAppDuplications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppDuplicationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostAppDuplications_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppDuplicationsResponse>* V2::Stub::AsyncPostAppDuplicationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppDuplicationsResponse>::Create(channel_.get(), cq, rpcmethod_PostAppDuplications_, context, request, true);
+void V2::Stub::async::PostAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostAppDuplications_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppDuplicationsResponse>* V2::Stub::PrepareAsyncPostAppDuplicationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppDuplicationsResponse>::Create(channel_.get(), cq, rpcmethod_PostAppDuplications_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAppDuplicationsResponse, ::clarifai::api::PostAppDuplicationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostAppDuplications_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppDuplicationsResponse>* V2::Stub::AsyncPostAppDuplicationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostAppDuplicationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostAppDuplicationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::ListAppDuplicationsRequest& request, ::clarifai::api::MultiAppDuplicationsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListAppDuplications_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListAppDuplications_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::ListAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAppDuplications_, context, request, response, std::move(f));
+void V2::Stub::async::ListAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::ListAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAppDuplications_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListAppDuplications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppDuplicationsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListAppDuplications_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::ListAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAppDuplications_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListAppDuplications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiAppDuplicationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListAppDuplications_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppDuplicationsResponse>* V2::Stub::AsyncListAppDuplicationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppDuplicationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppDuplicationsResponse>::Create(channel_.get(), cq, rpcmethod_ListAppDuplications_, context, request, true);
+void V2::Stub::async::ListAppDuplications(::grpc::ClientContext* context, const ::clarifai::api::ListAppDuplicationsRequest* request, ::clarifai::api::MultiAppDuplicationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListAppDuplications_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppDuplicationsResponse>* V2::Stub::PrepareAsyncListAppDuplicationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppDuplicationsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiAppDuplicationsResponse>::Create(channel_.get(), cq, rpcmethod_ListAppDuplications_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiAppDuplicationsResponse, ::clarifai::api::ListAppDuplicationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListAppDuplications_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiAppDuplicationsResponse>* V2::Stub::AsyncListAppDuplicationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListAppDuplicationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListAppDuplicationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetAppDuplication(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest& request, ::clarifai::api::SingleAppDuplicationResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetAppDuplication_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAppDuplication_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetAppDuplication(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest* request, ::clarifai::api::SingleAppDuplicationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAppDuplication_, context, request, response, std::move(f));
+void V2::Stub::async::GetAppDuplication(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest* request, ::clarifai::api::SingleAppDuplicationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAppDuplication_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetAppDuplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAppDuplicationResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAppDuplication_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetAppDuplication(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest* request, ::clarifai::api::SingleAppDuplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAppDuplication_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetAppDuplication(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleAppDuplicationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAppDuplication_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppDuplicationResponse>* V2::Stub::AsyncGetAppDuplicationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleAppDuplicationResponse>::Create(channel_.get(), cq, rpcmethod_GetAppDuplication_, context, request, true);
+void V2::Stub::async::GetAppDuplication(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest* request, ::clarifai::api::SingleAppDuplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAppDuplication_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppDuplicationResponse>* V2::Stub::PrepareAsyncGetAppDuplicationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleAppDuplicationResponse>::Create(channel_.get(), cq, rpcmethod_GetAppDuplication_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleAppDuplicationResponse, ::clarifai::api::GetAppDuplicationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAppDuplication_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleAppDuplicationResponse>* V2::Stub::AsyncGetAppDuplicationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetAppDuplicationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAppDuplicationRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::clarifai::api::MultiTaskResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostTasks_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostTasks_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostTasks_, context, request, response, std::move(f));
+void V2::Stub::async::PostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostTasks_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostTasks_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostTasks_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostTasks_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::AsyncPostTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTaskResponse>::Create(channel_.get(), cq, rpcmethod_PostTasks_, context, request, true);
+void V2::Stub::async::PostTasks(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostTasks_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::PrepareAsyncPostTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTaskResponse>::Create(channel_.get(), cq, rpcmethod_PostTasks_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiTaskResponse, ::clarifai::api::PostTasksRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostTasks_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::AsyncPostTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTasksRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostTasksRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::clarifai::api::SingleTaskCountResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTaskAnnotationCount_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTaskAnnotationCount_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTaskAnnotationCount_, context, request, response, std::move(f));
+void V2::Stub::async::GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTaskAnnotationCount_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetTaskAnnotationCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTaskAnnotationCount_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTaskAnnotationCount_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetTaskAnnotationCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTaskAnnotationCount_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* V2::Stub::AsyncGetTaskAnnotationCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleTaskCountResponse>::Create(channel_.get(), cq, rpcmethod_GetTaskAnnotationCount_, context, request, true);
+void V2::Stub::async::GetTaskAnnotationCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTaskAnnotationCount_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* V2::Stub::PrepareAsyncGetTaskAnnotationCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleTaskCountResponse>::Create(channel_.get(), cq, rpcmethod_GetTaskAnnotationCount_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleTaskCountResponse, ::clarifai::api::GetTaskCountRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTaskAnnotationCount_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* V2::Stub::AsyncGetTaskAnnotationCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTaskAnnotationCountRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::clarifai::api::SingleTaskCountResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTaskInputCount_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTaskInputCount_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTaskInputCount_, context, request, response, std::move(f));
+void V2::Stub::async::GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTaskInputCount_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetTaskInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTaskInputCount_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTaskInputCount_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetTaskInputCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTaskInputCount_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* V2::Stub::AsyncGetTaskInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleTaskCountResponse>::Create(channel_.get(), cq, rpcmethod_GetTaskInputCount_, context, request, true);
+void V2::Stub::async::GetTaskInputCount(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest* request, ::clarifai::api::SingleTaskCountResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTaskInputCount_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* V2::Stub::PrepareAsyncGetTaskInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleTaskCountResponse>::Create(channel_.get(), cq, rpcmethod_GetTaskInputCount_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleTaskCountResponse, ::clarifai::api::GetTaskCountRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTaskInputCount_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskCountResponse>* V2::Stub::AsyncGetTaskInputCountRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskCountRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTaskInputCountRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::clarifai::api::SingleTaskResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTask_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTask_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest* request, ::clarifai::api::SingleTaskResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTask_, context, request, response, std::move(f));
+void V2::Stub::async::GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest* request, ::clarifai::api::SingleTaskResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTask_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetTask(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTask_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest* request, ::clarifai::api::SingleTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTask_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetTask(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTask_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskResponse>* V2::Stub::AsyncGetTaskRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleTaskResponse>::Create(channel_.get(), cq, rpcmethod_GetTask_, context, request, true);
+void V2::Stub::async::GetTask(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest* request, ::clarifai::api::SingleTaskResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTask_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskResponse>* V2::Stub::PrepareAsyncGetTaskRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleTaskResponse>::Create(channel_.get(), cq, rpcmethod_GetTask_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleTaskResponse, ::clarifai::api::GetTaskRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTask_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleTaskResponse>* V2::Stub::AsyncGetTaskRaw(::grpc::ClientContext* context, const ::clarifai::api::GetTaskRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTaskRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListTasks(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest& request, ::clarifai::api::MultiTaskResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListTasks_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListTasks_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListTasks(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListTasks_, context, request, response, std::move(f));
+void V2::Stub::async::ListTasks(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListTasks_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListTasks_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListTasks(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListTasks_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListTasks_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::AsyncListTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTaskResponse>::Create(channel_.get(), cq, rpcmethod_ListTasks_, context, request, true);
+void V2::Stub::async::ListTasks(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListTasks_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::PrepareAsyncListTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTaskResponse>::Create(channel_.get(), cq, rpcmethod_ListTasks_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiTaskResponse, ::clarifai::api::ListTasksRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListTasks_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::AsyncListTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTasksRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListTasksRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchTasks(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest& request, ::clarifai::api::MultiTaskResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchTasks_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchTasks_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchTasks(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchTasks_, context, request, response, std::move(f));
+void V2::Stub::async::PatchTasks(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchTasks_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchTasks_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchTasks(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchTasks_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchTasks_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::AsyncPatchTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTaskResponse>::Create(channel_.get(), cq, rpcmethod_PatchTasks_, context, request, true);
+void V2::Stub::async::PatchTasks(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest* request, ::clarifai::api::MultiTaskResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchTasks_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::PrepareAsyncPatchTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTaskResponse>::Create(channel_.get(), cq, rpcmethod_PatchTasks_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiTaskResponse, ::clarifai::api::PatchTasksRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchTasks_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTaskResponse>* V2::Stub::AsyncPatchTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchTasksRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchTasksRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteTasks(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteTasks_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteTasks_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteTasks(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteTasks_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteTasks(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteTasks_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteTasks_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteTasks(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteTasks_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteTasks(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteTasks_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteTasks_, context, request, true);
+void V2::Stub::async::DeleteTasks(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteTasks_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteTasks_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteTasksRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteTasks_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteTasksRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteTasksRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteTasksRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostLabelOrders_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostLabelOrders_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, std::move(f));
+void V2::Stub::async::PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_PostLabelOrders_, context, request, true);
+void V2::Stub::async::PostLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostLabelOrders_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::PrepareAsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_PostLabelOrders_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiLabelOrderResponse, ::clarifai::api::PostLabelOrdersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostLabelOrders_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncPostLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PostLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostLabelOrdersRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::clarifai::api::SingleLabelOrderResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetLabelOrder_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetLabelOrder_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, std::move(f));
+void V2::Stub::async::GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetLabelOrder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>* V2::Stub::AsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_GetLabelOrder_, context, request, true);
+void V2::Stub::async::GetLabelOrder(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest* request, ::clarifai::api::SingleLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLabelOrder_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>* V2::Stub::PrepareAsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_GetLabelOrder_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleLabelOrderResponse, ::clarifai::api::GetLabelOrderRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetLabelOrder_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleLabelOrderResponse>* V2::Stub::AsyncGetLabelOrderRaw(::grpc::ClientContext* context, const ::clarifai::api::GetLabelOrderRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetLabelOrderRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListLabelOrders_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListLabelOrders_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, std::move(f));
+void V2::Stub::async::ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_ListLabelOrders_, context, request, true);
+void V2::Stub::async::ListLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListLabelOrders_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::PrepareAsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_ListLabelOrders_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiLabelOrderResponse, ::clarifai::api::ListLabelOrdersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListLabelOrders_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncListLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::ListLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListLabelOrdersRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::clarifai::api::MultiLabelOrderResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchLabelOrders_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchLabelOrders_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, std::move(f));
+void V2::Stub::async::PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_PatchLabelOrders_, context, request, true);
+void V2::Stub::async::PatchLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest* request, ::clarifai::api::MultiLabelOrderResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchLabelOrders_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::PrepareAsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiLabelOrderResponse>::Create(channel_.get(), cq, rpcmethod_PatchLabelOrders_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiLabelOrderResponse, ::clarifai::api::PatchLabelOrdersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchLabelOrders_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiLabelOrderResponse>* V2::Stub::AsyncPatchLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchLabelOrdersRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteLabelOrders_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteLabelOrders_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteLabelOrders(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteLabelOrders_, context, request, true);
+void V2::Stub::async::DeleteLabelOrders(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteLabelOrders_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteLabelOrders_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteLabelOrdersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteLabelOrders_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteLabelOrdersRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteLabelOrdersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteLabelOrdersRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::clarifai::api::MultiCollectorResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostCollectors_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostCollectors_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostCollectors_, context, request, response, std::move(f));
+void V2::Stub::async::PostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostCollectors_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostCollectors_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostCollectors_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostCollectors_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::AsyncPostCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollectorResponse>::Create(channel_.get(), cq, rpcmethod_PostCollectors_, context, request, true);
+void V2::Stub::async::PostCollectors(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostCollectors_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::PrepareAsyncPostCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollectorResponse>::Create(channel_.get(), cq, rpcmethod_PostCollectors_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiCollectorResponse, ::clarifai::api::PostCollectorsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostCollectors_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::AsyncPostCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostCollectorsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::GetCollector(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest& request, ::clarifai::api::SingleCollectorResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetCollector_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCollector_, context, request, response);
 }
 
-void V2::Stub::experimental_async::GetCollector(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest* request, ::clarifai::api::SingleCollectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCollector_, context, request, response, std::move(f));
+void V2::Stub::async::GetCollector(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest* request, ::clarifai::api::SingleCollectorResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCollector_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::GetCollector(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleCollectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCollector_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::GetCollector(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest* request, ::clarifai::api::SingleCollectorResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCollector_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::GetCollector(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::SingleCollectorResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCollector_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleCollectorResponse>* V2::Stub::AsyncGetCollectorRaw(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleCollectorResponse>::Create(channel_.get(), cq, rpcmethod_GetCollector_, context, request, true);
+void V2::Stub::async::GetCollector(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest* request, ::clarifai::api::SingleCollectorResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCollector_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleCollectorResponse>* V2::Stub::PrepareAsyncGetCollectorRaw(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::SingleCollectorResponse>::Create(channel_.get(), cq, rpcmethod_GetCollector_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleCollectorResponse, ::clarifai::api::GetCollectorRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCollector_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleCollectorResponse>* V2::Stub::AsyncGetCollectorRaw(::grpc::ClientContext* context, const ::clarifai::api::GetCollectorRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCollectorRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListCollectors(::grpc::ClientContext* context, const ::clarifai::api::ListCollectorsRequest& request, ::clarifai::api::MultiCollectorResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListCollectors_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListCollectors_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListCollectors(::grpc::ClientContext* context, const ::clarifai::api::ListCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListCollectors_, context, request, response, std::move(f));
+void V2::Stub::async::ListCollectors(::grpc::ClientContext* context, const ::clarifai::api::ListCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListCollectors_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListCollectors_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListCollectors(::grpc::ClientContext* context, const ::clarifai::api::ListCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListCollectors_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListCollectors_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::AsyncListCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollectorResponse>::Create(channel_.get(), cq, rpcmethod_ListCollectors_, context, request, true);
+void V2::Stub::async::ListCollectors(::grpc::ClientContext* context, const ::clarifai::api::ListCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListCollectors_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::PrepareAsyncListCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollectorResponse>::Create(channel_.get(), cq, rpcmethod_ListCollectors_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiCollectorResponse, ::clarifai::api::ListCollectorsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListCollectors_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::AsyncListCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListCollectorsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PatchCollectors(::grpc::ClientContext* context, const ::clarifai::api::PatchCollectorsRequest& request, ::clarifai::api::MultiCollectorResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PatchCollectors_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchCollectors_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PatchCollectors(::grpc::ClientContext* context, const ::clarifai::api::PatchCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchCollectors_, context, request, response, std::move(f));
+void V2::Stub::async::PatchCollectors(::grpc::ClientContext* context, const ::clarifai::api::PatchCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchCollectors_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PatchCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PatchCollectors_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PatchCollectors(::grpc::ClientContext* context, const ::clarifai::api::PatchCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchCollectors_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PatchCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PatchCollectors_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::AsyncPatchCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollectorResponse>::Create(channel_.get(), cq, rpcmethod_PatchCollectors_, context, request, true);
+void V2::Stub::async::PatchCollectors(::grpc::ClientContext* context, const ::clarifai::api::PatchCollectorsRequest* request, ::clarifai::api::MultiCollectorResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchCollectors_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::PrepareAsyncPatchCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiCollectorResponse>::Create(channel_.get(), cq, rpcmethod_PatchCollectors_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiCollectorResponse, ::clarifai::api::PatchCollectorsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchCollectors_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiCollectorResponse>* V2::Stub::AsyncPatchCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchCollectorsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::DeleteCollectors(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DeleteCollectors_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteCollectors_, context, request, response);
 }
 
-void V2::Stub::experimental_async::DeleteCollectors(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteCollectors_, context, request, response, std::move(f));
+void V2::Stub::async::DeleteCollectors(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteCollectors_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::DeleteCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DeleteCollectors_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::DeleteCollectors(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteCollectors_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::DeleteCollectors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteCollectors_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteCollectors_, context, request, true);
+void V2::Stub::async::DeleteCollectors(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteCollectors_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_DeleteCollectors_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteCollectorsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteCollectors_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteCollectorsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteCollectorsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteCollectorsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest& request, ::clarifai::api::MultiStatValueResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostStatValues_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostStatValues_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest* request, ::clarifai::api::MultiStatValueResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostStatValues_, context, request, response, std::move(f));
+void V2::Stub::async::PostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest* request, ::clarifai::api::MultiStatValueResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostStatValues_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostStatValues(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatValueResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostStatValues_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest* request, ::clarifai::api::MultiStatValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostStatValues_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostStatValues(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatValueResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostStatValues_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueResponse>* V2::Stub::AsyncPostStatValuesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiStatValueResponse>::Create(channel_.get(), cq, rpcmethod_PostStatValues_, context, request, true);
+void V2::Stub::async::PostStatValues(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest* request, ::clarifai::api::MultiStatValueResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostStatValues_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueResponse>* V2::Stub::PrepareAsyncPostStatValuesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiStatValueResponse>::Create(channel_.get(), cq, rpcmethod_PostStatValues_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiStatValueResponse, ::clarifai::api::PostStatValuesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostStatValues_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueResponse>* V2::Stub::AsyncPostStatValuesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostStatValuesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::clarifai::api::MultiStatValueAggregateResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostStatValuesAggregate_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostStatValuesAggregate_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest* request, ::clarifai::api::MultiStatValueAggregateResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostStatValuesAggregate_, context, request, response, std::move(f));
+void V2::Stub::async::PostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest* request, ::clarifai::api::MultiStatValueAggregateResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostStatValuesAggregate_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostStatValuesAggregate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatValueAggregateResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostStatValuesAggregate_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest* request, ::clarifai::api::MultiStatValueAggregateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostStatValuesAggregate_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostStatValuesAggregate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiStatValueAggregateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostStatValuesAggregate_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueAggregateResponse>* V2::Stub::AsyncPostStatValuesAggregateRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiStatValueAggregateResponse>::Create(channel_.get(), cq, rpcmethod_PostStatValuesAggregate_, context, request, true);
+void V2::Stub::async::PostStatValuesAggregate(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest* request, ::clarifai::api::MultiStatValueAggregateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostStatValuesAggregate_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueAggregateResponse>* V2::Stub::PrepareAsyncPostStatValuesAggregateRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiStatValueAggregateResponse>::Create(channel_.get(), cq, rpcmethod_PostStatValuesAggregate_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiStatValueAggregateResponse, ::clarifai::api::PostStatValuesAggregateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostStatValuesAggregate_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiStatValueAggregateResponse>* V2::Stub::AsyncPostStatValuesAggregateRaw(::grpc::ClientContext* context, const ::clarifai::api::PostStatValuesAggregateRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostStatValuesAggregateRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::PostTrendingMetricsView(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest& request, ::clarifai::api::status::BaseResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PostTrendingMetricsView_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostTrendingMetricsView_, context, request, response);
 }
 
-void V2::Stub::experimental_async::PostTrendingMetricsView(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostTrendingMetricsView_, context, request, response, std::move(f));
+void V2::Stub::async::PostTrendingMetricsView(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostTrendingMetricsView_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::PostTrendingMetricsView(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PostTrendingMetricsView_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::PostTrendingMetricsView(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostTrendingMetricsView_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::PostTrendingMetricsView(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::status::BaseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PostTrendingMetricsView_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncPostTrendingMetricsViewRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_PostTrendingMetricsView_, context, request, true);
+void V2::Stub::async::PostTrendingMetricsView(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostTrendingMetricsView_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncPostTrendingMetricsViewRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::status::BaseResponse>::Create(channel_.get(), cq, rpcmethod_PostTrendingMetricsView_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::PostTrendingMetricsViewRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostTrendingMetricsView_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncPostTrendingMetricsViewRaw(::grpc::ClientContext* context, const ::clarifai::api::PostTrendingMetricsViewRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostTrendingMetricsViewRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status V2::Stub::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest& request, ::clarifai::api::MultiTrendingMetricsViewResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ListTrendingMetricsViews_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListTrendingMetricsViews_, context, request, response);
 }
 
-void V2::Stub::experimental_async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, std::move(f));
+void V2::Stub::async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, std::move(f));
 }
 
-void V2::Stub::experimental_async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, std::move(f));
-}
-
-void V2::Stub::experimental_async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, reactor);
-}
-
-void V2::Stub::experimental_async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTrendingMetricsViewResponse>* V2::Stub::AsyncListTrendingMetricsViewsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTrendingMetricsViewResponse>::Create(channel_.get(), cq, rpcmethod_ListTrendingMetricsViews_, context, request, true);
+void V2::Stub::async::ListTrendingMetricsViews(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListTrendingMetricsViews_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTrendingMetricsViewResponse>* V2::Stub::PrepareAsyncListTrendingMetricsViewsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::clarifai::api::MultiTrendingMetricsViewResponse>::Create(channel_.get(), cq, rpcmethod_ListTrendingMetricsViews_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiTrendingMetricsViewResponse, ::clarifai::api::ListTrendingMetricsViewsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListTrendingMetricsViews_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiTrendingMetricsViewResponse>* V2::Stub::AsyncListTrendingMetricsViewsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListTrendingMetricsViewsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::GetModule(::grpc::ClientContext* context, const ::clarifai::api::GetModuleRequest& request, ::clarifai::api::SingleModuleResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetModuleRequest, ::clarifai::api::SingleModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModule_, context, request, response);
+}
+
+void V2::Stub::async::GetModule(::grpc::ClientContext* context, const ::clarifai::api::GetModuleRequest* request, ::clarifai::api::SingleModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetModuleRequest, ::clarifai::api::SingleModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModule_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::GetModule(::grpc::ClientContext* context, const ::clarifai::api::GetModuleRequest* request, ::clarifai::api::SingleModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModule_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModuleResponse>* V2::Stub::PrepareAsyncGetModuleRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModuleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModuleResponse, ::clarifai::api::GetModuleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModule_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModuleResponse>* V2::Stub::AsyncGetModuleRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModuleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetModuleRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListModules(::grpc::ClientContext* context, const ::clarifai::api::ListModulesRequest& request, ::clarifai::api::MultiModuleResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModules_, context, request, response);
+}
+
+void V2::Stub::async::ListModules(::grpc::ClientContext* context, const ::clarifai::api::ListModulesRequest* request, ::clarifai::api::MultiModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModules_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListModules(::grpc::ClientContext* context, const ::clarifai::api::ListModulesRequest* request, ::clarifai::api::MultiModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModules_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleResponse>* V2::Stub::PrepareAsyncListModulesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModuleResponse, ::clarifai::api::ListModulesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModules_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleResponse>* V2::Stub::AsyncListModulesRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListModulesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostModules(::grpc::ClientContext* context, const ::clarifai::api::PostModulesRequest& request, ::clarifai::api::MultiModuleResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModules_, context, request, response);
+}
+
+void V2::Stub::async::PostModules(::grpc::ClientContext* context, const ::clarifai::api::PostModulesRequest* request, ::clarifai::api::MultiModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModules_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostModules(::grpc::ClientContext* context, const ::clarifai::api::PostModulesRequest* request, ::clarifai::api::MultiModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModules_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleResponse>* V2::Stub::PrepareAsyncPostModulesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModuleResponse, ::clarifai::api::PostModulesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModules_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleResponse>* V2::Stub::AsyncPostModulesRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModulesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PatchModules(::grpc::ClientContext* context, const ::clarifai::api::PatchModulesRequest& request, ::clarifai::api::MultiModuleResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PatchModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PatchModules_, context, request, response);
+}
+
+void V2::Stub::async::PatchModules(::grpc::ClientContext* context, const ::clarifai::api::PatchModulesRequest* request, ::clarifai::api::MultiModuleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PatchModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModules_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PatchModules(::grpc::ClientContext* context, const ::clarifai::api::PatchModulesRequest* request, ::clarifai::api::MultiModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PatchModules_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleResponse>* V2::Stub::PrepareAsyncPatchModulesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModuleResponse, ::clarifai::api::PatchModulesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PatchModules_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleResponse>* V2::Stub::AsyncPatchModulesRaw(::grpc::ClientContext* context, const ::clarifai::api::PatchModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPatchModulesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::DeleteModules(::grpc::ClientContext* context, const ::clarifai::api::DeleteModulesRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteModulesRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteModules_, context, request, response);
+}
+
+void V2::Stub::async::DeleteModules(::grpc::ClientContext* context, const ::clarifai::api::DeleteModulesRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteModulesRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModules_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::DeleteModules(::grpc::ClientContext* context, const ::clarifai::api::DeleteModulesRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModules_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteModulesRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteModulesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteModules_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteModulesRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModulesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteModulesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::GetModuleVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModuleVersionRequest& request, ::clarifai::api::SingleModuleVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetModuleVersionRequest, ::clarifai::api::SingleModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModuleVersion_, context, request, response);
+}
+
+void V2::Stub::async::GetModuleVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModuleVersionRequest* request, ::clarifai::api::SingleModuleVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetModuleVersionRequest, ::clarifai::api::SingleModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModuleVersion_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::GetModuleVersion(::grpc::ClientContext* context, const ::clarifai::api::GetModuleVersionRequest* request, ::clarifai::api::SingleModuleVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModuleVersion_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModuleVersionResponse>* V2::Stub::PrepareAsyncGetModuleVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModuleVersionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleModuleVersionResponse, ::clarifai::api::GetModuleVersionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModuleVersion_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleModuleVersionResponse>* V2::Stub::AsyncGetModuleVersionRaw(::grpc::ClientContext* context, const ::clarifai::api::GetModuleVersionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetModuleVersionRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModuleVersionsRequest& request, ::clarifai::api::MultiModuleVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListModuleVersionsRequest, ::clarifai::api::MultiModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListModuleVersions_, context, request, response);
+}
+
+void V2::Stub::async::ListModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModuleVersionsRequest* request, ::clarifai::api::MultiModuleVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListModuleVersionsRequest, ::clarifai::api::MultiModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModuleVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::ListModuleVersionsRequest* request, ::clarifai::api::MultiModuleVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListModuleVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleVersionResponse>* V2::Stub::PrepareAsyncListModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModuleVersionResponse, ::clarifai::api::ListModuleVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListModuleVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleVersionResponse>* V2::Stub::AsyncListModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListModuleVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModuleVersionsRequest& request, ::clarifai::api::MultiModuleVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostModuleVersionsRequest, ::clarifai::api::MultiModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostModuleVersions_, context, request, response);
+}
+
+void V2::Stub::async::PostModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModuleVersionsRequest* request, ::clarifai::api::MultiModuleVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostModuleVersionsRequest, ::clarifai::api::MultiModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModuleVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::PostModuleVersionsRequest* request, ::clarifai::api::MultiModuleVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostModuleVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleVersionResponse>* V2::Stub::PrepareAsyncPostModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiModuleVersionResponse, ::clarifai::api::PostModuleVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostModuleVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiModuleVersionResponse>* V2::Stub::AsyncPostModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostModuleVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::DeleteModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteModuleVersionsRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteModuleVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteModuleVersions_, context, request, response);
+}
+
+void V2::Stub::async::DeleteModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteModuleVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteModuleVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModuleVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::DeleteModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteModuleVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteModuleVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteModuleVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteModuleVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteModuleVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::ListInstalledModuleVersionsRequest& request, ::clarifai::api::MultiInstalledModuleVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListInstalledModuleVersionsRequest, ::clarifai::api::MultiInstalledModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListInstalledModuleVersions_, context, request, response);
+}
+
+void V2::Stub::async::ListInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::ListInstalledModuleVersionsRequest* request, ::clarifai::api::MultiInstalledModuleVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListInstalledModuleVersionsRequest, ::clarifai::api::MultiInstalledModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListInstalledModuleVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::ListInstalledModuleVersionsRequest* request, ::clarifai::api::MultiInstalledModuleVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListInstalledModuleVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInstalledModuleVersionResponse>* V2::Stub::PrepareAsyncListInstalledModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListInstalledModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiInstalledModuleVersionResponse, ::clarifai::api::ListInstalledModuleVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListInstalledModuleVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInstalledModuleVersionResponse>* V2::Stub::AsyncListInstalledModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListInstalledModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListInstalledModuleVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::PostInstalledModuleVersionsRequest& request, ::clarifai::api::MultiInstalledModuleVersionResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostInstalledModuleVersionsRequest, ::clarifai::api::MultiInstalledModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostInstalledModuleVersions_, context, request, response);
+}
+
+void V2::Stub::async::PostInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::PostInstalledModuleVersionsRequest* request, ::clarifai::api::MultiInstalledModuleVersionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostInstalledModuleVersionsRequest, ::clarifai::api::MultiInstalledModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostInstalledModuleVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::PostInstalledModuleVersionsRequest* request, ::clarifai::api::MultiInstalledModuleVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostInstalledModuleVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInstalledModuleVersionResponse>* V2::Stub::PrepareAsyncPostInstalledModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostInstalledModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiInstalledModuleVersionResponse, ::clarifai::api::PostInstalledModuleVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostInstalledModuleVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiInstalledModuleVersionResponse>* V2::Stub::AsyncPostInstalledModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostInstalledModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostInstalledModuleVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::DeleteInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteInstalledModuleVersionsRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteInstalledModuleVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteInstalledModuleVersions_, context, request, response);
+}
+
+void V2::Stub::async::DeleteInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteInstalledModuleVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteInstalledModuleVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteInstalledModuleVersions_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::DeleteInstalledModuleVersions(::grpc::ClientContext* context, const ::clarifai::api::DeleteInstalledModuleVersionsRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteInstalledModuleVersions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteInstalledModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteInstalledModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteInstalledModuleVersionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteInstalledModuleVersions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteInstalledModuleVersionsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteInstalledModuleVersionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteInstalledModuleVersionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::PostBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::PostBulkOperationsRequest& request, ::clarifai::api::MultiBulkOperationsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::PostBulkOperationsRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PostBulkOperations_, context, request, response);
+}
+
+void V2::Stub::async::PostBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::PostBulkOperationsRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::PostBulkOperationsRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostBulkOperations_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::PostBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::PostBulkOperationsRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PostBulkOperations_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiBulkOperationsResponse>* V2::Stub::PrepareAsyncPostBulkOperationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostBulkOperationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiBulkOperationsResponse, ::clarifai::api::PostBulkOperationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PostBulkOperations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiBulkOperationsResponse>* V2::Stub::AsyncPostBulkOperationsRaw(::grpc::ClientContext* context, const ::clarifai::api::PostBulkOperationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPostBulkOperationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::ListBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::ListBulkOperationsRequest& request, ::clarifai::api::MultiBulkOperationsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::ListBulkOperationsRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListBulkOperations_, context, request, response);
+}
+
+void V2::Stub::async::ListBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::ListBulkOperationsRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::ListBulkOperationsRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListBulkOperations_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::ListBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::ListBulkOperationsRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListBulkOperations_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiBulkOperationsResponse>* V2::Stub::PrepareAsyncListBulkOperationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListBulkOperationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiBulkOperationsResponse, ::clarifai::api::ListBulkOperationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListBulkOperations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiBulkOperationsResponse>* V2::Stub::AsyncListBulkOperationsRaw(::grpc::ClientContext* context, const ::clarifai::api::ListBulkOperationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListBulkOperationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::GetBulkOperation(::grpc::ClientContext* context, const ::clarifai::api::GetBulkOperationRequest& request, ::clarifai::api::SingleBulkOperationsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetBulkOperationRequest, ::clarifai::api::SingleBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetBulkOperation_, context, request, response);
+}
+
+void V2::Stub::async::GetBulkOperation(::grpc::ClientContext* context, const ::clarifai::api::GetBulkOperationRequest* request, ::clarifai::api::SingleBulkOperationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetBulkOperationRequest, ::clarifai::api::SingleBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBulkOperation_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::GetBulkOperation(::grpc::ClientContext* context, const ::clarifai::api::GetBulkOperationRequest* request, ::clarifai::api::SingleBulkOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBulkOperation_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleBulkOperationsResponse>* V2::Stub::PrepareAsyncGetBulkOperationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetBulkOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleBulkOperationsResponse, ::clarifai::api::GetBulkOperationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetBulkOperation_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleBulkOperationsResponse>* V2::Stub::AsyncGetBulkOperationRaw(::grpc::ClientContext* context, const ::clarifai::api::GetBulkOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetBulkOperationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::CancelBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::CancelBulkOperationRequest& request, ::clarifai::api::MultiBulkOperationsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::CancelBulkOperationRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CancelBulkOperations_, context, request, response);
+}
+
+void V2::Stub::async::CancelBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::CancelBulkOperationRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::CancelBulkOperationRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CancelBulkOperations_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::CancelBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::CancelBulkOperationRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CancelBulkOperations_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiBulkOperationsResponse>* V2::Stub::PrepareAsyncCancelBulkOperationsRaw(::grpc::ClientContext* context, const ::clarifai::api::CancelBulkOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::MultiBulkOperationsResponse, ::clarifai::api::CancelBulkOperationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CancelBulkOperations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::MultiBulkOperationsResponse>* V2::Stub::AsyncCancelBulkOperationsRaw(::grpc::ClientContext* context, const ::clarifai::api::CancelBulkOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCancelBulkOperationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::DeleteBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::DeleteBulkOperationRequest& request, ::clarifai::api::status::BaseResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::DeleteBulkOperationRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteBulkOperations_, context, request, response);
+}
+
+void V2::Stub::async::DeleteBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::DeleteBulkOperationRequest* request, ::clarifai::api::status::BaseResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::DeleteBulkOperationRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteBulkOperations_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::DeleteBulkOperations(::grpc::ClientContext* context, const ::clarifai::api::DeleteBulkOperationRequest* request, ::clarifai::api::status::BaseResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteBulkOperations_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::PrepareAsyncDeleteBulkOperationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteBulkOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::status::BaseResponse, ::clarifai::api::DeleteBulkOperationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteBulkOperations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::status::BaseResponse>* V2::Stub::AsyncDeleteBulkOperationsRaw(::grpc::ClientContext* context, const ::clarifai::api::DeleteBulkOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteBulkOperationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status V2::Stub::GetDatasetInputsSearchAddJob(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputsSearchAddJobRequest& request, ::clarifai::api::SingleDatasetInputsSearchAddJobResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::clarifai::api::GetDatasetInputsSearchAddJobRequest, ::clarifai::api::SingleDatasetInputsSearchAddJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDatasetInputsSearchAddJob_, context, request, response);
+}
+
+void V2::Stub::async::GetDatasetInputsSearchAddJob(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputsSearchAddJobRequest* request, ::clarifai::api::SingleDatasetInputsSearchAddJobResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::clarifai::api::GetDatasetInputsSearchAddJobRequest, ::clarifai::api::SingleDatasetInputsSearchAddJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDatasetInputsSearchAddJob_, context, request, response, std::move(f));
+}
+
+void V2::Stub::async::GetDatasetInputsSearchAddJob(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputsSearchAddJobRequest* request, ::clarifai::api::SingleDatasetInputsSearchAddJobResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDatasetInputsSearchAddJob_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleDatasetInputsSearchAddJobResponse>* V2::Stub::PrepareAsyncGetDatasetInputsSearchAddJobRaw(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputsSearchAddJobRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::clarifai::api::SingleDatasetInputsSearchAddJobResponse, ::clarifai::api::GetDatasetInputsSearchAddJobRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDatasetInputsSearchAddJob_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::clarifai::api::SingleDatasetInputsSearchAddJobResponse>* V2::Stub::AsyncGetDatasetInputsSearchAddJobRaw(::grpc::ClientContext* context, const ::clarifai::api::GetDatasetInputsSearchAddJobRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetDatasetInputsSearchAddJobRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 V2::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>(
-          std::mem_fn(&V2::Service::ListConceptRelations), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListConceptRelationsRequest* req,
+             ::clarifai::api::MultiConceptRelationResponse* resp) {
+               return service->ListConceptRelations(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse>(
-          std::mem_fn(&V2::Service::PostConceptRelations), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptRelationsRequest, ::clarifai::api::MultiConceptRelationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostConceptRelationsRequest* req,
+             ::clarifai::api::MultiConceptRelationResponse* resp) {
+               return service->PostConceptRelations(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteConceptRelationsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteConceptRelations), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteConceptRelationsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteConceptRelationsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteConceptRelations(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse>(
-          std::mem_fn(&V2::Service::GetConceptCounts), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetConceptCountsRequest, ::clarifai::api::MultiConceptCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetConceptCountsRequest* req,
+             ::clarifai::api::MultiConceptCountResponse* resp) {
+               return service->GetConceptCounts(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse>(
-          std::mem_fn(&V2::Service::GetConcept), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetConceptRequest, ::clarifai::api::SingleConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetConceptRequest* req,
+             ::clarifai::api::SingleConceptResponse* resp) {
+               return service->GetConcept(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse>(
-          std::mem_fn(&V2::Service::ListConcepts), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListConceptsRequest* req,
+             ::clarifai::api::MultiConceptResponse* resp) {
+               return service->ListConcepts(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse>(
-          std::mem_fn(&V2::Service::PostConceptsSearches), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptsSearchesRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostConceptsSearchesRequest* req,
+             ::clarifai::api::MultiConceptResponse* resp) {
+               return service->PostConceptsSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse>(
-          std::mem_fn(&V2::Service::PostConcepts), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostConceptsRequest* req,
+             ::clarifai::api::MultiConceptResponse* resp) {
+               return service->PostConcepts(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse>(
-          std::mem_fn(&V2::Service::PatchConcepts), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchConceptsRequest, ::clarifai::api::MultiConceptResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchConceptsRequest* req,
+             ::clarifai::api::MultiConceptResponse* resp) {
+               return service->PatchConcepts(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse>(
-          std::mem_fn(&V2::Service::GetConceptLanguage), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetConceptLanguageRequest, ::clarifai::api::SingleConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetConceptLanguageRequest* req,
+             ::clarifai::api::SingleConceptLanguageResponse* resp) {
+               return service->GetConceptLanguage(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
-          std::mem_fn(&V2::Service::ListConceptLanguages), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListConceptLanguagesRequest* req,
+             ::clarifai::api::MultiConceptLanguageResponse* resp) {
+               return service->ListConceptLanguages(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
-          std::mem_fn(&V2::Service::PostConceptLanguages), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostConceptLanguagesRequest* req,
+             ::clarifai::api::MultiConceptLanguageResponse* resp) {
+               return service->PostConceptLanguages(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse>(
-          std::mem_fn(&V2::Service::PatchConceptLanguages), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchConceptLanguagesRequest, ::clarifai::api::MultiConceptLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchConceptLanguagesRequest* req,
+             ::clarifai::api::MultiConceptLanguageResponse* resp) {
+               return service->PatchConceptLanguages(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListKnowledgeGraphsRequest, ::clarifai::api::MultiKnowledgeGraphResponse>(
-          std::mem_fn(&V2::Service::ListKnowledgeGraphs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListKnowledgeGraphsRequest, ::clarifai::api::MultiKnowledgeGraphResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListKnowledgeGraphsRequest* req,
+             ::clarifai::api::MultiKnowledgeGraphResponse* resp) {
+               return service->ListKnowledgeGraphs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostKnowledgeGraphsRequest, ::clarifai::api::MultiKnowledgeGraphResponse>(
-          std::mem_fn(&V2::Service::PostKnowledgeGraphs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostKnowledgeGraphsRequest, ::clarifai::api::MultiKnowledgeGraphResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostKnowledgeGraphsRequest* req,
+             ::clarifai::api::MultiKnowledgeGraphResponse* resp) {
+               return service->PostKnowledgeGraphs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptMappingJobsRequest, ::clarifai::api::MultiConceptMappingJobResponse>(
-          std::mem_fn(&V2::Service::PostConceptMappingJobs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostConceptMappingJobsRequest, ::clarifai::api::MultiConceptMappingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostConceptMappingJobsRequest* req,
+             ::clarifai::api::MultiConceptMappingJobResponse* resp) {
+               return service->PostConceptMappingJobs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAnnotationRequest, ::clarifai::api::SingleAnnotationResponse>(
-          std::mem_fn(&V2::Service::GetAnnotation), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAnnotationRequest, ::clarifai::api::SingleAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetAnnotationRequest* req,
+             ::clarifai::api::SingleAnnotationResponse* resp) {
+               return service->GetAnnotation(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse>(
-          std::mem_fn(&V2::Service::ListAnnotations), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListAnnotationsRequest* req,
+             ::clarifai::api::MultiAnnotationResponse* resp) {
+               return service->ListAnnotations(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse>(
-          std::mem_fn(&V2::Service::PostAnnotations), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostAnnotationsRequest* req,
+             ::clarifai::api::MultiAnnotationResponse* resp) {
+               return service->PostAnnotations(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse>(
-          std::mem_fn(&V2::Service::PatchAnnotations), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAnnotationsRequest, ::clarifai::api::MultiAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchAnnotationsRequest* req,
+             ::clarifai::api::MultiAnnotationResponse* resp) {
+               return service->PatchAnnotations(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::PatchAnnotationsStatusResponse>(
-          std::mem_fn(&V2::Service::PatchAnnotationsStatus), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAnnotationsStatusRequest, ::clarifai::api::PatchAnnotationsStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchAnnotationsStatusRequest* req,
+             ::clarifai::api::PatchAnnotationsStatusResponse* resp) {
+               return service->PatchAnnotationsStatus(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAnnotationRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteAnnotation), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAnnotationRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteAnnotationRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteAnnotation(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAnnotationsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteAnnotations), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAnnotationsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteAnnotationsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteAnnotations(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAnnotationsSearchesRequest, ::clarifai::api::MultiSearchResponse>(
-          std::mem_fn(&V2::Service::PostAnnotationsSearches), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAnnotationsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchAnnotationsSearchesRequest* req,
+             ::clarifai::api::MultiSearchResponse* resp) {
+               return service->PatchAnnotationsSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[24],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetInputCountRequest, ::clarifai::api::SingleInputCountResponse>(
-          std::mem_fn(&V2::Service::GetInputCount), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAnnotationsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostAnnotationsSearchesRequest* req,
+             ::clarifai::api::MultiSearchResponse* resp) {
+               return service->PostAnnotationsSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[25],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::StreamInputsRequest, ::clarifai::api::MultiInputResponse>(
-          std::mem_fn(&V2::Service::StreamInputs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetInputCountRequest, ::clarifai::api::SingleInputCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetInputCountRequest* req,
+             ::clarifai::api::SingleInputCountResponse* resp) {
+               return service->GetInputCount(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[26],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetInputSamplesRequest, ::clarifai::api::MultiInputAnnotationResponse>(
-          std::mem_fn(&V2::Service::GetInputSamples), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::StreamInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::StreamInputsRequest* req,
+             ::clarifai::api::MultiInputResponse* resp) {
+               return service->StreamInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[27],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetInputRequest, ::clarifai::api::SingleInputResponse>(
-          std::mem_fn(&V2::Service::GetInput), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetInputSamplesRequest, ::clarifai::api::MultiInputAnnotationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetInputSamplesRequest* req,
+             ::clarifai::api::MultiInputAnnotationResponse* resp) {
+               return service->GetInputSamples(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[28],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListInputsRequest, ::clarifai::api::MultiInputResponse>(
-          std::mem_fn(&V2::Service::ListInputs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetInputRequest, ::clarifai::api::SingleInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetInputRequest* req,
+             ::clarifai::api::SingleInputResponse* resp) {
+               return service->GetInput(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostInputsRequest, ::clarifai::api::MultiInputResponse>(
-          std::mem_fn(&V2::Service::PostInputs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListInputsRequest* req,
+             ::clarifai::api::MultiInputResponse* resp) {
+               return service->ListInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[30],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchInputsRequest, ::clarifai::api::MultiInputResponse>(
-          std::mem_fn(&V2::Service::PatchInputs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostInputsRequest* req,
+             ::clarifai::api::MultiInputResponse* resp) {
+               return service->PostInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[31],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteInputRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteInput), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchInputsRequest* req,
+             ::clarifai::api::MultiInputResponse* resp) {
+               return service->PatchInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteInputsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteInputs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteInputRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteInputRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteInput(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostInputsSearchesRequest, ::clarifai::api::MultiSearchResponse>(
-          std::mem_fn(&V2::Service::PostInputsSearches), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteInputsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteInputsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelOutputsRequest, ::clarifai::api::MultiOutputResponse>(
-          std::mem_fn(&V2::Service::PostModelOutputs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchInputsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchInputsSearchesRequest* req,
+             ::clarifai::api::MultiSearchResponse* resp) {
+               return service->PatchInputsSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelTypeRequest, ::clarifai::api::SingleModelTypeResponse>(
-          std::mem_fn(&V2::Service::GetModelType), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostInputsSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostInputsSearchesRequest* req,
+             ::clarifai::api::MultiSearchResponse* resp) {
+               return service->PostInputsSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListOpenSourceLicensesRequest, ::clarifai::api::ListOpenSourceLicensesResponse>(
-          std::mem_fn(&V2::Service::ListOpenSourceLicenses), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelOutputsRequest, ::clarifai::api::MultiOutputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModelOutputsRequest* req,
+             ::clarifai::api::MultiOutputResponse* resp) {
+               return service->PostModelOutputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelTypesRequest, ::clarifai::api::MultiModelTypeResponse>(
-          std::mem_fn(&V2::Service::ListModelTypes), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListDatasetsRequest* req,
+             ::clarifai::api::MultiDatasetResponse* resp) {
+               return service->ListDatasets(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>(
-          std::mem_fn(&V2::Service::GetModel), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetDatasetRequest, ::clarifai::api::SingleDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetDatasetRequest* req,
+             ::clarifai::api::SingleDatasetResponse* resp) {
+               return service->GetDataset(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse>(
-          std::mem_fn(&V2::Service::GetModelOutputInfo), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostDatasetsRequest* req,
+             ::clarifai::api::MultiDatasetResponse* resp) {
+               return service->PostDatasets(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelsRequest, ::clarifai::api::MultiModelResponse>(
-          std::mem_fn(&V2::Service::ListModels), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchDatasetsRequest, ::clarifai::api::MultiDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchDatasetsRequest* req,
+             ::clarifai::api::MultiDatasetResponse* resp) {
+               return service->PatchDatasets(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[41],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelsSearchesRequest, ::clarifai::api::MultiModelResponse>(
-          std::mem_fn(&V2::Service::PostModelsSearches), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteDatasetsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteDatasetsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteDatasets(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[42],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelsRequest, ::clarifai::api::SingleModelResponse>(
-          std::mem_fn(&V2::Service::PostModels), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListDatasetInputsRequest, ::clarifai::api::MultiDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListDatasetInputsRequest* req,
+             ::clarifai::api::MultiDatasetInputResponse* resp) {
+               return service->ListDatasetInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[43],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelsRequest, ::clarifai::api::MultiModelResponse>(
-          std::mem_fn(&V2::Service::PatchModels), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetDatasetInputRequest, ::clarifai::api::SingleDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetDatasetInputRequest* req,
+             ::clarifai::api::SingleDatasetInputResponse* resp) {
+               return service->GetDatasetInput(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[44],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModelRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteModel), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostDatasetInputsRequest, ::clarifai::api::MultiDatasetInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostDatasetInputsRequest* req,
+             ::clarifai::api::MultiDatasetInputResponse* resp) {
+               return service->PostDatasetInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[45],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModelsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteModels), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteDatasetInputsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteDatasetInputsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteDatasetInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[46],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelToolkitsRequest, ::clarifai::api::MultiModelToolkitResponse>(
-          std::mem_fn(&V2::Service::PatchModelToolkits), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListDatasetVersionsRequest* req,
+             ::clarifai::api::MultiDatasetVersionResponse* resp) {
+               return service->ListDatasetVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[47],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelUseCasesRequest, ::clarifai::api::MultiModelUseCaseResponse>(
-          std::mem_fn(&V2::Service::PatchModelUseCases), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetDatasetVersionRequest, ::clarifai::api::SingleDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetDatasetVersionRequest* req,
+             ::clarifai::api::SingleDatasetVersionResponse* resp) {
+               return service->GetDatasetVersion(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelLanguagesRequest, ::clarifai::api::MultiModelLanguageResponse>(
-          std::mem_fn(&V2::Service::PatchModelLanguages), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListDatasetVersionMetricsGroupsRequest, ::clarifai::api::MultiDatasetVersionMetricsGroupResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListDatasetVersionMetricsGroupsRequest* req,
+             ::clarifai::api::MultiDatasetVersionMetricsGroupResponse* resp) {
+               return service->ListDatasetVersionMetricsGroups(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelInputsRequest, ::clarifai::api::MultiInputResponse>(
-          std::mem_fn(&V2::Service::ListModelInputs), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostDatasetVersionsRequest* req,
+             ::clarifai::api::MultiDatasetVersionResponse* resp) {
+               return service->PostDatasetVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[50],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelVersionRequest, ::clarifai::api::SingleModelVersionResponse>(
-          std::mem_fn(&V2::Service::GetModelVersion), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchDatasetVersionsRequest, ::clarifai::api::MultiDatasetVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchDatasetVersionsRequest* req,
+             ::clarifai::api::MultiDatasetVersionResponse* resp) {
+               return service->PatchDatasetVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse>(
-          std::mem_fn(&V2::Service::ListModelVersions), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteDatasetVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteDatasetVersionsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteDatasetVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionsPublishRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::PostModelVersionsPublish), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelTypeRequest, ::clarifai::api::SingleModelTypeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetModelTypeRequest* req,
+             ::clarifai::api::SingleModelTypeResponse* resp) {
+               return service->GetModelType(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionsUnPublishRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::PostModelVersionsUnPublish), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListOpenSourceLicensesRequest, ::clarifai::api::ListOpenSourceLicensesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListOpenSourceLicensesRequest* req,
+             ::clarifai::api::ListOpenSourceLicensesResponse* resp) {
+               return service->ListOpenSourceLicenses(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[54],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionsRequest, ::clarifai::api::SingleModelResponse>(
-          std::mem_fn(&V2::Service::PostModelVersions), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelTypesRequest, ::clarifai::api::MultiModelTypeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListModelTypesRequest* req,
+             ::clarifai::api::MultiModelTypeResponse* resp) {
+               return service->ListModelTypes(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[55],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse>(
-          std::mem_fn(&V2::Service::PatchModelVersions), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetModelRequest* req,
+             ::clarifai::api::SingleModelResponse* resp) {
+               return service->GetModel(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[56],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteModelVersion), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetModelRequest* req,
+             ::clarifai::api::SingleModelResponse* resp) {
+               return service->GetModelOutputInfo(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[57],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>(
-          std::mem_fn(&V2::Service::GetModelVersionMetrics), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListModelsRequest* req,
+             ::clarifai::api::MultiModelResponse* resp) {
+               return service->ListModels(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[58],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse>(
-          std::mem_fn(&V2::Service::PostModelVersionMetrics), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelsSearchesRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModelsSearchesRequest* req,
+             ::clarifai::api::MultiModelResponse* resp) {
+               return service->PostModelsSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[59],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelReferencesRequest, ::clarifai::api::MultiModelReferenceResponse>(
-          std::mem_fn(&V2::Service::ListModelReferences), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelsRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModelsRequest* req,
+             ::clarifai::api::SingleModelResponse* resp) {
+               return service->PostModels(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[60],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelVersionInputExampleRequest, ::clarifai::api::SingleModelVersionInputExampleResponse>(
-          std::mem_fn(&V2::Service::GetModelVersionInputExample), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchModelsRequest* req,
+             ::clarifai::api::MultiModelResponse* resp) {
+               return service->PatchModels(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[61],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelVersionInputExamplesRequest, ::clarifai::api::MultiModelVersionInputExampleResponse>(
-          std::mem_fn(&V2::Service::ListModelVersionInputExamples), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelIdsRequest, ::clarifai::api::MultiModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchModelIdsRequest* req,
+             ::clarifai::api::MultiModelResponse* resp) {
+               return service->PatchModelIds(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[62],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse>(
-          std::mem_fn(&V2::Service::GetWorkflow), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModelRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteModelRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteModel(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[63],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
-          std::mem_fn(&V2::Service::ListWorkflows), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModelsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteModelsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteModels(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[64],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
-          std::mem_fn(&V2::Service::PostWorkflows), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelCheckConsentsRequest, ::clarifai::api::MultiModelCheckConsentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchModelCheckConsentsRequest* req,
+             ::clarifai::api::MultiModelCheckConsentResponse* resp) {
+               return service->PatchModelCheckConsents(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[65],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse>(
-          std::mem_fn(&V2::Service::PatchWorkflows), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelToolkitsRequest, ::clarifai::api::MultiModelToolkitResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchModelToolkitsRequest* req,
+             ::clarifai::api::MultiModelToolkitResponse* resp) {
+               return service->PatchModelToolkits(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[66],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteWorkflow), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelUseCasesRequest, ::clarifai::api::MultiModelUseCaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchModelUseCasesRequest* req,
+             ::clarifai::api::MultiModelUseCaseResponse* resp) {
+               return service->PatchModelUseCases(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[67],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteWorkflows), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelLanguagesRequest, ::clarifai::api::MultiModelLanguageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchModelLanguagesRequest* req,
+             ::clarifai::api::MultiModelLanguageResponse* resp) {
+               return service->PatchModelLanguages(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[68],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse>(
-          std::mem_fn(&V2::Service::PostWorkflowResults), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelInputsRequest, ::clarifai::api::MultiInputResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListModelInputsRequest* req,
+             ::clarifai::api::MultiInputResponse* resp) {
+               return service->ListModelInputs(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[69],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse>(
-          std::mem_fn(&V2::Service::PostWorkflowResultsSimilarity), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelVersionRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetModelVersionRequest* req,
+             ::clarifai::api::SingleModelVersionResponse* resp) {
+               return service->GetModelVersion(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[70],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListWorkflowVersionsRequest, ::clarifai::api::MultiWorkflowVersionResponse>(
-          std::mem_fn(&V2::Service::ListWorkflowVersions), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListModelVersionsRequest* req,
+             ::clarifai::api::MultiModelVersionResponse* resp) {
+               return service->ListModelVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[71],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetWorkflowVersionRequest, ::clarifai::api::SingleWorkflowVersionResponse>(
-          std::mem_fn(&V2::Service::GetWorkflowVersion), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowVersionsUnPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostWorkflowVersionsUnPublishRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->PostWorkflowVersionsUnPublish(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[72],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteWorkflowVersionsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteWorkflowVersions), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowVersionsPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostWorkflowVersionsPublishRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->PostWorkflowVersionsPublish(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[73],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchWorkflowVersionsRequest, ::clarifai::api::MultiWorkflowVersionResponse>(
-          std::mem_fn(&V2::Service::PatchWorkflowVersions), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionsPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModelVersionsPublishRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->PostModelVersionsPublish(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[74],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse>(
-          std::mem_fn(&V2::Service::GetKey), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionsUnPublishRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModelVersionsUnPublishRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->PostModelVersionsUnPublish(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[75],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse>(
-          std::mem_fn(&V2::Service::ListKeys), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionsRequest, ::clarifai::api::SingleModelResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModelVersionsRequest* req,
+             ::clarifai::api::SingleModelResponse* resp) {
+               return service->PostModelVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[76],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse>(
-          std::mem_fn(&V2::Service::ListAppKeys), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModelVersionsRequest, ::clarifai::api::MultiModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchModelVersionsRequest* req,
+             ::clarifai::api::MultiModelVersionResponse* resp) {
+               return service->PatchModelVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[77],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteKey), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModelVersionRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteModelVersionRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteModelVersion(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[78],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse>(
-          std::mem_fn(&V2::Service::PostKeys), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetModelVersionMetricsRequest* req,
+             ::clarifai::api::SingleModelVersionResponse* resp) {
+               return service->GetModelVersionMetrics(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[79],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse>(
-          std::mem_fn(&V2::Service::PatchKeys), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModelVersionMetricsRequest, ::clarifai::api::SingleModelVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModelVersionMetricsRequest* req,
+             ::clarifai::api::SingleModelVersionResponse* resp) {
+               return service->PostModelVersionMetrics(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[80],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse>(
-          std::mem_fn(&V2::Service::MyScopes), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelReferencesRequest, ::clarifai::api::MultiModelReferenceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListModelReferencesRequest* req,
+             ::clarifai::api::MultiModelReferenceResponse* resp) {
+               return service->ListModelReferences(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[81],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::MyScopesUserRequest, ::clarifai::api::MultiScopeUserResponse>(
-          std::mem_fn(&V2::Service::MyScopesUser), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModelVersionInputExampleRequest, ::clarifai::api::SingleModelVersionInputExampleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetModelVersionInputExampleRequest* req,
+             ::clarifai::api::SingleModelVersionInputExampleResponse* resp) {
+               return service->GetModelVersionInputExample(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[82],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::MyScopesRootRequest, ::clarifai::api::MultiScopeRootResponse>(
-          std::mem_fn(&V2::Service::MyScopesRoot), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModelVersionInputExamplesRequest, ::clarifai::api::MultiModelVersionInputExampleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListModelVersionInputExamplesRequest* req,
+             ::clarifai::api::MultiModelVersionInputExampleResponse* resp) {
+               return service->ListModelVersionInputExamples(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[83],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse>(
-          std::mem_fn(&V2::Service::ListScopes), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetWorkflowRequest, ::clarifai::api::SingleWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetWorkflowRequest* req,
+             ::clarifai::api::SingleWorkflowResponse* resp) {
+               return service->GetWorkflow(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[84],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse>(
-          std::mem_fn(&V2::Service::GetApp), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListWorkflowsRequest* req,
+             ::clarifai::api::MultiWorkflowResponse* resp) {
+               return service->ListWorkflows(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[85],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse>(
-          std::mem_fn(&V2::Service::ListApps), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostWorkflowsRequest* req,
+             ::clarifai::api::MultiWorkflowResponse* resp) {
+               return service->PostWorkflows(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[86],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteApp), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchWorkflowsRequest, ::clarifai::api::MultiWorkflowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchWorkflowsRequest* req,
+             ::clarifai::api::MultiWorkflowResponse* resp) {
+               return service->PatchWorkflows(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[87],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse>(
-          std::mem_fn(&V2::Service::PostApps), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteWorkflowRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteWorkflowRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteWorkflow(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[88],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse>(
-          std::mem_fn(&V2::Service::PatchApps), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteWorkflowsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteWorkflowsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteWorkflows(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[89],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse>(
-          std::mem_fn(&V2::Service::PostAppsSearches), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowResultsRequest, ::clarifai::api::PostWorkflowResultsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostWorkflowResultsRequest* req,
+             ::clarifai::api::PostWorkflowResultsResponse* resp) {
+               return service->PostWorkflowResults(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[90],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse>(
-          std::mem_fn(&V2::Service::PostValidatePassword), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostWorkflowResultsSimilarityRequest, ::clarifai::api::PostWorkflowResultsSimilarityResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostWorkflowResultsSimilarityRequest* req,
+             ::clarifai::api::PostWorkflowResultsSimilarityResponse* resp) {
+               return service->PostWorkflowResultsSimilarity(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[91],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse>(
-          std::mem_fn(&V2::Service::GetSearch), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListWorkflowVersionsRequest, ::clarifai::api::MultiWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListWorkflowVersionsRequest* req,
+             ::clarifai::api::MultiWorkflowVersionResponse* resp) {
+               return service->ListWorkflowVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[92],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse>(
-          std::mem_fn(&V2::Service::ListSearches), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetWorkflowVersionRequest, ::clarifai::api::SingleWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetWorkflowVersionRequest* req,
+             ::clarifai::api::SingleWorkflowVersionResponse* resp) {
+               return service->GetWorkflowVersion(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[93],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse>(
-          std::mem_fn(&V2::Service::PostSearches), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteWorkflowVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteWorkflowVersionsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteWorkflowVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[94],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse>(
-          std::mem_fn(&V2::Service::PostSearchesByID), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchWorkflowVersionsRequest, ::clarifai::api::MultiWorkflowVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchWorkflowVersionsRequest* req,
+             ::clarifai::api::MultiWorkflowVersionResponse* resp) {
+               return service->PatchWorkflowVersions(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[95],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
-          std::mem_fn(&V2::Service::PostAnnotationSearchMetrics), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetKeyRequest, ::clarifai::api::SingleKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetKeyRequest* req,
+             ::clarifai::api::SingleKeyResponse* resp) {
+               return service->GetKey(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[96],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
-          std::mem_fn(&V2::Service::GetAnnotationSearchMetrics), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListKeysRequest* req,
+             ::clarifai::api::MultiKeyResponse* resp) {
+               return service->ListKeys(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[97],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse>(
-          std::mem_fn(&V2::Service::ListAnnotationSearchMetrics), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListAppKeysRequest* req,
+             ::clarifai::api::MultiKeyResponse* resp) {
+               return service->ListAppKeys(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[98],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteAnnotationSearchMetrics), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteKeyRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteKeyRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteKey(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[99],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteSearch), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostKeysRequest* req,
+             ::clarifai::api::MultiKeyResponse* resp) {
+               return service->PostKeys(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[100],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse>(
-          std::mem_fn(&V2::Service::ListStatusCodes), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchKeysRequest, ::clarifai::api::MultiKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchKeysRequest* req,
+             ::clarifai::api::MultiKeyResponse* resp) {
+               return service->PatchKeys(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[101],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse>(
-          std::mem_fn(&V2::Service::GetStatusCode), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::MyScopesRequest, ::clarifai::api::MultiScopeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::MyScopesRequest* req,
+             ::clarifai::api::MultiScopeResponse* resp) {
+               return service->MyScopes(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[102],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
-          std::mem_fn(&V2::Service::ListCollaborators), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::MyScopesUserRequest, ::clarifai::api::MultiScopeUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::MyScopesUserRequest* req,
+             ::clarifai::api::MultiScopeUserResponse* resp) {
+               return service->MyScopesUser(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[103],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
-          std::mem_fn(&V2::Service::PostCollaborators), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::MyScopesRootRequest, ::clarifai::api::MultiScopeRootResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::MyScopesRootRequest* req,
+             ::clarifai::api::MultiScopeRootResponse* resp) {
+               return service->MyScopesRoot(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[104],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse>(
-          std::mem_fn(&V2::Service::PatchCollaborators), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListScopesRequest, ::clarifai::api::MultiScopeDepsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListScopesRequest* req,
+             ::clarifai::api::MultiScopeDepsResponse* resp) {
+               return service->ListScopes(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[105],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteCollaborators), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAppRequest, ::clarifai::api::SingleAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetAppRequest* req,
+             ::clarifai::api::SingleAppResponse* resp) {
+               return service->GetApp(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[106],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse>(
-          std::mem_fn(&V2::Service::ListCollaborations), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListAppsRequest* req,
+             ::clarifai::api::MultiAppResponse* resp) {
+               return service->ListApps(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[107],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>(
-          std::mem_fn(&V2::Service::PostAppDuplications), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAppRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteAppRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteApp(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[108],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse>(
-          std::mem_fn(&V2::Service::ListAppDuplications), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostAppsRequest* req,
+             ::clarifai::api::MultiAppResponse* resp) {
+               return service->PostApps(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[109],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse>(
-          std::mem_fn(&V2::Service::GetAppDuplication), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAppsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchAppsRequest* req,
+             ::clarifai::api::MultiAppResponse* resp) {
+               return service->PatchApps(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[110],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse>(
-          std::mem_fn(&V2::Service::PostTasks), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAppsIdsRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchAppsIdsRequest* req,
+             ::clarifai::api::MultiAppResponse* resp) {
+               return service->PatchAppsIds(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[111],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>(
-          std::mem_fn(&V2::Service::GetTaskAnnotationCount), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAppRequest, ::clarifai::api::SingleAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchAppRequest* req,
+             ::clarifai::api::SingleAppResponse* resp) {
+               return service->PatchApp(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[112],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse>(
-          std::mem_fn(&V2::Service::GetTaskInputCount), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppsSearchesRequest, ::clarifai::api::MultiAppResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostAppsSearchesRequest* req,
+             ::clarifai::api::MultiAppResponse* resp) {
+               return service->PostAppsSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[113],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse>(
-          std::mem_fn(&V2::Service::GetTask), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostValidatePasswordRequest, ::clarifai::api::SinglePasswordValidationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostValidatePasswordRequest* req,
+             ::clarifai::api::SinglePasswordValidationResponse* resp) {
+               return service->PostValidatePassword(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[114],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse>(
-          std::mem_fn(&V2::Service::ListTasks), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetSearchRequest, ::clarifai::api::SingleSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetSearchRequest* req,
+             ::clarifai::api::SingleSearchResponse* resp) {
+               return service->GetSearch(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[115],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse>(
-          std::mem_fn(&V2::Service::PatchTasks), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListSearchesRequest* req,
+             ::clarifai::api::MultiSearchResponse* resp) {
+               return service->ListSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[116],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteTasks), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchSearchesRequest* req,
+             ::clarifai::api::MultiSearchResponse* resp) {
+               return service->PatchSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[117],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
-          std::mem_fn(&V2::Service::PostLabelOrders), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostSearchesRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostSearchesRequest* req,
+             ::clarifai::api::MultiSearchResponse* resp) {
+               return service->PostSearches(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[118],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse>(
-          std::mem_fn(&V2::Service::GetLabelOrder), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostSearchesByIDRequest, ::clarifai::api::MultiSearchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostSearchesByIDRequest* req,
+             ::clarifai::api::MultiSearchResponse* resp) {
+               return service->PostSearchesByID(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[119],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
-          std::mem_fn(&V2::Service::ListLabelOrders), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostAnnotationSearchMetricsRequest* req,
+             ::clarifai::api::MultiAnnotationSearchMetricsResponse* resp) {
+               return service->PostAnnotationSearchMetrics(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[120],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse>(
-          std::mem_fn(&V2::Service::PatchLabelOrders), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetAnnotationSearchMetricsRequest* req,
+             ::clarifai::api::MultiAnnotationSearchMetricsResponse* resp) {
+               return service->GetAnnotationSearchMetrics(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[121],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteLabelOrders), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAnnotationSearchMetricsRequest, ::clarifai::api::MultiAnnotationSearchMetricsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListAnnotationSearchMetricsRequest* req,
+             ::clarifai::api::MultiAnnotationSearchMetricsResponse* resp) {
+               return service->ListAnnotationSearchMetrics(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[122],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
-          std::mem_fn(&V2::Service::PostCollectors), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAnnotationSearchMetricsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteAnnotationSearchMetricsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteAnnotationSearchMetrics(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[123],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse>(
-          std::mem_fn(&V2::Service::GetCollector), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteSearchRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteSearchRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteSearch(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[124],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
-          std::mem_fn(&V2::Service::ListCollectors), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListAnnotationFiltersRequest* req,
+             ::clarifai::api::MultiAnnotationFilterResponse* resp) {
+               return service->ListAnnotationFilters(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[125],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse>(
-          std::mem_fn(&V2::Service::PatchCollectors), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAnnotationFilterRequest, ::clarifai::api::SingleAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetAnnotationFilterRequest* req,
+             ::clarifai::api::SingleAnnotationFilterResponse* resp) {
+               return service->GetAnnotationFilter(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[126],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::DeleteCollectors), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostAnnotationFiltersRequest* req,
+             ::clarifai::api::MultiAnnotationFilterResponse* resp) {
+               return service->PostAnnotationFilters(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[127],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse>(
-          std::mem_fn(&V2::Service::PostStatValues), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchAnnotationFiltersRequest, ::clarifai::api::MultiAnnotationFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchAnnotationFiltersRequest* req,
+             ::clarifai::api::MultiAnnotationFilterResponse* resp) {
+               return service->PatchAnnotationFilters(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[128],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse>(
-          std::mem_fn(&V2::Service::PostStatValuesAggregate), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteAnnotationFiltersRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteAnnotationFiltersRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteAnnotationFilters(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[129],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse>(
-          std::mem_fn(&V2::Service::PostTrendingMetricsView), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListStatusCodesRequest, ::clarifai::api::MultiStatusCodeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListStatusCodesRequest* req,
+             ::clarifai::api::MultiStatusCodeResponse* resp) {
+               return service->ListStatusCodes(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       V2_method_names[130],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse>(
-          std::mem_fn(&V2::Service::ListTrendingMetricsViews), this)));
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetStatusCodeRequest, ::clarifai::api::SingleStatusCodeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetStatusCodeRequest* req,
+             ::clarifai::api::SingleStatusCodeResponse* resp) {
+               return service->GetStatusCode(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[131],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListCollaboratorsRequest* req,
+             ::clarifai::api::MultiCollaboratorsResponse* resp) {
+               return service->ListCollaborators(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[132],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostCollaboratorsRequest* req,
+             ::clarifai::api::MultiCollaboratorsResponse* resp) {
+               return service->PostCollaborators(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[133],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchCollaboratorsRequest, ::clarifai::api::MultiCollaboratorsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchCollaboratorsRequest* req,
+             ::clarifai::api::MultiCollaboratorsResponse* resp) {
+               return service->PatchCollaborators(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[134],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteCollaboratorsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteCollaboratorsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteCollaborators(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[135],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollaborationsRequest, ::clarifai::api::MultiCollaborationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListCollaborationsRequest* req,
+             ::clarifai::api::MultiCollaborationsResponse* resp) {
+               return service->ListCollaborations(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[136],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostAppDuplicationsRequest* req,
+             ::clarifai::api::MultiAppDuplicationsResponse* resp) {
+               return service->PostAppDuplications(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[137],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListAppDuplicationsRequest, ::clarifai::api::MultiAppDuplicationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListAppDuplicationsRequest* req,
+             ::clarifai::api::MultiAppDuplicationsResponse* resp) {
+               return service->ListAppDuplications(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[138],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetAppDuplicationRequest, ::clarifai::api::SingleAppDuplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetAppDuplicationRequest* req,
+             ::clarifai::api::SingleAppDuplicationResponse* resp) {
+               return service->GetAppDuplication(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[139],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostTasksRequest* req,
+             ::clarifai::api::MultiTaskResponse* resp) {
+               return service->PostTasks(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[140],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetTaskCountRequest* req,
+             ::clarifai::api::SingleTaskCountResponse* resp) {
+               return service->GetTaskAnnotationCount(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[141],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskCountRequest, ::clarifai::api::SingleTaskCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetTaskCountRequest* req,
+             ::clarifai::api::SingleTaskCountResponse* resp) {
+               return service->GetTaskInputCount(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[142],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetTaskRequest, ::clarifai::api::SingleTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetTaskRequest* req,
+             ::clarifai::api::SingleTaskResponse* resp) {
+               return service->GetTask(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[143],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListTasksRequest* req,
+             ::clarifai::api::MultiTaskResponse* resp) {
+               return service->ListTasks(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[144],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchTasksRequest, ::clarifai::api::MultiTaskResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchTasksRequest* req,
+             ::clarifai::api::MultiTaskResponse* resp) {
+               return service->PatchTasks(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[145],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteTasksRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteTasksRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteTasks(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[146],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostLabelOrdersRequest* req,
+             ::clarifai::api::MultiLabelOrderResponse* resp) {
+               return service->PostLabelOrders(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[147],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetLabelOrderRequest, ::clarifai::api::SingleLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetLabelOrderRequest* req,
+             ::clarifai::api::SingleLabelOrderResponse* resp) {
+               return service->GetLabelOrder(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[148],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListLabelOrdersRequest* req,
+             ::clarifai::api::MultiLabelOrderResponse* resp) {
+               return service->ListLabelOrders(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[149],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchLabelOrdersRequest, ::clarifai::api::MultiLabelOrderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchLabelOrdersRequest* req,
+             ::clarifai::api::MultiLabelOrderResponse* resp) {
+               return service->PatchLabelOrders(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[150],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteLabelOrdersRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteLabelOrdersRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteLabelOrders(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[151],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostCollectorsRequest* req,
+             ::clarifai::api::MultiCollectorResponse* resp) {
+               return service->PostCollectors(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[152],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetCollectorRequest, ::clarifai::api::SingleCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetCollectorRequest* req,
+             ::clarifai::api::SingleCollectorResponse* resp) {
+               return service->GetCollector(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[153],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListCollectorsRequest* req,
+             ::clarifai::api::MultiCollectorResponse* resp) {
+               return service->ListCollectors(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[154],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchCollectorsRequest, ::clarifai::api::MultiCollectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchCollectorsRequest* req,
+             ::clarifai::api::MultiCollectorResponse* resp) {
+               return service->PatchCollectors(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[155],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteCollectorsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteCollectorsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteCollectors(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[156],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostStatValuesRequest, ::clarifai::api::MultiStatValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostStatValuesRequest* req,
+             ::clarifai::api::MultiStatValueResponse* resp) {
+               return service->PostStatValues(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[157],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostStatValuesAggregateRequest, ::clarifai::api::MultiStatValueAggregateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostStatValuesAggregateRequest* req,
+             ::clarifai::api::MultiStatValueAggregateResponse* resp) {
+               return service->PostStatValuesAggregate(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[158],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostTrendingMetricsViewRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostTrendingMetricsViewRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->PostTrendingMetricsView(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[159],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListTrendingMetricsViewsRequest, ::clarifai::api::MultiTrendingMetricsViewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListTrendingMetricsViewsRequest* req,
+             ::clarifai::api::MultiTrendingMetricsViewResponse* resp) {
+               return service->ListTrendingMetricsViews(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[160],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModuleRequest, ::clarifai::api::SingleModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetModuleRequest* req,
+             ::clarifai::api::SingleModuleResponse* resp) {
+               return service->GetModule(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[161],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListModulesRequest* req,
+             ::clarifai::api::MultiModuleResponse* resp) {
+               return service->ListModules(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[162],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModulesRequest* req,
+             ::clarifai::api::MultiModuleResponse* resp) {
+               return service->PostModules(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[163],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PatchModulesRequest, ::clarifai::api::MultiModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PatchModulesRequest* req,
+             ::clarifai::api::MultiModuleResponse* resp) {
+               return service->PatchModules(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[164],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModulesRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteModulesRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteModules(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[165],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetModuleVersionRequest, ::clarifai::api::SingleModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetModuleVersionRequest* req,
+             ::clarifai::api::SingleModuleVersionResponse* resp) {
+               return service->GetModuleVersion(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[166],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListModuleVersionsRequest, ::clarifai::api::MultiModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListModuleVersionsRequest* req,
+             ::clarifai::api::MultiModuleVersionResponse* resp) {
+               return service->ListModuleVersions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[167],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostModuleVersionsRequest, ::clarifai::api::MultiModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostModuleVersionsRequest* req,
+             ::clarifai::api::MultiModuleVersionResponse* resp) {
+               return service->PostModuleVersions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[168],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteModuleVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteModuleVersionsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteModuleVersions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[169],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListInstalledModuleVersionsRequest, ::clarifai::api::MultiInstalledModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListInstalledModuleVersionsRequest* req,
+             ::clarifai::api::MultiInstalledModuleVersionResponse* resp) {
+               return service->ListInstalledModuleVersions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[170],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostInstalledModuleVersionsRequest, ::clarifai::api::MultiInstalledModuleVersionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostInstalledModuleVersionsRequest* req,
+             ::clarifai::api::MultiInstalledModuleVersionResponse* resp) {
+               return service->PostInstalledModuleVersions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[171],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteInstalledModuleVersionsRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteInstalledModuleVersionsRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteInstalledModuleVersions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[172],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::PostBulkOperationsRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::PostBulkOperationsRequest* req,
+             ::clarifai::api::MultiBulkOperationsResponse* resp) {
+               return service->PostBulkOperations(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[173],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::ListBulkOperationsRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::ListBulkOperationsRequest* req,
+             ::clarifai::api::MultiBulkOperationsResponse* resp) {
+               return service->ListBulkOperations(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[174],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetBulkOperationRequest, ::clarifai::api::SingleBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetBulkOperationRequest* req,
+             ::clarifai::api::SingleBulkOperationsResponse* resp) {
+               return service->GetBulkOperation(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[175],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::CancelBulkOperationRequest, ::clarifai::api::MultiBulkOperationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::CancelBulkOperationRequest* req,
+             ::clarifai::api::MultiBulkOperationsResponse* resp) {
+               return service->CancelBulkOperations(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[176],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::DeleteBulkOperationRequest, ::clarifai::api::status::BaseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::DeleteBulkOperationRequest* req,
+             ::clarifai::api::status::BaseResponse* resp) {
+               return service->DeleteBulkOperations(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      V2_method_names[177],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< V2::Service, ::clarifai::api::GetDatasetInputsSearchAddJobRequest, ::clarifai::api::SingleDatasetInputsSearchAddJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](V2::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::clarifai::api::GetDatasetInputsSearchAddJobRequest* req,
+             ::clarifai::api::SingleDatasetInputsSearchAddJobResponse* resp) {
+               return service->GetDatasetInputsSearchAddJob(ctx, req, resp);
+             }, this)));
 }
 
 V2::Service::~Service() {
@@ -4786,6 +6431,13 @@ V2::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status V2::Service::PatchAnnotationsSearches(::grpc::ServerContext* context, const ::clarifai::api::PatchAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status V2::Service::PostAnnotationsSearches(::grpc::ServerContext* context, const ::clarifai::api::PostAnnotationsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response) {
   (void) context;
   (void) request;
@@ -4856,6 +6508,13 @@ V2::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status V2::Service::PatchInputsSearches(::grpc::ServerContext* context, const ::clarifai::api::PatchInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status V2::Service::PostInputsSearches(::grpc::ServerContext* context, const ::clarifai::api::PostInputsSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response) {
   (void) context;
   (void) request;
@@ -4864,6 +6523,111 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::PostModelOutputs(::grpc::ServerContext* context, const ::clarifai::api::PostModelOutputsRequest* request, ::clarifai::api::MultiOutputResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListDatasets(::grpc::ServerContext* context, const ::clarifai::api::ListDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetDataset(::grpc::ServerContext* context, const ::clarifai::api::GetDatasetRequest* request, ::clarifai::api::SingleDatasetResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostDatasets(::grpc::ServerContext* context, const ::clarifai::api::PostDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchDatasets(::grpc::ServerContext* context, const ::clarifai::api::PatchDatasetsRequest* request, ::clarifai::api::MultiDatasetResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteDatasets(::grpc::ServerContext* context, const ::clarifai::api::DeleteDatasetsRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListDatasetInputs(::grpc::ServerContext* context, const ::clarifai::api::ListDatasetInputsRequest* request, ::clarifai::api::MultiDatasetInputResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetDatasetInput(::grpc::ServerContext* context, const ::clarifai::api::GetDatasetInputRequest* request, ::clarifai::api::SingleDatasetInputResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostDatasetInputs(::grpc::ServerContext* context, const ::clarifai::api::PostDatasetInputsRequest* request, ::clarifai::api::MultiDatasetInputResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteDatasetInputs(::grpc::ServerContext* context, const ::clarifai::api::DeleteDatasetInputsRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListDatasetVersions(::grpc::ServerContext* context, const ::clarifai::api::ListDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetDatasetVersion(::grpc::ServerContext* context, const ::clarifai::api::GetDatasetVersionRequest* request, ::clarifai::api::SingleDatasetVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListDatasetVersionMetricsGroups(::grpc::ServerContext* context, const ::clarifai::api::ListDatasetVersionMetricsGroupsRequest* request, ::clarifai::api::MultiDatasetVersionMetricsGroupResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostDatasetVersions(::grpc::ServerContext* context, const ::clarifai::api::PostDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchDatasetVersions(::grpc::ServerContext* context, const ::clarifai::api::PatchDatasetVersionsRequest* request, ::clarifai::api::MultiDatasetVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteDatasetVersions(::grpc::ServerContext* context, const ::clarifai::api::DeleteDatasetVersionsRequest* request, ::clarifai::api::status::BaseResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -4933,6 +6697,13 @@ V2::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status V2::Service::PatchModelIds(::grpc::ServerContext* context, const ::clarifai::api::PatchModelIdsRequest* request, ::clarifai::api::MultiModelResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status V2::Service::DeleteModel(::grpc::ServerContext* context, const ::clarifai::api::DeleteModelRequest* request, ::clarifai::api::status::BaseResponse* response) {
   (void) context;
   (void) request;
@@ -4941,6 +6712,13 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::DeleteModels(::grpc::ServerContext* context, const ::clarifai::api::DeleteModelsRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchModelCheckConsents(::grpc::ServerContext* context, const ::clarifai::api::PatchModelCheckConsentsRequest* request, ::clarifai::api::MultiModelCheckConsentResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -4983,6 +6761,20 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::ListModelVersions(::grpc::ServerContext* context, const ::clarifai::api::ListModelVersionsRequest* request, ::clarifai::api::MultiModelVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostWorkflowVersionsUnPublish(::grpc::ServerContext* context, const ::clarifai::api::PostWorkflowVersionsUnPublishRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostWorkflowVersionsPublish(::grpc::ServerContext* context, const ::clarifai::api::PostWorkflowVersionsPublishRequest* request, ::clarifai::api::status::BaseResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -5248,6 +7040,20 @@ V2::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status V2::Service::PatchAppsIds(::grpc::ServerContext* context, const ::clarifai::api::PatchAppsIdsRequest* request, ::clarifai::api::MultiAppResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchApp(::grpc::ServerContext* context, const ::clarifai::api::PatchAppRequest* request, ::clarifai::api::SingleAppResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status V2::Service::PostAppsSearches(::grpc::ServerContext* context, const ::clarifai::api::PostAppsSearchesRequest* request, ::clarifai::api::MultiAppResponse* response) {
   (void) context;
   (void) request;
@@ -5270,6 +7076,13 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::ListSearches(::grpc::ServerContext* context, const ::clarifai::api::ListSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchSearches(::grpc::ServerContext* context, const ::clarifai::api::PatchSearchesRequest* request, ::clarifai::api::MultiSearchResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -5319,6 +7132,41 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::DeleteSearch(::grpc::ServerContext* context, const ::clarifai::api::DeleteSearchRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListAnnotationFilters(::grpc::ServerContext* context, const ::clarifai::api::ListAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetAnnotationFilter(::grpc::ServerContext* context, const ::clarifai::api::GetAnnotationFilterRequest* request, ::clarifai::api::SingleAnnotationFilterResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostAnnotationFilters(::grpc::ServerContext* context, const ::clarifai::api::PostAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchAnnotationFilters(::grpc::ServerContext* context, const ::clarifai::api::PatchAnnotationFiltersRequest* request, ::clarifai::api::MultiAnnotationFilterResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteAnnotationFilters(::grpc::ServerContext* context, const ::clarifai::api::DeleteAnnotationFiltersRequest* request, ::clarifai::api::status::BaseResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -5536,6 +7384,132 @@ V2::Service::~Service() {
 }
 
 ::grpc::Status V2::Service::ListTrendingMetricsViews(::grpc::ServerContext* context, const ::clarifai::api::ListTrendingMetricsViewsRequest* request, ::clarifai::api::MultiTrendingMetricsViewResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetModule(::grpc::ServerContext* context, const ::clarifai::api::GetModuleRequest* request, ::clarifai::api::SingleModuleResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListModules(::grpc::ServerContext* context, const ::clarifai::api::ListModulesRequest* request, ::clarifai::api::MultiModuleResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostModules(::grpc::ServerContext* context, const ::clarifai::api::PostModulesRequest* request, ::clarifai::api::MultiModuleResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PatchModules(::grpc::ServerContext* context, const ::clarifai::api::PatchModulesRequest* request, ::clarifai::api::MultiModuleResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteModules(::grpc::ServerContext* context, const ::clarifai::api::DeleteModulesRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetModuleVersion(::grpc::ServerContext* context, const ::clarifai::api::GetModuleVersionRequest* request, ::clarifai::api::SingleModuleVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListModuleVersions(::grpc::ServerContext* context, const ::clarifai::api::ListModuleVersionsRequest* request, ::clarifai::api::MultiModuleVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostModuleVersions(::grpc::ServerContext* context, const ::clarifai::api::PostModuleVersionsRequest* request, ::clarifai::api::MultiModuleVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteModuleVersions(::grpc::ServerContext* context, const ::clarifai::api::DeleteModuleVersionsRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListInstalledModuleVersions(::grpc::ServerContext* context, const ::clarifai::api::ListInstalledModuleVersionsRequest* request, ::clarifai::api::MultiInstalledModuleVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostInstalledModuleVersions(::grpc::ServerContext* context, const ::clarifai::api::PostInstalledModuleVersionsRequest* request, ::clarifai::api::MultiInstalledModuleVersionResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteInstalledModuleVersions(::grpc::ServerContext* context, const ::clarifai::api::DeleteInstalledModuleVersionsRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::PostBulkOperations(::grpc::ServerContext* context, const ::clarifai::api::PostBulkOperationsRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::ListBulkOperations(::grpc::ServerContext* context, const ::clarifai::api::ListBulkOperationsRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetBulkOperation(::grpc::ServerContext* context, const ::clarifai::api::GetBulkOperationRequest* request, ::clarifai::api::SingleBulkOperationsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::CancelBulkOperations(::grpc::ServerContext* context, const ::clarifai::api::CancelBulkOperationRequest* request, ::clarifai::api::MultiBulkOperationsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::DeleteBulkOperations(::grpc::ServerContext* context, const ::clarifai::api::DeleteBulkOperationRequest* request, ::clarifai::api::status::BaseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status V2::Service::GetDatasetInputsSearchAddJob(::grpc::ServerContext* context, const ::clarifai::api::GetDatasetInputsSearchAddJobRequest* request, ::clarifai::api::SingleDatasetInputsSearchAddJobResponse* response) {
   (void) context;
   (void) request;
   (void) response;
