@@ -14,45 +14,44 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+
+PROTOBUF_PRAGMA_INIT_SEG
 namespace clarifai {
 namespace auth {
 namespace scope {
-class ScopeListDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ScopeList> _instance;
-} _ScopeList_default_instance_;
+constexpr ScopeList::ScopeList(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : scopes_()
+  , _scopes_cached_byte_size_(0)
+  , endpoints_(){}
+struct ScopeListDefaultTypeInternal {
+  constexpr ScopeListDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ScopeListDefaultTypeInternal() {}
+  union {
+    ScopeList _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ScopeListDefaultTypeInternal _ScopeList_default_instance_;
 }  // namespace scope
 }  // namespace auth
 }  // namespace clarifai
-static void InitDefaultsscc_info_ScopeList_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::clarifai::auth::scope::_ScopeList_default_instance_;
-    new (ptr) ::clarifai::auth::scope::ScopeList();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::clarifai::auth::scope::ScopeList::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ScopeList_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ScopeList_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto}, {}};
-
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto[1];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto = nullptr;
 
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+const uint32_t TableStruct_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::clarifai::auth::scope::ScopeList, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::clarifai::auth::scope::ScopeList, scopes_),
   PROTOBUF_FIELD_OFFSET(::clarifai::auth::scope::ScopeList, endpoints_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::clarifai::auth::scope::ScopeList)},
+  { 0, -1, -1, sizeof(::clarifai::auth::scope::ScopeList)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -64,78 +63,123 @@ const char descriptor_table_protodef_proto_2fclarifai_2fauth_2fscope_2fscope_2ep
   "\023clarifai.auth.scope\032 google/protobuf/de"
   "scriptor.proto\"F\n\tScopeList\022&\n\006scopes\030\001 "
   "\003(\0162\026.clarifai.auth.scope.S\022\021\n\tendpoints"
-  "\030\002 \003(\t*\310\016\n\001S\022\t\n\005undef\020\000\022\r\n\003All\020\001\032\004\360\233\'\001\022\021"
-  "\n\007Predict\020\002\032\004\360\233\'\001\022\020\n\006Search\020\003\032\004\360\233\'\001\022\030\n\nI"
-  "nputs_Add\020\004\032\010\360\233\'\001\370\233\'\005\022\024\n\nInputs_Get\020\005\032\004\360"
-  "\233\'\001\022 \n\014Inputs_Patch\020\007\032\016\010\001\360\233\'\001\370\233\'\004\370\233\'\005\022\037\n"
-  "\rInputs_Delete\020\010\032\014\360\233\'\001\370\233\'\004\370\233\'\005\022\035\n\rOutput"
-  "s_Patch\020\t\032\n\010\001\370\233\'\005\370\233\'\002\022\032\n\014Concepts_Add\020\n\032"
-  "\010\360\233\'\001\370\233\'\013\022\026\n\014Concepts_Get\020\013\032\004\360\233\'\001\022\"\n\016Con"
-  "cepts_Patch\020\014\032\016\010\001\360\233\'\001\370\233\'\n\370\233\'\013\022\035\n\017Concept"
-  "s_Delete\020\r\032\010\370\233\'\n\370\233\'\013\022\030\n\nModels_Add\020\016\032\010\360\233"
-  "\'\001\370\233\'\017\022\024\n\nModels_Get\020\017\032\004\360\233\'\001\022$\n\014Models_P"
-  "atch\020\020\032\022\010\001\360\233\'\001\370\233\'\016\370\233\'\017\370\233\'\032\022\037\n\rModels_Del"
-  "ete\020\021\032\014\360\233\'\001\370\233\'\016\370\233\'\017\022\032\n\014Models_Train\020\032\032\010\360"
-  "\233\'\001\370\233\'\017\022\025\n\013Models_Sync\020\033\032\004\370\233\'\017\022\033\n\rWorkfl"
-  "ows_Add\020\022\032\010\360\233\'\001\370\233\'\023\022\027\n\rWorkflows_Get\020\023\032\004"
-  "\360\233\'\001\022#\n\017Workflows_Patch\020\024\032\016\010\001\360\233\'\001\370\233\'\022\370\233\'"
-  "\023\022\"\n\020Workflows_Delete\020\025\032\014\360\233\'\001\370\233\'\022\370\233\'\023\022\035\n"
-  "\023WorkflowMetrics_Get\020`\032\004\360\233\'\001\022!\n\023Workflow"
-  "Metrics_Add\020a\032\010\360\233\'\001\370\233\'`\022(\n\026WorkflowMetri"
-  "cs_Delete\020b\032\014\360\233\'\001\370\233\'a\370\233\'`\022\"\n\026TSNEVisuali"
-  "zations_Add\020\030\032\006\010\001\370\233\'\031\022\036\n\026TSNEVisualizati"
-  "ons_Get\020\031\032\002\010\001\022\035\n\017Annotations_Add\020%\032\010\360\233\'\001"
-  "\370\233\'&\022\031\n\017Annotations_Get\020&\032\004\360\233\'\001\022%\n\021Annot"
-  "ations_Patch\020\'\032\016\010\001\360\233\'\001\370\233\'%\370\233\'&\022$\n\022Annota"
-  "tions_Delete\020(\032\014\360\233\'\001\370\233\'%\370\233\'&\022\034\n\016Collecto"
-  "rs_Add\020)\032\010\360\233\'\001\370\233\'*\022\030\n\016Collectors_Get\020*\032\004"
-  "\360\233\'\001\022#\n\021Collectors_Delete\020+\032\014\360\233\'\001\370\233\')\370\233\'"
-  "*\022\026\n\010Apps_Add\020,\032\010\360\233\'\001\370\233\'-\022\022\n\010Apps_Get\020-\032"
-  "\004\360\233\'\001\022\035\n\013Apps_Delete\020.\032\014\360\233\'\001\370\233\',\370\233\'-\022\026\n\010"
-  "Keys_Add\020/\032\010\360\233\'\001\370\233\'0\022\022\n\010Keys_Get\0200\032\004\360\233\'\001"
-  "\022\035\n\013Keys_Delete\0201\032\014\360\233\'\001\370\233\'/\370\233\'0\022\037\n\021Colla"
-  "borators_Add\0203\032\010\360\233\'\001\370\233\'2\022\033\n\021Collaborator"
-  "s_Get\0202\032\004\360\233\'\001\022&\n\024Collaborators_Delete\0204\032"
-  "\014\360\233\'\001\370\233\'3\370\233\'2\022\031\n\013Metrics_Add\0206\032\010\360\233\'\001\370\233\'5"
-  "\022\025\n\013Metrics_Get\0205\032\004\360\233\'\001\022 \n\016Metrics_Delet"
-  "e\020\?\032\014\360\233\'\001\370\233\'6\370\233\'5\022\027\n\tTasks_Add\0207\032\010\360\233\'\001\370\233"
-  "\'8\022\023\n\tTasks_Get\0208\032\004\360\233\'\001\022\036\n\014Tasks_Delete\020"
-  "F\032\014\360\233\'\001\370\233\'7\370\233\'8\022\"\n\024PasswordPolicies_Add\020"
-  "9\032\010\360\233\'\001\370\233\':\022\036\n\024PasswordPolicies_Get\020:\032\004\360"
-  "\233\'\001\022)\n\027PasswordPolicies_Delete\020;\032\014\360\233\'\001\370\233"
-  "\'9\370\233\':\022\031\n\017LabelOrders_Get\020C\032\004\360\233\'\001\022\035\n\017Lab"
-  "elOrders_Add\020D\032\010\360\233\'\001\370\233\'C\022$\n\022LabelOrders_"
-  "Delete\020E\032\014\360\233\'\001\370\233\'D\370\233\'C\022 \n\026UserFeatureCon"
-  "figs_Get\020G\032\004\360\233\'\001\022.\n FindDuplicateAnnotat"
-  "ionsJobs_Add\020f\032\010\360\233\'\001\370\233\'g\022*\n FindDuplicat"
-  "eAnnotationsJobs_Get\020g\032\004\360\233\'\001\0225\n#FindDupl"
-  "icateAnnotationsJobs_Delete\020h\032\014\360\233\'\001\370\233\'f\370"
-  "\233\'g\"\004\010\036\020\036\"\004\010\037\020\037\"\004\010 \020 \"\004\010!\020!\"\004\010\"\020\":<\n\017cla"
-  "rfai_exposed\022!.google.protobuf.EnumValue"
-  "Options\030\276\363\004 \001(\010:^\n\031clarifai_depending_sc"
-  "opes\022!.google.protobuf.EnumValueOptions\030"
-  "\277\363\004 \003(\0162\026.clarifai.auth.scope.SBg\n\034com.c"
-  "larifai.grpc.auth.scopeP\001Z>github.com/Cl"
-  "arifai/clarifai-go-grpc/proto/clarifai/a"
-  "uth/scope\242\002\004CAIPb\006proto3"
+  "\030\002 \003(\t*\251\035\n\001S\022\t\n\005undef\020\000\022\r\n\003All\020\001\032\004\360\233\'\001\022\021"
+  "\n\007Predict\020\002\032\004\360\233\'\001\022\034\n\020Predict_Feedback\020\035\032"
+  "\006\010\001\360\233\'\000\022\030\n\nInputs_Add\020\004\032\010\360\233\'\001\370\233\'\005\022\024\n\nInp"
+  "uts_Get\020\005\032\004\360\233\'\001\022 \n\014Inputs_Patch\020\007\032\016\010\001\360\233\'"
+  "\001\370\233\'\004\370\233\'\005\022\037\n\rInputs_Delete\020\010\032\014\360\233\'\001\370\233\'\004\370\233"
+  "\'\005\022\035\n\rOutputs_Patch\020\t\032\n\010\001\370\233\'\005\370\233\'\002\022\032\n\014Con"
+  "cepts_Add\020\n\032\010\360\233\'\001\370\233\'\013\022\026\n\014Concepts_Get\020\013\032"
+  "\004\360\233\'\001\022\"\n\016Concepts_Patch\020\014\032\016\010\001\360\233\'\001\370\233\'\n\370\233\'"
+  "\013\022\035\n\017Concepts_Delete\020\r\032\010\370\233\'\n\370\233\'\013\022\030\n\nMode"
+  "ls_Add\020\016\032\010\360\233\'\001\370\233\'\017\022\024\n\nModels_Get\020\017\032\004\360\233\'\001"
+  "\022$\n\014Models_Patch\020\020\032\022\010\001\360\233\'\001\370\233\'\016\370\233\'\017\370\233\'\032\022\037"
+  "\n\rModels_Delete\020\021\032\014\360\233\'\001\370\233\'\016\370\233\'\017\022\032\n\014Model"
+  "s_Train\020\032\032\010\360\233\'\001\370\233\'\017\022\025\n\013Models_Sync\020\033\032\004\370\233"
+  "\'\017\022\033\n\rWorkflows_Add\020\022\032\010\360\233\'\001\370\233\'\023\022\027\n\rWorkf"
+  "lows_Get\020\023\032\004\360\233\'\001\022#\n\017Workflows_Patch\020\024\032\016\010"
+  "\001\360\233\'\001\370\233\'\022\370\233\'\023\022\"\n\020Workflows_Delete\020\025\032\014\360\233\'"
+  "\001\370\233\'\022\370\233\'\023\022\035\n\023WorkflowMetrics_Get\020`\032\004\360\233\'\001"
+  "\022!\n\023WorkflowMetrics_Add\020a\032\010\360\233\'\001\370\233\'`\022(\n\026W"
+  "orkflowMetrics_Delete\020b\032\014\360\233\'\001\370\233\'a\370\233\'`\022\"\n"
+  "\026TSNEVisualizations_Add\020\030\032\006\010\001\370\233\'\031\022\036\n\026TSN"
+  "EVisualizations_Get\020\031\032\002\010\001\022\035\n\017Annotations"
+  "_Add\020%\032\010\360\233\'\001\370\233\'&\022\031\n\017Annotations_Get\020&\032\004\360"
+  "\233\'\001\022%\n\021Annotations_Patch\020\'\032\016\010\001\360\233\'\001\370\233\'%\370\233"
+  "\'&\022$\n\022Annotations_Delete\020(\032\014\360\233\'\001\370\233\'%\370\233\'&"
+  "\022\034\n\016Collectors_Add\020)\032\010\360\233\'\001\370\233\'*\022\030\n\016Collec"
+  "tors_Get\020*\032\004\360\233\'\001\022#\n\021Collectors_Delete\020+\032"
+  "\014\360\233\'\001\370\233\')\370\233\'*\022\026\n\010Apps_Add\020,\032\010\360\233\'\001\370\233\'-\022\022\n"
+  "\010Apps_Get\020-\032\004\360\233\'\001\022\035\n\013Apps_Delete\020.\032\014\360\233\'\001"
+  "\370\233\',\370\233\'-\022\026\n\010Keys_Add\020/\032\010\360\233\'\001\370\233\'0\022\022\n\010Keys"
+  "_Get\0200\032\004\360\233\'\001\022\035\n\013Keys_Delete\0201\032\014\360\233\'\001\370\233\'/\370"
+  "\233\'0\022\037\n\021Collaborators_Add\0203\032\010\360\233\'\001\370\233\'2\022\033\n\021"
+  "Collaborators_Get\0202\032\004\360\233\'\001\022&\n\024Collaborato"
+  "rs_Delete\0204\032\014\360\233\'\001\370\233\'3\370\233\'2\022\031\n\013Metrics_Add"
+  "\0206\032\010\360\233\'\001\370\233\'5\022\025\n\013Metrics_Get\0205\032\004\360\233\'\001\022 \n\016M"
+  "etrics_Delete\020\?\032\014\360\233\'\001\370\233\'6\370\233\'5\022\027\n\tTasks_A"
+  "dd\0207\032\010\360\233\'\001\370\233\'8\022\023\n\tTasks_Get\0208\032\004\360\233\'\001\022\036\n\014T"
+  "asks_Delete\020F\032\014\360\233\'\001\370\233\'7\370\233\'8\022\"\n\024PasswordP"
+  "olicies_Add\0209\032\010\360\233\'\001\370\233\':\022\036\n\024PasswordPolic"
+  "ies_Get\020:\032\004\360\233\'\001\022)\n\027PasswordPolicies_Dele"
+  "te\020;\032\014\360\233\'\001\370\233\'9\370\233\':\022!\n\023PasswordHistory_Ad"
+  "d\020<\032\010\360\233\'\000\370\233\'=\022\035\n\023PasswordHistory_Get\020=\032\004"
+  "\360\233\'\000\022(\n\026PasswordHistory_Delete\020>\032\014\360\233\'\000\370\233"
+  "\'<\370\233\'=\022\033\n\021Notifications_Get\020@\032\004\360\233\'\000\022\037\n\021N"
+  "otifications_Add\020A\032\010\360\233\'\000\370\233\'@\022&\n\024Notifica"
+  "tions_Delete\020B\032\014\360\233\'\000\370\233\'A\370\233\'@\022\031\n\017LabelOrd"
+  "ers_Get\020C\032\004\360\233\'\001\022\035\n\017LabelOrders_Add\020D\032\010\360\233"
+  "\'\001\370\233\'C\022$\n\022LabelOrders_Delete\020E\032\014\360\233\'\001\370\233\'D"
+  "\370\233\'C\022 \n\026UserFeatureConfigs_Get\020G\032\004\360\233\'\001\022$"
+  "\n\026UserFeatureConfigs_Add\020H\032\010\360\233\'\000\370\233\'G\022+\n\031"
+  "UserFeatureConfigs_Delete\020I\032\014\360\233\'\000\370\233\'H\370\233\'"
+  "G\022\023\n\tTeams_Get\020J\032\004\360\233\'\000\022\027\n\tTeams_Add\020K\032\010\360"
+  "\233\'\000\370\233\'J\022\036\n\014Teams_Delete\020L\032\014\360\233\'\000\370\233\'J\370\233\'K\022"
+  "\027\n\rTeamUsers_Get\020M\032\004\360\233\'\000\022\033\n\rTeamUsers_Ad"
+  "d\020N\032\010\360\233\'\000\370\233\'M\022\"\n\020TeamUsers_Delete\020O\032\014\360\233\'"
+  "\000\370\233\'M\370\233\'N\022\026\n\014TeamApps_Get\020S\032\004\360\233\'\000\022\032\n\014Tea"
+  "mApps_Add\020T\032\010\360\233\'\000\370\233\'S\022!\n\017TeamApps_Delete"
+  "\020U\032\014\360\233\'\000\370\233\'S\370\233\'T\022\023\n\tRoles_Get\020P\032\004\360\233\'\000\022\033\n"
+  "\021Organizations_Get\020V\032\004\360\233\'\000\022\037\n\021Organizati"
+  "ons_Add\020W\032\010\360\233\'\000\370\233\'V\022&\n\024Organizations_Del"
+  "ete\020X\032\014\360\233\'\000\370\233\'V\370\233\'W\022\037\n\025IdentityProviders"
+  "_Get\020Y\032\004\360\233\'\000\022#\n\025IdentityProviders_Add\020Z\032"
+  "\010\360\233\'\000\370\233\'Y\022*\n\030IdentityProviders_Delete\020[\032"
+  "\014\360\233\'\000\370\233\'Y\370\233\'Z\022\031\n\017Org_ListAllApps\020\\\032\004\360\233\'\000"
+  "\022$\n\032OrganizationMembers_Delete\020]\032\004\360\233\'\000\022!"
+  "\n\027OrganizationMembers_Add\020^\032\004\360\233\'\000\022\"\n\030Org"
+  "anizationMembers_List\020c\032\004\360\233\'\000\022\037\n\025UserOrg"
+  "anizations_Get\020_\032\004\360\233\'\000\022%\n\033OrganizationIn"
+  "vitations_Add\020d\032\004\360\233\'\000\022%\n\033OrganizationInv"
+  "itations_Get\020e\032\004\360\233\'\000\022.\n FindDuplicateAnn"
+  "otationsJobs_Add\020f\032\010\360\233\'\001\370\233\'g\022*\n FindDupl"
+  "icateAnnotationsJobs_Get\020g\032\004\360\233\'\001\0225\n#Find"
+  "DuplicateAnnotationsJobs_Delete\020h\032\014\360\233\'\001\370"
+  "\233\'f\370\233\'g\022\026\n\014Datasets_Get\020i\032\004\360\233\'\001\022\032\n\014Datas"
+  "ets_Add\020j\032\010\360\233\'\001\370\233\'i\022!\n\017Datasets_Delete\020k"
+  "\032\014\360\233\'\001\370\233\'i\370\233\'j\022\031\n\013Modules_Add\020l\032\010\360\233\'\001\370\233\'"
+  "m\022\025\n\013Modules_Get\020m\032\004\360\233\'\001\022 \n\016Modules_Dele"
+  "te\020n\032\014\360\233\'\001\370\233\'l\370\233\'m\022-\n\033InstalledModuleVer"
+  "sions_Add\020o\032\014\360\233\'\001\370\233\'p\370\233\'m\022)\n\033InstalledMo"
+  "duleVersions_Get\020p\032\010\360\233\'\001\370\233\'m\0224\n\036Installe"
+  "dModuleVersions_Delete\020q\032\020\360\233\'\001\370\233\'o\370\233\'p\370\233"
+  "\'m\022\020\n\006Search\020\003\032\004\360\233\'\001\022\033\n\017Search_Feedback\020"
+  "\034\032\006\010\001\360\233\'\000\022\031\n\017SavedSearch_Get\020r\032\004\360\233\'\001\022\035\n\017"
+  "SavedSearch_Add\020s\032\010\360\233\'\001\370\233\'r\022$\n\022SavedSear"
+  "ch_Delete\020t\032\014\360\233\'\001\370\233\'r\370\233\'s\022&\n\034ModelVersio"
+  "nPublications_Add\020u\032\004\360\233\'\001\022)\n\037ModelVersio"
+  "nPublications_Delete\020v\032\004\360\233\'\001\022\"\n\030Workflow"
+  "Publications_Add\020w\032\004\360\233\'\001\022%\n\033WorkflowPubl"
+  "ications_Delete\020x\032\004\360\233\'\001\022\037\n\021BulkOperation"
+  "_Add\020y\032\010\360\233\'\001\370\233\'z\022\033\n\021BulkOperation_Get\020z\032"
+  "\004\360\233\'\001\022&\n\024BulkOperation_Delete\020{\032\014\360\233\'\001\370\233\'"
+  "y\370\233\'z\022\027\n\023HistoricalUsage_Get\020|\022\026\n\013Upload"
+  "s_Get\020\200\001\032\004\360\233\'\001\022\033\n\013Uploads_Add\020\201\001\032\t\360\233\'\001\370\233"
+  "\'\200\001\022#\n\016Uploads_Delete\020\202\001\032\016\360\233\'\001\370\233\'\200\001\370\233\'\201\001"
+  "\"\004\010\036\020\036\"\004\010\037\020\037\"\004\010 \020 \"\004\010!\020!\"\004\010\"\020\"\"\004\010}\020}\"\004\010~"
+  "\020~:<\n\017clarfai_exposed\022!.google.protobuf."
+  "EnumValueOptions\030\276\363\004 \001(\010:^\n\031clarifai_dep"
+  "ending_scopes\022!.google.protobuf.EnumValu"
+  "eOptions\030\277\363\004 \003(\0162\026.clarifai.auth.scope.S"
+  "B<\n\034com.clarifai.grpc.auth.scopeP\001Z\023clar"
+  "ifai/auth/scope\242\002\004CAIPb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_sccs[1] = {
-  &scc_info_ScopeList_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto.base,
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_once;
-static bool descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, "proto/clarifai/auth/scope/scope.proto", 2304,
-  &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_once, descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_sccs, descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_deps, 1, 1,
+  false, false, 4150, descriptor_table_protodef_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, "proto/clarifai/auth/scope/scope.proto", 
+  &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_once, descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_deps, 1, 1,
   schemas, file_default_instances, TableStruct_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto::offsets,
-  file_level_metadata_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, 1, file_level_enum_descriptors_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, file_level_service_descriptors_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto,
+  file_level_metadata_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, file_level_enum_descriptors_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto, file_level_service_descriptors_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto,
 };
+PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable* descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_getter() {
+  return &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto;
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto(&descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto);
 namespace clarifai {
 namespace auth {
 namespace scope {
@@ -170,6 +214,8 @@ bool S_IsValid(int value) {
     case 25:
     case 26:
     case 27:
+    case 28:
+    case 29:
     case 37:
     case 38:
     case 39:
@@ -193,18 +239,72 @@ bool S_IsValid(int value) {
     case 57:
     case 58:
     case 59:
+    case 60:
+    case 61:
+    case 62:
     case 63:
+    case 64:
+    case 65:
+    case 66:
     case 67:
     case 68:
     case 69:
     case 70:
     case 71:
+    case 72:
+    case 73:
+    case 74:
+    case 75:
+    case 76:
+    case 77:
+    case 78:
+    case 79:
+    case 80:
+    case 83:
+    case 84:
+    case 85:
+    case 86:
+    case 87:
+    case 88:
+    case 89:
+    case 90:
+    case 91:
+    case 92:
+    case 93:
+    case 94:
+    case 95:
     case 96:
     case 97:
     case 98:
+    case 99:
+    case 100:
+    case 101:
     case 102:
     case 103:
     case 104:
+    case 105:
+    case 106:
+    case 107:
+    case 108:
+    case 109:
+    case 110:
+    case 111:
+    case 112:
+    case 113:
+    case 114:
+    case 115:
+    case 116:
+    case 117:
+    case 118:
+    case 119:
+    case 120:
+    case 121:
+    case 122:
+    case 123:
+    case 124:
+    case 128:
+    case 129:
+    case 130:
       return true;
     default:
       return false;
@@ -214,79 +314,85 @@ bool S_IsValid(int value) {
 
 // ===================================================================
 
-void ScopeList::InitAsDefaultInstance() {
-}
 class ScopeList::_Internal {
  public:
 };
 
-ScopeList::ScopeList()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+ScopeList::ScopeList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  scopes_(arena),
+  endpoints_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:clarifai.auth.scope.ScopeList)
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:clarifai.auth.scope.ScopeList)
 }
 ScopeList::ScopeList(const ScopeList& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
       scopes_(from.scopes_),
       endpoints_(from.endpoints_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:clarifai.auth.scope.ScopeList)
 }
 
-void ScopeList::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ScopeList_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto.base);
+inline void ScopeList::SharedCtor() {
 }
 
 ScopeList::~ScopeList() {
   // @@protoc_insertion_point(destructor:clarifai.auth.scope.ScopeList)
+  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void ScopeList::SharedDtor() {
+inline void ScopeList::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
+void ScopeList::ArenaDtor(void* object) {
+  ScopeList* _this = reinterpret_cast< ScopeList* >(object);
+  (void)_this;
+}
+void ScopeList::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void ScopeList::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ScopeList& ScopeList::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ScopeList_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void ScopeList::Clear() {
 // @@protoc_insertion_point(message_clear_start:clarifai.auth.scope.ScopeList)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   scopes_.Clear();
   endpoints_.Clear();
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* ScopeList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    uint32_t tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
     switch (tag >> 3) {
       // repeated .clarifai.auth.scope.S scopes = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedEnumParser(_internal_mutable_scopes(), ptr, ctx);
           CHK_(ptr);
-        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+        } else if (static_cast<uint8_t>(tag) == 8) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_add_scopes(static_cast<::clarifai::auth::scope::S>(val));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // repeated string endpoints = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -296,32 +402,36 @@ const char* ScopeList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* ScopeList::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* ScopeList::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:clarifai.auth.scope.ScopeList)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // repeated .clarifai.auth.scope.S scopes = 1;
@@ -345,7 +455,7 @@ failure:
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:clarifai.auth.scope.ScopeList)
   return target;
@@ -355,7 +465,7 @@ size_t ScopeList::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:clarifai.auth.scope.ScopeList)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -369,7 +479,7 @@ size_t ScopeList::ByteSizeLong() const {
     if (data_size > 0) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+            static_cast<int32_t>(data_size));
     }
     int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
     _scopes_cached_byte_size_.store(cached_size,
@@ -385,46 +495,31 @@ size_t ScopeList::ByteSizeLong() const {
       endpoints_.Get(i));
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-void ScopeList::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:clarifai.auth.scope.ScopeList)
-  GOOGLE_DCHECK_NE(&from, this);
-  const ScopeList* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ScopeList>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:clarifai.auth.scope.ScopeList)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:clarifai.auth.scope.ScopeList)
-    MergeFrom(*source);
-  }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ScopeList::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ScopeList::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ScopeList::GetClassData() const { return &_class_data_; }
+
+void ScopeList::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ScopeList *>(to)->MergeFrom(
+      static_cast<const ScopeList &>(from));
 }
+
 
 void ScopeList::MergeFrom(const ScopeList& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:clarifai.auth.scope.ScopeList)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   scopes_.MergeFrom(from.scopes_);
   endpoints_.MergeFrom(from.endpoints_);
-}
-
-void ScopeList::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:clarifai.auth.scope.ScopeList)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ScopeList::CopyFrom(const ScopeList& from) {
@@ -440,20 +535,21 @@ bool ScopeList::IsInitialized() const {
 
 void ScopeList::InternalSwap(ScopeList* other) {
   using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   scopes_.InternalSwap(&other->scopes_);
   endpoints_.InternalSwap(&other->endpoints_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ScopeList::GetMetadata() const {
-  return GetMetadataStatic();
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_getter, &descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto_once,
+      file_level_metadata_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto[0]);
 }
-
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::EnumValueOptions,
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::EnumValueOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false >
   clarfai_exposed(kClarfaiExposedFieldNumber, false);
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::EnumValueOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::RepeatedEnumTypeTraits< ::clarifai::auth::scope::S, ::clarifai::auth::scope::S_IsValid>, 14, false >
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::EnumValueOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::RepeatedEnumTypeTraits< ::clarifai::auth::scope::S, ::clarifai::auth::scope::S_IsValid>, 14, true >
   clarifai_depending_scopes(kClarifaiDependingScopesFieldNumber, static_cast< ::clarifai::auth::scope::S >(0));
 
 // @@protoc_insertion_point(namespace_scope)
@@ -462,7 +558,7 @@ void ScopeList::InternalSwap(ScopeList* other) {
 }  // namespace clarifai
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::clarifai::auth::scope::ScopeList* Arena::CreateMaybeMessage< ::clarifai::auth::scope::ScopeList >(Arena* arena) {
-  return Arena::CreateInternal< ::clarifai::auth::scope::ScopeList >(arena);
+  return Arena::CreateMessageInternal< ::clarifai::auth::scope::ScopeList >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
