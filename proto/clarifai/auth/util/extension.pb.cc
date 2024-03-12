@@ -14,18 +14,23 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+
+PROTOBUF_PRAGMA_INIT_SEG
+
+namespace _pb = ::PROTOBUF_NAMESPACE_ID;
+namespace _pbi = _pb::internal;
+
 namespace clarifai {
 namespace auth {
 namespace util {
 }  // namespace util
 }  // namespace auth
 }  // namespace clarifai
-static constexpr ::PROTOBUF_NAMESPACE_ID::Metadata* file_level_metadata_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = nullptr;
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_proto_2fclarifai_2fauth_2futil_2fextension_2eproto::offsets[1] = {};
-static constexpr ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema* schemas = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::Message* const* file_default_instances = nullptr;
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = nullptr;
+static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = nullptr;
+const uint32_t TableStruct_proto_2fclarifai_2fauth_2futil_2fextension_2eproto::offsets[1] = {};
+static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
+static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_proto_2fclarifai_2fauth_2futil_2fextension_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n(proto/clarifai/auth/util/extension.pro"
@@ -45,42 +50,44 @@ const char descriptor_table_protodef_proto_2fclarifai_2fauth_2futil_2fextension_
   "\001Z=github.com/Clarifai/clarifai-go-grpc/"
   "proto/clarifai/auth/util\242\002\004CAIPb\006proto3"
   ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_deps[3] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
   &::descriptor_table_proto_2fclarifai_2fauth_2fscope_2fscope_2eproto,
   &::descriptor_table_proto_2fclarifai_2fauth_2ftypes_2ftypes_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_sccs[1] = {
+static ::_pbi::once_flag descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = {
+    false, false, 639, descriptor_table_protodef_proto_2fclarifai_2fauth_2futil_2fextension_2eproto,
+    "proto/clarifai/auth/util/extension.proto",
+    &descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_once, descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_deps, 3, 0,
+    schemas, file_default_instances, TableStruct_proto_2fclarifai_2fauth_2futil_2fextension_2eproto::offsets,
+    nullptr, file_level_enum_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto,
+    file_level_service_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_once;
-static bool descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_initialized = false;
-const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = {
-  &descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_initialized, descriptor_table_protodef_proto_2fclarifai_2fauth_2futil_2fextension_2eproto, "proto/clarifai/auth/util/extension.proto", 639,
-  &descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_once, descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_sccs, descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_deps, 0, 3,
-  schemas, file_default_instances, TableStruct_proto_2fclarifai_2fauth_2futil_2fextension_2eproto::offsets,
-  file_level_metadata_proto_2fclarifai_2fauth_2futil_2fextension_2eproto, 0, file_level_enum_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto, file_level_service_descriptors_proto_2fclarifai_2fauth_2futil_2fextension_2eproto,
-};
+PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto_getter() {
+  return &descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto;
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_proto_2fclarifai_2fauth_2futil_2fextension_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_proto_2fclarifai_2fauth_2futil_2fextension_2eproto(&descriptor_table_proto_2fclarifai_2fauth_2futil_2fextension_2eproto);
 namespace clarifai {
 namespace auth {
 namespace util {
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false >
-  cl_private_field(kClPrivateFieldFieldNumber, false);
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false >
-  cl_private_rpc(kClPrivateRpcFieldNumber, false);
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::RepeatedEnumTypeTraits< ::clarifai::auth::scope::S, ::clarifai::auth::scope::S_IsValid>, 14, false >
-  cl_depending_scopes(kClDependingScopesFieldNumber, static_cast< ::clarifai::auth::scope::S >(0));
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::EnumTypeTraits< ::clarifai::auth::types::AuthType, ::clarifai::auth::types::AuthType_IsValid>, 14, false >
-  cl_auth_type(kClAuthTypeFieldNumber, static_cast< ::clarifai::auth::types::AuthType >(0));
-::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
-    ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false >
-  cl_private_message(kClPrivateMessageFieldNumber, false);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::FieldOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
+  cl_private_field(kClPrivateFieldFieldNumber, false, nullptr);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
+  cl_private_rpc(kClPrivateRpcFieldNumber, false, nullptr);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::RepeatedEnumTypeTraits< ::clarifai::auth::scope::S, ::clarifai::auth::scope::S_IsValid>, 14, true>
+  cl_depending_scopes(kClDependingScopesFieldNumber, static_cast< ::clarifai::auth::scope::S >(0), nullptr);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::EnumTypeTraits< ::clarifai::auth::types::AuthType, ::clarifai::auth::types::AuthType_IsValid>, 14, false>
+  cl_auth_type(kClAuthTypeFieldNumber, static_cast< ::clarifai::auth::types::AuthType >(0), nullptr);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MessageOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
+  cl_private_message(kClPrivateMessageFieldNumber, false, nullptr);
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace util
