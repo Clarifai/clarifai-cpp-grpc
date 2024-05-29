@@ -57,6 +57,8 @@ The third version number (`Z` out of `X.Y.Z`) is used by this library for any in
 
 ## Getting started
 
+### Constructing the Stub
+
 Construct the `V2::Stub` object using which you'll access all the Clarifai API functionality, and
 a `grpc::ClientContext` object that will be used for authentication.
 
@@ -65,8 +67,14 @@ auto channel = grpc::CreateChannel("api.clarifai.com:443", grpc::SslCredentials(
 unique_ptr<V2::Stub> stub = V2::NewStub(channel);
 
 unique_ptr<grpc::ClientContext> context(new grpc::ClientContext);
-context->AddMetadata("authorization", "Key YOUR_CLARIFAI_API_KEY_OR_PAT");
+context->AddMetadata("authorization", "Key YOUR_CLARIFAI_PAT");
 ```
+
+### Additional Steps for Enterprise Users
+
+Enterprise users with an on premise install of the Clarifai platform will need to adjust the channel example above to use the custom address and port for their specific install.  `api.clarifai.com` can be replaced with the IP address.  The port `443` should remain the same although this could vary depending on the particulars of the install.
+
+## Example Predict Call
 
 Predict concepts in an image:
 
@@ -76,6 +84,12 @@ string GENERAL_MODEL_ID = "aaa03c23b3724a16a56b629203edc62c";
 
 PostModelOutputsRequest request;
 request.set_model_id(GENERAL_MODEL_ID);
+
+// Set the user and app information here which is needed when
+// using a Personal Access Token.
+UserAppIDSet* user_app_id = request.mutable_user_app_id();
+user_app_id->set_user_id("YOUR CLARIFAI USER ID");
+user_app_id->set_app_id("YOUR CLARIFAI APPLICATION ID");
 
 Input* input = request.add_inputs();
 Data* data = input->mutable_data();
